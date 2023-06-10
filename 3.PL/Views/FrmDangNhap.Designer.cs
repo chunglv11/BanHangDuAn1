@@ -38,7 +38,6 @@
             label1 = new Label();
             Tb_Mk = new TextBox();
             tb_Tentk = new TextBox();
-            rjButton1 = new RJControls.RJButton();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,7 +52,6 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(rjButton1);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label4);
@@ -134,23 +132,6 @@
             tb_Tentk.Size = new Size(313, 34);
             tb_Tentk.TabIndex = 1;
             // 
-            // rjButton1
-            // 
-            rjButton1.BackColor = Color.MediumSlateBlue;
-            rjButton1.BackgroundColor = Color.MediumSlateBlue;
-            rjButton1.BorderColor = Color.PaleVioletRed;
-            rjButton1.BorderRadius = 0;
-            rjButton1.BorderSize = 0;
-            rjButton1.FlatAppearance.BorderSize = 0;
-            rjButton1.ForeColor = Color.White;
-            rjButton1.Location = new Point(46, 246);
-            rjButton1.Name = "rjButton1";
-            rjButton1.Size = new Size(188, 50);
-            rjButton1.TabIndex = 9;
-            rjButton1.Text = "rjButton1";
-            rjButton1.TextColor = Color.White;
-            rjButton1.UseVisualStyleBackColor = false;
-            // 
             // FrmDangNhap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -176,6 +157,6 @@
         private TextBox Tb_Mk;
         private TextBox tb_Tentk;
         private Button button1;
-        private RJControls.RJButton rjButton1;
+
     }
 }
