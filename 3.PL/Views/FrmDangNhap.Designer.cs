@@ -31,13 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDangNhap));
             panel1 = new Panel();
             panel2 = new Panel();
+            button1 = new Button();
             label2 = new Label();
             label4 = new Label();
             label3 = new Label();
             label1 = new Label();
             Tb_Mk = new TextBox();
             tb_Tentk = new TextBox();
-            button1 = new Button();
+            rjButton1 = new RJControls.RJButton();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(rjButton1);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label4);
@@ -63,6 +65,17 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(508, 391);
             panel2.TabIndex = 2;
+            // 
+            // button1
+            // 
+            button1.BackgroundImageLayout = ImageLayout.Center;
+            button1.FlatStyle = FlatStyle.System;
+            button1.Location = new Point(186, 287);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 50);
+            button1.TabIndex = 8;
+            button1.Text = "Đăng nhập";
+            button1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -121,16 +134,22 @@
             tb_Tentk.Size = new Size(313, 34);
             tb_Tentk.TabIndex = 1;
             // 
-            // button1
+            // rjButton1
             // 
-            button1.BackgroundImageLayout = ImageLayout.Center;
-            button1.FlatStyle = FlatStyle.System;
-            button1.Location = new Point(186, 287);
-            button1.Name = "button1";
-            button1.Size = new Size(121, 50);
-            button1.TabIndex = 8;
-            button1.Text = "Đăng nhập";
-            button1.UseVisualStyleBackColor = true;
+            rjButton1.BackColor = Color.MediumSlateBlue;
+            rjButton1.BackgroundColor = Color.MediumSlateBlue;
+            rjButton1.BorderColor = Color.PaleVioletRed;
+            rjButton1.BorderRadius = 0;
+            rjButton1.BorderSize = 0;
+            rjButton1.FlatAppearance.BorderSize = 0;
+            rjButton1.ForeColor = Color.White;
+            rjButton1.Location = new Point(46, 246);
+            rjButton1.Name = "rjButton1";
+            rjButton1.Size = new Size(188, 50);
+            rjButton1.TabIndex = 9;
+            rjButton1.Text = "rjButton1";
+            rjButton1.TextColor = Color.White;
+            rjButton1.UseVisualStyleBackColor = false;
             // 
             // FrmDangNhap
             // 
@@ -157,6 +176,6 @@
         private TextBox Tb_Mk;
         private TextBox tb_Tentk;
         private Button button1;
-        private CustomButton.VBButton vbButton1;
+        private RJControls.RJButton rjButton1;
     }
 }
