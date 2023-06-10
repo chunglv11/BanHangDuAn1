@@ -38,6 +38,7 @@
             Tb_Mk = new TextBox();
             tb_Tentk = new TextBox();
             button1 = new Button();
+            vbButton1 = new CustomButton.VBButton();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(vbButton1);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label4);
@@ -132,6 +134,24 @@
             button1.Text = "Đăng nhập";
             button1.UseVisualStyleBackColor = true;
             // 
+            // vbButton1
+            // 
+            vbButton1.BackColor = Color.Violet;
+            vbButton1.BackgroundColor = Color.Violet;
+            vbButton1.BorderColor = Color.PaleVioletRed;
+            vbButton1.BorderRadius = 20;
+            vbButton1.BorderSize = 0;
+            vbButton1.FlatAppearance.BorderSize = 0;
+            vbButton1.FlatStyle = FlatStyle.Flat;
+            vbButton1.ForeColor = Color.Turquoise;
+            vbButton1.Location = new Point(64, 287);
+            vbButton1.Name = "vbButton1";
+            vbButton1.Size = new Size(188, 50);
+            vbButton1.TabIndex = 9;
+            vbButton1.Text = "vbButton1";
+            vbButton1.TextColor = Color.Turquoise;
+            vbButton1.UseVisualStyleBackColor = false;
+            // 
             // FrmDangNhap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -157,5 +177,6 @@
         private TextBox Tb_Mk;
         private TextBox tb_Tentk;
         private Button button1;
+        private CustomButton.VBButton vbButton1;
     }
 }
