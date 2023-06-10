@@ -28,26 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            vbButton1 = new CustomButton.VBButton();
             SuspendLayout();
-            // 
-            // vbButton1
-            // 
-            vbButton1.BackColor = Color.MediumSlateBlue;
-            vbButton1.BackgroundColor = Color.MediumSlateBlue;
-            vbButton1.BorderColor = Color.PaleVioletRed;
-            vbButton1.BorderRadius = 20;
-            vbButton1.BorderSize = 0;
-            vbButton1.FlatAppearance.BorderSize = 0;
-            vbButton1.FlatStyle = FlatStyle.Flat;
-            vbButton1.ForeColor = Color.White;
-            vbButton1.Location = new Point(70, 661);
-            vbButton1.Name = "vbButton1";
-            vbButton1.Size = new Size(188, 50);
-            vbButton1.TabIndex = 0;
-            vbButton1.Text = "vbButton1";
-            vbButton1.TextColor = Color.White;
-            vbButton1.UseVisualStyleBackColor = false;
             // 
             // FrmBanHang
             // 
@@ -55,7 +36,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
             ClientSize = new Size(1363, 969);
-            Controls.Add(vbButton1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmBanHang";
             Text = "FrmBanHang";
@@ -63,7 +43,5 @@
         }
 
         #endregion
-
-        private CustomButton.VBButton vbButton1;
     }
 }

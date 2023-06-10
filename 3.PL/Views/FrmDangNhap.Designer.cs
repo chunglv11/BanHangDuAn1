@@ -37,7 +37,7 @@
             label1 = new Label();
             Tb_Mk = new TextBox();
             tb_Tentk = new TextBox();
-            btn_DangNhap = new CustomButton.VBButton();
+            button1 = new Button();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(btn_DangNhap);
+            panel2.Controls.Add(button1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
@@ -121,23 +121,16 @@
             tb_Tentk.Size = new Size(313, 34);
             tb_Tentk.TabIndex = 1;
             // 
-            // btn_DangNhap
+            // button1
             // 
-            btn_DangNhap.BackColor = Color.MediumSlateBlue;
-            btn_DangNhap.BackgroundColor = Color.MediumSlateBlue;
-            btn_DangNhap.BorderColor = Color.PaleVioletRed;
-            btn_DangNhap.BorderRadius = 20;
-            btn_DangNhap.BorderSize = 0;
-            btn_DangNhap.FlatAppearance.BorderSize = 0;
-            btn_DangNhap.FlatStyle = FlatStyle.Flat;
-            btn_DangNhap.ForeColor = Color.White;
-            btn_DangNhap.Location = new Point(168, 291);
-            btn_DangNhap.Name = "btn_DangNhap";
-            btn_DangNhap.Size = new Size(188, 50);
-            btn_DangNhap.TabIndex = 8;
-            btn_DangNhap.Text = "Đăng nhập";
-            btn_DangNhap.TextColor = Color.White;
-            btn_DangNhap.UseVisualStyleBackColor = false;
+            button1.BackgroundImageLayout = ImageLayout.Center;
+            button1.FlatStyle = FlatStyle.System;
+            button1.Location = new Point(186, 287);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 50);
+            button1.TabIndex = 8;
+            button1.Text = "Đăng nhập";
+            button1.UseVisualStyleBackColor = true;
             // 
             // FrmDangNhap
             // 
@@ -163,6 +156,6 @@
         private Label label1;
         private TextBox Tb_Mk;
         private TextBox tb_Tentk;
-        private CustomButton.VBButton btn_DangNhap;
+        private Button button1;
     }
 }
