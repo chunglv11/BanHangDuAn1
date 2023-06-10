@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace _3.PL.Views
 {
-    public partial class FrmMain : Form
+    public partial class FrmBanHang : Form
     {
-        public FrmMain()
+        public FrmBanHang()
         {
             InitializeComponent();
         }
-
-
     }
 }
