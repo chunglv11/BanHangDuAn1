@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDangNhap));
-            vbButton1 = new CustomButton.VBButton();
+            btn_DangNhap = new CustomButton.VBButton();
             panel1 = new Panel();
             panel2 = new Panel();
             label2 = new Label();
@@ -41,23 +41,23 @@
             panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // vbButton1
+            // btn_DangNhap
             // 
-            vbButton1.BackColor = Color.MediumSlateBlue;
-            vbButton1.BackgroundColor = Color.MediumSlateBlue;
-            vbButton1.BorderColor = Color.PaleVioletRed;
-            vbButton1.BorderRadius = 20;
-            vbButton1.BorderSize = 0;
-            vbButton1.FlatAppearance.BorderSize = 0;
-            vbButton1.FlatStyle = FlatStyle.Flat;
-            vbButton1.ForeColor = Color.White;
-            vbButton1.Location = new Point(151, 298);
-            vbButton1.Name = "vbButton1";
-            vbButton1.Size = new Size(188, 50);
-            vbButton1.TabIndex = 0;
-            vbButton1.Text = "Đăng nhập";
-            vbButton1.TextColor = Color.White;
-            vbButton1.UseVisualStyleBackColor = false;
+            btn_DangNhap.BackColor = Color.MediumSlateBlue;
+            btn_DangNhap.BackgroundColor = Color.MediumSlateBlue;
+            btn_DangNhap.BorderColor = Color.PaleVioletRed;
+            btn_DangNhap.BorderRadius = 20;
+            btn_DangNhap.BorderSize = 0;
+            btn_DangNhap.FlatAppearance.BorderSize = 0;
+            btn_DangNhap.FlatStyle = FlatStyle.Flat;
+            btn_DangNhap.ForeColor = Color.White;
+            btn_DangNhap.Location = new Point(151, 298);
+            btn_DangNhap.Name = "btn_DangNhap";
+            btn_DangNhap.Size = new Size(188, 50);
+            btn_DangNhap.TabIndex = 0;
+            btn_DangNhap.Text = "Đăng nhập";
+            btn_DangNhap.TextColor = Color.White;
+            btn_DangNhap.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -76,7 +76,7 @@
             panel2.Controls.Add(label1);
             panel2.Controls.Add(Tb_Mk);
             panel2.Controls.Add(tb_Tentk);
-            panel2.Controls.Add(vbButton1);
+            panel2.Controls.Add(btn_DangNhap);
             panel2.Location = new Point(291, -3);
             panel2.Name = "panel2";
             panel2.Size = new Size(508, 391);
@@ -156,7 +156,7 @@
 
         #endregion
 
-        private CustomButton.VBButton vbButton1;
+        private CustomButton.VBButton btn_DangNhap;
         private Panel panel1;
         private Panel panel2;
         private Label label2;
