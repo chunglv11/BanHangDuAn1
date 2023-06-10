@@ -131,11 +131,11 @@
             btn_DangNhap.FlatAppearance.BorderSize = 0;
             btn_DangNhap.FlatStyle = FlatStyle.Flat;
             btn_DangNhap.ForeColor = Color.White;
-            btn_DangNhap.Location = new Point(177, 288);
+            btn_DangNhap.Location = new Point(168, 291);
             btn_DangNhap.Name = "btn_DangNhap";
             btn_DangNhap.Size = new Size(188, 50);
             btn_DangNhap.TabIndex = 8;
-            btn_DangNhap.Text = "vbButton1";
+            btn_DangNhap.Text = "Đăng nhập";
             btn_DangNhap.TextColor = Color.White;
             btn_DangNhap.UseVisualStyleBackColor = false;
             // 
