@@ -1,6 +1,6 @@
 ﻿namespace _3.PL.Views
 {
-    partial class FrmBanHang
+    partial class FrmQuanLySP
     {
         /// <summary>
         /// Required designer variable.
@@ -28,24 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-
             SuspendLayout();
             // 
-            // FrmBanHang
+            // FrmQuanLySP
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
-            ClientSize = new Size(1363, 969);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "FrmBanHang";
-            Text = "FrmBanHang";
+            ClientSize = new Size(1345, 922);
+            Name = "FrmQuanLySP";
+            Text = "FrmQuanLySP";
             ResumeLayout(false);
         }
 
         #endregion
-
-        private System.CodeDom.CodeTypeReference guna2AnimateWindow1;
     }
 }

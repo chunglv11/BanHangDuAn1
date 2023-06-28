@@ -12,7 +12,7 @@ using _1.DAL.Models;
 namespace _1.DAL.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230521184712_v1")]
+    [Migration("20230628054612_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,8 +123,8 @@ namespace _1.DAL.Migrations
                             IDKM = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
                             IDNV = new Guid("6716c72b-76d9-4626-a269-674aac3b1426"),
                             Ma = "HD1",
-                            NgayTao = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(2009),
-                            NgayThanhToan = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(2009),
+                            NgayTao = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2331),
+                            NgayThanhToan = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2331),
                             TrangThai = 1
                         },
                         new
@@ -134,8 +134,8 @@ namespace _1.DAL.Migrations
                             IDKM = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
                             IDNV = new Guid("a6c0391b-59a9-48e5-aada-b684e80b1250"),
                             Ma = "HD2",
-                            NgayTao = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(2012),
-                            NgayThanhToan = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(2012),
+                            NgayTao = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2334),
+                            NgayThanhToan = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2335),
                             TrangThai = 1
                         });
                 });
@@ -264,8 +264,8 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("38dc8d59-1d19-4002-933e-3d09c77d8fb1"),
                             Ma = "KM1",
-                            NgayBatDau = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(1976),
-                            NgayKetThuc = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(1977),
+                            NgayBatDau = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2303),
+                            NgayKetThuc = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2304),
                             PhanTramGiam = 7,
                             SoTienGiam = 1000,
                             Ten = "Giảm 50%",
@@ -275,8 +275,8 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
                             Ma = "KM2",
-                            NgayBatDau = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(1980),
-                            NgayKetThuc = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(1980),
+                            NgayBatDau = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2306),
+                            NgayKetThuc = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2306),
                             PhanTramGiam = 5,
                             SoTienGiam = 1000,
                             Ten = "Giảm 50%",
@@ -470,7 +470,7 @@ namespace _1.DAL.Migrations
                             HoTen = "Phạm Gia Khánh",
                             IDCV = new Guid("e36bbc87-d18b-4a9a-bc51-353e79e54586"),
                             MatKhau = "1",
-                            NgaySinh = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(1857),
+                            NgaySinh = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2193),
                             SoDienThoai = "098652627222",
                             TrangThai = 1,
                             Username = "chunglv"
@@ -485,7 +485,7 @@ namespace _1.DAL.Migrations
                             HoTen = "Phạm Gia Khánh",
                             IDCV = new Guid("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"),
                             MatKhau = "1",
-                            NgaySinh = new DateTime(2023, 5, 22, 1, 47, 12, 272, DateTimeKind.Local).AddTicks(1874),
+                            NgaySinh = new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2206),
                             SoDienThoai = "09865262713",
                             TrangThai = 1,
                             Username = "bena"
@@ -635,6 +635,7 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("a3459c51-54ec-485c-bece-fdc74871fd4b"),
                             DonGia = 140000m,
+                            HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh1.jpg\"",
                             IDKC = new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"),
                             IDLOAI = new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"),
                             IDMS = new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"),
@@ -649,6 +650,7 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"),
                             DonGia = 150000m,
+                            HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh2.jpg\"",
                             IDKC = new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"),
                             IDLOAI = new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"),
                             IDMS = new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"),
