@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-
+            button1 = new Button();
             SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(337, 166);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
             // FrmBanHang
             // 
@@ -38,6 +46,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
             ClientSize = new Size(1363, 969);
+            Controls.Add(button1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmBanHang";
             Text = "FrmBanHang";
@@ -47,5 +56,6 @@
         #endregion
 
         private System.CodeDom.CodeTypeReference guna2AnimateWindow1;
+        private Button button1;
     }
 }

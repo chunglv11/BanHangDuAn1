@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _2.BUS.IServices;
+using _2.BUS.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +14,68 @@ namespace _3.PL.Views
 {
     public partial class FrmMain : Form
     {
+        private INhanVienServices _inhanVienServices;
+        private IChucVuServices _ichucVuServices;
         public FrmMain()
         {
             InitializeComponent();
+            _inhanVienServices = new NhanVienServices();
+            _ichucVuServices = new ChucVuServices();
+        }
+        private Form activeForm;
+        private void ChangeForm(Form childForm)
+        {
+            if (activeForm != null)
+            {
+
+                activeForm.Close();
+            }
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.PanelPhai.Controls.Add(childForm);
+
+            childForm.Show();
+        }
+        private void btn_BanHang_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmBanHang());
         }
 
+        private void btn_KH_Click(object sender, EventArgs e)
+        {
+            //ChangeForm();
+        }
 
+        private void btn_NhanVien_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Sp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_HD_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_TK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_TaiKhoan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Out_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

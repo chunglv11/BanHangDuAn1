@@ -30,7 +30,7 @@
         {
             Button btn_BanHang;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            panel1 = new Panel();
+            panelTrai = new Panel();
             btn_TaiKhoan = new Button();
             btn_Out = new Button();
             panel4 = new Panel();
@@ -45,14 +45,14 @@
             label2 = new Label();
             lb_TenNV = new Label();
             ptb_avt = new PictureBox();
-            PanelForm = new Panel();
-            panel3 = new Panel();
+            PanelPhai = new Panel();
+            panelFill = new Panel();
             btn_BanHang = new Button();
-            panel1.SuspendLayout();
+            panelTrai.SuspendLayout();
             panel4.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_avt).BeginInit();
-            panel3.SuspendLayout();
+            panelFill.SuspendLayout();
             SuspendLayout();
             // 
             // btn_BanHang
@@ -69,19 +69,21 @@
             btn_BanHang.TabIndex = 2;
             btn_BanHang.Text = "Bán hàng";
             btn_BanHang.UseVisualStyleBackColor = false;
+            btn_BanHang.Click += btn_BanHang_Click;
             // 
-            // panel1
+            // panelTrai
             // 
-            panel1.BackColor = Color.SeaShell;
-            panel1.Controls.Add(btn_TaiKhoan);
-            panel1.Controls.Add(btn_Out);
-            panel1.Controls.Add(panel4);
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(ptb_avt);
-            panel1.Location = new Point(12, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(246, 943);
-            panel1.TabIndex = 3;
+            panelTrai.BackColor = Color.SeaShell;
+            panelTrai.Controls.Add(btn_TaiKhoan);
+            panelTrai.Controls.Add(btn_Out);
+            panelTrai.Controls.Add(panel4);
+            panelTrai.Controls.Add(panel2);
+            panelTrai.Controls.Add(ptb_avt);
+            panelTrai.Dock = DockStyle.Left;
+            panelTrai.Location = new Point(0, 0);
+            panelTrai.Name = "panelTrai";
+            panelTrai.Size = new Size(246, 958);
+            panelTrai.TabIndex = 3;
             // 
             // btn_TaiKhoan
             // 
@@ -90,12 +92,13 @@
             btn_TaiKhoan.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btn_TaiKhoan.Image = (Image)resources.GetObject("btn_TaiKhoan.Image");
             btn_TaiKhoan.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_TaiKhoan.Location = new Point(0, 844);
+            btn_TaiKhoan.Location = new Point(0, 859);
             btn_TaiKhoan.Name = "btn_TaiKhoan";
             btn_TaiKhoan.Size = new Size(246, 49);
             btn_TaiKhoan.TabIndex = 16;
             btn_TaiKhoan.Text = "Tài khoản";
             btn_TaiKhoan.UseVisualStyleBackColor = false;
+            btn_TaiKhoan.Click += btn_TaiKhoan_Click;
             // 
             // btn_Out
             // 
@@ -104,12 +107,13 @@
             btn_Out.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btn_Out.Image = (Image)resources.GetObject("btn_Out.Image");
             btn_Out.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Out.Location = new Point(0, 893);
+            btn_Out.Location = new Point(0, 908);
             btn_Out.Name = "btn_Out";
             btn_Out.Size = new Size(246, 50);
             btn_Out.TabIndex = 15;
             btn_Out.Text = "Đăng xuất";
             btn_Out.UseVisualStyleBackColor = false;
+            btn_Out.Click += btn_Out_Click;
             // 
             // panel4
             // 
@@ -138,6 +142,7 @@
             btn_TK.TabIndex = 7;
             btn_TK.Text = "Thống kê";
             btn_TK.UseVisualStyleBackColor = false;
+            btn_TK.Click += btn_TK_Click;
             // 
             // btn_HD
             // 
@@ -152,6 +157,7 @@
             btn_HD.TabIndex = 6;
             btn_HD.Text = "Hóa đơn";
             btn_HD.UseVisualStyleBackColor = false;
+            btn_HD.Click += btn_HD_Click;
             // 
             // btn_Sp
             // 
@@ -166,6 +172,7 @@
             btn_Sp.TabIndex = 5;
             btn_Sp.Text = "Sản phẩm";
             btn_Sp.UseVisualStyleBackColor = false;
+            btn_Sp.Click += btn_Sp_Click;
             // 
             // btn_NhanVien
             // 
@@ -180,6 +187,7 @@
             btn_NhanVien.TabIndex = 4;
             btn_NhanVien.Text = "Nhân viên";
             btn_NhanVien.UseVisualStyleBackColor = false;
+            btn_NhanVien.Click += btn_NhanVien_Click;
             // 
             // btn_KH
             // 
@@ -194,6 +202,7 @@
             btn_KH.TabIndex = 3;
             btn_KH.Text = "Khách hàng";
             btn_KH.UseVisualStyleBackColor = false;
+            btn_KH.Click += btn_KH_Click;
             // 
             // panel2
             // 
@@ -260,50 +269,50 @@
             ptb_avt.TabIndex = 0;
             ptb_avt.TabStop = false;
             // 
-            // PanelForm
+            // PanelPhai
             // 
-            PanelForm.BackColor = Color.SeaShell;
-            PanelForm.Dock = DockStyle.Fill;
-            PanelForm.Location = new Point(0, 0);
-            PanelForm.Name = "PanelForm";
-            PanelForm.Size = new Size(1673, 958);
-            PanelForm.TabIndex = 1;
+            PanelPhai.BackColor = Color.SeaShell;
+            PanelPhai.Dock = DockStyle.Right;
+            PanelPhai.Location = new Point(0, 0);
+            PanelPhai.Name = "PanelPhai";
+            PanelPhai.Size = new Size(1673, 958);
+            PanelPhai.TabIndex = 1;
             // 
-            // panel3
+            // panelFill
             // 
-            panel3.BackColor = Color.SeaShell;
-            panel3.Controls.Add(PanelForm);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1673, 958);
-            panel3.TabIndex = 5;
+            panelFill.BackColor = Color.SeaShell;
+            panelFill.Controls.Add(PanelPhai);
+            panelFill.Dock = DockStyle.Fill;
+            panelFill.Location = new Point(0, 0);
+            panelFill.Name = "panelFill";
+            panelFill.Size = new Size(1673, 958);
+            panelFill.TabIndex = 5;
             // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1673, 958);
-            Controls.Add(panel1);
-            Controls.Add(panel3);
+            Controls.Add(panelTrai);
+            Controls.Add(panelFill);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FrmMain";
             Text = "FrmMain";
             WindowState = FormWindowState.Maximized;
-            panel1.ResumeLayout(false);
+            panelTrai.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_avt).EndInit();
-            panel3.ResumeLayout(false);
+            panelFill.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel PanelForm;
+        private System.Windows.Forms.Panel panelTrai;
+        private System.Windows.Forms.Panel PanelPhai;
         private System.Windows.Forms.PictureBox ptb_avt;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelFill;
         private Label lb_TenCV;
         private Label lb_TenNV;
         private Label label2;
