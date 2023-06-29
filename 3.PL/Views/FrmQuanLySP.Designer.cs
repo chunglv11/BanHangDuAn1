@@ -28,90 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            tabPage3 = new TabPage();
-            tabPage4 = new TabPage();
-            tabPage5 = new TabPage();
-            tabPage6 = new TabPage();
-            tabControl1.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            quảnLýSảnPhẩmToolStripMenuItem = new ToolStripMenuItem();
+            sảnPhẩmToolStripMenuItem = new ToolStripMenuItem();
+            kíchCỡToolStripMenuItem = new ToolStripMenuItem();
+            màuSắcToolStripMenuItem = new ToolStripMenuItem();
+            nhàSảnXuấtToolStripMenuItem = new ToolStripMenuItem();
+            loạiSảnPhẩmToolStripMenuItem = new ToolStripMenuItem();
+            panelFill = new Panel();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl1
+            // menuStrip1
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
-            tabControl1.Controls.Add(tabPage5);
-            tabControl1.Controls.Add(tabPage6);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1345, 922);
-            tabControl1.TabIndex = 0;
+            menuStrip1.BackColor = Color.SeaShell;
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { quảnLýSảnPhẩmToolStripMenuItem, sảnPhẩmToolStripMenuItem, kíchCỡToolStripMenuItem, màuSắcToolStripMenuItem, nhàSảnXuấtToolStripMenuItem, loạiSảnPhẩmToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1345, 28);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
-            // tabPage1
+            // quảnLýSảnPhẩmToolStripMenuItem
             // 
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1337, 889);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Sản phẩm chi tiết";
-            tabPage1.UseVisualStyleBackColor = true;
+            quảnLýSảnPhẩmToolStripMenuItem.Name = "quảnLýSảnPhẩmToolStripMenuItem";
+            quảnLýSảnPhẩmToolStripMenuItem.Size = new Size(141, 24);
+            quảnLýSảnPhẩmToolStripMenuItem.Text = "Quản lý sản phẩm";
+            quảnLýSảnPhẩmToolStripMenuItem.Click += quảnLýSảnPhẩmToolStripMenuItem_Click;
             // 
-            // tabPage2
+            // sảnPhẩmToolStripMenuItem
             // 
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1337, 889);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Sản phẩm";
-            tabPage2.UseVisualStyleBackColor = true;
+            sảnPhẩmToolStripMenuItem.Name = "sảnPhẩmToolStripMenuItem";
+            sảnPhẩmToolStripMenuItem.Size = new Size(89, 24);
+            sảnPhẩmToolStripMenuItem.Text = "Sản phẩm";
+            sảnPhẩmToolStripMenuItem.Click += sảnPhẩmToolStripMenuItem_Click;
             // 
-            // tabPage3
+            // kíchCỡToolStripMenuItem
             // 
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1337, 889);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Nhà sản xuất";
-            tabPage3.UseVisualStyleBackColor = true;
+            kíchCỡToolStripMenuItem.Name = "kíchCỡToolStripMenuItem";
+            kíchCỡToolStripMenuItem.Size = new Size(71, 24);
+            kíchCỡToolStripMenuItem.Text = "Kích cỡ";
+            kíchCỡToolStripMenuItem.Click += kíchCỡToolStripMenuItem_Click;
             // 
-            // tabPage4
+            // màuSắcToolStripMenuItem
             // 
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1337, 889);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Kích cỡ";
-            tabPage4.UseVisualStyleBackColor = true;
+            màuSắcToolStripMenuItem.Name = "màuSắcToolStripMenuItem";
+            màuSắcToolStripMenuItem.Size = new Size(77, 24);
+            màuSắcToolStripMenuItem.Text = "Màu sắc";
+            màuSắcToolStripMenuItem.Click += màuSắcToolStripMenuItem_Click;
             // 
-            // tabPage5
+            // nhàSảnXuấtToolStripMenuItem
             // 
-            tabPage5.Location = new Point(4, 29);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(1337, 889);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "Màu sắc";
-            tabPage5.UseVisualStyleBackColor = true;
+            nhàSảnXuấtToolStripMenuItem.Name = "nhàSảnXuấtToolStripMenuItem";
+            nhàSảnXuấtToolStripMenuItem.Size = new Size(108, 24);
+            nhàSảnXuấtToolStripMenuItem.Text = "Nhà sản xuất";
+            nhàSảnXuấtToolStripMenuItem.Click += nhàSảnXuấtToolStripMenuItem_Click;
             // 
-            // tabPage6
+            // loạiSảnPhẩmToolStripMenuItem
             // 
-            tabPage6.Location = new Point(4, 29);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(1337, 889);
-            tabPage6.TabIndex = 5;
-            tabPage6.Text = "Loại sản phẩm";
-            tabPage6.UseVisualStyleBackColor = true;
+            loạiSảnPhẩmToolStripMenuItem.Name = "loạiSảnPhẩmToolStripMenuItem";
+            loạiSảnPhẩmToolStripMenuItem.Size = new Size(119, 24);
+            loạiSảnPhẩmToolStripMenuItem.Text = "Loại sản phẩm";
+            loạiSảnPhẩmToolStripMenuItem.Click += loạiSảnPhẩmToolStripMenuItem_Click;
+            // 
+            // panelFill
+            // 
+            panelFill.Dock = DockStyle.Fill;
+            panelFill.Location = new Point(0, 28);
+            panelFill.Name = "panelFill";
+            panelFill.Size = new Size(1345, 894);
+            panelFill.TabIndex = 1;
             // 
             // FrmQuanLySP
             // 
@@ -119,21 +106,26 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
             ClientSize = new Size(1345, 922);
-            Controls.Add(tabControl1);
+            Controls.Add(panelFill);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "FrmQuanLySP";
             Text = "FrmQuanLySP";
-            tabControl1.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
-        private TabPage tabPage3;
-        private TabPage tabPage4;
-        private TabPage tabPage5;
-        private TabPage tabPage6;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem quảnLýSảnPhẩmToolStripMenuItem;
+        private ToolStripMenuItem sảnPhẩmToolStripMenuItem;
+        private ToolStripMenuItem kíchCỡToolStripMenuItem;
+        private ToolStripMenuItem màuSắcToolStripMenuItem;
+        private ToolStripMenuItem nhàSảnXuấtToolStripMenuItem;
+        private ToolStripMenuItem loạiSảnPhẩmToolStripMenuItem;
+        private Panel panelFill;
     }
 }

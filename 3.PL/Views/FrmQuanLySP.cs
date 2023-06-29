@@ -16,5 +16,50 @@ namespace _3.PL.Views
         {
             InitializeComponent();
         }
+        private Form activeForm;
+        private void ChangeForm(Form childForm)
+        {
+            if (activeForm != null)
+            {
+
+                activeForm.Close();
+            }
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panelFill.Controls.Add(childForm);
+
+            childForm.Show();
+        }
+        private void quảnLýSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmSanPhamCT());
+        }
+
+        private void sảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmSanPham());
+        }
+
+        private void kíchCỡToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmKichCo());
+        }
+
+        private void màuSắcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmMauSac());
+        }
+
+        private void nhàSảnXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmNxs());
+        }
+
+        private void loạiSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmLoaiSP());
+        }
     }
 }

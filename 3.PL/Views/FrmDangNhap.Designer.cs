@@ -68,6 +68,7 @@
             // 
             button1.BackgroundImageLayout = ImageLayout.Center;
             button1.FlatStyle = FlatStyle.System;
+            button1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             button1.Location = new Point(186, 287);
             button1.Name = "button1";
             button1.Size = new Size(121, 50);

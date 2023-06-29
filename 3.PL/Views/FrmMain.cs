@@ -21,7 +21,11 @@ namespace _3.PL.Views
             InitializeComponent();
             _inhanVienServices = new NhanVienServices();
             _ichucVuServices = new ChucVuServices();
+            //FrmBanHang frmBanHang = new FrmBanHang() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            //this.PanelPhai.Controls.Add(frmBanHang);
+            //frmBanHang.Show();
         }
+
         private Form activeForm;
         private void ChangeForm(Form childForm)
         {
@@ -75,6 +79,11 @@ namespace _3.PL.Views
 
         private void btn_Out_Click(object sender, EventArgs e)
         {
+            DialogResult dialog = MessageBox.Show("Bạn có muốn đăng xuất không?", "Thông báo", MessageBoxButtons.YesNo);
+            if (dialog == DialogResult.Yes)
+            {
+                this.Close();
+            }
 
         }
     }
