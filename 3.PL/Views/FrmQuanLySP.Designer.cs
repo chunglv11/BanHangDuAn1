@@ -35,9 +35,7 @@
             tabPage4 = new TabPage();
             tabPage5 = new TabPage();
             tabPage6 = new TabPage();
-            button1 = new Button();
             tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -57,7 +55,6 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(button1);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -116,15 +113,6 @@
             tabPage6.Text = "Loại sản phẩm";
             tabPage6.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            button1.Location = new Point(152, 53);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // FrmQuanLySP
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -135,7 +123,6 @@
             Name = "FrmQuanLySP";
             Text = "FrmQuanLySP";
             tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -148,6 +135,5 @@
         private TabPage tabPage4;
         private TabPage tabPage5;
         private TabPage tabPage6;
-        private Button button1;
     }
 }
