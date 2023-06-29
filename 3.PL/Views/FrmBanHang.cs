@@ -73,7 +73,7 @@ namespace _3.PL.Views
                     AutoSize = false,
                     Height = 30,
                     Dock = DockStyle.Bottom,
-                    Text = Convert.ToString(sp.DonGia),
+                    Text = Convert.ToString(sp.GiaBan),
                     Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point),
                     TextAlign = ContentAlignment.MiddleCenter,
                     BackColor = Color.White,

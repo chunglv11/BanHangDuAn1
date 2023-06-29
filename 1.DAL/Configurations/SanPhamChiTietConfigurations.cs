@@ -16,7 +16,8 @@ namespace _1.DAL.Configurations
             builder.ToTable("SanPhamChiTiet");
             builder.HasKey(x => x.ID);
             builder.Property(x => x.Ma).HasColumnType("nvarchar(10)"); ;
-            builder.Property(x => x.DonGia);
+            builder.Property(x => x.GiaNhap);
+            builder.Property(x => x.GiaBan);
             builder.Property(x => x.TrangThai);
             builder.Property(x => x.HinhAnh);
             builder.Property(x => x.SoLuongTon);

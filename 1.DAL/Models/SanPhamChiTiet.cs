@@ -17,7 +17,8 @@ namespace _1.DAL.Models
 
         public string Ma { get; set; }
         public int SoLuongTon { get; set; }
-        public decimal DonGia { get; set; }
+        public decimal GiaNhap { get; set; }
+        public decimal GiaBan { get; set; }
         public string? HinhAnh { get; set; }
         public int TrangThai { get; set; }
         public string MoTa { get; set; }

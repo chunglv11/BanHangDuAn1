@@ -55,7 +55,7 @@ namespace _3.PL.Views
 
         private void btn_Sp_Click(object sender, EventArgs e)
         {
-
+            ChangeForm(new FrmQuanLySP());
         }
 
         private void btn_HD_Click(object sender, EventArgs e)

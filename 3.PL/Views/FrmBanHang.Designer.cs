@@ -30,33 +30,33 @@
         {
             components = new System.ComponentModel.Container();
             panelFil = new Panel();
-            panelPhai = new Panel();
             panelTrai = new Panel();
-            groupBox1 = new GroupBox();
+            groupBox3 = new GroupBox();
+            flowPanelSp = new FlowLayoutPanel();
+            groupBox4 = new GroupBox();
+            tb_TimKiem = new TextBox();
+            cbb_LoaiSP = new ComboBox();
+            label2 = new Label();
+            label1 = new Label();
             groupBox2 = new GroupBox();
-            dtg_DonHang = new DataGridView();
             dtg_GioHang = new DataGridView();
-            timer1 = new System.Windows.Forms.Timer(components);
+            groupBox1 = new GroupBox();
+            dtg_DonHang = new DataGridView();
+            panelPhai = new Panel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
-            groupBox4 = new GroupBox();
-            label1 = new Label();
-            label2 = new Label();
-            cbb_LoaiSP = new ComboBox();
-            tb_TimKiem = new TextBox();
-            groupBox3 = new GroupBox();
-            flowPanelSp = new FlowLayoutPanel();
+            timer1 = new System.Windows.Forms.Timer(components);
             panelFil.SuspendLayout();
-            panelPhai.SuspendLayout();
             panelTrai.SuspendLayout();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_DonHang).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dtg_GioHang).BeginInit();
-            tabControl1.SuspendLayout();
-            groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_GioHang).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_DonHang).BeginInit();
+            panelPhai.SuspendLayout();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
             // panelFil
@@ -68,15 +68,6 @@
             panelFil.Name = "panelFil";
             panelFil.Size = new Size(1363, 969);
             panelFil.TabIndex = 0;
-            // 
-            // panelPhai
-            // 
-            panelPhai.Controls.Add(tabControl1);
-            panelPhai.Dock = DockStyle.Right;
-            panelPhai.Location = new Point(980, 0);
-            panelPhai.Name = "panelPhai";
-            panelPhai.Size = new Size(383, 969);
-            panelPhai.TabIndex = 0;
             // 
             // panelTrai
             // 
@@ -90,17 +81,73 @@
             panelTrai.Size = new Size(980, 969);
             panelTrai.TabIndex = 1;
             // 
-            // groupBox1
+            // groupBox3
             // 
-            groupBox1.Controls.Add(dtg_DonHang);
-            groupBox1.Dock = DockStyle.Top;
-            groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(0, 0);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(980, 269);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Danh sách đơn hàng";
+            groupBox3.Controls.Add(flowPanelSp);
+            groupBox3.Dock = DockStyle.Fill;
+            groupBox3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox3.Location = new Point(0, 613);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(980, 356);
+            groupBox3.TabIndex = 4;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Danh sách sản phẩm";
+            // 
+            // flowPanelSp
+            // 
+            flowPanelSp.Dock = DockStyle.Fill;
+            flowPanelSp.Location = new Point(3, 23);
+            flowPanelSp.Name = "flowPanelSp";
+            flowPanelSp.Size = new Size(974, 330);
+            flowPanelSp.TabIndex = 0;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(tb_TimKiem);
+            groupBox4.Controls.Add(cbb_LoaiSP);
+            groupBox4.Controls.Add(label2);
+            groupBox4.Controls.Add(label1);
+            groupBox4.Dock = DockStyle.Top;
+            groupBox4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox4.Location = new Point(0, 538);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(980, 75);
+            groupBox4.TabIndex = 3;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Chức năng";
+            // 
+            // tb_TimKiem
+            // 
+            tb_TimKiem.Location = new Point(641, 30);
+            tb_TimKiem.Name = "tb_TimKiem";
+            tb_TimKiem.Size = new Size(313, 27);
+            tb_TimKiem.TabIndex = 3;
+            // 
+            // cbb_LoaiSP
+            // 
+            cbb_LoaiSP.FormattingEnabled = true;
+            cbb_LoaiSP.Location = new Point(161, 32);
+            cbb_LoaiSP.Name = "cbb_LoaiSP";
+            cbb_LoaiSP.Size = new Size(293, 28);
+            cbb_LoaiSP.TabIndex = 2;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(544, 35);
+            label2.Name = "label2";
+            label2.Size = new Size(71, 20);
+            label2.TabIndex = 1;
+            label2.Text = "Tìm kiếm";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 35);
+            label1.Name = "label1";
+            label1.Size = new Size(149, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Danh mục sản phẩm";
             // 
             // groupBox2
             // 
@@ -114,27 +161,50 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
             // 
-            // dtg_DonHang
-            // 
-            dtg_DonHang.BackgroundColor = SystemColors.ControlLight;
-            dtg_DonHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_DonHang.Location = new Point(12, 36);
-            dtg_DonHang.Name = "dtg_DonHang";
-            dtg_DonHang.RowHeadersWidth = 51;
-            dtg_DonHang.RowTemplate.Height = 29;
-            dtg_DonHang.Size = new Size(628, 188);
-            dtg_DonHang.TabIndex = 0;
-            // 
             // dtg_GioHang
             // 
             dtg_GioHang.BackgroundColor = SystemColors.ControlLight;
             dtg_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_GioHang.Location = new Point(12, 44);
+            dtg_GioHang.Dock = DockStyle.Left;
+            dtg_GioHang.Location = new Point(3, 23);
             dtg_GioHang.Name = "dtg_GioHang";
             dtg_GioHang.RowHeadersWidth = 51;
             dtg_GioHang.RowTemplate.Height = 29;
-            dtg_GioHang.Size = new Size(754, 203);
+            dtg_GioHang.Size = new Size(754, 243);
             dtg_GioHang.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(dtg_DonHang);
+            groupBox1.Dock = DockStyle.Top;
+            groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox1.Location = new Point(0, 0);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(980, 269);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Danh sách đơn hàng";
+            // 
+            // dtg_DonHang
+            // 
+            dtg_DonHang.BackgroundColor = SystemColors.ControlLight;
+            dtg_DonHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_DonHang.Dock = DockStyle.Left;
+            dtg_DonHang.Location = new Point(3, 23);
+            dtg_DonHang.Name = "dtg_DonHang";
+            dtg_DonHang.RowHeadersWidth = 51;
+            dtg_DonHang.RowTemplate.Height = 29;
+            dtg_DonHang.Size = new Size(670, 243);
+            dtg_DonHang.TabIndex = 0;
+            // 
+            // panelPhai
+            // 
+            panelPhai.Controls.Add(tabControl1);
+            panelPhai.Dock = DockStyle.Right;
+            panelPhai.Location = new Point(980, 0);
+            panelPhai.Name = "panelPhai";
+            panelPhai.Size = new Size(383, 969);
+            panelPhai.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -166,74 +236,6 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
-            // 
-            groupBox4.Controls.Add(tb_TimKiem);
-            groupBox4.Controls.Add(cbb_LoaiSP);
-            groupBox4.Controls.Add(label2);
-            groupBox4.Controls.Add(label1);
-            groupBox4.Dock = DockStyle.Top;
-            groupBox4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox4.Location = new Point(0, 538);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(980, 75);
-            groupBox4.TabIndex = 3;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Chức năng";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(6, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(149, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Danh mục sản phẩm";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(544, 35);
-            label2.Name = "label2";
-            label2.Size = new Size(71, 20);
-            label2.TabIndex = 1;
-            label2.Text = "Tìm kiếm";
-            // 
-            // cbb_LoaiSP
-            // 
-            cbb_LoaiSP.FormattingEnabled = true;
-            cbb_LoaiSP.Location = new Point(161, 32);
-            cbb_LoaiSP.Name = "cbb_LoaiSP";
-            cbb_LoaiSP.Size = new Size(293, 28);
-            cbb_LoaiSP.TabIndex = 2;
-            // 
-            // tb_TimKiem
-            // 
-            tb_TimKiem.Location = new Point(641, 30);
-            tb_TimKiem.Name = "tb_TimKiem";
-            tb_TimKiem.Size = new Size(313, 27);
-            tb_TimKiem.TabIndex = 3;
-            // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(flowPanelSp);
-            groupBox3.Dock = DockStyle.Fill;
-            groupBox3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox3.Location = new Point(0, 613);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(980, 356);
-            groupBox3.TabIndex = 4;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Danh sách sản phẩm";
-            // 
-            // flowPanelSp
-            // 
-            flowPanelSp.Dock = DockStyle.Fill;
-            flowPanelSp.Location = new Point(3, 23);
-            flowPanelSp.Name = "flowPanelSp";
-            flowPanelSp.Size = new Size(974, 330);
-            flowPanelSp.TabIndex = 0;
-            // 
             // FrmBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -245,16 +247,16 @@
             Name = "FrmBanHang";
             Text = "FrmBanHang";
             panelFil.ResumeLayout(false);
-            panelPhai.ResumeLayout(false);
             panelTrai.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtg_DonHang).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dtg_GioHang).EndInit();
-            tabControl1.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
-            groupBox3.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtg_GioHang).EndInit();
+            groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtg_DonHang).EndInit();
+            panelPhai.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
 

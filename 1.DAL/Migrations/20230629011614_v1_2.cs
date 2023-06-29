@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace _1.DAL.Migrations
 {
-    public partial class v1 : Migration
+    public partial class v1_2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -167,7 +167,8 @@ namespace _1.DAL.Migrations
                     IDMS = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Ma = table.Column<string>(type: "nvarchar(10)", nullable: false),
                     SoLuongTon = table.Column<int>(type: "int", nullable: false),
-                    DonGia = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    GiaNhap = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    GiaBan = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<int>(type: "int", nullable: false),
                     MoTa = table.Column<string>(type: "nvarchar(50)", nullable: false)
@@ -298,8 +299,8 @@ namespace _1.DAL.Migrations
                 columns: new[] { "ID", "Ma", "NgayBatDau", "NgayKetThuc", "PhanTramGiam", "SoTienGiam", "Ten", "TrangThai" },
                 values: new object[,]
                 {
-                    { new Guid("38dc8d59-1d19-4002-933e-3d09c77d8fb1"), "KM1", new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2303), new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2304), 7, 1000, "Giảm 50%", 1 },
-                    { new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"), "KM2", new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2306), new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2306), 5, 1000, "Giảm 50%", 1 }
+                    { new Guid("38dc8d59-1d19-4002-933e-3d09c77d8fb1"), "KM1", new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2310), new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2310), 7, 1000, "Giảm 50%", 1 },
+                    { new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"), "KM2", new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2312), new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2313), 5, 1000, "Giảm 50%", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -354,29 +355,29 @@ namespace _1.DAL.Migrations
                 columns: new[] { "ID", "AnhNv", "CCCD", "DiaChi", "Email", "GioiTinh", "HoTen", "IDCV", "MatKhau", "NgaySinh", "SoDienThoai", "TrangThai", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("6716c72b-76d9-4626-a269-674aac3b1426"), null, "1342567778", "Ha Noi", "chunglvph20985@fpt.edu.vn", 0, "Phạm Gia Khánh", new Guid("e36bbc87-d18b-4a9a-bc51-353e79e54586"), "1", new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2193), "098652627222", 1, "chunglv" },
-                    { new Guid("a6c0391b-59a9-48e5-aada-b684e80b1250"), null, "1342567778", "Ha Noi", "bena123@gmail.com", 0, "Phạm Gia Khánh", new Guid("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"), "1", new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2206), "09865262713", 1, "bena" }
+                    { new Guid("6716c72b-76d9-4626-a269-674aac3b1426"), null, "1342567778", "Ha Noi", "chunglvph20985@fpt.edu.vn", 0, "Phạm Gia Khánh", new Guid("e36bbc87-d18b-4a9a-bc51-353e79e54586"), "1", new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2204), "098652627222", 1, "chunglv" },
+                    { new Guid("a6c0391b-59a9-48e5-aada-b684e80b1250"), null, "1342567778", "Ha Noi", "bena123@gmail.com", 0, "Phạm Gia Khánh", new Guid("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"), "1", new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2217), "09865262713", 1, "bena" }
                 });
 
             migrationBuilder.InsertData(
                 table: "SanPhamChiTiet",
-                columns: new[] { "ID", "DonGia", "HinhAnh", "IDKC", "IDLOAI", "IDMS", "IDNSX", "IDSP", "Ma", "MoTa", "SoLuongTon", "TrangThai" },
+                columns: new[] { "ID", "GiaBan", "GiaNhap", "HinhAnh", "IDKC", "IDLOAI", "IDMS", "IDNSX", "IDSP", "Ma", "MoTa", "SoLuongTon", "TrangThai" },
                 values: new object[,]
                 {
-                    { new Guid("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), 150000m, "\"C:\\Users\\laich\\Downloads\\anh2.jpg\"", new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"), new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"), new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), new Guid("74cac681-11db-4764-bd2c-6486775d22da"), new Guid("7173cee4-5764-4da7-96a9-2fd45fef403f"), "SPCT2", "Sản phẩm mới 1", 4, 1 },
-                    { new Guid("a3459c51-54ec-485c-bece-fdc74871fd4b"), 140000m, "\"C:\\Users\\laich\\Downloads\\anh1.jpg\"", new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"), new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"), new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), new Guid("74cac681-11db-4764-bd2c-6486775d22da"), new Guid("3a1a4888-f7fd-46c5-808e-a42885ff4178"), "SPCT1", "Sản phẩm mới", 3, 1 },
-                    { new Guid("bc2f5d6f-080a-4cf7-ada8-7e4e2ae9abcc"), 140000m, null, new Guid("6f7a120e-5651-4d46-baec-5ce340a5d84e"), new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"), new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), new Guid("74cac681-11db-4764-bd2c-6486775d22da"), new Guid("3a1a4888-f7fd-46c5-808e-a42885ff4178"), "SPCT1", "Sản phẩm mới", 3, 1 }
+                    { new Guid("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), 17000m, 150000m, "\"C:\\Users\\laich\\Downloads\\anh2.jpg\"", new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"), new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"), new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), new Guid("74cac681-11db-4764-bd2c-6486775d22da"), new Guid("7173cee4-5764-4da7-96a9-2fd45fef403f"), "SPCT2", "Sản phẩm mới 2", 4, 1 },
+                    { new Guid("a3459c51-54ec-485c-bece-fdc74871fd4b"), 15000m, 140000m, "\"C:\\Users\\laich\\Downloads\\anh1.jpg\"", new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"), new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"), new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), new Guid("74cac681-11db-4764-bd2c-6486775d22da"), new Guid("3a1a4888-f7fd-46c5-808e-a42885ff4178"), "SPCT1", "Sản phẩm mới1", 3, 1 },
+                    { new Guid("bc2f5d6f-080a-4cf7-ada8-7e4e2ae9abcc"), 20000m, 140000m, null, new Guid("6f7a120e-5651-4d46-baec-5ce340a5d84e"), new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"), new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), new Guid("74cac681-11db-4764-bd2c-6486775d22da"), new Guid("3a1a4888-f7fd-46c5-808e-a42885ff4178"), "SPCT1", "Sản phẩm mới3", 5, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "HoaDon",
                 columns: new[] { "ID", "DiaChi", "IDKH", "IDKM", "IDNV", "Ma", "NgayNhan", "NgayShip", "NgayTao", "NgayThanhToan", "SDT", "TenNguoiNhan", "TrangThai" },
-                values: new object[] { new Guid("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), null, new Guid("851a51e1-c114-4347-b663-f68334ddae2c"), new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"), new Guid("6716c72b-76d9-4626-a269-674aac3b1426"), "HD1", null, null, new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2331), new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2331), null, null, 1 });
+                values: new object[] { new Guid("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), null, new Guid("851a51e1-c114-4347-b663-f68334ddae2c"), new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"), new Guid("6716c72b-76d9-4626-a269-674aac3b1426"), "HD1", null, null, new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2341), new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2341), null, null, 1 });
 
             migrationBuilder.InsertData(
                 table: "HoaDon",
                 columns: new[] { "ID", "DiaChi", "IDKH", "IDKM", "IDNV", "Ma", "NgayNhan", "NgayShip", "NgayTao", "NgayThanhToan", "SDT", "TenNguoiNhan", "TrangThai" },
-                values: new object[] { new Guid("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), null, new Guid("851a51e1-c114-4347-b663-f68334ddae2c"), new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"), new Guid("a6c0391b-59a9-48e5-aada-b684e80b1250"), "HD2", null, null, new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2334), new DateTime(2023, 6, 28, 12, 46, 12, 552, DateTimeKind.Local).AddTicks(2335), null, null, 1 });
+                values: new object[] { new Guid("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), null, new Guid("851a51e1-c114-4347-b663-f68334ddae2c"), new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"), new Guid("a6c0391b-59a9-48e5-aada-b684e80b1250"), "HD2", null, null, new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2344), new DateTime(2023, 6, 29, 8, 16, 14, 603, DateTimeKind.Local).AddTicks(2344), null, null, 1 });
 
             migrationBuilder.InsertData(
                 table: "HoaDonChiTiet",
