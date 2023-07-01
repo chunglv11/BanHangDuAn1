@@ -47,6 +47,7 @@
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             timer1 = new System.Windows.Forms.Timer(components);
+            ptb_QR = new PictureBox();
             panelFil.SuspendLayout();
             panelTrai.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -57,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)dtg_DonHang).BeginInit();
             panelPhai.SuspendLayout();
             tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ptb_QR).BeginInit();
             SuspendLayout();
             // 
             // panelFil
@@ -175,6 +177,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(ptb_QR);
             groupBox1.Controls.Add(dtg_DonHang);
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
@@ -236,6 +239,15 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // ptb_QR
+            // 
+            ptb_QR.BackColor = Color.MistyRose;
+            ptb_QR.Location = new Point(756, 26);
+            ptb_QR.Name = "ptb_QR";
+            ptb_QR.Size = new Size(198, 179);
+            ptb_QR.TabIndex = 1;
+            ptb_QR.TabStop = false;
+            // 
             // FrmBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -257,6 +269,7 @@
             ((System.ComponentModel.ISupportInitialize)dtg_DonHang).EndInit();
             panelPhai.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ptb_QR).EndInit();
             ResumeLayout(false);
         }
 
@@ -281,5 +294,6 @@
         private TextBox tb_TimKiem;
         private GroupBox groupBox3;
         private FlowLayoutPanel flowPanelSp;
+        private PictureBox ptb_QR;
     }
 }

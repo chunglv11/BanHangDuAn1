@@ -32,7 +32,20 @@
             panel1 = new Panel();
             groupBox1 = new GroupBox();
             panelphai = new Panel();
+            groupBox2 = new GroupBox();
+            btn_Them = new Button();
+            btn_LamMoi = new Button();
+            btn_Sua = new Button();
+            btn_Xoa = new Button();
             panelTrai = new Panel();
+            label11 = new Label();
+            txt_TimKiem = new TextBox();
+            dtg_SanPham = new DataGridView();
+            btn_ChonAnh = new Button();
+            label7 = new Label();
+            rdb_Het = new RadioButton();
+            rdb_Con = new RadioButton();
+            txt_Mota = new RichTextBox();
             label13 = new Label();
             txt_SLT = new TextBox();
             txt_GiaNhap = new TextBox();
@@ -57,27 +70,14 @@
             ptb_AVT = new PictureBox();
             panel2 = new Panel();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            txt_Mota = new RichTextBox();
-            rdb_Con = new RadioButton();
-            rdb_Het = new RadioButton();
-            label7 = new Label();
-            btn_ChonAnh = new Button();
-            dtg_SanPham = new DataGridView();
-            txt_TimKiem = new TextBox();
-            label11 = new Label();
-            btn_Them = new Button();
-            btn_Sua = new Button();
-            btn_Xoa = new Button();
-            btn_LamMoi = new Button();
-            groupBox2 = new GroupBox();
             groupBox1.SuspendLayout();
             panelphai.SuspendLayout();
+            groupBox2.SuspendLayout();
             panelTrai.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptb_QR).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptb_AVT).BeginInit();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
-            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -111,6 +111,64 @@
             panelphai.Name = "panelphai";
             panelphai.Size = new Size(243, 757);
             panelphai.TabIndex = 30;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btn_Them);
+            groupBox2.Controls.Add(btn_LamMoi);
+            groupBox2.Controls.Add(btn_Sua);
+            groupBox2.Controls.Add(btn_Xoa);
+            groupBox2.Dock = DockStyle.Fill;
+            groupBox2.Location = new Point(0, 0);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(243, 757);
+            groupBox2.TabIndex = 5;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Chức năng";
+            // 
+            // btn_Them
+            // 
+            btn_Them.Image = Properties.Resources.add;
+            btn_Them.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Them.Location = new Point(27, 54);
+            btn_Them.Name = "btn_Them";
+            btn_Them.Size = new Size(196, 55);
+            btn_Them.TabIndex = 1;
+            btn_Them.Text = "Thêm";
+            btn_Them.UseVisualStyleBackColor = true;
+            // 
+            // btn_LamMoi
+            // 
+            btn_LamMoi.Image = Properties.Resources.reset;
+            btn_LamMoi.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_LamMoi.Location = new Point(27, 300);
+            btn_LamMoi.Name = "btn_LamMoi";
+            btn_LamMoi.Size = new Size(196, 58);
+            btn_LamMoi.TabIndex = 4;
+            btn_LamMoi.Text = "Làm mới";
+            btn_LamMoi.UseVisualStyleBackColor = true;
+            // 
+            // btn_Sua
+            // 
+            btn_Sua.Image = Properties.Resources.updated;
+            btn_Sua.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Sua.Location = new Point(27, 134);
+            btn_Sua.Name = "btn_Sua";
+            btn_Sua.Size = new Size(196, 55);
+            btn_Sua.TabIndex = 2;
+            btn_Sua.Text = "Sửa";
+            btn_Sua.UseVisualStyleBackColor = true;
+            // 
+            // btn_Xoa
+            // 
+            btn_Xoa.Image = Properties.Resources.delete;
+            btn_Xoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Xoa.Location = new Point(27, 218);
+            btn_Xoa.Name = "btn_Xoa";
+            btn_Xoa.Size = new Size(196, 55);
+            btn_Xoa.TabIndex = 3;
+            btn_Xoa.Text = "Xoá";
+            btn_Xoa.UseVisualStyleBackColor = true;
             // 
             // panelTrai
             // 
@@ -149,6 +207,82 @@
             panelTrai.Name = "panelTrai";
             panelTrai.Size = new Size(1339, 757);
             panelTrai.TabIndex = 29;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(20, 476);
+            label11.Name = "label11";
+            label11.Size = new Size(80, 23);
+            label11.TabIndex = 61;
+            label11.Text = "Tìm kiếm";
+            // 
+            // txt_TimKiem
+            // 
+            txt_TimKiem.Location = new Point(122, 473);
+            txt_TimKiem.Name = "txt_TimKiem";
+            txt_TimKiem.Size = new Size(305, 30);
+            txt_TimKiem.TabIndex = 60;
+            // 
+            // dtg_SanPham
+            // 
+            dtg_SanPham.BackgroundColor = Color.Silver;
+            dtg_SanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_SanPham.GridColor = Color.FromArgb(255, 224, 192);
+            dtg_SanPham.Location = new Point(20, 524);
+            dtg_SanPham.Name = "dtg_SanPham";
+            dtg_SanPham.RowHeadersWidth = 51;
+            dtg_SanPham.RowTemplate.Height = 29;
+            dtg_SanPham.Size = new Size(1057, 224);
+            dtg_SanPham.TabIndex = 58;
+            // 
+            // btn_ChonAnh
+            // 
+            btn_ChonAnh.Location = new Point(436, 349);
+            btn_ChonAnh.Name = "btn_ChonAnh";
+            btn_ChonAnh.Size = new Size(234, 29);
+            btn_ChonAnh.TabIndex = 57;
+            btn_ChonAnh.Text = "Chọn ảnh";
+            btn_ChonAnh.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(866, 349);
+            label7.Name = "label7";
+            label7.Size = new Size(150, 23);
+            label7.TabIndex = 56;
+            label7.Text = "Click để lấy mã Qr";
+            // 
+            // rdb_Het
+            // 
+            rdb_Het.AutoSize = true;
+            rdb_Het.Location = new Point(947, 76);
+            rdb_Het.Name = "rdb_Het";
+            rdb_Het.Size = new Size(103, 27);
+            rdb_Het.TabIndex = 55;
+            rdb_Het.TabStop = true;
+            rdb_Het.Text = "Hết hàng";
+            rdb_Het.UseVisualStyleBackColor = true;
+            // 
+            // rdb_Con
+            // 
+            rdb_Con.AutoSize = true;
+            rdb_Con.Location = new Point(827, 76);
+            rdb_Con.Name = "rdb_Con";
+            rdb_Con.Size = new Size(106, 27);
+            rdb_Con.TabIndex = 54;
+            rdb_Con.TabStop = true;
+            rdb_Con.Text = "Còn hàng";
+            rdb_Con.UseVisualStyleBackColor = true;
+            // 
+            // txt_Mota
+            // 
+            txt_Mota.Location = new Point(112, 352);
+            txt_Mota.Name = "txt_Mota";
+            txt_Mota.Size = new Size(205, 82);
+            txt_Mota.TabIndex = 53;
+            txt_Mota.Text = "";
             // 
             // label13
             // 
@@ -345,140 +479,6 @@
             panel2.Size = new Size(1345, 786);
             panel2.TabIndex = 22;
             // 
-            // txt_Mota
-            // 
-            txt_Mota.Location = new Point(112, 352);
-            txt_Mota.Name = "txt_Mota";
-            txt_Mota.Size = new Size(205, 82);
-            txt_Mota.TabIndex = 53;
-            txt_Mota.Text = "";
-            // 
-            // rdb_Con
-            // 
-            rdb_Con.AutoSize = true;
-            rdb_Con.Location = new Point(827, 76);
-            rdb_Con.Name = "rdb_Con";
-            rdb_Con.Size = new Size(106, 27);
-            rdb_Con.TabIndex = 54;
-            rdb_Con.TabStop = true;
-            rdb_Con.Text = "Còn hàng";
-            rdb_Con.UseVisualStyleBackColor = true;
-            // 
-            // rdb_Het
-            // 
-            rdb_Het.AutoSize = true;
-            rdb_Het.Location = new Point(947, 76);
-            rdb_Het.Name = "rdb_Het";
-            rdb_Het.Size = new Size(103, 27);
-            rdb_Het.TabIndex = 55;
-            rdb_Het.TabStop = true;
-            rdb_Het.Text = "Hết hàng";
-            rdb_Het.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(866, 349);
-            label7.Name = "label7";
-            label7.Size = new Size(150, 23);
-            label7.TabIndex = 56;
-            label7.Text = "Click để lấy mã Qr";
-            // 
-            // btn_ChonAnh
-            // 
-            btn_ChonAnh.Location = new Point(436, 349);
-            btn_ChonAnh.Name = "btn_ChonAnh";
-            btn_ChonAnh.Size = new Size(234, 29);
-            btn_ChonAnh.TabIndex = 57;
-            btn_ChonAnh.Text = "Chọn ảnh";
-            btn_ChonAnh.UseVisualStyleBackColor = true;
-            // 
-            // dtg_SanPham
-            // 
-            dtg_SanPham.BackgroundColor = Color.Silver;
-            dtg_SanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_SanPham.GridColor = Color.FromArgb(255, 224, 192);
-            dtg_SanPham.Location = new Point(20, 524);
-            dtg_SanPham.Name = "dtg_SanPham";
-            dtg_SanPham.RowHeadersWidth = 51;
-            dtg_SanPham.RowTemplate.Height = 29;
-            dtg_SanPham.Size = new Size(1057, 224);
-            dtg_SanPham.TabIndex = 58;
-            // 
-            // txt_TimKiem
-            // 
-            txt_TimKiem.Location = new Point(122, 473);
-            txt_TimKiem.Name = "txt_TimKiem";
-            txt_TimKiem.Size = new Size(305, 30);
-            txt_TimKiem.TabIndex = 60;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(20, 476);
-            label11.Name = "label11";
-            label11.Size = new Size(80, 23);
-            label11.TabIndex = 61;
-            label11.Text = "Tìm kiếm";
-            // 
-            // btn_Them
-            // 
-            btn_Them.Image = Properties.Resources.add;
-            btn_Them.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Them.Location = new Point(27, 54);
-            btn_Them.Name = "btn_Them";
-            btn_Them.Size = new Size(196, 55);
-            btn_Them.TabIndex = 1;
-            btn_Them.Text = "Thêm";
-            btn_Them.UseVisualStyleBackColor = true;
-            // 
-            // btn_Sua
-            // 
-            btn_Sua.Image = Properties.Resources.updated;
-            btn_Sua.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Sua.Location = new Point(27, 134);
-            btn_Sua.Name = "btn_Sua";
-            btn_Sua.Size = new Size(196, 55);
-            btn_Sua.TabIndex = 2;
-            btn_Sua.Text = "Sửa";
-            btn_Sua.UseVisualStyleBackColor = true;
-            // 
-            // btn_Xoa
-            // 
-            btn_Xoa.Image = Properties.Resources.delete;
-            btn_Xoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Xoa.Location = new Point(27, 218);
-            btn_Xoa.Name = "btn_Xoa";
-            btn_Xoa.Size = new Size(196, 55);
-            btn_Xoa.TabIndex = 3;
-            btn_Xoa.Text = "Xoá";
-            btn_Xoa.UseVisualStyleBackColor = true;
-            // 
-            // btn_LamMoi
-            // 
-            btn_LamMoi.Image = Properties.Resources.reset;
-            btn_LamMoi.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_LamMoi.Location = new Point(27, 300);
-            btn_LamMoi.Name = "btn_LamMoi";
-            btn_LamMoi.Size = new Size(196, 58);
-            btn_LamMoi.TabIndex = 4;
-            btn_LamMoi.Text = "Làm mới";
-            btn_LamMoi.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(btn_Them);
-            groupBox2.Controls.Add(btn_LamMoi);
-            groupBox2.Controls.Add(btn_Sua);
-            groupBox2.Controls.Add(btn_Xoa);
-            groupBox2.Dock = DockStyle.Fill;
-            groupBox2.Location = new Point(0, 0);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(243, 757);
-            groupBox2.TabIndex = 5;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Chức năng";
-            // 
             // FrmSanPhamCT
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -492,13 +492,13 @@
             Text = "FrmSanPhamCT";
             groupBox1.ResumeLayout(false);
             panelphai.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
             panelTrai.ResumeLayout(false);
             panelTrai.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).EndInit();
             ((System.ComponentModel.ISupportInitialize)ptb_QR).EndInit();
             ((System.ComponentModel.ISupportInitialize)ptb_AVT).EndInit();
             panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).EndInit();
-            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
 

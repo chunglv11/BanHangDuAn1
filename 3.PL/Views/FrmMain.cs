@@ -49,12 +49,12 @@ namespace _3.PL.Views
 
         private void btn_KH_Click(object sender, EventArgs e)
         {
-            //ChangeForm();
+            ChangeForm(new FrmKhachHang());
         }
 
         private void btn_NhanVien_Click(object sender, EventArgs e)
         {
-
+            ChangeForm(new FrmQuanLyNhanVien());
         }
 
         private void btn_Sp_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace _3.PL.Views
 
         private void btn_HD_Click(object sender, EventArgs e)
         {
-
+            ChangeForm(new FrmQuanLyHoaDon());
         }
 
         private void btn_TK_Click(object sender, EventArgs e)
