@@ -26,7 +26,7 @@ namespace _1.DAL.Models
         public virtual NhanVien nhanvien { get; set; }
         public virtual KhachHang khachhang { get; set; }
         public virtual KhuyenMai KhuyenMai { get; set; }
-
+        public List<ChiTietThanhToan> ChiTietThanhToans { get; set; }
         public List<HoaDonChiTiet> hoadonchitiet { get; set; }
     }
 }
