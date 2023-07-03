@@ -15,11 +15,12 @@ namespace _1.DAL.Configurations
         {
             builder.ToTable("ChiTietPTTT");
             builder.HasKey(x => x.ID);
-            builder.Property(x => x.IdPhuongThucThanhToan);
-            builder.Property(x => x.IdHoaDon);
             builder.Property(x => x.GhiChu).HasColumnType("nvarchar(50)");
             builder.Property(x => x.SoTienThanhToan);
             builder.Property(x => x.TrangThai);
+            builder.HasOne(c => c.hoaDon).WithMany(v => v.ChiTietThanhToans).HasForeignKey(p => p.IdHoaDon);
+            builder.HasOne(c => c.phuongThucThanhToan).WithMany(v => v.ChiTietThanhToans).HasForeignKey(p => p.IdPhuongThucThanhToan);
+
         }
     }
 }
