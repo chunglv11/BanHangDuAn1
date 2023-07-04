@@ -11,7 +11,7 @@ namespace _1.DAL.Models
         public Guid ID { get; set; }
         public Guid IdPhuongThucThanhToan { get; set; }
         public Guid IdHoaDon { get; set; }
-        public decimal SoTienThanhToan { get; set; }
+        public decimal? SoTienThanhToan { get; set; }
         public string? GhiChu { get; set; }
         public int TrangThai { get; set; }
         public virtual PhuongThucThanhToan phuongThucThanhToan { get; set; }
