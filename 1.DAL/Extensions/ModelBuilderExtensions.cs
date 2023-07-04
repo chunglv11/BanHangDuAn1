@@ -17,8 +17,8 @@ namespace _1.DAL.Extensions
                 new ChucVu() { ID = Guid.Parse("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"), Ma = "CV2", Ten = "Nhân viên", TrangThai = 1 }
                 );
             modelBuilder.Entity<NhanVien>().HasData(
-                new NhanVien() { ID = Guid.Parse("6716c72b-76d9-4626-a269-674aac3b1426"), HoTen = "Phạm Gia Khánh", GioiTinh = 0, NgaySinh = DateTime.Now, Email = "chunglvph20985@fpt.edu.vn", Username = "chunglv", MatKhau = "1", IDCV = Guid.Parse("e36bbc87-d18b-4a9a-bc51-353e79e54586"), TrangThai = 1 },
-                new NhanVien() { ID = Guid.Parse("a6c0391b-59a9-48e5-aada-b684e80b1250"), HoTen = "Phạm Gia Khánh", GioiTinh = 0, NgaySinh = DateTime.Now, Email = "bena123@gmail.com", Username = "bena", MatKhau = "1", IDCV = Guid.Parse("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"), TrangThai = 1 }
+                new NhanVien() { ID = Guid.Parse("6716c72b-76d9-4626-a269-674aac3b1426"), MaNv = "NV1", HoTen = "Phạm Gia Khánh", GioiTinh = 0, NgaySinh = DateTime.Now, Email = "chunglvph20985@fpt.edu.vn", Username = "chunglv", MatKhau = "1", IDCV = Guid.Parse("e36bbc87-d18b-4a9a-bc51-353e79e54586"), TrangThai = 1 },
+                new NhanVien() { ID = Guid.Parse("a6c0391b-59a9-48e5-aada-b684e80b1250"), MaNv = "NV2", HoTen = "Lại Văn chung", GioiTinh = 0, NgaySinh = DateTime.Now, Email = "bena123@gmail.com", Username = "bena", MatKhau = "1", IDCV = Guid.Parse("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"), TrangThai = 1 }
                 );
             modelBuilder.Entity<SanPham>().HasData(
                 new SanPham() { ID = Guid.Parse("3a1a4888-f7fd-46c5-808e-a42885ff4178"), Ma = "SP1", Ten = "Áo Len", TrangThai = 1 },
@@ -88,7 +88,7 @@ namespace _1.DAL.Extensions
             },
             new ChiTietThanhToan()
             {
-                ID = Guid.Parse("8d3181bc-a4d8-479c-829e-b5112d055ac0"),
+                ID = Guid.Parse("bf9e5e61-087b-48cc-acfe-1b01bdca384c"),
                 IdPhuongThucThanhToan = Guid.Parse("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
                 IdHoaDon = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"),
 
@@ -97,7 +97,7 @@ namespace _1.DAL.Extensions
             modelBuilder.Entity<HoaDonChiTiet>().HasData(
                 new HoaDonChiTiet() { ID = Guid.Parse("6ab334a4-637d-47c0-a1bb-103c2ed09e73"), IDHD = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDSPCT = Guid.Parse("a3459c51-54ec-485c-bece-fdc74871fd4b"), DonGia = 140000, SoLuong = 5 },
                 new HoaDonChiTiet() { ID = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), IDHD = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDSPCT = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), DonGia = 140000, SoLuong = 4 },
-                new HoaDonChiTiet() { ID = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), IDHD = Guid.Parse("5353eab4-77df-4201-85d6-709b3b65deda"), IDSPCT = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), DonGia = 140000, SoLuong = 6 }
+                new HoaDonChiTiet() { ID = Guid.Parse("5b8ccadb-02eb-4320-8497-8b559fe818e1"), IDHD = Guid.Parse("5353eab4-77df-4201-85d6-709b3b65deda"), IDSPCT = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), DonGia = 140000, SoLuong = 6 }
                 );
         }
     }
