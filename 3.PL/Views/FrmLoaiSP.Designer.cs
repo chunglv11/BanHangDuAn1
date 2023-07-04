@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             panel3 = new Panel();
-            dtg_LoaiSp = new DataGridView();
             txt_TimKiem = new TextBox();
+            dtg_ShowLoaiSp = new DataGridView();
             panel1 = new Panel();
             groupBox2 = new GroupBox();
             btn_LamMoi = new Button();
@@ -47,7 +47,7 @@
             label1 = new Label();
             panel2 = new Panel();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_LoaiSp).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowLoaiSp).BeginInit();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -56,32 +56,32 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(dtg_LoaiSp);
             panel3.Controls.Add(txt_TimKiem);
+            panel3.Controls.Add(dtg_ShowLoaiSp);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 279);
             panel3.Name = "panel3";
             panel3.Size = new Size(957, 263);
             panel3.TabIndex = 15;
             // 
-            // dtg_LoaiSp
-            // 
-            dtg_LoaiSp.BackgroundColor = SystemColors.ControlLight;
-            dtg_LoaiSp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_LoaiSp.Location = new Point(12, 39);
-            dtg_LoaiSp.Name = "dtg_LoaiSp";
-            dtg_LoaiSp.RowHeadersWidth = 51;
-            dtg_LoaiSp.RowTemplate.Height = 29;
-            dtg_LoaiSp.Size = new Size(623, 196);
-            dtg_LoaiSp.TabIndex = 8;
-            // 
             // txt_TimKiem
             // 
             txt_TimKiem.Location = new Point(12, 6);
             txt_TimKiem.Name = "txt_TimKiem";
+            txt_TimKiem.PlaceholderText = "Tìm kiếm...";
             txt_TimKiem.Size = new Size(247, 27);
-            txt_TimKiem.TabIndex = 7;
-            txt_TimKiem.Text = "Tìm kiếm...";
+            txt_TimKiem.TabIndex = 12;
+            // 
+            // dtg_ShowLoaiSp
+            // 
+            dtg_ShowLoaiSp.BackgroundColor = SystemColors.ControlLight;
+            dtg_ShowLoaiSp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_ShowLoaiSp.Location = new Point(12, 39);
+            dtg_ShowLoaiSp.Name = "dtg_ShowLoaiSp";
+            dtg_ShowLoaiSp.RowHeadersWidth = 51;
+            dtg_ShowLoaiSp.RowTemplate.Height = 29;
+            dtg_ShowLoaiSp.Size = new Size(623, 196);
+            dtg_ShowLoaiSp.TabIndex = 8;
             // 
             // panel1
             // 
@@ -256,7 +256,7 @@
             Text = "FrmLoaiSP";
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_LoaiSp).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowLoaiSp).EndInit();
             panel1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
@@ -268,8 +268,7 @@
         #endregion
 
         private Panel panel3;
-        private DataGridView dtg_LoaiSp;
-        private TextBox txt_TimKiem;
+        private DataGridView dtg_ShowLoaiSp;
         private Panel panel1;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
@@ -285,5 +284,6 @@
         private Label label2;
         private Label label1;
         private Panel panel2;
+        private TextBox txt_TimKiem;
     }
 }

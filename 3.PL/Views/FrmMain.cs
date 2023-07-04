@@ -74,7 +74,7 @@ namespace _3.PL.Views
 
         private void btn_TaiKhoan_Click(object sender, EventArgs e)
         {
-
+            ChangeForm(new FrmThongTin());
         }
 
         private void btn_Out_Click(object sender, EventArgs e)

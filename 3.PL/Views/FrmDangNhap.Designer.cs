@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDangNhap));
             panel1 = new Panel();
             panel2 = new Panel();
-            button1 = new Button();
-            label2 = new Label();
+            btn_DangNhap = new Button();
+            lb_QuenMK = new Label();
             label4 = new Label();
             label3 = new Label();
             label1 = new Label();
@@ -52,8 +52,8 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(button1);
-            panel2.Controls.Add(label2);
+            panel2.Controls.Add(btn_DangNhap);
+            panel2.Controls.Add(lb_QuenMK);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label1);
@@ -64,28 +64,28 @@
             panel2.Size = new Size(508, 391);
             panel2.TabIndex = 2;
             // 
-            // button1
+            // btn_DangNhap
             // 
-            button1.BackgroundImageLayout = ImageLayout.Center;
-            button1.FlatStyle = FlatStyle.System;
-            button1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(186, 287);
-            button1.Name = "button1";
-            button1.Size = new Size(121, 50);
-            button1.TabIndex = 8;
-            button1.Text = "Đăng nhập";
-            button1.UseVisualStyleBackColor = true;
+            btn_DangNhap.BackgroundImageLayout = ImageLayout.Center;
+            btn_DangNhap.FlatStyle = FlatStyle.System;
+            btn_DangNhap.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_DangNhap.Location = new Point(186, 287);
+            btn_DangNhap.Name = "btn_DangNhap";
+            btn_DangNhap.Size = new Size(121, 50);
+            btn_DangNhap.TabIndex = 8;
+            btn_DangNhap.Text = "Đăng nhập";
+            btn_DangNhap.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // lb_QuenMK
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(316, 230);
-            label2.Name = "label2";
-            label2.Size = new Size(138, 23);
-            label2.TabIndex = 7;
-            label2.Text = "Quên mật khẩu?";
+            lb_QuenMK.AutoSize = true;
+            lb_QuenMK.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            lb_QuenMK.ForeColor = Color.Red;
+            lb_QuenMK.Location = new Point(316, 230);
+            lb_QuenMK.Name = "lb_QuenMK";
+            lb_QuenMK.Size = new Size(138, 23);
+            lb_QuenMK.TabIndex = 7;
+            lb_QuenMK.Text = "Quên mật khẩu?";
             // 
             // label4
             // 
@@ -151,13 +151,13 @@
         #endregion
         private Panel panel1;
         private Panel panel2;
-        private Label label2;
+        private Label lb_QuenMK;
         private Label label4;
         private Label label3;
         private Label label1;
         private TextBox Tb_Mk;
         private TextBox tb_Tentk;
-        private Button button1;
+        private Button btn_DangNhap;
 
     }
 }

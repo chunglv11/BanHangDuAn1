@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             panel3 = new Panel();
-            dtg_KicCo = new DataGridView();
             txt_TimKiem = new TextBox();
+            dtg_ShowKichCo = new DataGridView();
             panel1 = new Panel();
             groupBox2 = new GroupBox();
             btn_LamMoi = new Button();
@@ -47,7 +47,7 @@
             label1 = new Label();
             panel2 = new Panel();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_KicCo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowKichCo).BeginInit();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -56,32 +56,32 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(dtg_KicCo);
             panel3.Controls.Add(txt_TimKiem);
+            panel3.Controls.Add(dtg_ShowKichCo);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 285);
             panel3.Name = "panel3";
             panel3.Size = new Size(957, 257);
             panel3.TabIndex = 15;
             // 
-            // dtg_KicCo
-            // 
-            dtg_KicCo.BackgroundColor = SystemColors.ControlLight;
-            dtg_KicCo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_KicCo.Location = new Point(12, 39);
-            dtg_KicCo.Name = "dtg_KicCo";
-            dtg_KicCo.RowHeadersWidth = 51;
-            dtg_KicCo.RowTemplate.Height = 29;
-            dtg_KicCo.Size = new Size(623, 196);
-            dtg_KicCo.TabIndex = 8;
-            // 
             // txt_TimKiem
             // 
             txt_TimKiem.Location = new Point(12, 6);
             txt_TimKiem.Name = "txt_TimKiem";
+            txt_TimKiem.PlaceholderText = "Tìm kiếm...";
             txt_TimKiem.Size = new Size(247, 27);
-            txt_TimKiem.TabIndex = 7;
-            txt_TimKiem.Text = "Tìm kiếm...";
+            txt_TimKiem.TabIndex = 12;
+            // 
+            // dtg_ShowKichCo
+            // 
+            dtg_ShowKichCo.BackgroundColor = SystemColors.ControlLight;
+            dtg_ShowKichCo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_ShowKichCo.Location = new Point(12, 39);
+            dtg_ShowKichCo.Name = "dtg_ShowKichCo";
+            dtg_ShowKichCo.RowHeadersWidth = 51;
+            dtg_ShowKichCo.RowTemplate.Height = 29;
+            dtg_ShowKichCo.Size = new Size(623, 196);
+            dtg_ShowKichCo.TabIndex = 8;
             // 
             // panel1
             // 
@@ -256,7 +256,7 @@
             Text = "FrmKichCo";
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_KicCo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowKichCo).EndInit();
             panel1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
@@ -268,8 +268,7 @@
         #endregion
 
         private Panel panel3;
-        private DataGridView dtg_KicCo;
-        private TextBox txt_TimKiem;
+        private DataGridView dtg_ShowKichCo;
         private Panel panel1;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
@@ -285,5 +284,6 @@
         private Label label2;
         private Label label1;
         private Panel panel2;
+        private TextBox txt_TimKiem;
     }
 }

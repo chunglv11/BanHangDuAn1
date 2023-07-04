@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txt_TimKiem = new TextBox();
-            dtg_Nsx = new DataGridView();
+            dtg_ShowNsx = new DataGridView();
             groupBox1 = new GroupBox();
             rbtn_KHD = new RadioButton();
             rbtn_HD = new RadioButton();
@@ -46,7 +45,8 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dtg_Nsx).BeginInit();
+            txt_TimKiem = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowNsx).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             panel1.SuspendLayout();
@@ -54,24 +54,16 @@
             panel3.SuspendLayout();
             SuspendLayout();
             // 
-            // txt_TimKiem
+            // dtg_ShowNsx
             // 
-            txt_TimKiem.Location = new Point(12, 6);
-            txt_TimKiem.Name = "txt_TimKiem";
-            txt_TimKiem.Size = new Size(247, 27);
-            txt_TimKiem.TabIndex = 7;
-            txt_TimKiem.Text = "Tìm kiếm...";
-            // 
-            // dtg_Nsx
-            // 
-            dtg_Nsx.BackgroundColor = SystemColors.ControlLight;
-            dtg_Nsx.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_Nsx.Location = new Point(12, 39);
-            dtg_Nsx.Name = "dtg_Nsx";
-            dtg_Nsx.RowHeadersWidth = 51;
-            dtg_Nsx.RowTemplate.Height = 29;
-            dtg_Nsx.Size = new Size(623, 184);
-            dtg_Nsx.TabIndex = 8;
+            dtg_ShowNsx.BackgroundColor = SystemColors.ControlLight;
+            dtg_ShowNsx.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_ShowNsx.Location = new Point(12, 39);
+            dtg_ShowNsx.Name = "dtg_ShowNsx";
+            dtg_ShowNsx.RowHeadersWidth = 51;
+            dtg_ShowNsx.RowTemplate.Height = 29;
+            dtg_ShowNsx.Size = new Size(623, 184);
+            dtg_ShowNsx.TabIndex = 8;
             // 
             // groupBox1
             // 
@@ -234,13 +226,21 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(dtg_Nsx);
             panel3.Controls.Add(txt_TimKiem);
+            panel3.Controls.Add(dtg_ShowNsx);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 307);
             panel3.Name = "panel3";
             panel3.Size = new Size(957, 235);
             panel3.TabIndex = 12;
+            // 
+            // txt_TimKiem
+            // 
+            txt_TimKiem.Location = new Point(12, 6);
+            txt_TimKiem.Name = "txt_TimKiem";
+            txt_TimKiem.PlaceholderText = "Tìm kiếm...";
+            txt_TimKiem.Size = new Size(247, 27);
+            txt_TimKiem.TabIndex = 12;
             // 
             // FrmNxs
             // 
@@ -254,7 +254,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmNxs";
             Text = "FrmNxs";
-            ((System.ComponentModel.ISupportInitialize)dtg_Nsx).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowNsx).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -266,8 +266,7 @@
         }
 
         #endregion
-        private TextBox txt_TimKiem;
-        private DataGridView dtg_Nsx;
+        private DataGridView dtg_ShowNsx;
         private GroupBox groupBox1;
         private RadioButton rbtn_KHD;
         private RadioButton rbtn_HD;
@@ -284,5 +283,6 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
+        private TextBox txt_TimKiem;
     }
 }

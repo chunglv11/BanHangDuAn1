@@ -40,7 +40,7 @@
             panelTrai = new Panel();
             label11 = new Label();
             txt_TimKiem = new TextBox();
-            dtg_SanPham = new DataGridView();
+            dtg_ShowSanPham = new DataGridView();
             btn_ChonAnh = new Button();
             label7 = new Label();
             rdb_Het = new RadioButton();
@@ -70,11 +70,12 @@
             ptb_AVT = new PictureBox();
             panel2 = new Panel();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             groupBox1.SuspendLayout();
             panelphai.SuspendLayout();
             groupBox2.SuspendLayout();
             panelTrai.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowSanPham).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptb_QR).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ptb_AVT).BeginInit();
             panel2.SuspendLayout();
@@ -174,7 +175,7 @@
             // 
             panelTrai.Controls.Add(label11);
             panelTrai.Controls.Add(txt_TimKiem);
-            panelTrai.Controls.Add(dtg_SanPham);
+            panelTrai.Controls.Add(dtg_ShowSanPham);
             panelTrai.Controls.Add(btn_ChonAnh);
             panelTrai.Controls.Add(label7);
             panelTrai.Controls.Add(rdb_Het);
@@ -224,17 +225,17 @@
             txt_TimKiem.Size = new Size(305, 30);
             txt_TimKiem.TabIndex = 60;
             // 
-            // dtg_SanPham
+            // dtg_ShowSanPham
             // 
-            dtg_SanPham.BackgroundColor = Color.Silver;
-            dtg_SanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_SanPham.GridColor = Color.FromArgb(255, 224, 192);
-            dtg_SanPham.Location = new Point(20, 524);
-            dtg_SanPham.Name = "dtg_SanPham";
-            dtg_SanPham.RowHeadersWidth = 51;
-            dtg_SanPham.RowTemplate.Height = 29;
-            dtg_SanPham.Size = new Size(1057, 224);
-            dtg_SanPham.TabIndex = 58;
+            dtg_ShowSanPham.BackgroundColor = SystemColors.ControlLight;
+            dtg_ShowSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_ShowSanPham.GridColor = Color.FromArgb(255, 224, 192);
+            dtg_ShowSanPham.Location = new Point(20, 524);
+            dtg_ShowSanPham.Name = "dtg_ShowSanPham";
+            dtg_ShowSanPham.RowHeadersWidth = 51;
+            dtg_ShowSanPham.RowTemplate.Height = 29;
+            dtg_ShowSanPham.Size = new Size(1057, 224);
+            dtg_ShowSanPham.TabIndex = 58;
             // 
             // btn_ChonAnh
             // 
@@ -393,9 +394,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(19, 300);
             label8.Name = "label8";
-            label8.Size = new Size(39, 23);
+            label8.Size = new Size(62, 23);
             label8.TabIndex = 36;
-            label8.Text = "SLT:";
+            label8.Text = "SL tồn:";
             // 
             // label6
             // 
@@ -479,6 +480,13 @@
             panel2.Size = new Size(1345, 786);
             panel2.TabIndex = 22;
             // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.Connection = null;
+            sqlCommand1.Notification = null;
+            sqlCommand1.Transaction = null;
+            // 
             // FrmSanPhamCT
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -495,7 +503,7 @@
             groupBox2.ResumeLayout(false);
             panelTrai.ResumeLayout(false);
             panelTrai.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowSanPham).EndInit();
             ((System.ComponentModel.ISupportInitialize)ptb_QR).EndInit();
             ((System.ComponentModel.ISupportInitialize)ptb_AVT).EndInit();
             panel2.ResumeLayout(false);
@@ -537,7 +545,7 @@
         private Label label7;
         private RadioButton rdb_Het;
         private RadioButton rdb_Con;
-        private DataGridView dtg_SanPham;
+        private DataGridView dtg_ShowSanPham;
         private Label label11;
         private TextBox txt_TimKiem;
         private Button btn_Them;
@@ -545,5 +553,6 @@
         private Button btn_Xoa;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
     }
 }

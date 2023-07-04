@@ -41,13 +41,13 @@
             groupBox2 = new GroupBox();
             dtg_GioHang = new DataGridView();
             groupBox1 = new GroupBox();
+            ptb_QR = new PictureBox();
             dtg_DonHang = new DataGridView();
             panelPhai = new Panel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             timer1 = new System.Windows.Forms.Timer(components);
-            ptb_QR = new PictureBox();
             panelFil.SuspendLayout();
             panelTrai.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -55,10 +55,10 @@
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_GioHang).BeginInit();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ptb_QR).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtg_DonHang).BeginInit();
             panelPhai.SuspendLayout();
             tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ptb_QR).BeginInit();
             SuspendLayout();
             // 
             // panelFil
@@ -68,7 +68,7 @@
             panelFil.Dock = DockStyle.Fill;
             panelFil.Location = new Point(0, 0);
             panelFil.Name = "panelFil";
-            panelFil.Size = new Size(1363, 969);
+            panelFil.Size = new Size(1345, 922);
             panelFil.TabIndex = 0;
             // 
             // panelTrai
@@ -80,7 +80,7 @@
             panelTrai.Dock = DockStyle.Fill;
             panelTrai.Location = new Point(0, 0);
             panelTrai.Name = "panelTrai";
-            panelTrai.Size = new Size(980, 969);
+            panelTrai.Size = new Size(1043, 922);
             panelTrai.TabIndex = 1;
             // 
             // groupBox3
@@ -90,7 +90,7 @@
             groupBox3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox3.Location = new Point(0, 613);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(980, 356);
+            groupBox3.Size = new Size(1043, 309);
             groupBox3.TabIndex = 4;
             groupBox3.TabStop = false;
             groupBox3.Text = "Danh sách sản phẩm";
@@ -100,7 +100,7 @@
             flowPanelSp.Dock = DockStyle.Fill;
             flowPanelSp.Location = new Point(3, 23);
             flowPanelSp.Name = "flowPanelSp";
-            flowPanelSp.Size = new Size(974, 330);
+            flowPanelSp.Size = new Size(1037, 283);
             flowPanelSp.TabIndex = 0;
             // 
             // groupBox4
@@ -113,7 +113,7 @@
             groupBox4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox4.Location = new Point(0, 538);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(980, 75);
+            groupBox4.Size = new Size(1043, 75);
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năng";
@@ -158,7 +158,7 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(0, 269);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(980, 269);
+            groupBox2.Size = new Size(1043, 269);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
@@ -183,10 +183,19 @@
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(980, 269);
+            groupBox1.Size = new Size(1043, 269);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách đơn hàng";
+            // 
+            // ptb_QR
+            // 
+            ptb_QR.BackColor = Color.MistyRose;
+            ptb_QR.Location = new Point(756, 26);
+            ptb_QR.Name = "ptb_QR";
+            ptb_QR.Size = new Size(198, 179);
+            ptb_QR.TabIndex = 1;
+            ptb_QR.TabStop = false;
             // 
             // dtg_DonHang
             // 
@@ -204,9 +213,9 @@
             // 
             panelPhai.Controls.Add(tabControl1);
             panelPhai.Dock = DockStyle.Right;
-            panelPhai.Location = new Point(980, 0);
+            panelPhai.Location = new Point(1043, 0);
             panelPhai.Name = "panelPhai";
-            panelPhai.Size = new Size(383, 969);
+            panelPhai.Size = new Size(302, 922);
             panelPhai.TabIndex = 0;
             // 
             // tabControl1
@@ -239,23 +248,14 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ptb_QR
-            // 
-            ptb_QR.BackColor = Color.MistyRose;
-            ptb_QR.Location = new Point(756, 26);
-            ptb_QR.Name = "ptb_QR";
-            ptb_QR.Size = new Size(198, 179);
-            ptb_QR.TabIndex = 1;
-            ptb_QR.TabStop = false;
-            // 
             // FrmBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
-            ClientSize = new Size(1363, 969);
+            ClientSize = new Size(1345, 922);
             Controls.Add(panelFil);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmBanHang";
             Text = "FrmBanHang";
             panelFil.ResumeLayout(false);
@@ -266,10 +266,10 @@
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtg_GioHang).EndInit();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ptb_QR).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtg_DonHang).EndInit();
             panelPhai.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ptb_QR).EndInit();
             ResumeLayout(false);
         }
 

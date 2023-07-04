@@ -37,7 +37,7 @@
             label2 = new Label();
             label1 = new Label();
             txt_TimKiem = new TextBox();
-            dtg_SanPham = new DataGridView();
+            dtg_ShowSanPham = new DataGridView();
             groupBox2 = new GroupBox();
             btn_LamMoi = new Button();
             btn_Xoa = new Button();
@@ -47,7 +47,7 @@
             panel1 = new Panel();
             panel3 = new Panel();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowSanPham).BeginInit();
             groupBox2.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -144,16 +144,16 @@
             txt_TimKiem.TabIndex = 7;
             txt_TimKiem.Text = "Tìm kiếm...";
             // 
-            // dtg_SanPham
+            // dtg_ShowSanPham
             // 
-            dtg_SanPham.BackgroundColor = SystemColors.ControlLight;
-            dtg_SanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_SanPham.Location = new Point(12, 55);
-            dtg_SanPham.Name = "dtg_SanPham";
-            dtg_SanPham.RowHeadersWidth = 51;
-            dtg_SanPham.RowTemplate.Height = 29;
-            dtg_SanPham.Size = new Size(601, 163);
-            dtg_SanPham.TabIndex = 8;
+            dtg_ShowSanPham.BackgroundColor = SystemColors.ControlLight;
+            dtg_ShowSanPham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_ShowSanPham.Location = new Point(12, 55);
+            dtg_ShowSanPham.Name = "dtg_ShowSanPham";
+            dtg_ShowSanPham.RowHeadersWidth = 51;
+            dtg_ShowSanPham.RowTemplate.Height = 29;
+            dtg_ShowSanPham.Size = new Size(601, 163);
+            dtg_ShowSanPham.TabIndex = 8;
             // 
             // groupBox2
             // 
@@ -235,7 +235,7 @@
             // panel3
             // 
             panel3.Controls.Add(txt_TimKiem);
-            panel3.Controls.Add(dtg_SanPham);
+            panel3.Controls.Add(dtg_ShowSanPham);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 309);
             panel3.Name = "panel3";
@@ -256,7 +256,7 @@
             Text = "FrmSanPham";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dtg_SanPham).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowSanPham).EndInit();
             groupBox2.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
@@ -276,7 +276,7 @@
         private Label label2;
         private Label label1;
         private TextBox txt_TimKiem;
-        private DataGridView dtg_SanPham;
+        private DataGridView dtg_ShowSanPham;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
         private Button btn_Xoa;
