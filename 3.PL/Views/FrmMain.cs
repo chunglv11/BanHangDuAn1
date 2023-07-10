@@ -38,7 +38,8 @@ namespace _3.PL.Views
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            this.PanelPhai.Controls.Add(childForm);
+            PanelPhai.Controls.Add(childForm);
+            PanelPhai.Tag = childForm;
 
             childForm.Show();
         }

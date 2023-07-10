@@ -45,8 +45,8 @@
             label2 = new Label();
             lb_TenNV = new Label();
             ptb_avt = new PictureBox();
-            PanelPhai = new Panel();
             panelFill = new Panel();
+            PanelPhai = new Panel();
             btn_BanHang = new Button();
             panelTrai.SuspendLayout();
             panel4.SuspendLayout();
@@ -65,7 +65,7 @@
             btn_BanHang.ImageAlign = ContentAlignment.MiddleLeft;
             btn_BanHang.Location = new Point(0, 0);
             btn_BanHang.Name = "btn_BanHang";
-            btn_BanHang.Size = new Size(246, 58);
+            btn_BanHang.Size = new Size(273, 58);
             btn_BanHang.TabIndex = 2;
             btn_BanHang.Text = "Bán hàng";
             btn_BanHang.UseVisualStyleBackColor = false;
@@ -82,7 +82,7 @@
             panelTrai.Dock = DockStyle.Left;
             panelTrai.Location = new Point(0, 0);
             panelTrai.Name = "panelTrai";
-            panelTrai.Size = new Size(246, 958);
+            panelTrai.Size = new Size(273, 958);
             panelTrai.TabIndex = 3;
             // 
             // btn_TaiKhoan
@@ -94,7 +94,7 @@
             btn_TaiKhoan.ImageAlign = ContentAlignment.MiddleLeft;
             btn_TaiKhoan.Location = new Point(0, 859);
             btn_TaiKhoan.Name = "btn_TaiKhoan";
-            btn_TaiKhoan.Size = new Size(246, 49);
+            btn_TaiKhoan.Size = new Size(273, 49);
             btn_TaiKhoan.TabIndex = 16;
             btn_TaiKhoan.Text = "Tài khoản";
             btn_TaiKhoan.UseVisualStyleBackColor = false;
@@ -109,7 +109,7 @@
             btn_Out.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Out.Location = new Point(0, 908);
             btn_Out.Name = "btn_Out";
-            btn_Out.Size = new Size(246, 50);
+            btn_Out.Size = new Size(273, 50);
             btn_Out.TabIndex = 15;
             btn_Out.Text = "Đăng xuất";
             btn_Out.UseVisualStyleBackColor = false;
@@ -126,7 +126,7 @@
             panel4.Dock = DockStyle.Top;
             panel4.Location = new Point(0, 233);
             panel4.Name = "panel4";
-            panel4.Size = new Size(246, 347);
+            panel4.Size = new Size(273, 347);
             panel4.TabIndex = 14;
             // 
             // btn_TK
@@ -138,7 +138,7 @@
             btn_TK.ImageAlign = ContentAlignment.MiddleLeft;
             btn_TK.Location = new Point(0, 279);
             btn_TK.Name = "btn_TK";
-            btn_TK.Size = new Size(246, 57);
+            btn_TK.Size = new Size(273, 57);
             btn_TK.TabIndex = 7;
             btn_TK.Text = "Thống kê";
             btn_TK.UseVisualStyleBackColor = false;
@@ -153,7 +153,7 @@
             btn_HD.ImageAlign = ContentAlignment.MiddleLeft;
             btn_HD.Location = new Point(0, 225);
             btn_HD.Name = "btn_HD";
-            btn_HD.Size = new Size(246, 54);
+            btn_HD.Size = new Size(273, 54);
             btn_HD.TabIndex = 6;
             btn_HD.Text = "Hóa đơn";
             btn_HD.UseVisualStyleBackColor = false;
@@ -168,7 +168,7 @@
             btn_Sp.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Sp.Location = new Point(0, 170);
             btn_Sp.Name = "btn_Sp";
-            btn_Sp.Size = new Size(246, 55);
+            btn_Sp.Size = new Size(273, 55);
             btn_Sp.TabIndex = 5;
             btn_Sp.Text = "Sản phẩm";
             btn_Sp.UseVisualStyleBackColor = false;
@@ -183,7 +183,7 @@
             btn_NhanVien.ImageAlign = ContentAlignment.MiddleLeft;
             btn_NhanVien.Location = new Point(0, 113);
             btn_NhanVien.Name = "btn_NhanVien";
-            btn_NhanVien.Size = new Size(246, 57);
+            btn_NhanVien.Size = new Size(273, 57);
             btn_NhanVien.TabIndex = 4;
             btn_NhanVien.Text = "Nhân viên";
             btn_NhanVien.UseVisualStyleBackColor = false;
@@ -198,7 +198,7 @@
             btn_KH.ImageAlign = ContentAlignment.MiddleLeft;
             btn_KH.Location = new Point(0, 58);
             btn_KH.Name = "btn_KH";
-            btn_KH.Size = new Size(246, 55);
+            btn_KH.Size = new Size(273, 55);
             btn_KH.TabIndex = 3;
             btn_KH.Text = "Khách hàng";
             btn_KH.UseVisualStyleBackColor = false;
@@ -213,7 +213,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 151);
             panel2.Name = "panel2";
-            panel2.Size = new Size(246, 82);
+            panel2.Size = new Size(273, 82);
             panel2.TabIndex = 13;
             // 
             // label1
@@ -265,35 +265,35 @@
             ptb_avt.Dock = DockStyle.Top;
             ptb_avt.Location = new Point(0, 0);
             ptb_avt.Name = "ptb_avt";
-            ptb_avt.Size = new Size(246, 151);
+            ptb_avt.Size = new Size(273, 151);
             ptb_avt.TabIndex = 0;
             ptb_avt.TabStop = false;
-            // 
-            // PanelPhai
-            // 
-            PanelPhai.BackColor = Color.SeaShell;
-            PanelPhai.Dock = DockStyle.Right;
-            PanelPhai.Location = new Point(0, 0);
-            PanelPhai.Name = "PanelPhai";
-            PanelPhai.Size = new Size(1673, 958);
-            PanelPhai.TabIndex = 1;
             // 
             // panelFill
             // 
             panelFill.BackColor = Color.SeaShell;
             panelFill.Controls.Add(PanelPhai);
+            panelFill.Controls.Add(panelTrai);
             panelFill.Dock = DockStyle.Fill;
             panelFill.Location = new Point(0, 0);
             panelFill.Name = "panelFill";
             panelFill.Size = new Size(1673, 958);
-            panelFill.TabIndex = 5;
+            panelFill.TabIndex = 4;
+            // 
+            // PanelPhai
+            // 
+            PanelPhai.BackColor = Color.SeaShell;
+            PanelPhai.Dock = DockStyle.Fill;
+            PanelPhai.Location = new Point(273, 0);
+            PanelPhai.Name = "PanelPhai";
+            PanelPhai.Size = new Size(1400, 958);
+            PanelPhai.TabIndex = 4;
             // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1673, 958);
-            Controls.Add(panelTrai);
             Controls.Add(panelFill);
             Margin = new Padding(3, 4, 3, 4);
             Name = "FrmMain";
@@ -309,22 +309,23 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelTrai;
-        private System.Windows.Forms.Panel PanelPhai;
-        private System.Windows.Forms.PictureBox ptb_avt;
-        private System.Windows.Forms.Panel panelFill;
-        private Label lb_TenCV;
-        private Label lb_TenNV;
-        private Label label2;
-        private Label label1;
-        private Panel panel2;
+
+        private Panel panelTrai;
+        private Button btn_TaiKhoan;
+        private Button btn_Out;
         private Panel panel4;
         private Button btn_TK;
         private Button btn_HD;
         private Button btn_Sp;
         private Button btn_NhanVien;
         private Button btn_KH;
-        private Button btn_TaiKhoan;
-        private Button btn_Out;
+        private Panel panel2;
+        private Label label1;
+        private Label lb_TenCV;
+        private Label label2;
+        private Label lb_TenNV;
+        private PictureBox ptb_avt;
+        private Panel panelFill;
+        private Panel PanelPhai;
     }
 }
