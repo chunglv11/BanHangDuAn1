@@ -35,7 +35,9 @@ namespace _3.PL.Views
                     Width = 180,
                     Height = 200,
                     BackColor = Color.DarkSeaGreen,
+
                 };
+
                 #region
                 //PictureBox pictureBox = new PictureBox()
                 //{
@@ -47,6 +49,7 @@ namespace _3.PL.Views
                 ////Thêm 1 hàm khi click hình ảnh
                 //// pictureBox.Click += PictureBox_Click; 
                 //pn.Controls.Add(pictureBox);
+
                 Label lbtensp = new Label()
                 {
                     AutoSize = false,
@@ -62,7 +65,6 @@ namespace _3.PL.Views
                     AutoSize = false,
                     Height = 30,
                     Dock = DockStyle.Bottom,
-
                     Text = Convert.ToString(sp.SoLuongTon),
                     Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point),
                     TextAlign = ContentAlignment.MiddleCenter,
@@ -73,11 +75,12 @@ namespace _3.PL.Views
                     AutoSize = false,
                     Height = 30,
                     Dock = DockStyle.Bottom,
-                    Text = Convert.ToString(sp.GiaBan),
+                    Text = sp.GiaBan.ToString("#,### vnd"),
                     Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point),
                     TextAlign = ContentAlignment.MiddleCenter,
                     BackColor = Color.White,
                 };
+
                 #endregion
                 pn.Controls.Add(lbtensp);
                 pn.Controls.Add(lbslTon);
