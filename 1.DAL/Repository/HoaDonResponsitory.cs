@@ -38,6 +38,11 @@ namespace _1.DAL.Repository
             return _shopContext.HoaDons.ToList();
         }
 
+        public HoaDon GetHoaDonById(Guid id)
+        {
+            return _shopContext.HoaDons.Find(id);
+        }
+
         public bool UpdateHoaDonFromdb(HoaDon obj)
         {
             if (obj == null) return false;

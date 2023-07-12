@@ -13,5 +13,6 @@ namespace _1.DAL.IRepository
         public bool UpdateHoaDonFromdb(HoaDon obj);
         public bool DeleteHoaDonFromdb(HoaDon obj);
         public List<HoaDon> GetAllHoaDonFromdb();
+        public HoaDon GetHoaDonById(Guid id);
     }
 }

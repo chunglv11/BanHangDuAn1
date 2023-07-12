@@ -47,6 +47,7 @@
             ptb_avt = new PictureBox();
             panelFill = new Panel();
             PanelPhai = new Panel();
+            btn_KhuyenMai = new Button();
             btn_BanHang = new Button();
             panelTrai.SuspendLayout();
             panel4.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(btn_KhuyenMai);
             panel4.Controls.Add(btn_TK);
             panel4.Controls.Add(btn_HD);
             panel4.Controls.Add(btn_Sp);
@@ -126,7 +128,7 @@
             panel4.Dock = DockStyle.Top;
             panel4.Location = new Point(0, 233);
             panel4.Name = "panel4";
-            panel4.Size = new Size(273, 347);
+            panel4.Size = new Size(273, 432);
             panel4.TabIndex = 14;
             // 
             // btn_TK
@@ -289,6 +291,21 @@
             PanelPhai.Size = new Size(1400, 958);
             PanelPhai.TabIndex = 4;
             // 
+            // btn_KhuyenMai
+            // 
+            btn_KhuyenMai.BackColor = Color.SeaShell;
+            btn_KhuyenMai.Dock = DockStyle.Top;
+            btn_KhuyenMai.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_KhuyenMai.Image = (Image)resources.GetObject("btn_KhuyenMai.Image");
+            btn_KhuyenMai.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_KhuyenMai.Location = new Point(0, 336);
+            btn_KhuyenMai.Name = "btn_KhuyenMai";
+            btn_KhuyenMai.Size = new Size(273, 57);
+            btn_KhuyenMai.TabIndex = 8;
+            btn_KhuyenMai.Text = "Khuyến mại";
+            btn_KhuyenMai.UseVisualStyleBackColor = false;
+            btn_KhuyenMai.Click += btn_KhuyenMai_Click;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -327,5 +344,6 @@
         private PictureBox ptb_avt;
         private Panel panelFill;
         private Panel PanelPhai;
+        private Button btn_KhuyenMai;
     }
 }

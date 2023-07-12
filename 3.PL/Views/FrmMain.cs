@@ -70,9 +70,12 @@ namespace _3.PL.Views
 
         private void btn_TK_Click(object sender, EventArgs e)
         {
-
+            ChangeForm(new FrmThongKe());
         }
-
+        private void btn_KhuyenMai_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmKhuyenMai());
+        }
         private void btn_TaiKhoan_Click(object sender, EventArgs e)
         {
             ChangeForm(new FrmThongTin());
@@ -87,5 +90,7 @@ namespace _3.PL.Views
             }
 
         }
+
+
     }
 }
