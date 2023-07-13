@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             panel3 = new Panel();
-            txt_TimKiem = new TextBox();
             dtg_ShowKichCo = new DataGridView();
+            txt_TimKiem = new TextBox();
             panel1 = new Panel();
             groupBox2 = new GroupBox();
             btn_LamMoi = new Button();
@@ -56,21 +56,13 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(txt_TimKiem);
             panel3.Controls.Add(dtg_ShowKichCo);
+            panel3.Controls.Add(txt_TimKiem);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 285);
             panel3.Name = "panel3";
             panel3.Size = new Size(957, 257);
             panel3.TabIndex = 15;
-            // 
-            // txt_TimKiem
-            // 
-            txt_TimKiem.Location = new Point(12, 6);
-            txt_TimKiem.Name = "txt_TimKiem";
-            txt_TimKiem.PlaceholderText = "Tìm kiếm...";
-            txt_TimKiem.Size = new Size(247, 27);
-            txt_TimKiem.TabIndex = 12;
             // 
             // dtg_ShowKichCo
             // 
@@ -80,8 +72,18 @@
             dtg_ShowKichCo.Name = "dtg_ShowKichCo";
             dtg_ShowKichCo.RowHeadersWidth = 51;
             dtg_ShowKichCo.RowTemplate.Height = 29;
-            dtg_ShowKichCo.Size = new Size(623, 196);
-            dtg_ShowKichCo.TabIndex = 8;
+            dtg_ShowKichCo.Size = new Size(623, 184);
+            dtg_ShowKichCo.TabIndex = 13;
+            dtg_ShowKichCo.CellContentClick += dtg_ShowKichCo_CellClick;
+            // 
+            // txt_TimKiem
+            // 
+            txt_TimKiem.Location = new Point(12, 6);
+            txt_TimKiem.Name = "txt_TimKiem";
+            txt_TimKiem.PlaceholderText = "Tìm kiếm...";
+            txt_TimKiem.Size = new Size(247, 27);
+            txt_TimKiem.TabIndex = 12;
+            txt_TimKiem.TextChanged += txt_TimKiem_TextChanged;
             // 
             // panel1
             // 
@@ -117,6 +119,7 @@
             btn_LamMoi.TabIndex = 3;
             btn_LamMoi.Text = "Làm mới";
             btn_LamMoi.UseVisualStyleBackColor = true;
+            btn_LamMoi.Click += btn_LamMoi_Click;
             // 
             // btn_Xoa
             // 
@@ -128,6 +131,7 @@
             btn_Xoa.TabIndex = 2;
             btn_Xoa.Text = "Xoá";
             btn_Xoa.UseVisualStyleBackColor = true;
+            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // btn_Sua
             // 
@@ -139,6 +143,7 @@
             btn_Sua.TabIndex = 1;
             btn_Sua.Text = "Sửa";
             btn_Sua.UseVisualStyleBackColor = true;
+            btn_Sua.Click += btn_Sua_Click;
             // 
             // btn_Them
             // 
@@ -150,6 +155,7 @@
             btn_Them.TabIndex = 0;
             btn_Them.Text = "Thêm";
             btn_Them.UseVisualStyleBackColor = true;
+            btn_Them.Click += btn_Them_Click;
             // 
             // groupBox1
             // 
@@ -268,7 +274,6 @@
         #endregion
 
         private Panel panel3;
-        private DataGridView dtg_ShowKichCo;
         private Panel panel1;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
@@ -285,5 +290,6 @@
         private Label label1;
         private Panel panel2;
         private TextBox txt_TimKiem;
+        private DataGridView dtg_ShowKichCo;
     }
 }
