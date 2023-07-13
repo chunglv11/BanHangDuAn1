@@ -1,5 +1,6 @@
 ﻿using _1.DAL.IRepository;
 using _1.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,35 @@ namespace _1.DAL.Repository
         }
         public bool AddSanPhamCTFromDb(SanPhamChiTiet obj)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                _shopContext.SanPhamChiTiets.Add(obj);
+                _shopContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool DeleteSanPhamCTFromDb(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                 var deleteId = _shopContext.SanPhamChiTiets.SingleOrDefault(p => p.ID == id);
+                _shopContext.SanPhamChiTiets.Remove(deleteId);
+                _shopContext.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public List<SanPhamChiTiet> GetAllSanPhamCTFromDb()
@@ -32,12 +56,24 @@ namespace _1.DAL.Repository
 
         public SanPhamChiTiet GetSanPhamCTByidFromDb(Guid id)
         {
-            throw new NotImplementedException();
+            return _shopContext.SanPhamChiTiets.FirstOrDefault(c => c.ID == id);
         }
 
         public bool UpdateSanPhamCTFromDb(SanPhamChiTiet obj)
         {
-            throw new NotImplementedException();
+           
+            try
+            {
+                _shopContext.SanPhamChiTiets.Update(obj);
+                _shopContext.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

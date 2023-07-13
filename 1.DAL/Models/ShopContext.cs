@@ -11,9 +11,10 @@ namespace _1.DAL.Models
 {
     public class ShopContext : DbContext
     {
+
         public ShopContext()
         {
-
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
         }
         public ShopContext(DbContextOptions<ShopContext> options) : base(options)
         {
@@ -22,7 +23,7 @@ namespace _1.DAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-AKSDRER\MOMO;Initial Catalog=QuanLyQuanAo;User ID=sa1;Password=123");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-AKSDRER\MOMO;Initial Catalog=QuanLyQuanAo;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

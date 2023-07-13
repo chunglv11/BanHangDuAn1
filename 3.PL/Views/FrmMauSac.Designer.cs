@@ -71,6 +71,7 @@
             txt_TimKiem.PlaceholderText = "Tìm kiếm...";
             txt_TimKiem.Size = new Size(247, 27);
             txt_TimKiem.TabIndex = 12;
+            txt_TimKiem.TextChanged += txt_TimKiem_TextChanged;
             // 
             // dtg_ShowMauSac
             // 
@@ -82,6 +83,7 @@
             dtg_ShowMauSac.RowTemplate.Height = 29;
             dtg_ShowMauSac.Size = new Size(623, 209);
             dtg_ShowMauSac.TabIndex = 8;
+            dtg_ShowMauSac.CellClick += dtg_ShowMauSac_CellClick;
             // 
             // panel1
             // 
@@ -128,6 +130,7 @@
             btn_Xoa.TabIndex = 2;
             btn_Xoa.Text = "Xoá";
             btn_Xoa.UseVisualStyleBackColor = true;
+            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // btn_Sua
             // 
@@ -139,6 +142,7 @@
             btn_Sua.TabIndex = 1;
             btn_Sua.Text = "Sửa";
             btn_Sua.UseVisualStyleBackColor = true;
+            btn_Sua.Click += btn_Sua_Click;
             // 
             // btn_Them
             // 
@@ -150,6 +154,7 @@
             btn_Them.TabIndex = 0;
             btn_Them.Text = "Thêm";
             btn_Them.UseVisualStyleBackColor = true;
+            btn_Them.Click += btn_Them_Click;
             // 
             // groupBox1
             // 
