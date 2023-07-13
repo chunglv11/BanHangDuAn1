@@ -23,7 +23,7 @@ namespace _1.DAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-MRQT4GH;Initial Catalog=vinh12345;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-AKSDRER\MOMO;Initial Catalog=QuanLyQuanAo;Integrated Security=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
