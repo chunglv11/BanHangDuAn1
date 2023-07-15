@@ -14,7 +14,7 @@ namespace _1.DAL.Models
         public string Ten { get; set; }
         public int TrangThai { get; set; }
         public int? PhanTramGiam { get; set; }
-        public int? SoTienGiam { get; set; }
+        public float? SoTienGiam { get; set; }
         public DateTime NgayBatDau { get; set; }
         public DateTime NgayKetThuc { get; set; }
         public List<HoaDon> hoaDons { get; set; }
