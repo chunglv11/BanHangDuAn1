@@ -19,7 +19,7 @@ namespace _2.BUS.ViewModels
         //View KM
         public string TenKM { get; set; }
         public int? PhanTramGiam { get; set; }
-        public int? SoTienGiam { get; set; }
+        public float? SoTienGiam { get; set; }
         //View NV
         public string MaNv { get; set; }
         public string HoTenNV { get; set; }
