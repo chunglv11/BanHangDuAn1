@@ -50,22 +50,22 @@ namespace _3.PL.Views
             }
 
         }
-        public NhanVienServices GetvaluaContro()
-        {
+        //public NhanVienServices GetvaluaContro()
+        //{
 
-            return new NhanVienServices()
-            {
-                MaNv = tb_Ma.Text,
-                HoTen = txt_HoTen.Text,
-                NgaySinh = date_ngaySinh.Value,
-                GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
-                Email = tb_Email.Text,
-                ChucVu = cmb_CV.Text,
-                Username = tb_user.Text,
-                MatKhau = tb_MatKhau.Text,
-                TrangThai = rbtn_HD.Checked == true ? 1 : 0,
-            };
-        }
+        //    //return new NhanVienServices()
+        //    //{
+        //    //    MaNv = tb_Ma.Text,
+        //    //    HoTen = txt_HoTen.Text,
+        //    //    NgaySinh = date_ngaySinh.Value,
+        //    //    GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
+        //    //    Email = tb_Email.Text,
+        //    //    ChucVu = cmb_CV.Text,
+        //    //    Username = tb_user.Text,
+        //    //    MatKhau = tb_MatKhau.Text,
+        //    //    TrangThai = rbtn_HD.Checked == true ? 1 : 0,
+        //    //};
+        //}
 
         private void dtg_ShowChucVu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -94,31 +94,31 @@ namespace _3.PL.Views
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            _ = _INhanVienServices.Them(GetvaluaContro());
+            //_ = _INhanVienServices.Them(GetvaluaContro());
             LoadData();
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            bool thongBao = _INhanVienServices.Sua(new _1.DAL.Models.NhanVien
-            {
-                ID = _ID,
-                MaNv = tb_Ma.Text,
-                HoTen = txt_HoTen.Text,
-                NgaySinh = date_ngaySinh.Value,
-                GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
-                Email = tb_Email.Text,
-                ChucVu = cmb_CV.Text,
-                Username = tb_user.Text,
-                MatKhau = tb_MatKhau.Text,
-                TrangThai = rbtn_HD.Checked == true ? 1 : 0,
-            });
+            //bool thongBao = _INhanVienServices.Sua(new _1.DAL.Models.NhanVien
+            //{
+            //    ID = _ID,
+            //    MaNv = tb_Ma.Text,
+            //    HoTen = txt_HoTen.Text,
+            //    NgaySinh = date_ngaySinh.Value,
+            //    GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
+            //    Email = tb_Email.Text,
+            //    ChucVu = cmb_CV.Text,
+            //    Username = tb_user.Text,
+            //    MatKhau = tb_MatKhau.Text,
+            //    TrangThai = rbtn_HD.Checked == true ? 1 : 0,
+            //});
 
-            if (thongBao)
-            {
-                _ = MessageBox.Show("Sửa thành công");
-                LoadData();
-            }
+            //if (thongBao)
+            //{
+            //    _ = MessageBox.Show("Sửa thành công");
+            //    LoadData();
+            //}
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
@@ -133,13 +133,13 @@ namespace _3.PL.Views
 
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
-            
+
         }
 
 
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
-            _ = _INhanVienServices.TimKiem(GetvaluaContro());
+            //_ = _INhanVienServices.TimKiem(GetvaluaContro());
             LoadData();
         }
     }

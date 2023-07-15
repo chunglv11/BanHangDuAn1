@@ -1,6 +1,7 @@
 ﻿using _1.DAL.Models;
 using _2.BUS.IServices;
 using _2.BUS.Services;
+using _2.BUS.ViewModels;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,22 @@ namespace _3.PL.Views
     public partial class FrmBanHang : Form
     {
         private ISanPhamChiTietServices _isanphamChiTietServices;
+        private ILoaiSanPhamServices _ilsanphamServices;
         public FrmBanHang()
         {
             InitializeComponent();
             _isanphamChiTietServices = new SanPhamChiTietServices();
-            List<SanPhamChiTiet> sanPhamChiTiets = _isanphamChiTietServices.GetAllSanPhamCT();
+            _ilsanphamServices = new LoaiSanPhamServices();
+            List<SanPhamCTViewModels> sanPhamChiTiets = _isanphamChiTietServices.GetsListCtSp();
             LoadSp(sanPhamChiTiets);
+            LoadCbb();
 
         }
-        public void LoadSp(List<SanPhamChiTiet> list)
+        public void LoadSp(List<SanPhamCTViewModels> list)
         {
+
             flowPanelSp.Controls.Clear();
-            foreach (SanPhamChiTiet sp in list)
+            foreach (SanPhamCTViewModels sp in list)
             {
                 Panel pn = new Panel()
                 {
@@ -39,23 +44,23 @@ namespace _3.PL.Views
                 };
 
                 #region
-                //PictureBox pictureBox = new PictureBox()
-                //{
-                //    Image = Image.FromFile(sp.HinhAnh),
-                //    SizeMode = PictureBoxSizeMode.StretchImage,
-                //    Dock = DockStyle.Fill,
-                //    Tag = sp,
-                //};
-                ////Thêm 1 hàm khi click hình ảnh
-                //// pictureBox.Click += PictureBox_Click; 
-                //pn.Controls.Add(pictureBox);
+                PictureBox pictureBox = new PictureBox()
+                {
+                    Image = Image.FromFile(sp.HinhAnh),
+                    SizeMode = PictureBoxSizeMode.StretchImage,
+                    Dock = DockStyle.Fill,
+                    Tag = sp,
+                };
+                //Thêm 1 hàm khi click hình ảnh
+                // pictureBox.Click += PictureBox_Click; 
+                pn.Controls.Add(pictureBox);
 
                 Label lbtensp = new Label()
                 {
                     AutoSize = false,
                     Height = 30,
                     Dock = DockStyle.Bottom,
-                    Text = sp.MoTa,
+                    Text = sp.TenSp,
                     Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point),
                     TextAlign = ContentAlignment.MiddleCenter,
                     BackColor = Color.White,
@@ -87,6 +92,31 @@ namespace _3.PL.Views
                 pn.Controls.Add(lbGia);
 
                 flowPanelSp.Controls.Add(pn);
+            }
+        }
+        public void LoadCbb()
+        {
+            cbb_LoaiSP.Items.Add("Tất cả");
+            cbb_LoaiSP.SelectedIndex = 0;
+            foreach (var item in _ilsanphamServices.GetLoaiSP())
+            {
+                cbb_LoaiSP.Items.Add(item.Ten);
+            }
+
+        }
+
+        private void cbb_LoaiSP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbb_LoaiSP.SelectedIndex == 0)
+            {
+                List<SanPhamCTViewModels> sp = _isanphamChiTietServices.GetsListCtSp();
+                LoadSp(sp);
+            }
+            else
+            {
+                Guid idloai = _ilsanphamServices.GetLoaiSP().FirstOrDefault(c => c.Ten.Contains(cbb_LoaiSP.Text)).ID;
+                List<SanPhamCTViewModels> sp2 = _isanphamChiTietServices.GetsListCtSp().Where(c => c.IDLOAI == idloai).ToList();
+                LoadSp(sp2);
             }
         }
     }

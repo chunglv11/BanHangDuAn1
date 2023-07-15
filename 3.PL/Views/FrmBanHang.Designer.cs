@@ -154,6 +154,7 @@
             cbb_LoaiSP.Name = "cbb_LoaiSP";
             cbb_LoaiSP.Size = new Size(293, 28);
             cbb_LoaiSP.TabIndex = 2;
+            cbb_LoaiSP.SelectedIndexChanged += cbb_LoaiSP_SelectedIndexChanged;
             // 
             // label2
             // 
