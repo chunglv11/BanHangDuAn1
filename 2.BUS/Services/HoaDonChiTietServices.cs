@@ -20,11 +20,21 @@ namespace _2.BUS.Services
             _ihoaDonCTRp = new HoaDonChiTietResponsitory();
             _shopContext = new ShopContext();
         }
-        public bool AddHDCT(HoaDonChiTiet obj)
+        public bool AddHDCT(HoaDonCTVM obj)
         {
             try
             {
-                _ihoaDonCTRp.AddHDCTFromDb(obj);
+                HoaDonChiTiet temp = new HoaDonChiTiet()
+                {
+                    ID = obj.ID,
+                    IDHD = (Guid)obj.IDHD,
+                    IDSPCT = (Guid)obj.IDSPCT,
+                    SoLuong = obj.SoLuong,
+                    DonGia = obj.DonGia
+
+                };
+
+                _ihoaDonCTRp.AddHDCTFromDb(temp);
                 return true;
             }
             catch (Exception)
@@ -62,10 +72,11 @@ namespace _2.BUS.Services
                           ID = a.ID,
                           IDHD = a.IDHD,
                           IDSPCT = a.IDSPCT,
+                          MaSPCT = b.Ma,
                           TenSP = c.Ten,
                           SoLuong = a.SoLuong,
                           DonGia = a.DonGia,
-                          ThanhTien = Convert.ToDecimal(a.SoLuong * Convert.ToDecimal(a.DonGia)),
+
                       };
             return lst.ToList();
         }

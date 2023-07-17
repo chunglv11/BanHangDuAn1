@@ -75,7 +75,7 @@ namespace _3.PL.Views
 
             try
             {
-                if ( dtp_NgayKT.Value < dtp_NgayBD.Value)
+                if (dtp_NgayKT.Value < dtp_NgayBD.Value)
                 {
                     _ = MessageBox.Show("Kiểm tra lại lịch");
                     return;
@@ -113,7 +113,7 @@ namespace _3.PL.Views
         {
             try
             {
-                if ( dtp_NgayKT.Value < dtp_NgayBD.Value)
+                if (dtp_NgayKT.Value < dtp_NgayBD.Value)
                 {
                     _ = MessageBox.Show("Kiểm tra lại lịch");
                     return;
@@ -126,9 +126,15 @@ namespace _3.PL.Views
                 DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    bool thongBao = _iKmServices.Update(new _1.DAL.Models.KhuyenMai() { ID = _ID, Ma = txt_Ma.Text,
-                        Ten = txt_Ten.Text, PhanTramGiam = int.Parse(tb_PhanTramGiam.Text), SoTienGiam = float.Parse(tb_SoTienGiam.Text), 
-                        NgayBatDau = dtp_NgayBD.Value, NgayKetThuc = dtp_NgayKT.Value,
+                    bool thongBao = _iKmServices.Update(new _1.DAL.Models.KhuyenMai()
+                    {
+                        ID = _ID,
+                        Ma = txt_Ma.Text,
+                        Ten = txt_Ten.Text,
+                        PhanTramGiam = int.Parse(tb_PhanTramGiam.Text),
+                        SoTienGiam = float.Parse(tb_SoTienGiam.Text),
+                        NgayBatDau = dtp_NgayBD.Value,
+                        NgayKetThuc = dtp_NgayKT.Value,
                         TrangThai = rbtn_HD.Checked == true ? 1 : 0
                     });
                     if (thongBao)

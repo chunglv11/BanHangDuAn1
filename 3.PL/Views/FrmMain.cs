@@ -1,4 +1,5 @@
-﻿using _2.BUS.IServices;
+﻿using _1.DAL.Models;
+using _2.BUS.IServices;
 using _2.BUS.Services;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,14 @@ namespace _3.PL.Views
     {
         private INhanVienServices _inhanVienServices;
         private IChucVuServices _ichucVuServices;
+        NhanVien _nhanVien;
         public FrmMain()
         {
             InitializeComponent();
             _inhanVienServices = new NhanVienServices();
             _ichucVuServices = new ChucVuServices();
-            //FrmBanHang frmBanHang = new FrmBanHang() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            //this.PanelPhai.Controls.Add(frmBanHang);
-            //frmBanHang.Show();
+            _nhanVien = new NhanVien();
+
         }
 
         private Form activeForm;
@@ -91,6 +92,21 @@ namespace _3.PL.Views
 
         }
 
-
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            //var nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.ID == _nhanVien.ID);
+            //if (nv.AnhNv != null)
+            //{
+            //    string link = nv.AnhNv.Replace(@"\", @"/");
+            //    if (File.Exists(link))
+            //    {
+            //        ptb_avt.Image = Image.FromFile(link);
+            //        ptb_avt.SizeMode = PictureBoxSizeMode.StretchImage;
+            //    }
+            //}
+            //lb_TenNV.Text = nv.HoTen;
+            //var role = _ichucVuServices.GetAll().FirstOrDefault(c => c.ID == _nhanVien.IDCV);
+            //lb_TenCV.Text = role.Ten;
+        }
     }
 }

@@ -14,6 +14,10 @@ namespace _2.BUS.Services
     {
         ShopContext _context;
         IPhuongThucThanhToanResponsitory _phuongThucThanhToanResponsitory;
+        public PhuongThucThanhToanServices()
+        {
+            _phuongThucThanhToanResponsitory = new PhuongThucThanhToanResponsitory();
+        }
         public bool AddThanhToan(PhuongThucThanhToan obj)
         {
             _phuongThucThanhToanResponsitory.AddThanhToan(obj);
@@ -38,8 +42,8 @@ namespace _2.BUS.Services
         }
     }
 
-      
 
-        
-    }
+
+
+}
 
