@@ -10,10 +10,10 @@ namespace _2.BUS.IServices
 {
     public interface IHoaDonChiTietServices
     {
-        public bool AddHDCT(HoaDonCTVM obj);
+        public bool AddHDCT(HoaDonChiTiet obj);
         public bool UpdateHDCT(HoaDonChiTiet obj);
         public bool DeleteHDCT(HoaDonChiTiet obj);
         public List<HoaDonChiTiet> GetAllHDCT();
-        public List<HoaDonCTVM> GetAllHDCTVM();
+        public List<HoaDonCTVM> GetAllHDCTVM(Guid Idhd);
     }
 }

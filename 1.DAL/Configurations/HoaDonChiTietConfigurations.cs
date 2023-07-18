@@ -14,7 +14,7 @@ namespace _1.DAL.Configurations
         public void Configure(EntityTypeBuilder<HoaDonChiTiet> builder)
         {
             builder.ToTable("HoaDonChiTiet");
-            builder.HasKey(x => x.ID);
+            builder.HasKey(x => new { x.IDHD, x.IDSPCT });
             builder.Property(x => x.SoLuong);
             builder.Property(x => x.DonGia);
             builder.HasOne(c => c.hoadon).WithMany(b => b.hoadonchitiet).HasForeignKey(c => c.IDHD);

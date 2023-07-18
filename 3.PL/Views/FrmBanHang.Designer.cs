@@ -48,10 +48,11 @@
             dtg_GioHang = new DataGridView();
             ptb_QR = new PictureBox();
             groupBox1 = new GroupBox();
-            btn_TaoHD = new Button();
+            btn_CapNhatHD = new Button();
             dtg_DonHang = new DataGridView();
             panelPhai = new Panel();
             groupBox5 = new GroupBox();
+            btn_AddKH = new Button();
             tb_TongTienGiam = new TextBox();
             label13 = new Label();
             tb_Diem = new TextBox();
@@ -70,7 +71,7 @@
             label7 = new Label();
             label6 = new Label();
             tb_MaHD = new TextBox();
-            btn_CapNhatHD = new Button();
+            btn_TaoHD = new Button();
             cb_KHVangLai = new CheckBox();
             tb_DiaChi = new RichTextBox();
             tb_SDT = new TextBox();
@@ -99,7 +100,7 @@
             panelFil.Dock = DockStyle.Fill;
             panelFil.Location = new Point(0, 0);
             panelFil.Name = "panelFil";
-            panelFil.Size = new Size(1522, 922);
+            panelFil.Size = new Size(1593, 922);
             panelFil.TabIndex = 0;
             // 
             // panelTrai
@@ -111,7 +112,7 @@
             panelTrai.Dock = DockStyle.Fill;
             panelTrai.Location = new Point(0, 0);
             panelTrai.Name = "panelTrai";
-            panelTrai.Size = new Size(1147, 922);
+            panelTrai.Size = new Size(1218, 922);
             panelTrai.TabIndex = 1;
             // 
             // groupBox3
@@ -121,7 +122,7 @@
             groupBox3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox3.Location = new Point(0, 564);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(1147, 358);
+            groupBox3.Size = new Size(1218, 358);
             groupBox3.TabIndex = 4;
             groupBox3.TabStop = false;
             groupBox3.Text = "Danh sách sản phẩm";
@@ -131,7 +132,7 @@
             flowPanelSp.Dock = DockStyle.Fill;
             flowPanelSp.Location = new Point(3, 23);
             flowPanelSp.Name = "flowPanelSp";
-            flowPanelSp.Size = new Size(1141, 332);
+            flowPanelSp.Size = new Size(1212, 332);
             flowPanelSp.TabIndex = 0;
             // 
             // groupBox4
@@ -144,7 +145,7 @@
             groupBox4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox4.Location = new Point(0, 489);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(1147, 75);
+            groupBox4.Size = new Size(1218, 75);
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năng";
@@ -198,7 +199,7 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(0, 220);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1147, 269);
+            groupBox2.Size = new Size(1218, 269);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
@@ -232,6 +233,7 @@
             btn_XoaGio.TabIndex = 74;
             btn_XoaGio.Text = "Xoá giỏ hàng";
             btn_XoaGio.UseVisualStyleBackColor = false;
+            btn_XoaGio.Click += btn_XoaGio_Click;
             // 
             // btn_XoaSp
             // 
@@ -242,18 +244,19 @@
             btn_XoaSp.TabIndex = 73;
             btn_XoaSp.Text = "Xoá sản phẩm";
             btn_XoaSp.UseVisualStyleBackColor = false;
+            btn_XoaSp.Click += btn_XoaSp_Click;
             // 
             // cbb_Cam
             // 
             cbb_Cam.FormattingEnabled = true;
-            cbb_Cam.Location = new Point(866, 18);
+            cbb_Cam.Location = new Point(925, 15);
             cbb_Cam.Name = "cbb_Cam";
             cbb_Cam.Size = new Size(198, 28);
             cbb_Cam.TabIndex = 71;
             // 
             // btn_QuetMa
             // 
-            btn_QuetMa.Location = new Point(925, 234);
+            btn_QuetMa.Location = new Point(978, 234);
             btn_QuetMa.Name = "btn_QuetMa";
             btn_QuetMa.Size = new Size(94, 29);
             btn_QuetMa.TabIndex = 72;
@@ -277,7 +280,7 @@
             // 
             ptb_QR.BackColor = Color.SeaShell;
             ptb_QR.BorderStyle = BorderStyle.FixedSingle;
-            ptb_QR.Location = new Point(866, 52);
+            ptb_QR.Location = new Point(925, 49);
             ptb_QR.Name = "ptb_QR";
             ptb_QR.Size = new Size(198, 179);
             ptb_QR.TabIndex = 1;
@@ -285,26 +288,26 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(btn_TaoHD);
+            groupBox1.Controls.Add(btn_CapNhatHD);
             groupBox1.Controls.Add(dtg_DonHang);
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1147, 220);
+            groupBox1.Size = new Size(1218, 220);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách đơn hàng";
             // 
-            // btn_TaoHD
+            // btn_CapNhatHD
             // 
-            btn_TaoHD.BackColor = Color.FromArgb(255, 192, 128);
-            btn_TaoHD.Location = new Point(975, 96);
-            btn_TaoHD.Name = "btn_TaoHD";
-            btn_TaoHD.Size = new Size(154, 63);
-            btn_TaoHD.TabIndex = 75;
-            btn_TaoHD.Text = "Tạo hoá đơn";
-            btn_TaoHD.UseVisualStyleBackColor = false;
+            btn_CapNhatHD.BackColor = Color.FromArgb(255, 192, 128);
+            btn_CapNhatHD.Location = new Point(1009, 82);
+            btn_CapNhatHD.Name = "btn_CapNhatHD";
+            btn_CapNhatHD.Size = new Size(154, 63);
+            btn_CapNhatHD.TabIndex = 75;
+            btn_CapNhatHD.Text = "Cập nhật HD";
+            btn_CapNhatHD.UseVisualStyleBackColor = false;
             // 
             // dtg_DonHang
             // 
@@ -316,18 +319,20 @@
             dtg_DonHang.RowTemplate.Height = 29;
             dtg_DonHang.Size = new Size(942, 185);
             dtg_DonHang.TabIndex = 0;
+            dtg_DonHang.CellClick += dtg_DonHang_CellClick;
             // 
             // panelPhai
             // 
             panelPhai.Controls.Add(groupBox5);
             panelPhai.Dock = DockStyle.Right;
-            panelPhai.Location = new Point(1147, 0);
+            panelPhai.Location = new Point(1218, 0);
             panelPhai.Name = "panelPhai";
             panelPhai.Size = new Size(375, 922);
             panelPhai.TabIndex = 0;
             // 
             // groupBox5
             // 
+            groupBox5.Controls.Add(btn_AddKH);
             groupBox5.Controls.Add(tb_TongTienGiam);
             groupBox5.Controls.Add(label13);
             groupBox5.Controls.Add(tb_Diem);
@@ -346,7 +351,7 @@
             groupBox5.Controls.Add(label7);
             groupBox5.Controls.Add(label6);
             groupBox5.Controls.Add(tb_MaHD);
-            groupBox5.Controls.Add(btn_CapNhatHD);
+            groupBox5.Controls.Add(btn_TaoHD);
             groupBox5.Controls.Add(cb_KHVangLai);
             groupBox5.Controls.Add(tb_DiaChi);
             groupBox5.Controls.Add(tb_SDT);
@@ -362,6 +367,15 @@
             groupBox5.TabIndex = 0;
             groupBox5.TabStop = false;
             groupBox5.Text = "Thông tin";
+            // 
+            // btn_AddKH
+            // 
+            btn_AddKH.Location = new Point(323, 26);
+            btn_AddKH.Name = "btn_AddKH";
+            btn_AddKH.Size = new Size(36, 30);
+            btn_AddKH.TabIndex = 77;
+            btn_AddKH.Text = "+";
+            btn_AddKH.UseVisualStyleBackColor = true;
             // 
             // tb_TongTienGiam
             // 
@@ -509,20 +523,22 @@
             // 
             // tb_MaHD
             // 
+            tb_MaHD.Enabled = false;
             tb_MaHD.Location = new Point(146, 420);
             tb_MaHD.Name = "tb_MaHD";
             tb_MaHD.Size = new Size(213, 30);
             tb_MaHD.TabIndex = 57;
             // 
-            // btn_CapNhatHD
+            // btn_TaoHD
             // 
-            btn_CapNhatHD.BackColor = Color.FromArgb(255, 192, 128);
-            btn_CapNhatHD.Location = new Point(16, 318);
-            btn_CapNhatHD.Name = "btn_CapNhatHD";
-            btn_CapNhatHD.Size = new Size(343, 56);
-            btn_CapNhatHD.TabIndex = 56;
-            btn_CapNhatHD.Text = "Cập nhật hoá đơn";
-            btn_CapNhatHD.UseVisualStyleBackColor = false;
+            btn_TaoHD.BackColor = Color.FromArgb(255, 192, 128);
+            btn_TaoHD.Location = new Point(16, 318);
+            btn_TaoHD.Name = "btn_TaoHD";
+            btn_TaoHD.Size = new Size(343, 56);
+            btn_TaoHD.TabIndex = 56;
+            btn_TaoHD.Text = "Tạo hoá đơn";
+            btn_TaoHD.UseVisualStyleBackColor = false;
+            btn_TaoHD.Click += btn_TaoHD_Click;
             // 
             // cb_KHVangLai
             // 
@@ -533,6 +549,7 @@
             cb_KHVangLai.TabIndex = 55;
             cb_KHVangLai.Text = "Khách vãng lai";
             cb_KHVangLai.UseVisualStyleBackColor = true;
+            cb_KHVangLai.CheckedChanged += cb_KHVangLai_CheckedChanged;
             // 
             // tb_DiaChi
             // 
@@ -553,7 +570,7 @@
             // 
             tb_KH.Location = new Point(146, 26);
             tb_KH.Name = "tb_KH";
-            tb_KH.Size = new Size(213, 30);
+            tb_KH.Size = new Size(174, 30);
             tb_KH.TabIndex = 3;
             // 
             // label5
@@ -588,7 +605,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
-            ClientSize = new Size(1522, 922);
+            ClientSize = new Size(1593, 922);
             Controls.Add(panelFil);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmBanHang";
@@ -635,7 +652,7 @@
         private Label label5;
         private Label label4;
         private Label label3;
-        private Button btn_CapNhatHD;
+        private Button btn_TaoHD;
         private CheckBox cb_KHVangLai;
         private RichTextBox tb_DiaChi;
         private ComboBox Cbb_GiamGia;
@@ -660,8 +677,9 @@
         private Button btn_XoaGio;
         private TextBox tb_TongTienGiam;
         private Label label13;
-        private Button btn_TaoHD;
+        private Button btn_CapNhatHD;
         private Label lb_Tongtien;
         private Label label14;
+        private Button btn_AddKH;
     }
 }

@@ -20,21 +20,12 @@ namespace _2.BUS.Services
             _ihoaDonCTRp = new HoaDonChiTietResponsitory();
             _shopContext = new ShopContext();
         }
-        public bool AddHDCT(HoaDonCTVM obj)
+        public bool AddHDCT(HoaDonChiTiet obj)
         {
             try
             {
-                HoaDonChiTiet temp = new HoaDonChiTiet()
-                {
-                    ID = obj.ID,
-                    IDHD = (Guid)obj.IDHD,
-                    IDSPCT = (Guid)obj.IDSPCT,
-                    SoLuong = obj.SoLuong,
-                    DonGia = obj.DonGia
 
-                };
-
-                _ihoaDonCTRp.AddHDCTFromDb(temp);
+                _ihoaDonCTRp.AddHDCTFromDb(obj);
                 return true;
             }
             catch (Exception)
@@ -61,16 +52,15 @@ namespace _2.BUS.Services
             return _ihoaDonCTRp.GetAllHDCTFromDb();
         }
 
-        public List<HoaDonCTVM> GetAllHDCTVM()
+        public List<HoaDonCTVM> GetAllHDCTVM(Guid Idhd)
         {
             var lst = from a in _shopContext.HoaDonChiTiet
                       join b in _shopContext.SanPhamChiTiets on a.IDSPCT equals b.ID
                       join c in _shopContext.SanPhams on b.IDSP equals c.ID
                       join d in _shopContext.HoaDons on a.IDHD equals d.ID
+                      where a.IDHD == Idhd
                       select new HoaDonCTVM
                       {
-                          ID = a.ID,
-                          IDHD = a.IDHD,
                           IDSPCT = a.IDSPCT,
                           MaSPCT = b.Ma,
                           TenSP = c.Ten,

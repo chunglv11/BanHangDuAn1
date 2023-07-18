@@ -15,7 +15,7 @@ namespace _2.BUS.ViewModels
 
         public string Ma { get; set; }
         public DateTime NgayTao { get; set; }
-        public DateTime NgayThanhToan { get; set; }
+        public DateTime? NgayThanhToan { get; set; }
         //View KM
         public string TenKM { get; set; }
         public int? PhanTramGiam { get; set; }
