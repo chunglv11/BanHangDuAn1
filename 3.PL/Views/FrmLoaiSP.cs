@@ -124,7 +124,7 @@ namespace _3.PL.Views
             if (dialogResult == DialogResult.Yes)
             {
                 viewPhanLoai.Ma = txt_Ma.Text;
-                viewPhanLoai.Ten = txt_Ma.Text;
+                viewPhanLoai.Ten = txt_Ten.Text;
                 viewPhanLoai.TrangThai = rbtn_HD.Checked ? 1 : 0;
                 MessageBox.Show(iLoaiSp.update(viewPhanLoai));
                 LoadData();

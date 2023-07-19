@@ -149,6 +149,7 @@
             btn_LamMoi.TabIndex = 4;
             btn_LamMoi.Text = "Làm mới";
             btn_LamMoi.UseVisualStyleBackColor = true;
+            btn_LamMoi.Click += btn_LamMoi_Click;
             // 
             // btn_Sua
             // 
@@ -160,6 +161,7 @@
             btn_Sua.TabIndex = 2;
             btn_Sua.Text = "Sửa";
             btn_Sua.UseVisualStyleBackColor = true;
+            btn_Sua.Click += btn_Sua_Click;
             // 
             // btn_Xoa
             // 
@@ -171,6 +173,7 @@
             btn_Xoa.TabIndex = 3;
             btn_Xoa.Text = "Xoá";
             btn_Xoa.UseVisualStyleBackColor = true;
+            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // panelTrai
             // 
@@ -225,6 +228,7 @@
             txt_TimKiem.Name = "txt_TimKiem";
             txt_TimKiem.Size = new Size(305, 30);
             txt_TimKiem.TabIndex = 60;
+            txt_TimKiem.TextChanged += txt_TimKiem_TextChanged;
             // 
             // dtg_ShowSanPham
             // 
