@@ -108,7 +108,7 @@ namespace _2.BUS.Services
                         Ma = a.Ma,
                         TenSp = b.Ten,
                         MauSac = c.Ten,
-                        Nsx = b.Ten,
+                        Nsx = d.Ten,
                         LoaiSp = e.Ten,
                         Size = f.Ten,
                         HinhAnh = a.HinhAnh,
@@ -123,7 +123,7 @@ namespace _2.BUS.Services
         {
             try
             {
-                SanPhamChiTiet spCt = iSpCt.GetSanPhamCTByidFromDb(obj.ID);
+                var spCt = iSpCt.GetAllSanPhamCTFromDb().FirstOrDefault(c=>c.ID == obj.ID);
                 spCt.IDSP = (Guid)obj.IDSP;
                 spCt.IDKC = (Guid)obj.IDKC;
                 spCt.IDMS = (Guid)obj.IDMS;
