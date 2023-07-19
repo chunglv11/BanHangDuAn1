@@ -38,7 +38,7 @@ namespace _1.DAL.Repository
 
         public List<ChucVu> GetAll()
         {
-            return _lstchucvus;
+            return _shopContext.ChucVus.ToList();
         }
 
 

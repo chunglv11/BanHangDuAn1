@@ -38,7 +38,6 @@ namespace _3.PL.Views
 
                 HoaDonCTVM hoaDonCTVM = new HoaDonCTVM()
                 {
-                    ID = p.ID,
                     IDSPCT = p.ID,
                     TenSP = p.TenSp,
                     DonGia = p.GiaBan,

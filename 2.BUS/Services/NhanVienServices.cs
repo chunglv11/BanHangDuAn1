@@ -38,7 +38,7 @@ namespace _2.BUS.Services
         }
 
 
-        public bool Edit (NhanVien a)
+        public bool Edit(NhanVien a)
         {
 
             try
@@ -59,7 +59,7 @@ namespace _2.BUS.Services
 
 
 
-      
+
 
 
 
@@ -80,7 +80,7 @@ namespace _2.BUS.Services
 
         public List<NhanVien> GetAll()
         {
-            return context.NhanViens.ToList();
+            return NhanVienMoi.GetAll().ToList();
         }
 
         public NhanVien GetById(Guid Id)

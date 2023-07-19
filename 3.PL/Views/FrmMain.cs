@@ -87,6 +87,9 @@ namespace _3.PL.Views
             DialogResult dialog = MessageBox.Show("Bạn có muốn đăng xuất không?", "Thông báo", MessageBoxButtons.YesNo);
             if (dialog == DialogResult.Yes)
             {
+                this.Hide();
+                FrmDangNhap frmDangNhap = new FrmDangNhap();
+                frmDangNhap.ShowDialog();
                 this.Close();
             }
 
@@ -94,19 +97,11 @@ namespace _3.PL.Views
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            //var nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.ID == _nhanVien.ID);
-            //if (nv.AnhNv != null)
-            //{
-            //    string link = nv.AnhNv.Replace(@"\", @"/");
-            //    if (File.Exists(link))
-            //    {
-            //        ptb_avt.Image = Image.FromFile(link);
-            //        ptb_avt.SizeMode = PictureBoxSizeMode.StretchImage;
-            //    }
-            //}
-            //lb_TenNV.Text = nv.HoTen;
-            //var role = _ichucVuServices.GetAll().FirstOrDefault(c => c.ID == _nhanVien.IDCV);
-            //lb_TenCV.Text = role.Ten;
+            var layuser = Properties.Settings.Default.TKdaLogin;
+            var nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Username == layuser);
+            var role = _ichucVuServices.GetAll().FirstOrDefault(c => c.ID == nv.IDCV);
+            lb_TenCV.Text = role.Ten;
+            lb_TenNV.Text = nv.HoTen;
         }
     }
 }

@@ -27,7 +27,6 @@ namespace _3.PL.Views
             _isanPhamServices = new SanPhamChiTietServices();
             dtg_ShowHD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_hdct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
             loadHD();
         }
         public void loadHD()
@@ -44,9 +43,9 @@ namespace _3.PL.Views
             dtg_ShowHD.Columns[7].Name = " Trạng Thái";
             dtg_ShowHD.AllowUserToAddRows = false;
             dtg_ShowHD.Rows.Clear();
-            foreach (var item in _ihoaDonServices.GetAllHoaDonVM())
+            foreach (var item in _ihoaDonServices.GetAllHoaDon())
             {
-                dtg_ShowHD.Rows.Add(item.ID, item.Ma, item.NgayTao, item.NgayThanhToan, item.HoTenNV, item.TenKM, item.SDTKH, item.TrangThai == 1 ? "Đã thanh toán" : "Chờ thanh toán");
+                dtg_ShowHD.Rows.Add(item.ID, item.Ma, item.NgayTao, item.NgayThanhToan, item.nhanvien.HoTen, item.IDKM, item.khachhang.SDT, item.TrangThai == 1 ? "Đã thanh toán" : "Chờ thanh toán");
             }
         }
         public void loadHDCT(Guid id)
@@ -103,8 +102,9 @@ namespace _3.PL.Views
                     }
                     _ihoaDonServices.DeleteHoaDon(o);
                     MessageBox.Show("Xóa thành công");
-                    loadHD();
+
                     dtg_ShowHD.Rows.Clear();
+                    loadHD();
                 }
             }
         }

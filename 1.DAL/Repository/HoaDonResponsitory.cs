@@ -18,11 +18,18 @@ namespace _1.DAL.Repository
         }
         public bool AddHoaDonFromdb(HoaDon obj)
         {
-            if (obj == null) return false;
 
-            _shopContext.HoaDons.Add(obj);
-            _shopContext.SaveChanges();
-            return true;
+            try
+            {
+                _shopContext.HoaDons.Add(obj);
+                _shopContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         public bool DeleteHoaDonFromdb(HoaDon obj)
