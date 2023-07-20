@@ -32,6 +32,7 @@ namespace _2.BUS.Services
             {
 
                 _iHoaDonRp.AddHoaDonFromdb(obj);
+
                 return true;
             }
             catch (Exception)
@@ -60,10 +61,10 @@ namespace _2.BUS.Services
 
         public List<HoaDonVM> GetAllHoaDonVM()
         {
-            var lst = from a in _shopContext.HoaDons
-                      join b in _shopContext.KhachHangs on a.IDKH equals b.ID
-                      join c in _shopContext.NhanViens on a.IDNV equals c.ID
-                      join d in _shopContext.KhuyenMais on a.IDKM equals d.ID
+            var lst = from a in _iHoaDonRp.GetAllHoaDonFromdb()
+                      join b in _iKhachHangRp.GetAllKhachHang() on a.IDKH equals b.ID
+                      join c in _iNhanVienRp.GetAll() on a.IDNV equals c.ID
+                      join d in _iKhuyenMaiRp.GetAll() on a.IDKM equals d.ID
                       select new HoaDonVM
                       {
                           ID = a.ID,

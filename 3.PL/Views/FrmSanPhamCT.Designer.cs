@@ -137,6 +137,7 @@
             btn_Them.TabIndex = 1;
             btn_Them.Text = "Thêm";
             btn_Them.UseVisualStyleBackColor = true;
+            btn_Them.Click += btn_Them_Click;
             // 
             // btn_LamMoi
             // 
@@ -236,6 +237,7 @@
             dtg_ShowSanPham.RowTemplate.Height = 29;
             dtg_ShowSanPham.Size = new Size(1057, 224);
             dtg_ShowSanPham.TabIndex = 58;
+            dtg_ShowSanPham.CellClick += dtg_ShowSanPham_CellClick;
             // 
             // btn_ChonAnh
             // 
@@ -470,6 +472,7 @@
             ptb_AVT.Size = new Size(234, 254);
             ptb_AVT.TabIndex = 0;
             ptb_AVT.TabStop = false;
+            ptb_AVT.Click += ptb_AVT_Click;
             // 
             // panel2
             // 

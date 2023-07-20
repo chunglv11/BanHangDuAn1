@@ -41,7 +41,6 @@ namespace _3.PL.Views
             dtg_ShowHD.Columns[4].Name = " Tên NV";
             dtg_ShowHD.Columns[5].Name = " Tên KM";
             dtg_ShowHD.Columns[6].Name = " SDT KH";
-            //dtg_ShowHD.Columns[7].Name = " Thành Tiền";
             dtg_ShowHD.Columns[7].Name = " Trạng Thái";
             dtg_ShowHD.AllowUserToAddRows = false;
             dtg_ShowHD.Rows.Clear();
@@ -55,20 +54,18 @@ namespace _3.PL.Views
             _id = id;
             dtg_hdct.Columns.Clear(); // xóa các cột hiện có
             dtg_hdct.Rows.Clear();
-            dtg_hdct.ColumnCount = 7;
-            dtg_hdct.Columns[0].Name = "ID";
+            dtg_hdct.ColumnCount = 5;
+            dtg_hdct.Columns[0].Name = "IDSPCT";
             dtg_hdct.Columns[0].Visible = false;
-            dtg_hdct.Columns[1].Name = "IDHD";
-            dtg_hdct.Columns[2].Name = "IDSPCT";
-            dtg_hdct.Columns[3].Name = "Tên SP";
-            dtg_hdct.Columns[4].Name = "Số Lượng";
-            dtg_hdct.Columns[5].Name = "Đơn Giá";
-            dtg_hdct.Columns[6].Name = "Thành Tiền";
+            dtg_hdct.Columns[1].Name = "Mã SPCT";
+            dtg_hdct.Columns[2].Name = "Tên sản phẩm";
+            dtg_hdct.Columns[3].Name = "Số lượng";
+            dtg_hdct.Columns[4].Name = "Đơn giá";
             dtg_hdct.AllowUserToAddRows = false;
-            foreach (var item in _ihoaDonChiTietService.GetAllHDCTVM().Where(c => c.IDHD == id))
+            foreach (var item in _ihoaDonChiTietService.GetAllHDCTVM(id))
             {
-                dtg_hdct.Rows.Add(item.ID, item.IDHD, item.IDSPCT, item.TenSP, item.SoLuong,
-                    item.DonGia.ToString("N0") + " VND", item.ThanhTien.ToString("N0") + " VND");
+                dtg_hdct.Rows.Add(item.IDSPCT, item.MaSPCT, item.TenSP, item.SoLuong,
+                    item.DonGia.ToString("N0") + " VND");
             }
         }
 
@@ -99,7 +96,7 @@ namespace _3.PL.Views
                     var _lstOd = _ihoaDonChiTietService.GetAllHDCT().Where(x => x.IDHD == _id);
                     foreach (var item in _lstOd)
                     {
-                        var p = _isanPhamServices.GetAllSanPhamCT().FirstOrDefault(x => x.ID == item.IDSPCT);
+                        var p = _isanPhamServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
                         p.SoLuongTon += item.SoLuong;
                         _isanPhamServices.UpdateSanPhamCT(p);
                         _ihoaDonChiTietService.DeleteHDCT(item);

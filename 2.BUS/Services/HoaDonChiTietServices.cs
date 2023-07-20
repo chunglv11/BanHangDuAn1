@@ -24,6 +24,7 @@ namespace _2.BUS.Services
         {
             try
             {
+
                 _ihoaDonCTRp.AddHDCTFromDb(obj);
                 return true;
             }
@@ -51,21 +52,21 @@ namespace _2.BUS.Services
             return _ihoaDonCTRp.GetAllHDCTFromDb();
         }
 
-        public List<HoaDonCTVM> GetAllHDCTVM()
+        public List<HoaDonCTVM> GetAllHDCTVM(Guid Idhd)
         {
             var lst = from a in _shopContext.HoaDonChiTiet
                       join b in _shopContext.SanPhamChiTiets on a.IDSPCT equals b.ID
                       join c in _shopContext.SanPhams on b.IDSP equals c.ID
                       join d in _shopContext.HoaDons on a.IDHD equals d.ID
+                      where a.IDHD == Idhd
                       select new HoaDonCTVM
                       {
-                          ID = a.ID,
-                          IDHD = a.IDHD,
                           IDSPCT = a.IDSPCT,
+                          MaSPCT = b.Ma,
                           TenSP = c.Ten,
                           SoLuong = a.SoLuong,
                           DonGia = a.DonGia,
-                          ThanhTien = Convert.ToDecimal(a.SoLuong * Convert.ToDecimal(a.DonGia)),
+
                       };
             return lst.ToList();
         }

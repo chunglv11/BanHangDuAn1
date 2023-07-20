@@ -41,5 +41,10 @@ namespace _3.PL.Views
         {
             ChangeForm(new FrmChucVu());
         }
+
+        private void phươngThứcThanhToánToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmPhuongThucTT());
+        }
     }
 }
