@@ -21,6 +21,8 @@ namespace _1.DAL.Repository
 
             try
             {
+                //thử rồi vẫn k dc
+                //obj.ID = Guid.NewGuid();
                 _shopContext.HoaDons.Add(obj);
                 _shopContext.SaveChanges();
                 return true;
