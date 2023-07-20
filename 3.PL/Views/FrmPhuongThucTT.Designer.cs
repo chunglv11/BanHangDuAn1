@@ -95,6 +95,10 @@
             this.btn_LamMoi.TabIndex = 3;
             this.btn_LamMoi.Text = "Làm mới";
             this.btn_LamMoi.UseVisualStyleBackColor = true;
+<<<<<<< Updated upstream
+=======
+            this.btn_LamMoi.Click += new System.EventHandler(this.btn_LamMoi_Click);
+>>>>>>> Stashed changes
             // 
             // btn_Xoa
             // 
@@ -107,6 +111,10 @@
             this.btn_Xoa.TabIndex = 2;
             this.btn_Xoa.Text = "Xoá";
             this.btn_Xoa.UseVisualStyleBackColor = true;
+<<<<<<< Updated upstream
+=======
+            this.btn_Xoa.Click += new System.EventHandler(this.btn_Xoa_Click);
+>>>>>>> Stashed changes
             // 
             // btn_Sua
             // 
@@ -119,6 +127,10 @@
             this.btn_Sua.TabIndex = 1;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
+<<<<<<< Updated upstream
+=======
+            this.btn_Sua.Click += new System.EventHandler(this.btn_Sua_Click);
+>>>>>>> Stashed changes
             // 
             // btn_Them
             // 
@@ -276,7 +288,11 @@
             this.tb_TimKiem.PlaceholderText = "Tìm kiếm";
             this.tb_TimKiem.Size = new System.Drawing.Size(374, 31);
             this.tb_TimKiem.TabIndex = 14;
+<<<<<<< Updated upstream
            
+=======
+            this.tb_TimKiem.TextChanged += new System.EventHandler(this.tb_TimKiem_TextChanged);
+>>>>>>> Stashed changes
             // 
             // dtg_ShowChucVu
             // 
@@ -289,6 +305,10 @@
             this.dtg_ShowChucVu.RowTemplate.Height = 29;
             this.dtg_ShowChucVu.Size = new System.Drawing.Size(779, 245);
             this.dtg_ShowChucVu.TabIndex = 13;
+<<<<<<< Updated upstream
+=======
+            this.dtg_ShowChucVu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_ShowChucVu_CellContentClick);
+>>>>>>> Stashed changes
             // 
             // FrmPhuongThucTT
             // 
