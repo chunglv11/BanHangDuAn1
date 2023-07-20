@@ -87,7 +87,7 @@ namespace _2.BUS.Services
 
         public SanPhamChiTiet GetSanPhamCTByid(Guid id)
         {
-            throw new NotImplementedException();
+            return _iSanPhamCTResponsitory.GetSanPhamCTByidFromDb(id);
         }
         public List<SanPhamCTViewModels> GetsListCtSp()
         {

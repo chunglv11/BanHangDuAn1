@@ -99,6 +99,7 @@
             btn_Xoa.TabIndex = 4;
             btn_Xoa.Text = "Xoá";
             btn_Xoa.UseVisualStyleBackColor = true;
+            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // tb_timkiem
             // 
@@ -107,6 +108,7 @@
             tb_timkiem.PlaceholderText = "Tìm kiếm...";
             tb_timkiem.Size = new Size(273, 34);
             tb_timkiem.TabIndex = 1;
+            tb_timkiem.TextChanged += tb_timkiem_TextChanged;
             // 
             // dtg_ShowHD
             // 
@@ -118,6 +120,7 @@
             dtg_ShowHD.RowTemplate.Height = 29;
             dtg_ShowHD.Size = new Size(1081, 217);
             dtg_ShowHD.TabIndex = 0;
+            dtg_ShowHD.CellClick += dtg_ShowHD_CellClick;
             // 
             // FrmQuanLyHoaDon
             // 

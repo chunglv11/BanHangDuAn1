@@ -11,6 +11,7 @@ namespace _1.DAL.Models
 {
     public class ShopContext : DbContext
     {
+
         public ShopContext()
         {
 
@@ -22,9 +23,9 @@ namespace _1.DAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-JV9E5UC\SQLEXPRESS;Initial Catalog=QuanLyQuanAo;User ID=toanck;Password=123456789");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-AKSDRER\MOMO;Initial Catalog=QuanLyBanQuanAo;User ID=sa1;Password=123");
         }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
