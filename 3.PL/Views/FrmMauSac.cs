@@ -43,7 +43,7 @@ namespace _3.PL.Views
             }
             foreach (var item in lstnssx)
             {
-                dtg_ShowMauSac.Rows.Add(item.ID, item.Ma, item.Ten, item.TrangThai == 0 ? "Còn màu" : "Hết màu");
+                dtg_ShowMauSac.Rows.Add(item.ID, item.Ma, item.Ten, item.TrangThai == 1 ? "Còn màu" : "Hết màu");
             }
             dtg_ShowMauSac.AllowUserToAddRows = false;
         }

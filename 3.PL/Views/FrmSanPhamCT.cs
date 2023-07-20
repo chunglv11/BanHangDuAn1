@@ -324,8 +324,8 @@ namespace _3.PL.Views
             txt_SLT.Text = "";
             rdb_Con.Text = "";
             ptb_AVT.Image = null;
-            rdb_Con.Text= "";
-            rdb_Het.Text= "";
+            rdb_Con.Text = "";
+            rdb_Het.Text = "";
 
 
         }
@@ -538,35 +538,39 @@ namespace _3.PL.Views
         }
         public void LoadMs()
         {
-            foreach (var x in iMs.GetMauSac())
+            foreach (var x in iMs.GetMauSac().Where(c => c.TrangThai == 1))
             {
+
                 cmb_MS.Items.Add(x.Ten);
+
+
             }
         }
         public void LoadNsx()
         {
-            foreach (var x in iNSX.GetNhasanxuat())
+            foreach (var x in iNSX.GetNhasanxuat().Where(c => c.TrangThai == 1))
             {
+
                 cmb_Nxs.Items.Add(x.Ten);
             }
         }
         public void LoadSize()
         {
-            foreach (var x in iSize.GetSizeAo())
+            foreach (var x in iSize.GetSizeAo().Where(c => c.TrangThai == 1))
             {
                 cmb_Size.Items.Add(x.Ten);
             }
         }
         public void loadLoaiSp()
         {
-            foreach (var x in iSp.getlsSpfromDB())
+            foreach (var x in iSp.getlsSpfromDB().Where(c => c.TrangThai == 1))
             {
                 cmb_TSP.Items.Add(x.Ten);
             }
         }
         public void loadSp()
         {
-            foreach (var x in iLoaiSp.GetLoaiSP())
+            foreach (var x in iLoaiSp.GetLoaiSP().Where(c => c.TrangThai == 1))
             {
                 cmb_Loai.Items.Add(x.Ten);
             }
@@ -575,6 +579,11 @@ namespace _3.PL.Views
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void cmb_TSP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
