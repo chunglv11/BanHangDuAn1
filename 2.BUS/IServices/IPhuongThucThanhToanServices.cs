@@ -14,10 +14,6 @@ namespace _2.BUS.IServices
         bool DeleteThanhToan(PhuongThucThanhToan obj);
 
         List<PhuongThucThanhToan> GetAllThanhToan();
-<<<<<<< Updated upstream
-=======
-        //List<PhuongThucThanhToan> GetById(Guid Id);
 
->>>>>>> Stashed changes
     }
 }

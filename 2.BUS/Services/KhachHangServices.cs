@@ -14,7 +14,7 @@ namespace _2.BUS.Services
     {
         IKhachHangResponsitory _KhachHangResponsitory;
         ShopContext _context;
-<<<<<<< Updated upstream
+
         public KhachHangServices()
         {
             _KhachHangResponsitory = new KhachHangResponsitory();
@@ -24,17 +24,6 @@ namespace _2.BUS.Services
 
 
 
-=======
-            public KhachHangServices()
-            {
-                _KhachHangResponsitory = new KhachHangResponsitory();
-            _context = new ShopContext();
-                
-            }
-
-
-        
->>>>>>> Stashed changes
         public bool AddKhachHang(KhachHang obj)
         {
             return _KhachHangResponsitory.AddKhachHang(obj);
@@ -57,15 +46,6 @@ namespace _2.BUS.Services
         {
             return _KhachHangResponsitory.GetAllKhachHang().ToList();
         }
-<<<<<<< Updated upstream
-=======
 
-        //public List<KhachHang> GetById(Guid Id)
-        //{
-        //    return _KhachHangResponsitory.GetById(Id);
-        //}
-
-        
->>>>>>> Stashed changes
     }
 }

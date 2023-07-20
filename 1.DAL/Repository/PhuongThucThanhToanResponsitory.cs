@@ -43,11 +43,6 @@ namespace _1.DAL.Repository
             {
                 return false;
             }
-<<<<<<< Updated upstream
-=======
-            
-
->>>>>>> Stashed changes
         }
 
         public bool EditThanhToan(PhuongThucThanhToan obj)
@@ -70,14 +65,6 @@ namespace _1.DAL.Repository
         {
             return _context.PhuongThucThanhToans.ToList();
         }
-<<<<<<< Updated upstream
-=======
-         
 
-        //public List<PhuongThucThanhToan> GetById(Guid Id)
-        //{
-        //    return _context.PhuongThucThanhToans.Where(p => p.ID == Id ).ToList();
-        //}
->>>>>>> Stashed changes
     }
 }
