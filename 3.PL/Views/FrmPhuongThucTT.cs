@@ -2,6 +2,9 @@
 using _2.BUS.IServices;
 using _2.BUS.Services;
 using System;
+
+using System.Linq;
+
 using System.Windows.Forms;
 
 namespace _3.PL.Views
@@ -18,23 +21,27 @@ namespace _3.PL.Views
             _phuongThucThanhToan = new PhuongThucThanhToan();
             _iPhuongThucThanhToanServices = new PhuongThucThanhToanServices();
             LoadData();
+
         }
 
         public void LoadData()
         {
-            dtg_ShowChucVu.ColumnCount = 4;
+            dtg_ShowChucVu.ColumnCount = 3;
             dtg_ShowChucVu.Columns[0].Name = "Id";
             dtg_ShowChucVu.Columns[0].Visible = false;
-            dtg_ShowChucVu.Columns[1].Name = "Mã";
-            dtg_ShowChucVu.Columns[2].Name = "Tên";
-            dtg_ShowChucVu.Columns[3].Name = "Trạng thái";
+            dtg_ShowChucVu.Columns[1].Name = "Mã PT thanh toán";
+            dtg_ShowChucVu.Columns[2].Name = "Tên PT thanh toán";
 
             dtg_ShowChucVu.Rows.Clear();
             foreach (var item in _iPhuongThucThanhToanServices.GetAllThanhToan())
             {
-                dtg_ShowChucVu.Rows.Add(item.ID, item.MaPTThanhToan, item.TenPTThanhToan, item.TrangThai);
+                dtg_ShowChucVu.Rows.Add(item.ID, item.MaPTThanhToan, item.TenPTThanhToan);
             }
         }
+
+
+
+
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
@@ -43,7 +50,7 @@ namespace _3.PL.Views
                 ID = Guid.NewGuid(),
                 MaPTThanhToan = txt_Ma.Text,
                 TenPTThanhToan = txt_Ten.Text,
-                
+
             };
 
             if (_iPhuongThucThanhToanServices.AddThanhToan(_phuongThucThanhToan))
@@ -61,7 +68,7 @@ namespace _3.PL.Views
         {
             txt_Ma.Text = "";
             txt_Ten.Text = "";
-           
+
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
@@ -71,7 +78,7 @@ namespace _3.PL.Views
                 ID = _id,
                 MaPTThanhToan = txt_Ma.Text,
                 TenPTThanhToan = txt_Ten.Text,
-                
+
             };
 
             if (_iPhuongThucThanhToanServices.EditThanhToan(_phuongThucThanhToan))
@@ -109,7 +116,7 @@ namespace _3.PL.Views
                 _id = Guid.Parse(dtg_ShowChucVu.Rows[e.RowIndex].Cells[0].Value.ToString());
                 txt_Ma.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[1].Value.ToString();
                 txt_Ten.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[2].Value.ToString();
-                
+
             }
         }
 
@@ -123,6 +130,6 @@ namespace _3.PL.Views
             }
         }
 
-        
+
     }
 }

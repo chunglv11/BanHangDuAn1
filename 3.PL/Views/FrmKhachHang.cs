@@ -1,16 +1,29 @@
 ﻿using _1.DAL.Models;
 using _2.BUS.IServices;
 using _2.BUS.Services;
+
 using System;
+
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace _3.PL.Views
 {
     public partial class FrmKhachHang : Form
     {
-        private IKhachHangServices _ikhachhang;
-        private KhachHang _khachhang;
-        private Guid _id;
+
+        IKhachHangServices _ikhachhang;
+        KhachHang _khachhang;
+        Guid _id;
 
         public FrmKhachHang()
         {
@@ -18,7 +31,9 @@ namespace _3.PL.Views
             _khachhang = new KhachHang();
             _ikhachhang = new KhachHangServices();
             LoadData();
+
         }
+
 
         public void LoadData()
         {
@@ -33,62 +48,62 @@ namespace _3.PL.Views
             dtg_ShowKhachHang.Rows.Clear();
             foreach (var item in _ikhachhang.GetAllKhachHang())
             {
+
                 string trangThai = item.TrangThai != null ? item.TrangThai.ToString() : ""; // Chuyển đổi kiểu int? sang string
                 dtg_ShowKhachHang.Rows.Add(item.ID, item.HovaTen, item.Diem, item.SDT, trangThai);
             }
             dtg_ShowKhachHang.CellClick += dtg_ShowKhachHang_CellClick;
         }
 
+
+
+
+
+
         private void btn_Them_Click(object sender, EventArgs e)
         {
             _khachhang = new KhachHang()
             {
                 ID = Guid.NewGuid(),
-                HovaTen = txt_Ma.Text,
-                Diem = Convert.ToInt32(txt_Diem.Text),
-                SDT = txt_sdt.Text,
+
+                HovaTen = txb_hoten.Text,
+                Diem = Convert.ToInt32(txb_diem.Text),
+                SDT = txb_sdt.Text,
                 TrangThai = rbtn_HD.Checked ? 0 : 1,
             };
             if (_ikhachhang.AddKhachHang(_khachhang))
             {
                 MessageBox.Show("Thêm khách hàng thành công");
-                LoadData();
+
             }
-            else
-            {
-                MessageBox.Show("Thêm khách hàng không thành công");
-            }
+
+
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
+
             if (_id == Guid.Empty)
             {
                 return;
             }
 
-            var khachHangs = _ikhachhang.GetAllKhachHang();
-            var khachHang = khachHangs.FirstOrDefault(kh => kh.ID == _id);
 
-            if (khachHang != null)
+            _khachhang = new KhachHang()
             {
-                khachHang.HovaTen = txt_Ma.Text;
-                khachHang.Diem = Convert.ToInt32(txt_Diem.Text);
-                khachHang.SDT = txt_sdt.Text;
-
-                if (_ikhachhang.EditKhachHang(khachHang))
-                {
-                    MessageBox.Show("Cập nhật thành công");
-                    LoadData();
-                }
-                else
-                {
-                    MessageBox.Show("Cập nhật không thành công");
-                }
+                ID = Guid.NewGuid(),
+                HovaTen = txb_hoten.Text,
+                Diem = Convert.ToInt32(txb_diem.Text),
+                SDT = txb_sdt.Text
+            };
+            if (_ikhachhang.EditKhachHang(_khachhang))
+            {
+                MessageBox.Show("Cập nhật thành công ");
+                LoadData();
             }
             else
             {
-                MessageBox.Show("Không tìm thấy khách hàng");
+                MessageBox.Show("Cập nhật không thành công");
             }
         }
 
@@ -99,9 +114,9 @@ namespace _3.PL.Views
                 _khachhang = new KhachHang()
                 {
                     ID = _id,
-                    HovaTen = txt_Ma.Text,
-                    Diem = Convert.ToInt32(txt_Diem.Text),
-                    SDT = txt_sdt.Text
+                    HovaTen = txb_hoten.Text,
+                    Diem = Convert.ToInt32(txb_diem.Text),
+                    SDT = txb_sdt.Text
                 };
                 if (_ikhachhang.DeleteKhachHang(_khachhang))
                 {
@@ -112,14 +127,26 @@ namespace _3.PL.Views
                 {
                     MessageBox.Show("Xóa không thành công");
                 }
+
             }
         }
 
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
-            txt_Diem.Text = "";
-            txt_Ma.Text = "";
-            txt_sdt.Text = "";
+
+            txb_diem.Text = "";
+            txb_hoten.Text = "";
+            txb_sdt.Text = "";
+
+        }
+
+        private void dtg_ShowKhachHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _id = Guid.Parse(dtg_ShowKhachHang.Rows[e.RowIndex].Cells[0].Value.ToString());
+            txb_hoten.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txb_diem.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txb_sdt.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[3].Value.ToString();
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -127,6 +154,7 @@ namespace _3.PL.Views
             dtg_ShowKhachHang.Rows.Clear();
             foreach (var item in _ikhachhang.GetAllKhachHang().Where(c => c.HovaTen.Contains(textBox2.Text)))
             {
+
                 dtg_ShowKhachHang.Rows.Add(item.ID, item.HovaTen, item.Diem, item.SDT, item.TrangThai);
             }
         }
@@ -136,9 +164,9 @@ namespace _3.PL.Views
             if (e.RowIndex >= 0 && e.RowIndex < dtg_ShowKhachHang.Rows.Count)
             {
                 _id = Guid.Parse(dtg_ShowKhachHang.Rows[e.RowIndex].Cells[0].Value.ToString());
-                txt_Ma.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[1].Value.ToString();
-                txt_Diem.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[2].Value.ToString();
-                txt_sdt.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txb_hoten.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txb_diem.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txb_sdt.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[3].Value.ToString();
 
                 // Kiểm tra giá trị trạng thái từ ô checkbox
                 object cellValue = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[4].Value;
@@ -151,14 +179,24 @@ namespace _3.PL.Views
             }
         }
 
-        private void dtg_ShowKhachHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex == dtg_ShowKhachHang.Columns["Trạng thái"].Index)
-            {
-                DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell)dtg_ShowKhachHang.Rows[e.RowIndex].Cells["Trạng thái"];
-                checkBoxCell.Value = !(bool)checkBoxCell.Value;
-                dtg_ShowKhachHang.EndEdit();
-            }
-        }
+        //        private void dtg_ShowKhachHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //        {
+        //            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && e.ColumnIndex == dtg_ShowKhachHang.Columns["Trạng thái"].Index)
+        //            {
+        //                DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell)dtg_ShowKhachHang.Rows[e.RowIndex].Cells["Trạng thái"];
+        //                checkBoxCell.Value = !(bool)checkBoxCell.Value;
+        //                dtg_ShowKhachHang.EndEdit();
+        //            }
+        //=======
+        //                dtg_ShowKhachHang.Rows.Add(item.HovaTen, item.Diem, item.SDT, item.TrangThai);
+
+        //            }
+        //        }
+
+
     }
 }
+
+
+
+

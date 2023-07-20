@@ -14,5 +14,6 @@ namespace _2.BUS.IServices
         bool DeleteThanhToan(PhuongThucThanhToan obj);
 
         List<PhuongThucThanhToan> GetAllThanhToan();
+
     }
 }
