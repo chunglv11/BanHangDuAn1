@@ -150,87 +150,88 @@ namespace _3.PL.Views
                 if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
                 {
 
-                {
-                    MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
-                    return;
-                }
-
-                //size giay
-
-                if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
-                {
-
-                    MessageBox.Show("Size áo Không Hợp Lệ", "ERR");
-                    return;
-                }
-
-                ////ảnh
-
-                //if (_anhser.GetAnh().Any(c => c.DuongDan == cbo_anh.Text) == false)
-                //{
-                //    MessageBox.Show("Dường Dẫn Không Hợp Lệ", "ERR");
-                //    return;
-
-                //}
-                //loai giay
-
-                if (iLoaiSp.GetLoaiSP().Any(c => c.Ten == cmb_Loai.Text) == false)
-                {
-                    MessageBox.Show("Tên Loại sản phẩm Không Hợp Lệ", "ERR");
-                    return;
-                }
-
-                // màu sắc
-                if (iMs.GetMauSac().Any(c => c.Ten == cmb_MS.Text) == false)
-                {
-                    MessageBox.Show("Tên màu sắc Không Hợp Lệ", "ERR");
-                    return;
-                }
-
-                // quốc gia
-
-                if (iSp.getlsSpfromDB().Any(c => c.Ten == cmb_TSP.Text) == false)
-                {
-                    MessageBox.Show("Tên sản phẩm Không Hợp Lệ", "ERR");
-                    return;
-                }
-                //Mã
-                if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
-                {
-                    MessageBox.Show("Mã không được trùng", "ERR");
-                    return;
-                }
-
-                if (check() == false)
-                {
-                    return;
-                }
-                {
-                    SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
                     {
-                        ID = Guid.NewGuid(),
-                        IDSP = Sp.ID,
-                        IDMS = Ms.ID,
-                        IDKC = size.ID,
-                        IDLOAI = Loai.ID,
-                        IDNSX = nsx.ID,
-                        HinhAnh = LinkAnh,
-                        SoLuongTon = Convert.ToInt32(txt_SLT.Text),
-                        GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
-                        GiaBan = Convert.ToDecimal(txt_GiaBan.Text),
-                        MoTa = txt_Mota.Text,
-                        Ma = txt_Ma.Text,
-                        TrangThai = rdb_Con.Checked ? 1 : 0,
-                    };
-                    iSpCt.AddSanPhamCT(viewSpCt);
+                        MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    //size giay
+
+                    if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
+                    {
+
+                        MessageBox.Show("Size áo Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    ////ảnh
+
+                    //if (_anhser.GetAnh().Any(c => c.DuongDan == cbo_anh.Text) == false)
+                    //{
+                    //    MessageBox.Show("Dường Dẫn Không Hợp Lệ", "ERR");
+                    //    return;
+
+                    //}
+                    //loai giay
+
+                    if (iLoaiSp.GetLoaiSP().Any(c => c.Ten == cmb_Loai.Text) == false)
+                    {
+                        MessageBox.Show("Tên Loại sản phẩm Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    // màu sắc
+                    if (iMs.GetMauSac().Any(c => c.Ten == cmb_MS.Text) == false)
+                    {
+                        MessageBox.Show("Tên màu sắc Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    // quốc gia
+
+                    if (iSp.getlsSpfromDB().Any(c => c.Ten == cmb_TSP.Text) == false)
+                    {
+                        MessageBox.Show("Tên sản phẩm Không Hợp Lệ", "ERR");
+                        return;
+                    }
+                    //Mã
+                    if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
+                    {
+                        MessageBox.Show("Mã không được trùng", "ERR");
+                        return;
+                    }
+
+                    if (check() == false)
+                    {
+                        return;
+                    }
+                    {
+                        SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
+                        {
+                            ID = Guid.NewGuid(),
+                            IDSP = Sp.ID,
+                            IDMS = Ms.ID,
+                            IDKC = size.ID,
+                            IDLOAI = Loai.ID,
+                            IDNSX = nsx.ID,
+                            HinhAnh = LinkAnh,
+                            SoLuongTon = Convert.ToInt32(txt_SLT.Text),
+                            GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
+                            GiaBan = Convert.ToDecimal(txt_GiaBan.Text),
+                            MoTa = txt_Mota.Text,
+                            Ma = txt_Ma.Text,
+                            TrangThai = rdb_Con.Checked ? 1 : 0,
+                        };
+                        iSpCt.AddSanPhamCT(viewSpCt);
+                        LoadData();
+                    }
+                    MessageBox.Show("Thêm thành công", "Thông báo");
                     LoadData();
                 }
-                MessageBox.Show("Thêm thành công", "Thông báo");
-                LoadData();
-            }
-            if (dialogResult == DialogResult.No)
-            {
-                return;
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
             }
         }
 
@@ -265,7 +266,7 @@ namespace _3.PL.Views
                 {
                     return;
                 }
-                
+
                 {
                     SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
                     {
@@ -339,8 +340,8 @@ namespace _3.PL.Views
             rdb_Con.Text = "";
             ptb_AVT.Image = null;
 
-            rdb_Con.Text= "";
-            rdb_Het.Text= "";
+            rdb_Con.Text = "";
+            rdb_Het.Text = "";
 
 
 
@@ -554,39 +555,20 @@ namespace _3.PL.Views
         }
         public void LoadMs()
         {
-            foreach (var x in iMs.GetMauSac())
+            foreach (var x in iMs.GetMauSac().Where(c => c.TrangThai == 1))
             {
                 cmb_MS.Items.Add(x.Ten);
             }
         }
         public void LoadNsx()
         {
-            foreach (var x in iNSX.GetNhasanxuat())
+            foreach (var x in iNSX.GetNhasanxuat().Where(c => c.TrangThai == 1))
             {
                 cmb_Nxs.Items.Add(x.Ten);
             }
         }
-        public void LoadSize()
-        {
-            foreach (var x in iSize.GetSizeAo())
-            {
-                cmb_Size.Items.Add(x.Ten);
-            }
-        }
-        public void loadLoaiSp()
-        {
-            foreach (var x in iSp.getlsSpfromDB())
-            {
-                cmb_TSP.Items.Add(x.Ten);
-            }
-        }
-        public void loadSp()
-        {
-            foreach (var x in iLoaiSp.GetLoaiSP())
-            {
-                cmb_Loai.Items.Add(x.Ten);
-            }
-        }
+
+
 
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
@@ -614,10 +596,7 @@ namespace _3.PL.Views
             }
         }
 
-        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+
 
         private void cmb_TSP_SelectedIndexChanged(object sender, EventArgs e)
         {
