@@ -139,6 +139,7 @@ namespace _3.PL.Views
                 // nhà sản xuất
 
                 if (iNSX.GetNhasanxuat().Any(c => c.Ten == cmb_Nxs.Text) == false)
+
                 {
                     MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
                     return;
@@ -148,6 +149,17 @@ namespace _3.PL.Views
 
                 if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
                 {
+
+                {
+                    MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
+                    return;
+                }
+
+                //size giay
+
+                if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
+                {
+
                     MessageBox.Show("Size áo Không Hợp Lệ", "ERR");
                     return;
                 }
@@ -253,6 +265,7 @@ namespace _3.PL.Views
                 {
                     return;
                 }
+                
                 {
                     SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
                     {
@@ -273,6 +286,7 @@ namespace _3.PL.Views
                     iSpCt.UpdateSanPhamCT(viewSpCt);
                     LoadData();
                 }
+
                 LoadData();
                 MessageBox.Show("Sửa thành công", "Thông báo");
                 LoadData();
@@ -324,8 +338,10 @@ namespace _3.PL.Views
             txt_SLT.Text = "";
             rdb_Con.Text = "";
             ptb_AVT.Image = null;
+
             rdb_Con.Text= "";
             rdb_Het.Text= "";
+
 
 
         }
@@ -451,7 +467,7 @@ namespace _3.PL.Views
             {
 
                 MessageBox.Show("Mã hàng hóa Bắt buộc phải chứa số", "ERR");
-                return false;
+
             }
 
 
@@ -575,6 +591,37 @@ namespace _3.PL.Views
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
             LoadData();
+        }
+        public void LoadSize()
+        {
+            foreach (var x in iSize.GetSizeAo().Where(c => c.TrangThai == 1))
+            {
+                cmb_Size.Items.Add(x.Ten);
+            }
+        }
+        public void loadLoaiSp()
+        {
+            foreach (var x in iSp.getlsSpfromDB().Where(c => c.TrangThai == 1))
+            {
+                cmb_TSP.Items.Add(x.Ten);
+            }
+        }
+        public void loadSp()
+        {
+            foreach (var x in iLoaiSp.GetLoaiSP().Where(c => c.TrangThai == 1))
+            {
+                cmb_Loai.Items.Add(x.Ten);
+            }
+        }
+
+        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void cmb_TSP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -360,6 +360,7 @@
             cmb_TSP.Name = "cmb_TSP";
             cmb_TSP.Size = new Size(208, 31);
             cmb_TSP.TabIndex = 42;
+            cmb_TSP.SelectedIndexChanged += cmb_TSP_SelectedIndexChanged;
             // 
             // txt_Ma
             // 
