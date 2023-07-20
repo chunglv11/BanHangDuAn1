@@ -14,6 +14,7 @@ namespace _2.BUS.Services
     {
         IKhachHangResponsitory _KhachHangResponsitory;
         ShopContext _context;
+
         public KhachHangServices()
         {
             _KhachHangResponsitory = new KhachHangResponsitory();
@@ -45,5 +46,6 @@ namespace _2.BUS.Services
         {
             return _KhachHangResponsitory.GetAllKhachHang().ToList();
         }
+
     }
 }

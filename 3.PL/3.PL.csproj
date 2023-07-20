@@ -10,7 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LiveCharts.WinForms" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +31,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Images\" />
   </ItemGroup>
 
 </Project>

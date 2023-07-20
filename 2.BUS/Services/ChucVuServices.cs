@@ -26,7 +26,7 @@ namespace _2.BUS.Services
 
             try
             {
-                
+
                 ChucVuMoi.delete(a);
                 context.SaveChanges();
                 return true;
@@ -43,7 +43,7 @@ namespace _2.BUS.Services
 
             try
             {
-                 ChucVuMoi.update(a);
+                ChucVuMoi.update(a);
                 context.SaveChanges();
                 return true;
 
@@ -57,14 +57,14 @@ namespace _2.BUS.Services
 
         public bool Them(ChucVu a)
         {
-            
+
             try
             {
                 ChucVuMoi.add(a);
                 context.SaveChanges();
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -72,15 +72,15 @@ namespace _2.BUS.Services
 
         public List<ChucVu> GetAll()
         {
-            return context.ChucVus.ToList();
+            return ChucVuMoi.GetAll();
         }
 
         public ChucVu GetById(Guid id)
         {
-            return GetAll().FirstOrDefault(c=>c.ID == id);
+            return GetAll().FirstOrDefault(c => c.ID == id);
         }
 
-       
+
 
         public ChucVu GetByMa(string ma)
         {

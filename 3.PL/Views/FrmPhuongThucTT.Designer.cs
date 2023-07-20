@@ -95,6 +95,9 @@
             this.btn_LamMoi.TabIndex = 3;
             this.btn_LamMoi.Text = "Làm mới";
             this.btn_LamMoi.UseVisualStyleBackColor = true;
+
+            this.btn_LamMoi.Click += new System.EventHandler(this.btn_LamMoi_Click);
+
             // 
             // btn_Xoa
             // 
@@ -107,6 +110,9 @@
             this.btn_Xoa.TabIndex = 2;
             this.btn_Xoa.Text = "Xoá";
             this.btn_Xoa.UseVisualStyleBackColor = true;
+
+            this.btn_Xoa.Click += new System.EventHandler(this.btn_Xoa_Click);
+
             // 
             // btn_Sua
             // 
@@ -119,6 +125,9 @@
             this.btn_Sua.TabIndex = 1;
             this.btn_Sua.Text = "Sửa";
             this.btn_Sua.UseVisualStyleBackColor = true;
+
+            this.btn_Sua.Click += new System.EventHandler(this.btn_Sua_Click);
+
             // 
             // btn_Them
             // 
@@ -276,7 +285,7 @@
             this.tb_TimKiem.PlaceholderText = "Tìm kiếm";
             this.tb_TimKiem.Size = new System.Drawing.Size(374, 31);
             this.tb_TimKiem.TabIndex = 14;
-           
+
             // 
             // dtg_ShowChucVu
             // 
@@ -289,6 +298,7 @@
             this.dtg_ShowChucVu.RowTemplate.Height = 29;
             this.dtg_ShowChucVu.Size = new System.Drawing.Size(779, 245);
             this.dtg_ShowChucVu.TabIndex = 13;
+
             // 
             // FrmPhuongThucTT
             // 

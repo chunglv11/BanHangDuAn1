@@ -52,7 +52,6 @@
             dtg_DonHang = new DataGridView();
             panelPhai = new Panel();
             groupBox5 = new GroupBox();
-            btn_AddKH = new Button();
             tb_TongTienGiam = new TextBox();
             label13 = new Label();
             tb_Diem = new TextBox();
@@ -332,7 +331,6 @@
             // 
             // groupBox5
             // 
-            groupBox5.Controls.Add(btn_AddKH);
             groupBox5.Controls.Add(tb_TongTienGiam);
             groupBox5.Controls.Add(label13);
             groupBox5.Controls.Add(tb_Diem);
@@ -367,15 +365,6 @@
             groupBox5.TabIndex = 0;
             groupBox5.TabStop = false;
             groupBox5.Text = "Thông tin";
-            // 
-            // btn_AddKH
-            // 
-            btn_AddKH.Location = new Point(323, 26);
-            btn_AddKH.Name = "btn_AddKH";
-            btn_AddKH.Size = new Size(36, 30);
-            btn_AddKH.TabIndex = 77;
-            btn_AddKH.Text = "+";
-            btn_AddKH.UseVisualStyleBackColor = true;
             // 
             // tb_TongTienGiam
             // 
@@ -570,7 +559,7 @@
             // 
             tb_KH.Location = new Point(146, 26);
             tb_KH.Name = "tb_KH";
-            tb_KH.Size = new Size(174, 30);
+            tb_KH.Size = new Size(213, 30);
             tb_KH.TabIndex = 3;
             // 
             // label5
@@ -680,6 +669,5 @@
         private Button btn_CapNhatHD;
         private Label lb_Tongtien;
         private Label label14;
-        private Button btn_AddKH;
     }
 }

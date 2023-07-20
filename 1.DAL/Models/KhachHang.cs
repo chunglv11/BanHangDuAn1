@@ -12,7 +12,9 @@ namespace _1.DAL.Models
         public string HovaTen { get; set; }
         public int? Diem { get; set; }
         public string SDT { get; set; }
+
         public int TrangThai { get; set; }
+
         public List<HoaDon> hoadon { get; set; }
     }
 }

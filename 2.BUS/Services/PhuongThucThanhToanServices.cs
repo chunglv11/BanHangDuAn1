@@ -13,11 +13,15 @@ namespace _2.BUS.Services
     public class PhuongThucThanhToanServices : IPhuongThucThanhToanServices
     {
         ShopContext _context;
+
         IPhuongThucThanhToanResponsitory _phuongThucThanhToanResponsitory;
         public PhuongThucThanhToanServices()
         {
+            _context = new ShopContext();
             _phuongThucThanhToanResponsitory = new PhuongThucThanhToanResponsitory();
+
         }
+
         public bool AddThanhToan(PhuongThucThanhToan obj)
         {
             _phuongThucThanhToanResponsitory.AddThanhToan(obj);
@@ -30,6 +34,7 @@ namespace _2.BUS.Services
             return true;
         }
 
+
         public bool EditThanhToan(PhuongThucThanhToan obj)
         {
             _phuongThucThanhToanResponsitory.EditThanhToan(obj);
@@ -40,10 +45,13 @@ namespace _2.BUS.Services
         {
             return _phuongThucThanhToanResponsitory.GetAllThanhToan().ToList();
         }
+
     }
 
 
 
 
 }
+
+
 

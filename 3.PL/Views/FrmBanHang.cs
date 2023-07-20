@@ -22,12 +22,14 @@ namespace _3.PL.Views
         private ILoaiSanPhamServices _ilsanphamServices;
         private IKhuyenMaiServices _ikhuyenMaiServices;
         private IKhachHangServices _ikhachHangServices;
+        private INhanVienServices _inhanVienServices;
         private IPhuongThucThanhToanServices _iphuongThucTTServices;
         private IHoaDonServices _ihoaDonServices;
         private IHoaDonChiTietServices _ihoaDonCTServices;
         List<HoaDonCTVM> _HDCT;
         Guid _idSpct;
         Guid _idhd;
+        KhachHang _kh;
         public FrmBanHang()
         {
             InitializeComponent();
@@ -38,12 +40,13 @@ namespace _3.PL.Views
             _ilsanphamServices = new LoaiSanPhamServices();
             _ikhuyenMaiServices = new KhuyenMaiServices();
             _ikhachHangServices = new KhachHangServices();
+            _inhanVienServices = new NhanVienServices();
             _iphuongThucTTServices = new PhuongThucThanhToanServices();
             _ihoaDonServices = new HoaDonServices();
             _ihoaDonCTServices = new HoaDonChiTietServices();
 
             _HDCT = new List<HoaDonCTVM>();
-
+            _kh = new KhachHang();
             List<SanPhamCTViewModels> sanPhamChiTiets = _isanphamChiTietServices.GetsListCtSp();
             LoadSp(sanPhamChiTiets);
             LoadCbb();
@@ -206,7 +209,7 @@ namespace _3.PL.Views
             Cbb_GiamGia.SelectedIndex = 0;
             foreach (var item in _ikhuyenMaiServices.GetAll())
             {
-                Cbb_GiamGia.Items.Add(item.Ten);
+                Cbb_GiamGia.Items.Add(item.Ma);
             }
             foreach (var item in _iphuongThucTTServices.GetAllThanhToan())
             {
@@ -358,7 +361,7 @@ namespace _3.PL.Views
         {
             if (_HDCT.Any())
             {
-                _HDCT = new List<HoaDonCTVM>();
+                ClearGioHang();
                 loadGioHang();
             }
             else
@@ -374,6 +377,7 @@ namespace _3.PL.Views
                 tb_KH.Text = "Khách vãng lai";
                 tb_SDT.Text = "00-000-000";
                 tb_Diem.Text = "0";
+
                 tb_SDT.Enabled = false;
                 tb_KH.Enabled = false;
                 tb_Diem.Enabled = false;
@@ -386,62 +390,89 @@ namespace _3.PL.Views
                 tb_SDT.Text = "";
             }
         }
-        private void TaoHoaDon()
+        private void ClearGioHang()
         {
-            DateTime now = DateTime.Now;
-            string maHoaDon = $"HD-{now.Year}-{now.Month}-{now.Day}-{now.Hour}-{now.Minute}-{now.Second}";
-            var kh = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.SDT == tb_SDT.Text);
-            HoaDon hd = new HoaDon()
-            {
-                ID = Guid.NewGuid(),
-                Ma = maHoaDon,
-                NgayTao = DateTime.Now,
-                IDNV = Guid.Parse("A6C0391B-59A9-48E5-AADA-B684E80B1250"),
-                //thieu nhan vien
-                IDKH = kh.ID,
-                TrangThai = 0
-            };
-            _ihoaDonServices.AddHoaDon(hd);
-            foreach (var item in _HDCT)
-            {
-                HoaDonChiTiet hdct = new HoaDonChiTiet()
-                {
-                    IDHD = hd.ID,
-                    IDSPCT = item.IDSPCT,
-                    DonGia = item.DonGia,
-                    SoLuong = item.SoLuong
-                };
-                _ihoaDonCTServices.AddHDCT(hdct);
-                //cho vao sau khi thanh toan
-                //var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
-                //p.SoLuongTon -= item.SoLuong;
-                //_isanphamChiTietServices.UpdateSanPhamCT(p);
-            }
-            tb_MaHD.Text = maHoaDon.ToString();
-            MessageBox.Show($"Tạo hoá đơn thành công. Mã hoá đơn: {hd.Ma} ");
-            LoadSp(_isanphamChiTietServices.GetsListCtSp());
-            LoadDonHang();
             _HDCT = new List<HoaDonCTVM>();
             dtg_GioHang.Rows.Clear();
+            tb_SDT.Text = "";
+            tb_KH.Text = "";
+            tb_Diem.Text = "";
+            tb_MaHD.Text = "";
+            lb_Tongtien.Text = "";
+        }
+        private void TaoHoaDon()
+        {
+
+            //var check = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(c => c.Ma == tb_MaHD.Text);
+            if (_idhd == Guid.Empty)
+            {
+                DateTime now = DateTime.Now;
+                string maHoaDon = $"HD-{now.Year}-{now.Month}-{now.Day}-{now.Hour}-{now.Minute}-{now.Second}";
+                var nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Username == Properties.Settings.Default.TKdaLogin).ID;
+                _kh = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.SDT == tb_SDT.Text);
+                HoaDon hd = new HoaDon()
+                {
+                    ID = Guid.NewGuid(),
+                    IDNV = nv,
+                    Ma = maHoaDon,
+                    IDKH = _kh.ID,
+                    IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetByMa(Cbb_GiamGia.Text).ID,
+                    NgayTao = DateTime.Now,
+                    TrangThai = 0
+                };
+                if (_ihoaDonServices.AddHoaDon(hd))
+                {
+                    _idhd = hd.ID;
+                    foreach (var item in _HDCT)
+                    {
+                        HoaDonChiTiet hdct = new HoaDonChiTiet()
+                        {
+                            IDHD = hd.ID,
+                            IDSPCT = item.IDSPCT,
+                            DonGia = item.DonGia,
+                            SoLuong = item.SoLuong
+                        };
+                        _ihoaDonCTServices.AddHDCT(hdct);
+                        tb_MaHD.Text = maHoaDon.ToString();
+                        MessageBox.Show($"Đã tạo hóa đơn có mã là [{hd.Ma}]");
+                        LoadSp(_isanphamChiTietServices.GetsListCtSp());
+                        LoadDonHang();
+                        ClearGioHang();
+                        cb_KHVangLai.Checked = false;
+                    }
+                }
+
+
+
+            }
+            //else if (check != null)
+            //{
+            //    MessageBox.Show("Mã hoá đơn đã tồn tại");
+            //}
+            else
+            {
+                MessageBox.Show("Mã hoá đơn đã tồn tại");
+            }
+
         }
         private void LoadDonHang()
         {
             dtg_DonHang.Rows.Clear();
-            dtg_DonHang.ColumnCount = 8;
+            dtg_DonHang.ColumnCount = 7;
             dtg_DonHang.Columns[0].Name = "ID";
             dtg_DonHang.Columns[0].Visible = false;
             dtg_DonHang.Columns[1].Name = "Ma HD";
             dtg_DonHang.Columns[2].Name = "NV";
             //dtg_DonHang.Columns[2].Visible = false;
             dtg_DonHang.Columns[3].Name = "SDT KH";
-            dtg_DonHang.Columns[4].Name = "Tên khuyến mại";
-            dtg_DonHang.Columns[5].Name = "Ngay Tao";
-            dtg_DonHang.Columns[6].Name = "Ngay Thanh Toan";
-            dtg_DonHang.Columns[6].Visible = false;
-            dtg_DonHang.Columns[7].Name = "Trang Thai";
+            //dtg_DonHang.Columns[4].Name = "Tên khuyến mại";
+            dtg_DonHang.Columns[4].Name = "Ngay Tao";
+            dtg_DonHang.Columns[5].Name = "Ngay Thanh Toan";
+            dtg_DonHang.Columns[5].Visible = false;
+            dtg_DonHang.Columns[6].Name = "Trang Thai";
             foreach (var a in _ihoaDonServices.GetAllHoaDon())
             {
-                dtg_DonHang.Rows.Add(a.ID, a.Ma, a.nhanvien.HoTen, a.khachhang.SDT, a.IDKM, a.NgayTao, a.NgayThanhToan, a.TrangThai == 0 ? "Chưa thanh toán" : "Đã thanh toán");
+                dtg_DonHang.Rows.Add(a.ID, a.Ma, a.nhanvien.HoTen, a.khachhang.SDT, a.NgayTao, a.NgayThanhToan, a.TrangThai == 0 ? "Chưa thanh toán" : "Đã thanh toán");
             }
 
         }
@@ -453,7 +484,9 @@ namespace _3.PL.Views
                 var check = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.SDT == tb_SDT.Text);
                 if (check != null)
                 {
+
                     TaoHoaDon();
+
                 }
                 else
                 {
@@ -496,7 +529,7 @@ namespace _3.PL.Views
                 var c = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(x => x.ID == cid);
                 tb_SDT.Text = c.SDT;
 
-                //_HDCT = new List<HoaDonCTVM>();
+                _HDCT = new List<HoaDonCTVM>();
                 foreach (var item in od)
                 {
                     var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
@@ -510,7 +543,9 @@ namespace _3.PL.Views
                         SoLuong = od.FirstOrDefault(x => x.IDSPCT == p.ID).SoLuong
                     };
                     _HDCT.Add(orderDetailVM);
+
                     loadGioHang();
+
                 }
             }
         }
