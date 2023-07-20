@@ -28,18 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< Updated upstream
+=======
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+>>>>>>> Stashed changes
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Cbb_Loc = new System.Windows.Forms.ComboBox();
             this.dtg_ShowKhachHang = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+<<<<<<< Updated upstream
             this.txt_sdt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.rbtn_KHD = new System.Windows.Forms.RadioButton();
             this.rbtn_HD = new System.Windows.Forms.RadioButton();
             this.txt_Diem = new System.Windows.Forms.TextBox();
             this.txt_Ma = new System.Windows.Forms.TextBox();
+=======
+            this.txb_sdt = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rbtn_KHD = new System.Windows.Forms.RadioButton();
+            this.rbtn_HD = new System.Windows.Forms.RadioButton();
+            this.txb_diem = new System.Windows.Forms.TextBox();
+            this.txb_hoten = new System.Windows.Forms.TextBox();
+>>>>>>> Stashed changes
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -112,7 +128,27 @@
             // dtg_ShowKhachHang
             // 
             this.dtg_ShowKhachHang.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+<<<<<<< Updated upstream
             this.dtg_ShowKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+=======
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtg_ShowKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtg_ShowKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtg_ShowKhachHang.DefaultCellStyle = dataGridViewCellStyle2;
+>>>>>>> Stashed changes
             this.dtg_ShowKhachHang.Location = new System.Drawing.Point(15, 69);
             this.dtg_ShowKhachHang.Margin = new System.Windows.Forms.Padding(4);
             this.dtg_ShowKhachHang.Name = "dtg_ShowKhachHang";
@@ -120,17 +156,29 @@
             this.dtg_ShowKhachHang.RowTemplate.Height = 29;
             this.dtg_ShowKhachHang.Size = new System.Drawing.Size(862, 241);
             this.dtg_ShowKhachHang.TabIndex = 9;
+<<<<<<< Updated upstream
             this.dtg_ShowKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_ShowKhachHang_CellClick);
+=======
+>>>>>>> Stashed changes
             this.dtg_ShowKhachHang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_ShowKhachHang_CellContentClick);
             // 
             // groupBox1
             // 
+<<<<<<< Updated upstream
             this.groupBox1.Controls.Add(this.txt_sdt);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.rbtn_KHD);
             this.groupBox1.Controls.Add(this.rbtn_HD);
             this.groupBox1.Controls.Add(this.txt_Diem);
             this.groupBox1.Controls.Add(this.txt_Ma);
+=======
+            this.groupBox1.Controls.Add(this.txb_sdt);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.rbtn_KHD);
+            this.groupBox1.Controls.Add(this.rbtn_HD);
+            this.groupBox1.Controls.Add(this.txb_diem);
+            this.groupBox1.Controls.Add(this.txb_hoten);
+>>>>>>> Stashed changes
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -146,6 +194,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Khách hàng";
             // 
+<<<<<<< Updated upstream
             // txt_sdt
             // 
             this.txt_sdt.Location = new System.Drawing.Point(166, 162);
@@ -153,6 +202,15 @@
             this.txt_sdt.Name = "txt_sdt";
             this.txt_sdt.Size = new System.Drawing.Size(342, 35);
             this.txt_sdt.TabIndex = 10;
+=======
+            // txb_sdt
+            // 
+            this.txb_sdt.Location = new System.Drawing.Point(166, 162);
+            this.txb_sdt.Margin = new System.Windows.Forms.Padding(4);
+            this.txb_sdt.Name = "txb_sdt";
+            this.txb_sdt.Size = new System.Drawing.Size(342, 35);
+            this.txb_sdt.TabIndex = 10;
+>>>>>>> Stashed changes
             // 
             // label4
             // 
@@ -175,7 +233,10 @@
             this.rbtn_KHD.TabStop = true;
             this.rbtn_KHD.Text = "Khách quen";
             this.rbtn_KHD.UseVisualStyleBackColor = true;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             // 
             // rbtn_HD
             // 
@@ -188,6 +249,7 @@
             this.rbtn_HD.TabStop = true;
             this.rbtn_HD.Text = "Khách vãng lai";
             this.rbtn_HD.UseVisualStyleBackColor = true;
+<<<<<<< Updated upstream
             
             // 
             // txt_Diem
@@ -197,14 +259,32 @@
             this.txt_Diem.Name = "txt_Diem";
             this.txt_Diem.Size = new System.Drawing.Size(342, 35);
             this.txt_Diem.TabIndex = 5;
+=======
             // 
-            // txt_Ma
+            // txb_diem
             // 
+            this.txb_diem.Location = new System.Drawing.Point(166, 100);
+            this.txb_diem.Margin = new System.Windows.Forms.Padding(4);
+            this.txb_diem.Name = "txb_diem";
+            this.txb_diem.Size = new System.Drawing.Size(342, 35);
+            this.txb_diem.TabIndex = 5;
+>>>>>>> Stashed changes
+            // 
+            // txb_hoten
+            // 
+<<<<<<< Updated upstream
             this.txt_Ma.Location = new System.Drawing.Point(168, 42);
             this.txt_Ma.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Ma.Name = "txt_Ma";
             this.txt_Ma.Size = new System.Drawing.Size(340, 35);
             this.txt_Ma.TabIndex = 4;
+=======
+            this.txb_hoten.Location = new System.Drawing.Point(168, 42);
+            this.txb_hoten.Margin = new System.Windows.Forms.Padding(4);
+            this.txb_hoten.Name = "txb_hoten";
+            this.txb_hoten.Size = new System.Drawing.Size(340, 35);
+            this.txb_hoten.TabIndex = 4;
+>>>>>>> Stashed changes
             // 
             // label3
             // 
@@ -247,7 +327,10 @@
             this.btn_LamMoi.TabIndex = 3;
             this.btn_LamMoi.Text = "Làm mới";
             this.btn_LamMoi.UseVisualStyleBackColor = true;
+<<<<<<< Updated upstream
             this.btn_LamMoi.Click += new System.EventHandler(this.btn_LamMoi_Click);
+=======
+>>>>>>> Stashed changes
             // 
             // btn_Xoa
             // 
@@ -260,7 +343,11 @@
             this.btn_Xoa.TabIndex = 2;
             this.btn_Xoa.Text = "Xoá";
             this.btn_Xoa.UseVisualStyleBackColor = true;
+<<<<<<< Updated upstream
             this.btn_Xoa.Click += new System.EventHandler(this.btn_Xoa_Click);
+=======
+            this.btn_Xoa.Click += new System.EventHandler(this.btn_Xoa_Click_1);
+>>>>>>> Stashed changes
             // 
             // btn_Sua
             // 
@@ -318,7 +405,27 @@
             // dtg_KicCo
             // 
             this.dtg_KicCo.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+<<<<<<< Updated upstream
             this.dtg_KicCo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+=======
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtg_KicCo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dtg_KicCo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtg_KicCo.DefaultCellStyle = dataGridViewCellStyle4;
+>>>>>>> Stashed changes
             this.dtg_KicCo.Location = new System.Drawing.Point(15, 49);
             this.dtg_KicCo.Margin = new System.Windows.Forms.Padding(4);
             this.dtg_KicCo.Name = "dtg_KicCo";
@@ -391,8 +498,13 @@
         private GroupBox groupBox1;
         private RadioButton rbtn_KHD;
         private RadioButton rbtn_HD;
+<<<<<<< Updated upstream
         private TextBox txt_Diem;
         private TextBox txt_Ma;
+=======
+        private TextBox txb_diem;
+        private TextBox txb_hoten;
+>>>>>>> Stashed changes
         private Label label3;
         private Label label2;
         private Label label1;
@@ -405,7 +517,11 @@
         private DataGridView dtg_KicCo;
         private TextBox txt_TimKiem;
         private Panel panel3;
+<<<<<<< Updated upstream
         private TextBox txt_sdt;
+=======
+        private TextBox txb_sdt;
+>>>>>>> Stashed changes
         private Label label4;
         private DataGridView dtg_ShowKhachHang;
         private Panel panel4;

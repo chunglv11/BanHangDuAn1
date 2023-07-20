@@ -30,12 +30,16 @@ namespace _1.DAL.Repository
             }
         }
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
         public bool DeleteKhachHang(KhachHang obj)
         {
             try
             {
+<<<<<<< Updated upstream
                 var khach_hang = _context.KhachHangs.FirstOrDefault(c => c.ID == obj.ID); // Sửa đổi Guid thành id
                 if (khach_hang != null)
                 {
@@ -47,14 +51,27 @@ namespace _1.DAL.Repository
                 {
                     return false;
                 }
+=======
+                var khach_hang = _context.KhachHangs.FirstOrDefault(c => c.ID == obj.ID);
+                _context.KhachHangs.Remove(khach_hang);
+                _context.SaveChanges();
+                return true;
+>>>>>>> Stashed changes
             }
             catch (Exception)
             {
                 return false;
+<<<<<<< Updated upstream
             }
         }
 
 
+=======
+
+            }
+        }
+
+>>>>>>> Stashed changes
         public bool EditKhachHang(KhachHang obj)
         {
             try
@@ -75,5 +92,13 @@ namespace _1.DAL.Repository
         {
             return _context.KhachHangs.ToList();
         }
+<<<<<<< Updated upstream
+=======
+
+        //public List<KhachHang> GetById(Guid id)
+        //{
+        //    return _context.KhachHangs.Where(p => p.ID == id).ToList();
+        //}
+>>>>>>> Stashed changes
     }
 }
