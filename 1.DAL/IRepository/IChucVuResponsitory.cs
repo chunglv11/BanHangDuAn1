@@ -9,11 +9,12 @@ namespace _1.DAL.IRepository
 {
     public interface IChucVuResponsitory
     {
-        string add(ChucVu chucVu);
-        string update(ChucVu chucVu);
-        string delete(ChucVu chucVu);
+        bool add(ChucVu chucVu);
+        bool update(ChucVu chucVu);
+        bool delete(ChucVu chucVu);
         public List<ChucVu> GetAll();
-
+        public ChucVu GetById(Guid id);
+        public ChucVu GetByMa(string ma);
 
     }
 }

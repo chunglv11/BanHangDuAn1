@@ -21,17 +21,45 @@ namespace _1.DAL.Repository
 
         }
       
-        public string add(NhanVien nhanVien)
+        public bool add(NhanVien nhanVien)
         {
-            _shopContext.NhanViens.Add(nhanVien);
-            _shopContext.SaveChanges();
+            try
+            {
+                _shopContext.NhanViens.Add(nhanVien);
+                _shopContext.SaveChanges();
 
-            return "Thêm dữ liệu thành công";
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public string delete(NhanVien nhanVien)
+        public bool delete(NhanVien nhanVien)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+
+                var Nhan_Vien = _shopContext.NhanViens.FirstOrDefault(c => c.ID ==nhanVien.ID); // Sửa đổi Guid thành id
+                if (Nhan_Vien != null)
+                {
+                    _shopContext.NhanViens.Remove(nhanVien);
+                    _shopContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
         }
 
         public List<NhanVien> GetAll()
@@ -39,15 +67,39 @@ namespace _1.DAL.Repository
             return _shopContext.NhanViens.ToList();
         }
 
-        
-
-        public string update(NhanVien nhanVien)
+        public NhanVien GetById(Guid id)
         {
-            _shopContext.NhanViens.Update(nhanVien);
-            _shopContext.SaveChanges();
+            return _shopContext.NhanViens.Find(id);
+        }
 
-          
-            return "Cập nhật dữ liệu thành công";
+        public NhanVien GetByMa(string ma)
+        {
+            return _shopContext.NhanViens.Find(ma);
+        }
+
+        public bool update(NhanVien nhanVien)
+        {
+            try
+            {
+
+                var Nhan_Vien = _shopContext.NhanViens.FirstOrDefault(c => c.ID == nhanVien.ID); // Sửa đổi Guid thành id
+                if (Nhan_Vien != null)
+                {
+                    _shopContext.NhanViens.Update(nhanVien);
+                    _shopContext.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
         }
        
 

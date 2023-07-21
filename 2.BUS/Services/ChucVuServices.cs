@@ -2,6 +2,7 @@
 using _1.DAL.Models;
 using _1.DAL.Repository;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,81 +13,116 @@ namespace _2.BUS.Services
 {
     public class ChucVuServices : IChucVuServices
     {
-        private readonly IChucVuResponsitory ChucVuMoi;
-        ShopContext context = new ShopContext();
+        private IChucVuResponsitory ChucVuMoi;
+        private List<ChucVuViewModels> _ChucVuViewModels;
 
         public ChucVuServices()
         {
-            context = new ShopContext();
+           _ChucVuViewModels = new List<ChucVuViewModels>();
             ChucVuMoi = new ChucVuResponsitory();
         }
 
-        public bool Xoa(ChucVu a)
+        public string Them(ChucVuViewModels chucVuViewModels)
         {
-
-            try
+            if (chucVuViewModels == null) return "Không Thành Công";
+            var temp = ChucVuMoi.GetById(chucVuViewModels.ID);
+            ChucVu x = new ChucVu()
             {
-
-                ChucVuMoi.delete(a);
-                context.SaveChanges();
-                return true;
-            }
-            catch
+                ID = chucVuViewModels.ID,
+                Ma = chucVuViewModels.Ma,
+                Ten = chucVuViewModels.Ten,
+                TrangThai = chucVuViewModels.TrangThai
+            };
+            if (temp == null)
             {
-                return false;
+                if(chucVuViewModels.Ma != "")
+                {
+                    if (ChucVuMoi.add(x)) return "Thêm Thành Công";
+                    return "Không Thành Công";
+                }
+                else return "Chưa nhập mã";
             }
+            else { return "Trùng rồi"; }
+        }
+        public string Sua(ChucVuViewModels chucVuViewModels)
+        {
+            if (chucVuViewModels == null) return "Không Thành Công";
+            var temp = ChucVuMoi.GetAll().FirstOrDefault(c => c.ID == chucVuViewModels.ID);
+            ChucVu x = new ChucVu()
+            {
+                ID = chucVuViewModels.ID,
+                Ma = chucVuViewModels.Ma,
+                Ten = chucVuViewModels.Ten,
+                TrangThai = chucVuViewModels.TrangThai
+            };
+            if (chucVuViewModels.Ma != "")
+            {
+                if (temp  == null)
+                {
+                    if (ChucVuMoi.update(x)) return "Sửa Thành Công";
+                    return "Không Thành Công";
+                }
+                else if (chucVuViewModels.ID == x.ID)
+                {
+                    if (ChucVuMoi.update(x)) return "Sửa Thành Công";
+                    return "Không Thành Công";
+                }
+                else { return "Trùng rồi"; }
+            }
+            else return "Nhập đủ thông tin";
+
+        }
+
+        public string Xoa(Guid Id)
+        {
+            if (Id == null) return "Không Thành Công";
+            int a = 0;
+            var x = new ChucVu()
+            {
+                ID = Id
+            };
+            var list = ChucVuMoi.GetAll();
+
+            foreach (var i in list)
+            {
+                if (Id == i.ID) a++;
+            }
+            if (ChucVuMoi.delete(x)) return "Xóa Thành Công";
+            return "thất bại";
+            //return "Không Thành Công";
         }
 
 
-        public bool Sua(ChucVu a)
+
+
+     
+
+
+
+        //public ChucVu GetByMa(string ma)
+        //{
+        //    return GetAll().FirstOrDefault(c => c.Ma == ma);
+        //}
+
+       
+
+        
+
+        //public ChucVu GetById(Guid id)
+        //{
+        //    return GetAll().FirstOrDefault(c => c.ID == id);
+        //}
+
+        public List<ChucVuViewModels> Getlst()
         {
-
-            try
-            {
-                ChucVuMoi.update(a);
-                context.SaveChanges();
-                return true;
-
-            }
-            catch
-            {
-                return false;
-            }
+            return (from a in ChucVuMoi.GetAll()
+                    select new ChucVuViewModels
+                    {
+                        ID = a.ID,
+                        Ma = a.Ma,
+                        Ten = a.Ten,
+                        TrangThai = a.TrangThai
+                    }).ToList();
         }
-
-
-        public bool Them(ChucVu a)
-        {
-
-            try
-            {
-                ChucVuMoi.add(a);
-                context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public List<ChucVu> GetAll()
-        {
-            return ChucVuMoi.GetAll();
-        }
-
-        public ChucVu GetById(Guid id)
-        {
-            return GetAll().FirstOrDefault(c => c.ID == id);
-        }
-
-
-
-        public ChucVu GetByMa(string ma)
-        {
-            return GetAll().FirstOrDefault(c => c.Ma == ma);
-        }
-
-
     }
 }
