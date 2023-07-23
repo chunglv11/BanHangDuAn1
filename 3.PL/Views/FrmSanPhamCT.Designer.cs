@@ -491,9 +491,7 @@
             // sqlCommand1
             // 
             sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.Connection = null;
-            sqlCommand1.Notification = null;
-            sqlCommand1.Transaction = null;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
             // FrmSanPhamCT
             // 

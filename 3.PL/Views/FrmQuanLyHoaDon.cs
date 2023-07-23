@@ -31,21 +31,21 @@ namespace _3.PL.Views
         }
         public void loadHD()
         {
-            dtg_ShowHD.ColumnCount = 8;
+            dtg_ShowHD.ColumnCount = 7;
             dtg_ShowHD.Columns[0].Name = " ID";
             dtg_ShowHD.Columns[0].Visible = false;
             dtg_ShowHD.Columns[1].Name = " Mã";
             dtg_ShowHD.Columns[2].Name = " Ngày Tạo";
             dtg_ShowHD.Columns[3].Name = " Ngày Thanh Toán";
             dtg_ShowHD.Columns[4].Name = " Tên NV";
-            dtg_ShowHD.Columns[5].Name = " Tên KM";
-            dtg_ShowHD.Columns[6].Name = " SDT KH";
-            dtg_ShowHD.Columns[7].Name = " Trạng Thái";
+            //dtg_ShowHD.Columns[5].Name = " Tên KM";
+            dtg_ShowHD.Columns[5].Name = " SDT KH";
+            dtg_ShowHD.Columns[6].Name = " Trạng Thái";
             dtg_ShowHD.AllowUserToAddRows = false;
             dtg_ShowHD.Rows.Clear();
             foreach (var item in _ihoaDonServices.GetAllHoaDon())
             {
-                dtg_ShowHD.Rows.Add(item.ID, item.Ma, item.NgayTao, item.NgayThanhToan, item.nhanvien.HoTen, item.IDKM, item.khachhang.SDT, item.TrangThai == 1 ? "Đã thanh toán" : "Chờ thanh toán");
+                dtg_ShowHD.Rows.Add(item.ID, item.Ma, item.NgayTao, item.NgayThanhToan, item.nhanvien.HoTen, item.khachhang.SDT == "0" ? "Khách vãng lai" : item.khachhang.SDT, item.TrangThai == 1 ? "Đã thanh toán" : "Chờ thanh toán");
             }
         }
         public void loadHDCT(Guid id)
@@ -92,19 +92,22 @@ namespace _3.PL.Views
                 }
                 else
                 {
-                    var _lstOd = _ihoaDonChiTietService.GetAllHDCT().Where(x => x.IDHD == _id);
-                    foreach (var item in _lstOd)
-                    {
-                        var p = _isanPhamServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
-                        p.SoLuongTon += item.SoLuong;
-                        _isanPhamServices.UpdateSanPhamCT(p);
-                        _ihoaDonChiTietService.DeleteHDCT(item);
-                    }
-                    _ihoaDonServices.DeleteHoaDon(o);
-                    MessageBox.Show("Xóa thành công");
 
-                    dtg_ShowHD.Rows.Clear();
-                    loadHD();
+                    DialogResult dialog = MessageBox.Show("Bạn có muốn xoá hoá đơn này không?", "Xoá", MessageBoxButtons.YesNo);
+                    if (dialog == DialogResult.Yes)
+                    {
+                        var _lstOd = _ihoaDonChiTietService.GetAllHDCT().Where(x => x.IDHD == _id);
+                        foreach (var item in _lstOd)
+                        {
+                            _ihoaDonChiTietService.DeleteHDCT(item);
+                        }
+                        _ihoaDonServices.DeleteHoaDon(o);
+                        MessageBox.Show("Xóa thành công");
+
+                        dtg_ShowHD.Rows.Clear();
+                        loadHD();
+                    }
+
                 }
             }
         }

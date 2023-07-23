@@ -49,7 +49,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1137, 725);
+            panel1.Size = new Size(1277, 725);
             panel1.TabIndex = 4;
             // 
             // groupBox2
@@ -59,7 +59,7 @@
             groupBox2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(0, 335);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1137, 387);
+            groupBox2.Size = new Size(1277, 387);
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Thông tin";
@@ -72,7 +72,7 @@
             dtg_hdct.Name = "dtg_hdct";
             dtg_hdct.RowHeadersWidth = 51;
             dtg_hdct.RowTemplate.Height = 29;
-            dtg_hdct.Size = new Size(1083, 346);
+            dtg_hdct.Size = new Size(1053, 346);
             dtg_hdct.TabIndex = 0;
             // 
             // groupBox1
@@ -84,7 +84,7 @@
             groupBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1137, 335);
+            groupBox1.Size = new Size(1277, 335);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Hóa đơn";
@@ -118,7 +118,7 @@
             dtg_ShowHD.Name = "dtg_ShowHD";
             dtg_ShowHD.RowHeadersWidth = 51;
             dtg_ShowHD.RowTemplate.Height = 29;
-            dtg_ShowHD.Size = new Size(1081, 217);
+            dtg_ShowHD.Size = new Size(1222, 217);
             dtg_ShowHD.TabIndex = 0;
             dtg_ShowHD.CellClick += dtg_ShowHD_CellClick;
             // 
@@ -127,7 +127,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
-            ClientSize = new Size(1137, 725);
+            ClientSize = new Size(1277, 725);
             Controls.Add(panel1);
             Name = "FrmQuanLyHoaDon";
             Text = "FrmQuanLyHoaDon";
