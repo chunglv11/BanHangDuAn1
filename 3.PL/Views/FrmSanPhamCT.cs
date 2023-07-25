@@ -19,6 +19,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using _1.DAL.Models;
 using System.Security.Policy;
+using QRCoder;
 
 namespace _3.PL.Views
 {
@@ -150,84 +151,64 @@ namespace _3.PL.Views
                 if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
                 {
 
+                    MessageBox.Show("Size áo Không Hợp Lệ", "ERR");
+                    return;
+                }
+                //loai giay
+
+                if (iLoaiSp.GetLoaiSP().Any(c => c.Ten == cmb_Loai.Text) == false)
+                {
+                    MessageBox.Show("Tên Loại sản phẩm Không Hợp Lệ", "ERR");
+                    return;
+                }
+
+                // màu sắc
+                if (iMs.GetMauSac().Any(c => c.Ten == cmb_MS.Text) == false)
+                {
+                    MessageBox.Show("Tên màu sắc Không Hợp Lệ", "ERR");
+                    return;
+                }
+
+                // quốc gia
+
+                if (iSp.getlsSpfromDB().Any(c => c.Ten == cmb_TSP.Text) == false)
+                {
+                    MessageBox.Show("Tên sản phẩm Không Hợp Lệ", "ERR");
+                    return;
+                }
+                //Mã
+                if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
+                {
+                    MessageBox.Show("Mã không được trùng", "ERR");
+                    return;
+                }
+
+                if (check() == false)
+                {
+                    return;
+                }
+                {
+                    SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
                     {
-                        MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
-                        return;
-                    }
-
-                    //size giay
-
-                    if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
-                    {
-
-                        MessageBox.Show("Size áo Không Hợp Lệ", "ERR");
-                        return;
-                    }
-
-                    ////ảnh
-
-                    //if (_anhser.GetAnh().Any(c => c.DuongDan == cbo_anh.Text) == false)
-                    //{
-                    //    MessageBox.Show("Dường Dẫn Không Hợp Lệ", "ERR");
-                    //    return;
-
-                    //}
-                    //loai giay
-
-                    if (iLoaiSp.GetLoaiSP().Any(c => c.Ten == cmb_Loai.Text) == false)
-                    {
-                        MessageBox.Show("Tên Loại sản phẩm Không Hợp Lệ", "ERR");
-                        return;
-                    }
-
-                    // màu sắc
-                    if (iMs.GetMauSac().Any(c => c.Ten == cmb_MS.Text) == false)
-                    {
-                        MessageBox.Show("Tên màu sắc Không Hợp Lệ", "ERR");
-                        return;
-                    }
-
-                    // quốc gia
-
-                    if (iSp.getlsSpfromDB().Any(c => c.Ten == cmb_TSP.Text) == false)
-                    {
-                        MessageBox.Show("Tên sản phẩm Không Hợp Lệ", "ERR");
-                        return;
-                    }
-                    //Mã
-                    if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
-                    {
-                        MessageBox.Show("Mã không được trùng", "ERR");
-                        return;
-                    }
-
-                    if (check() == false)
-                    {
-                        return;
-                    }
-                    {
-                        SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
-                        {
-                            ID = Guid.NewGuid(),
-                            IDSP = Sp.ID,
-                            IDMS = Ms.ID,
-                            IDKC = size.ID,
-                            IDLOAI = Loai.ID,
-                            IDNSX = nsx.ID,
-                            HinhAnh = LinkAnh,
-                            SoLuongTon = Convert.ToInt32(txt_SLT.Text),
-                            GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
-                            GiaBan = Convert.ToDecimal(txt_GiaBan.Text),
-                            MoTa = txt_Mota.Text,
-                            Ma = txt_Ma.Text,
-                            TrangThai = rdb_Con.Checked ? 1 : 0,
-                        };
-                        iSpCt.AddSanPhamCT(viewSpCt);
-                        LoadData();
-                    }
-                    MessageBox.Show("Thêm thành công", "Thông báo");
+                        ID = Guid.NewGuid(),
+                        IDSP = Sp.ID,
+                        IDMS = Ms.ID,
+                        IDKC = size.ID,
+                        IDLOAI = Loai.ID,
+                        IDNSX = nsx.ID,
+                        HinhAnh = LinkAnh,
+                        SoLuongTon = Convert.ToInt32(txt_SLT.Text),
+                        GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
+                        GiaBan = Convert.ToDecimal(txt_GiaBan.Text),
+                        MoTa = txt_Mota.Text,
+                        Ma = txt_Ma.Text,
+                        TrangThai = rdb_Con.Checked ? 1 : 0,
+                    };
+                    iSpCt.AddSanPhamCT(viewSpCt);
                     LoadData();
                 }
+                MessageBox.Show("Thêm thành công", "Thông báo");
+                LoadData();
                 if (dialogResult == DialogResult.No)
                 {
                     return;
@@ -339,7 +320,7 @@ namespace _3.PL.Views
             txt_SLT.Text = "";
             rdb_Con.Text = "";
             ptb_AVT.Image = null;
-
+            ptb_QR.Image = null;
             rdb_Con.Text = "";
             rdb_Het.Text = "";
 
@@ -602,5 +583,34 @@ namespace _3.PL.Views
         {
 
         }
+
+        private void ptb_QR_Click(object sender, EventArgs e)
+        {
+            QRCodeGenerator qr = new QRCodeGenerator();
+            QRCodeData data = qr.CreateQrCode(txt_Ma.Text, QRCodeGenerator.ECCLevel.Q);
+            QRCode qRCode = new QRCode(data);
+            ptb_QR.Image = qRCode.GetGraphic(9);
+            ptb_QR.SizeMode = PictureBoxSizeMode.CenterImage;
+
+            int padding = (Math.Max(ptb_QR.Width - ptb_QR.Image.Width, 0) +
+                           Math.Max(ptb_QR.Height - ptb_QR.Image.Height, 0)) / 2;
+            ptb_QR.Padding = new Padding(padding);
+            ptb_QR.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+        }
+        private void btn_SaveQr_Click(object sender, EventArgs e)
+        {
+            string initialDIR = @"E:\DuAn1\BanHangDuAn1\3.PL\Resources\QrCode";
+            var dialog = new SaveFileDialog();
+            dialog.InitialDirectory = initialDIR;
+            dialog.Filter = "PNG|*.png|JPEG|*.jpg|BMP|*.bmp|GIF|*.gif";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                ptb_QR.Image.Save(dialog.FileName);
+                MessageBox.Show("Lưu thành công", "Thông báo");
+            }
+            
+        }
     }
 }
+
