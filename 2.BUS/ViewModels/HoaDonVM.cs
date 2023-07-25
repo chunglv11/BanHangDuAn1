@@ -9,17 +9,17 @@ namespace _2.BUS.ViewModels
     public class HoaDonVM
     {
         public Guid ID { get; set; }
-        public Guid IDKH { get; set; }
-        public Guid IDNV { get; set; }
-        public Guid IDKM { get; set; }
+        //public Guid IDKH { get; set; }
+        //public Guid IDNV { get; set; }
+        public Guid? IDKM { get; set; }
 
         public string Ma { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime? NgayThanhToan { get; set; }
         //View KM
-        public string TenKM { get; set; }
-        public int? PhanTramGiam { get; set; }
-        public float? SoTienGiam { get; set; }
+        public string? TenKM { get; set; }
+        //public int? PhanTramGiam { get; set; }
+        //public float? SoTienGiam { get; set; }
         //View NV
         public string MaNv { get; set; }
         public string HoTenNV { get; set; }
