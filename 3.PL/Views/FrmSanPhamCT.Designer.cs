@@ -71,6 +71,7 @@
             panel2 = new Panel();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            btn_SaveQr = new Button();
             groupBox1.SuspendLayout();
             panelphai.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -177,6 +178,7 @@
             // 
             // panelTrai
             // 
+            panelTrai.Controls.Add(btn_SaveQr);
             panelTrai.Controls.Add(label11);
             panelTrai.Controls.Add(txt_TimKiem);
             panelTrai.Controls.Add(dtg_ShowSanPham);
@@ -468,6 +470,7 @@
             ptb_QR.Size = new Size(223, 211);
             ptb_QR.TabIndex = 26;
             ptb_QR.TabStop = false;
+            ptb_QR.Click += ptb_QR_Click;
             // 
             // ptb_AVT
             // 
@@ -492,6 +495,16 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // btn_SaveQr
+            // 
+            btn_SaveQr.Location = new Point(827, 375);
+            btn_SaveQr.Name = "btn_SaveQr";
+            btn_SaveQr.Size = new Size(223, 29);
+            btn_SaveQr.TabIndex = 62;
+            btn_SaveQr.Text = "Lưu mã QR";
+            btn_SaveQr.UseVisualStyleBackColor = true;
+            btn_SaveQr.Click += btn_SaveQr_Click;
             // 
             // FrmSanPhamCT
             // 
@@ -560,5 +573,6 @@
         private GroupBox groupBox2;
         private Button btn_LamMoi;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private Button btn_SaveQr;
     }
 }
