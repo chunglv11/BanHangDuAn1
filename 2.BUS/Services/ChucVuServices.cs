@@ -15,6 +15,7 @@ namespace _2.BUS.Services
     {
         private IChucVuResponsitory ChucVuMoi;
         private List<ChucVuViewModels> _ChucVuViewModels;
+        private List<ChucVu> _ChucVu;
 
         public ChucVuServices()
         {
@@ -22,107 +23,45 @@ namespace _2.BUS.Services
             ChucVuMoi = new ChucVuResponsitory();
         }
 
-        public string Them(ChucVuViewModels chucVuViewModels)
+        public bool Add(ChucVu chucvu)
         {
-            if (chucVuViewModels == null) return "Không Thành Công";
-            var temp = ChucVuMoi.GetById(chucVuViewModels.ID);
-            ChucVu x = new ChucVu()
-            {
-                ID = chucVuViewModels.ID,
-                Ma = chucVuViewModels.Ma,
-                Ten = chucVuViewModels.Ten,
-                TrangThai = chucVuViewModels.TrangThai
-            };
-            if (temp == null)
-            {
-                if(chucVuViewModels.Ma != "")
-                {
-                    if (ChucVuMoi.add(x)) return "Thêm Thành Công";
-                    return "Không Thành Công";
-                }
-                else return "Chưa nhập mã";
-            }
-            else { return "Trùng rồi"; }
+            return ChucVuMoi.add(chucvu);
         }
-        public string Sua(ChucVuViewModels chucVuViewModels)
+
+        public bool CheckMa(string ma)
         {
-            if (chucVuViewModels == null) return "Không Thành Công";
-            var temp = ChucVuMoi.GetAll().FirstOrDefault(c => c.ID == chucVuViewModels.ID);
-            ChucVu x = new ChucVu()
-            {
-                ID = chucVuViewModels.ID,
-                Ma = chucVuViewModels.Ma,
-                Ten = chucVuViewModels.Ten,
-                TrangThai = chucVuViewModels.TrangThai
-            };
-            if (chucVuViewModels.Ma != "")
-            {
-                if (temp  == null)
-                {
-                    if (ChucVuMoi.update(x)) return "Sửa Thành Công";
-                    return "Không Thành Công";
-                }
-                else if (chucVuViewModels.ID == x.ID)
-                {
-                    if (ChucVuMoi.update(x)) return "Sửa Thành Công";
-                    return "Không Thành Công";
-                }
-                else { return "Trùng rồi"; }
-            }
-            else return "Nhập đủ thông tin";
+            return !ChucVuMoi.GetAll().Any(c => c.Ma == ma);
+        }
+
+        public bool Delete(Guid Id)
+        {
+            return ChucVuMoi.delete(Id);
 
         }
 
-        public string Xoa(Guid Id)
+        public List<ChucVu> GetAll()
         {
-            if (Id == null) return "Không Thành Công";
-            int a = 0;
-            var x = new ChucVu()
-            {
-                ID = Id
-            };
-            var list = ChucVuMoi.GetAll();
-
-            foreach (var i in list)
-            {
-                if (Id == i.ID) a++;
-            }
-            if (ChucVuMoi.delete(x)) return "Xóa Thành Công";
-            return "thất bại";
-            //return "Không Thành Công";
+            return ChucVuMoi.GetAll();
         }
 
-
-
-
-     
-
-
-
-        //public ChucVu GetByMa(string ma)
-        //{
-        //    return GetAll().FirstOrDefault(c => c.Ma == ma);
-        //}
-
-       
-
-        
-
-        //public ChucVu GetById(Guid id)
-        //{
-        //    return GetAll().FirstOrDefault(c => c.ID == id);
-        //}
-
-        public List<ChucVuViewModels> Getlst()
+        public List<ChucVuViewModels> GetAllView()
         {
-            return (from a in ChucVuMoi.GetAll()
-                    select new ChucVuViewModels
-                    {
-                        ID = a.ID,
-                        Ma = a.Ma,
-                        Ten = a.Ten,
-                        TrangThai = a.TrangThai
-                    }).ToList();
+            List<ChucVuViewModels> lst = (from a in ChucVuMoi.GetAll()
+                                     select new ChucVuViewModels()
+                                     {
+                                         ChucVu = a,
+                                     }).ToList();
+            return lst;
+        }
+
+        public ChucVu? GetByMa(string? ma)
+        {
+            return ChucVuMoi.GetAll().Find(c => c.Ma == ma);
+        }
+
+        public bool Update(ChucVu chucvu)
+        {
+            return ChucVuMoi.update(chucvu);
         }
     }
 }

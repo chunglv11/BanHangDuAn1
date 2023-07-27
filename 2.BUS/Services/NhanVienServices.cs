@@ -3,6 +3,10 @@ using _1.DAL.Models;
 using _1.DAL.Repository;
 using _2.BUS.IServices;
 using _2.BUS.ViewModels;
+
+
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,126 +17,81 @@ namespace _2.BUS.Services
 {
     public class NhanVienServices : INhanVienServices
     {
-        private readonly INhanVienResponsitory NhanVienMoi;
+        private readonly INhanVienResponsitory _NhanVien;
+
         private List<NhanVienViewModels> _NhanVienViewModels;
+        private List<ChucVuViewModels> _ChucVuViewModels;
+        private readonly ChucVuResponsitory _ChucVu;
         ShopContext context = new ShopContext();
+
+        //public NhanVienServices()
+        //{
+        //    _NhanVienViewModels =new List<NhanVienViewModels>();
+
+        //private List<NhanVienResponsitory> _NhanVienViewModels;
+        //private List<ChucVuResponsitory> _ChucVu;
+        //ShopContext _shopContext = new ShopContext();
 
         public NhanVienServices()
         {
-            _NhanVienViewModels =new List<NhanVienViewModels>();
-            NhanVienMoi = new NhanVienResponsitory();
+            _NhanVienViewModels = new List<NhanVienViewModels>();
+            _ChucVuViewModels = new List<ChucVuViewModels>();
+            _NhanVien = new NhanVienResponsitory();
+            _ChucVu = new ChucVuResponsitory();
         }
 
-       
-        public List<NhanVien> GetAll()
-        {
-            return NhanVienMoi.GetAll().ToList();
-        }
 
-        public NhanVien GetById(Guid Id)
-        {
-            return NhanVienMoi.GetById(Id);
-        }
 
-       
-
-        public NhanVien GetByMa(string ma)
+        public bool Add(NhanVien nhanvien)
         {
-            return GetAll().FirstOrDefault(c => c.MaNv == ma);
-        }
-
-        public string Xoa(Guid Id)
-        {
-            if (Id == null) return "Không Thành Công";
-            int a = 0;
-            var x = new NhanVien()
+            try
             {
-                ID = Id
-            };
-            var list = NhanVienMoi.GetAll();
-
-            foreach (var i in list)
-            {
-                if (Id == i.ID) a++;
+                 _NhanVien.add(nhanvien);
+                return true;
             }
-            if (NhanVienMoi.delete(x)) return "Xóa Thành Công";
-            return "thất bại";
+            catch (Exception ex)
+            {
+                // Handle or log the exception
+                Console.WriteLine($"An error occurred while adding the NhanVien: {ex.Message}");
+                return false;
+            }
         }
 
-        public string Them(NhanVienViewModels nhanVienViewModels)
+        public bool Update(NhanVien nhanvien)
         {
-            if (nhanVienViewModels == null) return "Không Thành Công";
-            var temp = NhanVienMoi.GetById(nhanVienViewModels.ID);
-            NhanVien x = new NhanVien()
-            {
-                ID = nhanVienViewModels.ID,
-                IDCV = nhanVienViewModels.IDCV,
-                Username = nhanVienViewModels.Username,
-                MaNv = nhanVienViewModels.MaNv,
-                HoTen = nhanVienViewModels.HoTen,
-                GioiTinh = nhanVienViewModels.GioiTinh,
-                Email = nhanVienViewModels.Email,
-                AnhNv = nhanVienViewModels.AnhNv,
-                NgaySinh = nhanVienViewModels.NgaySinh,
-                MatKhau = nhanVienViewModels.MatKhau,
-                TrangThai = nhanVienViewModels.TrangThai
-       
-    };
-            if (temp == null)
-            {
-                if (nhanVienViewModels.MaNv != "")
-                {
-                    if (NhanVienMoi.add(x)) return "Thêm Thành Công";
-                    return "Không Thành Công";
-                }
-                else return "Chưa nhập mã";
-            }
-            else { return "Trùng rồi"; }
+            return _NhanVien.update(nhanvien);
         }
 
-        public string Sua(NhanVienViewModels nhanVienViewModels)
-        { //         public Guid ID { get; set; }
-          //public Guid IDCV { get; set; }
-          //public string Username { get; set; }
-          //public string MaNv { get; set; }
-          //public string HoTen { get; set; }
-          //public int GioiTinh { get; set; }
-          //public string Email { get; set; }
-          //public string? AnhNv { get; set; }
-          //public DateTime NgaySinh { get; set; }
-          //public string? MatKhau { get; set; }
-          //public int TrangThai { get; set; }
-            if (nhanVienViewModels == null) return "Không Thành Công";
-            var temp = NhanVienMoi.GetAll().FirstOrDefault(c => c.ID == nhanVienViewModels.ID);
-            NhanVien x = new NhanVien()
-            {
-                ID = nhanVienViewModels.ID,
-                IDCV = nhanVienViewModels.IDCV,
-                Username = nhanVienViewModels.Username,
-                MaNv = nhanVienViewModels.MaNv,
-                HoTen = nhanVienViewModels.HoTen,
-                GioiTinh = nhanVienViewModels.GioiTinh,
-                Email = nhanVienViewModels.Email,
-                AnhNv = nhanVienViewModels.AnhNv,
-                NgaySinh = nhanVienViewModels.NgaySinh,
-                MatKhau = nhanVienViewModels.MatKhau,
-                TrangThai = nhanVienViewModels.TrangThai
-            };
-            if (nhanVienViewModels.MaNv != "")
-            {
-                if (temp == null)
-                {
-                    if (NhanVienMoi.update(x)) return "Sửa Thành Công";
-                    return "Không Thành Công";
-                }
-                else if (nhanVienViewModels.ID == x.ID)
-                {
-                    if (NhanVienMoi.update(x)) return "Sửa Thành Công";
-                    return "Không Thành Công";
-                }
-                else { return "Trùng rồi"; }
-            }
-            else return "Nhập đủ thông tin";
+        public bool Delete(Guid Id)
+        {
+            return _NhanVien.delete(Id);
+        }
+
+        List<NhanVien> INhanVienServices.GetAll()
+        {
+            return _NhanVien.GetAll();
+        }
+
+        NhanVien? INhanVienServices.GetByMa(string? ma)
+        {
+            return _NhanVien.GetAll().Find(c => c.MaNv == ma);
+        }
+
+        public List<NhanVienViewModels> GetAllView()
+        {
+            List<NhanVienViewModels> lst = (from a in _NhanVien.GetAll()
+                                          select new NhanVienViewModels()
+                                          {
+                                              NhanVien = a,
+                                          }).ToList();
+            return lst;
+        }
+
+        public bool CheckMa(string ma)
+        {
+            return !_ChucVu.GetAll().Any(c => c.Ma == ma);
         }
     }
+
+
 }

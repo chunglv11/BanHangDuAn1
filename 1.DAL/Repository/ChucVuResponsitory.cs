@@ -24,65 +24,74 @@ namespace _1.DAL.Repository
 
         public bool add(ChucVu chucVu)
         {
-            try
-            {
-                _shopContext.ChucVus.Add(chucVu);
-                _shopContext.SaveChanges();
-
-                return true;
-            }
-            catch (Exception )
+            if (chucVu == null)
             {
                 return false;
             }
-            
+            _shopContext.ChucVus.Add(chucVu);
+            _shopContext.SaveChanges();
+            return true;
+
         }
 
-        public bool delete(ChucVu chucVu)
+        public bool delete(Guid Id)
         {
 
-            
-
-                try
-                {
-                    if (chucVu == null) return false;
-                    var x = _shopContext.ChucVus.FirstOrDefault(p => p.ID == chucVu.ID);
-                    _shopContext.ChucVus.Remove(x);
-                    _shopContext.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
+            var dtcs = _shopContext.ChucVus.FirstOrDefault(c=>c.ID == Id);
+            if( dtcs == null)
+            { return false; }
+            _shopContext.ChucVus.Remove(dtcs);
+            _shopContext.SaveChanges();
+            return true;
 
             
+            //try
+            //{
+
+            //    var khach_hang = _shopContext.KhachHangs.FirstOrDefault(c => c.ID == chucVu.ID); // Sửa đổi Guid thành id
+            //    if (khach_hang != null)
+            //    {
+            //        _shopContext.KhachHangs.Remove(khach_hang);
+            //        _shopContext.SaveChanges();
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false;
+
+            //    }
+            //}
+            //    catch (Exception)
+            //    {
+            //    return false;
+
+            //}
+
         }
         //public bool DeleteKhachHang(KhachHang obj)
         //{
         //    try
         //    {
 
-        //        var khach_hang = _context.KhachHangs.FirstOrDefault(c => c.ID == obj.ID); // Sửa đổi Guid thành id
-        //        if (khach_hang != null)
-        //        {
-        //            _context.KhachHangs.Remove(khach_hang);
-        //            _context.SaveChanges();
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
+            //        var khach_hang = _context.KhachHangs.FirstOrDefault(c => c.ID == obj.ID); // Sửa đổi Guid thành id
+            //        if (khach_hang != null)
+            //        {
+            //            _context.KhachHangs.Remove(khach_hang);
+            //            _context.SaveChanges();
+            //            return true;
+            //        }
+            //        else
+            //        {
+            //            return false;
 
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return false;
+            //        }
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return false;
 
-        //    }
-        //}
+            //    }
+            //}
 
         public List<ChucVu> GetAll()
         {
@@ -102,29 +111,25 @@ namespace _1.DAL.Repository
         public bool update(ChucVu chucvu)
         {
             
-            try
-            {
+                var IDc = _shopContext.ChucVus.FirstOrDefault(c => c.ID == chucvu.ID);
 
-                var Chuc_Vu = _shopContext.ChucVus.FirstOrDefault(c => c.Ma == chucvu.Ma); // Sửa đổi Guid thành id
-                if (Chuc_Vu != null)
+                if (IDc == null)
                 {
-                    _shopContext.ChucVus.Update(Chuc_Vu);
-                    _shopContext.SaveChanges();
-                    return true;
+                    return false; // Object with the given ID doesn't exist in the database
                 }
-                else
-                {
-                    return false;
 
-                }
-            }
-            catch (Exception)
-            {
-                return false;
+                // Update the properties of the retrieved object with the values from the given "chucvu" object
+                IDc.Ma = chucvu.Ma;
+                IDc.Ten = chucvu.Ten;
+                IDc.TrangThai = chucvu.TrangThai;
 
-            }
+                _shopContext.SaveChanges(); // Save the changes
+
+                return true; // Update successful
+            
+
         }
 
-        
+       
     }
 }

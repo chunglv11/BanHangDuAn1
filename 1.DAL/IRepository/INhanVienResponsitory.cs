@@ -9,12 +9,12 @@ namespace _1.DAL.IRepository
 {
     public interface INhanVienResponsitory
     {
-        bool add(NhanVien nhanVien);
-        bool update(NhanVien nhanVien);
-        bool delete(NhanVien nhanVien);
+        bool add(NhanVien nhanvien);
+        bool update(NhanVien nhanvien);
+        bool delete(Guid Id);
         public List<NhanVien> GetAll();
         public NhanVien GetById(Guid id);
         public NhanVien GetByMa(string ma);
-       
+
     }
 }

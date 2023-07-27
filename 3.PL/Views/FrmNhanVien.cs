@@ -2,6 +2,7 @@
 using _2.BUS.IServices;
 using _2.BUS.Services;
 using _2.BUS.ViewModels;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,63 +13,168 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace _3.PL.Views
 {
     public partial class FrmNhanVien : Form
     {
-        private IChucVuServices _chucVu;
-        public INhanVienServices _InhanVienServices;
-
-        private Guid _ID;
+        private INhanVienServices _Inhanvien;
+        private IChucVuServices _IchucVu;
+        private NhanVienViewModels _nvview;
+        NhanVien nhanVien;
+        private Guid ID;
+        public string Anh = "";
         public FrmNhanVien()
         {
-            _InhanVienServices = new NhanVienServices();
+            _Inhanvien = new NhanVienServices();
+            _IchucVu = new ChucVuServices();
+            _nvview = new NhanVienViewModels();
+            InitializeComponent();
+            LoadcmbCV();
             LoadData();
-        }
-        private void loadcmb()
-        {
-            foreach (var x in _chucVu.Getlst())
-            {
-                cmb_CV.Items.Add(x.Ten);
-            }
-            //cmb_Hang.SelectedIndex = 0;
-
 
         }
+
         private void LoadData()
         {
             int stt = 1;
-            dtg_ShowNV.ColumnCount = 13;
+            dtg_ShowNV.ColumnCount = 11;
             dtg_ShowNV.Columns[0].Name = "stt";
             dtg_ShowNV.Columns[1].Name = "id";
-            dtg_ShowNV.Columns[2].Name = "IDCV";
-            dtg_ShowNV.Columns[3].Name = "Username";
-            dtg_ShowNV.Columns[4].Name = "MaNV";
-            dtg_ShowNV.Columns[5].Name = "Hoten";
-            dtg_ShowNV.Columns[6].Name = "GioiTinh";
-            dtg_ShowNV.Columns[7].Name = "Email";
-            dtg_ShowNV.Columns[8].Name = "Anh";
-            dtg_ShowNV.Columns[9].Name = "NgaySinh";
-            dtg_ShowNV.Columns[10].Name = "MatKhau";
-            dtg_ShowNV.Columns[11].Name = "ChucVu";
-            dtg_ShowNV.Columns[12].Name = "trang thai";
+            dtg_ShowNV.Columns[2].Name = "Username";
+            dtg_ShowNV.Columns[3].Name = "MaNV";
+            dtg_ShowNV.Columns[4].Name = "HoTen";
+            dtg_ShowNV.Columns[5].Name = "GioiTinh";
+            dtg_ShowNV.Columns[6].Name = "Email";
+            dtg_ShowNV.Columns[7].Name = "NgaySinh";
+            dtg_ShowNV.Columns[8].Name = "MatKhau";
+            dtg_ShowNV.Columns[9].Name = "ChucVu";
+            dtg_ShowNV.Columns[10].Name = "trang thai";
             dtg_ShowNV.Rows.Clear();
             dtg_ShowNV.Columns[1].Visible = true;
-            foreach (var a in _InhanVienServices.GetAll())
+            //foreach (var a in _Inhanvien.GetAll())
+            //{
+            //    _ = dtg_ShowNV.Rows.Add(stt++, a.ID,  a.Username, a.MaNv, a.HoTen, a.GioiTinh, a.Email, a.AnhNv, a.NgaySinh, a.MatKhau, a.ChucVu, a.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
+            //}
+            foreach (var a in _Inhanvien.GetAllView())
             {
-                _ = dtg_ShowNV.Rows.Add(stt++, a.ID, a.IDCV, a.Username, a.MaNv, a.HoTen, a.GioiTinh, a.Email, a.AnhNv, a.NgaySinh, a.MatKhau, a.ChucVu, a.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
+                _ = dtg_ShowNV.Rows.Add(
+                    stt++,
+                    a.NhanVien.ID,
+                    a.NhanVien.Username,
+                    a.NhanVien.MaNv,
+                    a.NhanVien.HoTen,
+                    a.NhanVien.GioiTinh == 1 ? "nam" : "nữ",
+                    a.NhanVien.Email,
+                    a.NhanVien.NgaySinh,
+                    a.NhanVien.MatKhau,
+                    a.NhanVien.IDCV, // Access ChucVu property directly from NhanVien
+                    a.NhanVien.TrangThai == 1 ? "hoạt động" : "Không hoạt động"
+                );
+            }
+
+        }
+
+        private void LoadcmbCV()
+        {
+            foreach (var a in _IchucVu.GetAll().Where(c => c.TrangThai == 1))
+            {
+                _ = cmb_CV.Items.Add(a.Ten);
+            }
+            //foreach (NhanVienViewModels a in _Inhanvien.GetAllView())
+            //{
+            //    _ = cmb_CV.Items.Add(a.ChucVu);
+            //}
+        }
+        public NhanVien GetvaluaContro()
+        {
+            ChucVuViewModels? x = _IchucVu.GetAllView().FirstOrDefault(c => c.ChucVu.Ten == cmb_CV.Text);
+            return new NhanVien()
+            {
+
+                MaNv = tb_Ma.Text,
+                HoTen = txt_HoTen.Text,
+                Email = tb_Email.Text,
+                AnhNv = btn_ChonAnh.Text,
+                MatKhau = tb_MatKhau.Text,
+                NgaySinh = date_ngaySinh.Value,
+                Username = tb_user.Text,
+                IDCV = x.ChucVu.ID,
+                GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
+                TrangThai = rbn_HD.Checked == true ? 1 : 0,
+                //a.NhanVien.ID,
+                //a.NhanVien.Username,
+                //a.NhanVien.MaNv,
+                //a.NhanVien.HoTen,
+                //a.NhanVien.GioiTinh == 1 ? "nam" : "nu",
+                //a.NhanVien.Email,
+                //a.NhanVien.AnhNv,
+                //a.NhanVien.NgaySinh,
+                //a.NhanVien.MatKhau,
+                //a.NhanVien.ChucVu.Ten, // Access ChucVu property directly from NhanVien
+                //a.NhanVien.TrangThai == 1 ? "hoạt động" : "Không hoạt động"
+            };
+        }
+        private void dtg_ShowNV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex >= 0)
+            {
+                //a.Username, a.MaNv, a.HoTen, a.Email, a.GioiTinh == 1 ? "nam" : "nu", a.NgaySinh, a.AnhNv, a.MatKhau, a.ChucVu.Ten, a.TrangThai == 1 ? "hoạt động" : "Không hoạt động"
+                ID = Guid.Parse(dtg_ShowNV.Rows[e.RowIndex].Cells[1].Value.ToString());
+                tb_Ma.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txt_HoTen.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[4].Value.ToString();
+                tb_Email.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[6].Value.ToString();
+                tb_user.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[2].Value.ToString();
+                tb_MatKhau.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[8].Value.ToString();
+                date_ngaySinh.Value = (DateTime)dtg_ShowNV.Rows[e.RowIndex].Cells[7].Value;
+                var cv = _Inhanvien.GetAll().FirstOrDefault(p => p.ID == ID);
+
+                cmb_CV.Text = _IchucVu.GetAllView().FirstOrDefault(p => p.ChucVu.ID == cv.IDCV).ChucVu.Ten;
+                Anh = cv.AnhNv;
+                if (Anh != null && File.Exists(Anh))
+                {
+                    ptb_AVT.Image = Image.FromFile(Anh);
+                    ptb_AVT.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+                //NhanVien a = _Inhanvien.GetAll().FirstOrDefault(c => c.nhanVien.ID == ID).NhanVien;
+                //cmb_CV.SelectedItem = _IQlNhanVien.GetAllView().FirstOrDefault(c => c.NhanVien.IdChucVu == a.IdChucVu).ChucVu.TenChucVu;
+
+
+                if (dtg_ShowNV.Rows[e.RowIndex].Cells[5].Value.ToString() == "nam")
+                {
+                    rbtn_Nam.Checked = true;
+                }
+                else if (dtg_ShowNV.Rows[e.RowIndex].Cells[5].Value.ToString() == "nu")
+                {
+                    rbtn_Nu.Checked = true;
+                }
+
+
+                //if (dtg_ShowNV.Rows[e.RowIndex].Cells[11].Value.ToString() == "hoạt động")
+                //{
+                //    rbn_HD.Checked = true;
+                //    rbn_KHD.Checked = false;
+                //}
+                //else if (dtg_ShowNV.Rows[e.RowIndex].Cells[11].Value.ToString() == "không hoạt động")
+                //{
+                //    rbn_HD.Checked = false;
+                //    rbn_KHD.Checked = true;
+                //}
             }
 
         }
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
+            var chucvu = _IchucVu.GetAll().FirstOrDefault(c => c.Ten == cmb_CV.Text);
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Nhân Viên Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (_InhanVienServices.GetAll().Any(c => c.MaNv == tb_Ma.Text))
+                if (_Inhanvien.GetAll().Any(c => c.MaNv == tb_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
                 }
@@ -76,85 +182,91 @@ namespace _3.PL.Views
                 {
                     MessageBox.Show("Tên không được bỏ trống");
                 }
-                else if (rbtn_HD.Checked == false && rbtn_KHD.Checked == false)
+                else if (rbn_HD.Checked == false && rbn_KHD.Checked == false)
                 {
 
                     MessageBox.Show("Vui lòng chọn trạng thái");
                 }
+                else if (rbtn_Nam.Checked == false && rbn_KHD.Checked == false)
+                {
+
+                    MessageBox.Show("Vui lòng chọn giới tính");
+                }
                 else
                 {
-                    NhanVienViewModels x = new NhanVienViewModels()
-                    {
-                        //ID = nhanVienViewModels.ID,
-                        //IDCV = nhanVienViewModels.IDCV,
-                        //Username = nhanVienViewModels.Username,
-                        //MaNv = nhanVienViewModels.MaNv,
-                        //HoTen = nhanVienViewModels.HoTen,
-                        //GioiTinh = nhanVienViewModels.GioiTinh,
-                        //Email = nhanVienViewModels.Email,
-                        //AnhNv = nhanVienViewModels.AnhNv,
-                        //NgaySinh = nhanVienViewModels.NgaySinh,
-                        //MatKhau = nhanVienViewModels.MatKhau,
-                        //TrangThai = nhanVienViewModels.TrangThai
-                        ID = Guid.NewGuid(),
-                        HoTen = txt_HoTen.Text,
-                        MaNv = tb_Ma.Text,
-                        Email = tb_Email.Text,
-                        MatKhau = tb_MatKhau.Text,
-                        Username = tb_user.Text,
 
-                        TrangThai = rbtn_HD.Checked ? 1 : 0
-                    };
-                    MessageBox.Show(_InhanVienServices.Them(x));
+
+
+
+                    _ = _Inhanvien.Add(GetvaluaContro());
                     LoadData();
+                    MessageBox.Show("thành công");
+
+
                 }
             }
+            //_ = _Inhanvien.Add(GetvaluaContro());
+            //LoadData();
+
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Sửa Nhân Viên Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-
-
-                NhanVienViewModels x = new NhanVienViewModels()
+                ChucVuViewModels? x = _IchucVu.GetAllView().FirstOrDefault(c => c.ChucVu.Ten == cmb_CV.Text);
+                bool thongBao = _Inhanvien.Update(new _1.DAL.Models.NhanVien()
                 {
-                    //ID = nhanVienViewModels.ID,
-                    //IDCV = nhanVienViewModels.IDCV,
-                    //Username = nhanVienViewModels.Username,
-                    //MaNv = nhanVienViewModels.MaNv,
-                    //HoTen = nhanVienViewModels.HoTen,
-                    //GioiTinh = nhanVienViewModels.GioiTinh,
-                    //Email = nhanVienViewModels.Email,
-                    //AnhNv = nhanVienViewModels.AnhNv,
-                    //NgaySinh = nhanVienViewModels.NgaySinh,
-                    //MatKhau = nhanVienViewModels.MatKhau,
-                    //TrangThai = nhanVienViewModels.TrangThai
-                    ID = Guid.NewGuid(),
-                    HoTen = txt_HoTen.Text,
+                    ID = ID,
                     MaNv = tb_Ma.Text,
+                    HoTen = txt_HoTen.Text,
                     Email = tb_Email.Text,
+                    AnhNv = btn_ChonAnh.Text,
                     MatKhau = tb_MatKhau.Text,
+                    NgaySinh = date_ngaySinh.Value,
                     Username = tb_user.Text,
+                    IDCV = x.ChucVu.ID,
+                    GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
+                    //TrangThai = rbn_HD.Checked == true ? 1 : 0,
 
-                    TrangThai = rbtn_HD.Checked ? 1 : 0
-                };
-                MessageBox.Show(_InhanVienServices.Sua(x));
-                LoadData();
+
+                });
+                if (thongBao)
+                {
+                    _ = MessageBox.Show("Sửa thành công");
+
+                    LoadData();
+
+                }
 
             }
         }
-
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
+
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Nhân Viên Không?", "Thông Báo", MessageBoxButtons.YesNo);
+
             if (dialogResult == DialogResult.Yes)
             {
+                if (_nvview == null)
+                {
+                    MessageBox.Show("bạn chưa chọn nhân viên");
+                }
+                else
+                {
+                    bool deletionResult = _Inhanvien.Delete(ID);
 
-                MessageBox.Show(_InhanVienServices.Xoa(_ID));
-                LoadData();
-
+                    if (deletionResult)
+                    {
+                        MessageBox.Show("Xóa thành công");
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa không thành công");
+                    }
+                }
             }
         }
 
@@ -162,59 +274,29 @@ namespace _3.PL.Views
         {
             tb_Ma.Text = "";
             txt_HoTen.Text = "";
-            tb_Email.Text = "";
+            rbn_HD.Text = "";
+            rbn_KHD.Text = "";
+
+            tb_Email.Text = " ";
+
             tb_MatKhau.Text = "";
+            date_ngaySinh.Text = "";
             tb_user.Text = "";
+            cmb_CV.Text = "";
+            rbtn_Nam.Text = "";
 
-            cmb_CV.SelectedIndex = 0;
-            rbtn_HD.Text = "";
-            rbtn_KHD.Text = "";
         }
 
-        private void dtg_ShowNV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+      
+
+        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
-            _ID = Guid.Parse(dtg_ShowNV.Rows[e.RowIndex].Cells[0].Value.ToString());
-            tb_Ma.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txt_HoTen.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[2].Value.ToString();
-            tb_Email.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[3].Value.ToString();
-            btn_ChonAnh.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[4].Value.ToString();
-            tb_MatKhau.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[5].Value.ToString();
+            dtg_ShowNV.Rows.Clear();
 
-            btn_ChonAnh.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[10].Value.ToString();
-            tb_user.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[6].Value.ToString();
-            txt_TimKiem.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[7].Value.ToString();
-            cmb_CV.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[8].Value.ToString();
-            object cellValue = dtg_ShowNV.Rows[e.RowIndex].Cells[9].Value;
-            //dtg_ShowNV.Columns[0].Name = "stt";
-            //dtg_ShowNV.Columns[1].Name = "id";
-            //dtg_ShowNV.Columns[2].Name = "IDCV";
-            //dtg_ShowNV.Columns[3].Name = "Username";
-            //dtg_ShowNV.Columns[4].Name = "MaNV";
-            //dtg_ShowNV.Columns[5].Name = "Hoten";
-            //dtg_ShowNV.Columns[6].Name = "GioiTinh";
-            //dtg_ShowNV.Columns[7].Name = "Email";
-            //dtg_ShowNV.Columns[8].Name = "Anh";
-            //dtg_ShowNV.Columns[9].Name = "NgaySinh";
-            //dtg_ShowNV.Columns[10].Name = "MatKhau";
-            //dtg_ShowNV.Columns[11].Name = "ChucVu";
-            //dtg_ShowNV.Columns[12].Name = "trang thai";
-            var dt = _InhanVienServices.GetAll().FirstOrDefault(c => c.ID == _ID);
-            var chucvu = _chucVu.Getlst().FirstOrDefault(c => c.Ten == dt.HoTen);
-            cmb_CV.SelectedIndex = cmb_CV.FindStringExact(chucvu.Ten);
-            if (cellValue != null && cellValue is string)
+            foreach (var item in _Inhanvien.GetAllView().Where(c => c.NhanVien.MaNv.Contains(txt_TimKiem.Text)))
             {
-                string trangThai = (string)cellValue;
-                rbtn_HD.Checked = trangThai == "Hoạt động";
-                rbtn_KHD.Checked = trangThai == "Không hoạt động";
-            }
-            if (cellValue != null && cellValue is string)
-            {
-                string trangThai = (string)cellValue;
-                rbtn_Nam.Checked = trangThai == "Nam";
-                rbtn_Nu.Checked = trangThai == "Nữ";
+                dtg_ShowNV.Rows.Add(item.NhanVien.ID, item.NhanVien.MaNv, item.NhanVien.HoTen,item.NhanVien.Username,item.NhanVien.ChucVu,item.NhanVien.Email,item.NhanVien.GioiTinh, item.NhanVien.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
-
-        
     }
 }

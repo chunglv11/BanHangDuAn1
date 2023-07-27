@@ -11,11 +11,11 @@ namespace _1.DAL.IRepository
     {
         bool add(ChucVu chucVu);
         bool update(ChucVu chucVu);
-        bool delete(ChucVu chucVu);
+        bool delete(Guid Id);
         public List<ChucVu> GetAll();
         public ChucVu GetById(Guid id);
         public ChucVu GetByMa(string ma);
-
+        
     }
 }
 

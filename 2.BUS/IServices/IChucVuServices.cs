@@ -16,10 +16,19 @@ namespace _2.BUS.IServices
         
         //public ChucVu GetById(Guid id);
         //public ChucVu GetByMa(string ma);
-        string Sua(ChucVuViewModels chucVuViewModels);
-        string Xoa(Guid Id);
-        string Them(ChucVuViewModels chucVuViewModels);
-        List<ChucVuViewModels> Getlst();
+        //bool Sua(ChucVuViewModels obj);
+        //string Xoa(Guid Id);
+        //string Them(ChucVuViewModels chucVuViewModels);
+        //List<ChucVuViewModels> Getlst();
+        bool Add(ChucVu chucvu);
+        bool Update(ChucVu chucvu);
+        bool Delete(Guid Id);
+        List<ChucVu> GetAll();
+        ChucVu? GetByMa(string? ma);
+
+        bool CheckMa(string ma);
+        List<ChucVuViewModels> GetAllView();
+        //bool Sua(ChucVu chucVu);
 
 
 

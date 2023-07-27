@@ -10,15 +10,31 @@ namespace _2.BUS.IServices
 {
     public interface INhanVienServices
     {
+        //bool Add(NhanVien obj);
+        //bool Update(NhanVien obj);
+        //bool Delete(NhanVien obj);
+        //List<NhanVien> GetAll();
+        //NhanVien? GetByMa(string? ma);
+
+        //bool CheckMa(string ma);
+        //List<NhanVienViewModels> GetAllView();
+
+
+
+        //<<<<<<< Updated upstream
+        bool Add(NhanVien nhanvien);
+        bool Update(NhanVien nhanvien);
+        bool Delete(Guid Id);
         List<NhanVien> GetAll();
+        NhanVien? GetByMa(string? ma);
 
-        string Xoa(Guid Id);
+        bool CheckMa(string ma);
+        public List<NhanVienViewModels> GetAllView();
 
-        string Them(NhanVienViewModels NhanVienViewModels);
-        string Sua(NhanVienViewModels NhanVienViewModels);
-        public NhanVien GetByMa(string ma);
-        public NhanVien GetById(Guid id);
-        
+
+
+        //=======
+        //>>>>>>> Stashed changes
 
     }
 }

@@ -18,16 +18,18 @@ namespace _3.PL.Views
 {
     public partial class FrmChucVu : Form
     {
-        IChucVuServices _IchucVuServices;
-        ChucVuViewModels _ChucVuViewModels;
+        private IChucVuServices _IchucVuServices;
+        private ChucVuViewModels _ChucVuViewModels;
         ChucVu _chucvu;
-        Guid _ID;
+       public  Guid _ID;
 
 
         public FrmChucVu()
         {
             _chucvu = new ChucVu();
             _IchucVuServices = new ChucVuServices();
+            _ChucVuViewModels = new ChucVuViewModels();
+            
             InitializeComponent();
             LoadData();
         }
@@ -43,9 +45,9 @@ namespace _3.PL.Views
             dtg_ShowChucVu.Columns[4].Name = "trang thai";
             dtg_ShowChucVu.Rows.Clear();
             dtg_ShowChucVu.Columns[1].Visible = true;
-            foreach (var a in _IchucVuServices.Getlst())
+            foreach (var a in _IchucVuServices.GetAllView())
             {
-                _ = dtg_ShowChucVu.Rows.Add(stt++, a.ID, a.Ma, a.Ten, a.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
+                _ = dtg_ShowChucVu.Rows.Add(stt++, a.ChucVu.ID, a.ChucVu.Ma, a.ChucVu.Ten, a.ChucVu.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
             }
             dtg_ShowChucVu.CellClick += dtg_ShowChucVu_CellClick;
         }
@@ -84,7 +86,16 @@ namespace _3.PL.Views
         }
 
 
-
+        public ChucVu GetvaluaContro()
+        {
+            return new ChucVu()
+            {
+                Ma = txt_Ma.Text,
+                Ten = txt_Ten.Text,
+               
+                TrangThai = rbtn_HD.Checked == true ? 1 : 0,
+            };
+        }
 
         //private void btn_Xoa_Click(object sender, EventArgs e)
         //{
@@ -146,70 +157,111 @@ namespace _3.PL.Views
 
         private void btn_Them_Click_1(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Chức Vụ Không?", "Thông Báo", MessageBoxButtons.YesNo);
+           
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                if (_IchucVuServices.Getlst().Any(c => c.Ma == txt_Ma.Text))
-                {
-                    MessageBox.Show("Mã bị trùng");
-                }
-                else if (string.IsNullOrWhiteSpace(txt_Ten.Text))
-                {
-                    MessageBox.Show("Tên không được bỏ trống");
-                }
-                else if (rbtn_HD.Checked == false && rbtn_KHD.Checked == false)
-                {
 
-                    MessageBox.Show("Vui lòng chọn trạng thái");
-                }
-                else
-                {
-                    ChucVuViewModels x = new ChucVuViewModels()
-                    {
-                        ID = Guid.NewGuid(),
-                        Ma = txt_Ma.Text,
-                        Ten = txt_Ten.Text,
-                        TrangThai = rbtn_HD.Checked ? 1 : 0
-                    };
-                    MessageBox.Show(_IchucVuServices.Them(x));
-                    LoadData();
-                }
+
+                _ = _IchucVuServices.Add(GetvaluaContro());
+                LoadData();
+
             }
+            
+         
+        
+           
         }
 
         private void btn_Sua_Click_1(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Sửa Chức Vụ Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                
-                
-                
-                    ChucVuViewModels x = new ChucVuViewModels()
-                    {
-                        ID = _ID,
-                        Ma = txt_Ma.Text,
-                        Ten = txt_Ten.Text,
-                        TrangThai = rbtn_HD.Checked ? 1 : 0
-                    };
-                    MessageBox.Show(_IchucVuServices.Sua(x));
+                bool thongBao = _IchucVuServices.Update(new _1.DAL.Models.ChucVu()
+                {
+                    ID = _ID,
+                    Ma = txt_Ma.Text,
+                    Ten = txt_Ten.Text,
+                    
+                    TrangThai = rbtn_HD.Checked == true ? 1 : 0
+                });
+                if (thongBao)
+                {
+                    _ = MessageBox.Show("Sửa thành công");
+                    
                     LoadData();
-                
+                    
+                }
+
             }
+            //_ = _IchucVuServices.Update(GetvaluaContro());
+            //LoadData();
+            //bool thongBao = _IchucVuServices.Sua(new _1.DAL.Models.ChucVu() { ID = _ID, Ma = txt_Ma.Text, Ten = txt_Ten.Text, TrangThai = rbtn_HD.Checked == true ? 1 : 0 });
+            //if (thongBao)
+            //{
+            //    _ = MessageBox.Show("Sửa thành công");
+            //    LoadData();
+            //}
         }
-        
+
 
         private void btn_Xoa_Click_1(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Chức Vụ Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Sản Phẩm Không?", "Thông Báo", MessageBoxButtons.YesNo);
+
             if (dialogResult == DialogResult.Yes)
             {
-                
-                    MessageBox.Show(_IchucVuServices.Xoa(_ID));
-                    LoadData();
-                
+                if (_ChucVuViewModels == null)
+                {
+                    MessageBox.Show("bạn chưa chọn nsx");
+                }
+                else
+                {
+                    bool deletionResult = _IchucVuServices.Delete(_ID);
+
+                    if (deletionResult)
+                    {
+                        MessageBox.Show("Xóa thành công");
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa không thành công");
+                    }
+                }
             }
         }
+        //DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa", "Thông báo", MessageBoxButtons.YesNo);
+        //if (dialogResult == DialogResult.Yes)
+        //{
+        //    bool thongBao = _IchucVuServices.Delete(_IchucVuServices.GetAll().Find(c => c.ID == _ID));
+
+        //    if (thongBao)
+        //    {
+        //        _ = MessageBox.Show("Xóa thành công");
+        //        LoadData();
+        //    }
+        //}
+        //if (_ID != Guid.Empty)
+        //{
+
+
+        //    _chucvu = new ChucVu()
+        //    {
+        //        ID = Guid.NewGuid(),
+        //        Ma = txt_Ma.Text,
+        //        Ten = txt_Ten.Text,
+        //        TrangThai = rbtn_HD.Checked ? 0 : 1,
+        //    };
+
+        //    if (_IchucVuServices.Xoa(_chucvu))
+        //    {
+        //        MessageBox.Show("Làm mới thành công");
+        //        LoadData();
+        //    }
+        //}
+    
 
         private void btn_LamMoi_Click_1(object sender, EventArgs e)
         {
@@ -268,9 +320,9 @@ namespace _3.PL.Views
         {
             dtg_ShowChucVu.Rows.Clear();
 
-            foreach (var item in _IchucVuServices.Getlst().Where(c => c.Ma.Contains(textBox1.Text)))
+            foreach (var item in _IchucVuServices.GetAllView().Where(c => c.ChucVu.Ma.Contains(textBox1.Text)))
             {
-                dtg_ShowChucVu.Rows.Add(item.ID, item.Ma, item.Ten, item.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                dtg_ShowChucVu.Rows.Add(item.ChucVu.ID, item.ChucVu.Ma, item.ChucVu.Ten, item.ChucVu.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
 

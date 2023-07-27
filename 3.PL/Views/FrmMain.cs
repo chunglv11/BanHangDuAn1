@@ -99,7 +99,7 @@ namespace _3.PL.Views
         {
             var layuser = Properties.Settings.Default.TKdaLogin;
             var nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Username == layuser);
-            var role = _ichucVuServices.Getlst().FirstOrDefault(c => c.ID == nv.IDCV);
+            var role = _ichucVuServices.GetAll().FirstOrDefault(c => c.ID == nv.IDCV);
             lb_TenCV.Text = role.Ten;
             lb_TenNV.Text = nv.HoTen;
         }
