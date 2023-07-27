@@ -23,8 +23,9 @@ namespace _1.DAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-Q3TF2SAN\SQLEXPRESS;Initial Catalog=QuanLyBanQuanAo;User ID=sa;Password=24122003;TrustServerCertificate=True;
-");
+
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-JV9E5UC\SQLEXPRESS;Initial Catalog=QuanLyBanQuanAo;User ID=toanck;Password=123456789;TrustServerCertificate=True");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
