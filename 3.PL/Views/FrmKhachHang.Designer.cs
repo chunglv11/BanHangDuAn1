@@ -36,8 +36,8 @@
             groupBox1 = new GroupBox();
             txb_sdt = new TextBox();
             label4 = new Label();
-            rbtn_KHD = new RadioButton();
-            rbtn_HD = new RadioButton();
+            rbtn_Quen = new RadioButton();
+            rbtn_Vang = new RadioButton();
             txb_diem = new TextBox();
             txb_hoten = new TextBox();
             label3 = new Label();
@@ -113,14 +113,14 @@
             dtg_ShowKhachHang.RowTemplate.Height = 29;
             dtg_ShowKhachHang.Size = new Size(690, 193);
             dtg_ShowKhachHang.TabIndex = 9;
-            dtg_ShowKhachHang.CellContentClick += dtg_ShowKhachHang_CellContentClick;
+            dtg_ShowKhachHang.CellClick += dtg_ShowKhachHang_CellClick;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(txb_sdt);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(rbtn_KHD);
-            groupBox1.Controls.Add(rbtn_HD);
+            groupBox1.Controls.Add(rbtn_Quen);
+            groupBox1.Controls.Add(rbtn_Vang);
             groupBox1.Controls.Add(txb_diem);
             groupBox1.Controls.Add(txb_hoten);
             groupBox1.Controls.Add(label3);
@@ -152,27 +152,27 @@
             label4.TabIndex = 9;
             label4.Text = "Số điện thoại:";
             // 
-            // rbtn_KHD
+            // rbtn_Quen
             // 
-            rbtn_KHD.AutoSize = true;
-            rbtn_KHD.Location = new Point(285, 175);
-            rbtn_KHD.Name = "rbtn_KHD";
-            rbtn_KHD.Size = new Size(122, 27);
-            rbtn_KHD.TabIndex = 8;
-            rbtn_KHD.TabStop = true;
-            rbtn_KHD.Text = "Khách quen";
-            rbtn_KHD.UseVisualStyleBackColor = true;
+            rbtn_Quen.AutoSize = true;
+            rbtn_Quen.Location = new Point(285, 175);
+            rbtn_Quen.Name = "rbtn_Quen";
+            rbtn_Quen.Size = new Size(122, 27);
+            rbtn_Quen.TabIndex = 8;
+            rbtn_Quen.TabStop = true;
+            rbtn_Quen.Text = "Khách quen";
+            rbtn_Quen.UseVisualStyleBackColor = true;
             // 
-            // rbtn_HD
+            // rbtn_Vang
             // 
-            rbtn_HD.AutoSize = true;
-            rbtn_HD.Location = new Point(133, 173);
-            rbtn_HD.Name = "rbtn_HD";
-            rbtn_HD.Size = new Size(143, 27);
-            rbtn_HD.TabIndex = 7;
-            rbtn_HD.TabStop = true;
-            rbtn_HD.Text = "Khách vãng lai";
-            rbtn_HD.UseVisualStyleBackColor = true;
+            rbtn_Vang.AutoSize = true;
+            rbtn_Vang.Location = new Point(133, 173);
+            rbtn_Vang.Name = "rbtn_Vang";
+            rbtn_Vang.Size = new Size(143, 27);
+            rbtn_Vang.TabIndex = 7;
+            rbtn_Vang.TabStop = true;
+            rbtn_Vang.Text = "Khách vãng lai";
+            rbtn_Vang.UseVisualStyleBackColor = true;
             // 
             // txb_diem
             // 
@@ -355,8 +355,8 @@
 
         private Panel panel2;
         private GroupBox groupBox1;
-        private RadioButton rbtn_KHD;
-        private RadioButton rbtn_HD;
+        private RadioButton rbtn_Quen;
+        private RadioButton rbtn_Vang;
 
         private TextBox txb_diem;
         private TextBox txb_hoten;

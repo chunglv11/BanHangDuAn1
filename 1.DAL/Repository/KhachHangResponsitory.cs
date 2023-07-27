@@ -64,6 +64,10 @@ namespace _1.DAL.Repository
             try
             {
                 var khach_hang = _context.KhachHangs.FirstOrDefault(c => c.ID == obj.ID);
+                khach_hang.HovaTen = obj.HovaTen;
+                khach_hang.SDT = obj.SDT;
+                khach_hang.Diem = obj.Diem;
+                khach_hang.TrangThai = obj.TrangThai;
                 _context.KhachHangs.Update(khach_hang);
                 _context.SaveChanges();
                 return true;

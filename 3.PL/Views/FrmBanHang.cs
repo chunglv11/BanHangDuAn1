@@ -50,6 +50,7 @@ namespace _3.PL.Views
             _ichiTietTTService = new ChiTietTTService();
             idThanhToanOffline = _iphuongThucTTServices.GetAllThanhToan().FirstOrDefault(c => c.MaPTThanhToan == "Offline").ID;
             idThanhToanOnline = _iphuongThucTTServices.GetAllThanhToan().FirstOrDefault(c => c.MaPTThanhToan == "Online").ID;
+
             _ihoaDonServices = new HoaDonServices();
             _ihoaDonCTServices = new HoaDonChiTietServices();
             _HDCT = new List<HoaDonCTVM>();
@@ -431,13 +432,15 @@ namespace _3.PL.Views
                     _kh = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.SDT == tb_SDT.Text);
                     if (_kh != null)
                     {
-                        //string maHoaDon = $"HD-{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}";//cho lên biến toàn cục bị lỗi khi tạo hoá đơn
-                        int maHoaDon = _ihoaDonServices.GetAllHoaDon().Count() + 1;//tạo hoá đơn lúc được lú không được OẢI :))
+                        DateTime date = DateTime.Now;
+                        string maHoaDon = $"HD-{date.Year}-{date.Month}-{date.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}";//cho lên biến toàn cục bị lỗi khi tạo hoá đơn
+                        //int maHoaDon = _ihoaDonServices.GetAllHoaDon().Count() + 1;//tạo hoá đơn lúc được lú không được OẢI :))
+                        //trùng mã hoá đơn nếu 1 mã đã thanh toán và 1 mã chưa thanh toán
                         HoaDon hd = new HoaDon()
                         {
                             ID = Guid.NewGuid(),
                             IDNV = nv,
-                            Ma = "HD" + maHoaDon,
+                            Ma = /*"HD" + */maHoaDon.ToString(),
                             IDKH = _kh.ID,
                             IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetByMa(Cbb_GiamGia.Text).ID,
                             NgayTao = DateTime.Now,
@@ -459,12 +462,12 @@ namespace _3.PL.Views
                             tb_TongTien.Text = total.ToString("N0");
                             tb_SDT.Text = "";
                             lb_Tongtien.Text = "";
-                            MessageBox.Show($"Đã tạo hóa đơn có mã là [{hd.Ma}]");
                             LoadSp(_isanphamChiTietServices.GetsListCtSp());
                             LoadDonHang();
                             ClearGioHang();
 
                         }
+                        MessageBox.Show($"Đã tạo hóa đơn có mã là [{hd.Ma}]");
                         _idhd = Guid.Empty;
                     }
                     else
@@ -617,7 +620,7 @@ namespace _3.PL.Views
             HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
             var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
             int x;
-            if (tb_Diem.Text == "" || Convert.ToDecimal(tb_TienThua.Text) < 0 || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(tb_TongTien.Text) < 0)
+            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem /*|| Convert.ToDecimal(tb_TienThua.Text) < 0*/ || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(tb_TongTien.Text) < 0)
             {
                 MessageBox.Show("Kiểm tra lại giá trị đầu vào");
             }
@@ -628,13 +631,39 @@ namespace _3.PL.Views
                     DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn thanh toán không?", "Thanh toán", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        #region Hoá đơn
                         hd.TrangThai = 1;
                         hd.NgayThanhToan = DateTime.Now;
                         _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToDecimal(tb_TTOnline.Text.Trim()) });
                         _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToDecimal(tb_TienKhachDua.Text.Trim()) });
                         _ihoaDonServices.UpdateHoaDon(hd);
+                        #endregion
+                        #region Điểm Khách hàng
+                        if (tb_TienKhachDua.Text == "0" && Convert.ToDecimal(tb_Diem.Text) > Convert.ToDecimal(tb_TongTien.Text))
+                        {
+                            tb_TienThua.Text = "0";
+                            Khach.Diem -= Convert.ToInt32(tb_TongTien.Text);
+                        }
+                        else
+                        {
+                            //Cần thêm nếu là khách vãng lai thì không cộng điểm
+                            if (tb_Diem.Text != "")
+                            {
+                                //Nếu dùng điểm thì trừ đi số điểm dùng và cộng thêm điểm khi mua hàng
+                                Khach.Diem = Khach.Diem + (Convert.ToInt32(tb_TongTien.Text) / 100) - Convert.ToInt32(tb_Diem.Text); //Lỗi
+                            }
+                            else
+                            {
+                                //không dùng điểm thì cộng dồn điểm
+                                Khach.Diem += (Convert.ToInt32(tb_TongTien.Text) / 100);
+                            }
+                        }
+                        _ikhachHangServices.EditKhachHang(Khach);
+                        #endregion
+                        //Thiếu trừ sản phẩm sau khi thanh toán
                         MessageBox.Show("Thanh toán thành công");
                         LoadDonHang();
+                        ClearGioHang();
                     }
 
 
@@ -667,30 +696,32 @@ namespace _3.PL.Views
         private void tb_TTOnline_TextChanged(object sender, EventArgs e)
         {
             decimal thanhToanOnline;
-            try
-            {
-                thanhToanOnline = Convert.ToDecimal(tb_TTOnline.Text.Trim());
-            }
-            catch (Exception)
-            {
-                thanhToanOnline = 0;
-            }
-            tb_TienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text.Trim()) + thanhToanOnline - Convert.ToDecimal(tb_TongTien.Text.Trim())).ToString();
+            //try
+            //{
+            thanhToanOnline = Convert.ToDecimal(tb_TTOnline.Text.ToString());
+            //}
+            //catch (Exception)
+            //{
+            //    thanhToanOnline = 0;
+            //}
+            //xoa .trim di van vay
+
+            tb_TienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text.ToString()) + thanhToanOnline - Convert.ToDecimal(tb_TongTien.Text.ToString())).ToString();
         }
 
         private void tb_TienKhachDua_TextChanged(object sender, EventArgs e)
         {
             decimal tienKhachDua;
-            try
-            {
-                tienKhachDua = Convert.ToDecimal(tb_TienKhachDua.Text.Trim());
-            }
-            catch (Exception)
-            {
-                tienKhachDua = 0;
-            }
+            //try
+            //{
+            tienKhachDua = Convert.ToDecimal(tb_TienKhachDua.Text.ToString());
+            //}
+            //catch (Exception)
+            //{
+            //    tienKhachDua = 0;
+            //}
 
-            tb_TienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text.Trim()) + tienKhachDua - Convert.ToDecimal(tb_TongTien.Text.Trim())).ToString();
+            tb_TienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text.ToString()) + tienKhachDua - Convert.ToDecimal(tb_TongTien.Text.ToString())).ToString();
         }
     }
 }
