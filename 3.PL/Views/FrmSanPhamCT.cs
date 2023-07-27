@@ -586,8 +586,9 @@ namespace _3.PL.Views
 
         private void ptb_QR_Click(object sender, EventArgs e)
         {
+            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c => c.ID == _id);
             QRCodeGenerator qr = new QRCodeGenerator();
-            QRCodeData data = qr.CreateQrCode(txt_Ma.Text, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData data = qr.CreateQrCode(sp.ID.ToString(), QRCodeGenerator.ECCLevel.Q);
             QRCode qRCode = new QRCode(data);
             ptb_QR.Image = qRCode.GetGraphic(9);
             ptb_QR.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -609,7 +610,7 @@ namespace _3.PL.Views
                 ptb_QR.Image.Save(dialog.FileName);
                 MessageBox.Show("Lưu thành công", "Thông báo");
             }
-            
+
         }
     }
 }
