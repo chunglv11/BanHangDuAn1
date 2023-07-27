@@ -2,6 +2,11 @@
 using _1.DAL.Models;
 using _1.DAL.Repository;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
+
+
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,87 +17,81 @@ namespace _2.BUS.Services
 {
     public class NhanVienServices : INhanVienServices
     {
-        private readonly INhanVienResponsitory NhanVienMoi;
+        private readonly INhanVienResponsitory _NhanVien;
+
+        private List<NhanVienViewModels> _NhanVienViewModels;
+        private List<ChucVuViewModels> _ChucVuViewModels;
+        private readonly ChucVuResponsitory _ChucVu;
         ShopContext context = new ShopContext();
+
+        //public NhanVienServices()
+        //{
+        //    _NhanVienViewModels =new List<NhanVienViewModels>();
+
+        //private List<NhanVienResponsitory> _NhanVienViewModels;
+        //private List<ChucVuResponsitory> _ChucVu;
+        //ShopContext _shopContext = new ShopContext();
 
         public NhanVienServices()
         {
-            context = new ShopContext();
-            NhanVienMoi = new NhanVienResponsitory();
+            _NhanVienViewModels = new List<NhanVienViewModels>();
+            _ChucVuViewModels = new List<ChucVuViewModels>();
+            _NhanVien = new NhanVienResponsitory();
+            _ChucVu = new ChucVuResponsitory();
         }
 
-        public bool Xoa(NhanVien a)
-        {
 
+
+        public bool Add(NhanVien nhanvien)
+        {
             try
             {
-
-                NhanVienMoi.delete(a);
-                context.SaveChanges();
+                 _NhanVien.add(nhanvien);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                // Handle or log the exception
+                Console.WriteLine($"An error occurred while adding the NhanVien: {ex.Message}");
                 return false;
             }
         }
 
-
-        public bool Edit(NhanVien a)
+        public bool Update(NhanVien nhanvien)
         {
-
-            try
-            {
-                NhanVienMoi.update(a);
-                context.SaveChanges();
-                return true;
-
-            }
-            catch
-            {
-                return false;
-            }
+            return _NhanVien.update(nhanvien);
         }
 
-
-
-
-
-
-
-
-
-
-        public bool Them(NhanVien a)
+        public bool Delete(Guid Id)
         {
-
-            try
-            {
-                NhanVienMoi.add(a);
-                context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return _NhanVien.delete(Id);
         }
 
-        public List<NhanVien> GetAll()
+        List<NhanVien> INhanVienServices.GetAll()
         {
-            return NhanVienMoi.GetAll().ToList();
+            return _NhanVien.GetAll();
         }
 
-        public NhanVien GetById(Guid Id)
+        NhanVien? INhanVienServices.GetByMa(string? ma)
         {
-            return GetAll().FirstOrDefault(c => c.ID == Id);
+            return _NhanVien.GetAll().Find(c => c.MaNv == ma);
         }
 
-        public NhanVien GetByMa(string Ma)
+        public List<NhanVienViewModels> GetAllView()
         {
-            return GetAll().FirstOrDefault(c => c.MaNv == Ma);
+            List<NhanVienViewModels> lst = (from a in _NhanVien.GetAll()
+                                          select new NhanVienViewModels()
+                                          {
+                                              NhanVien = a,
+                                          }).ToList();
+            return lst;
         }
 
-
+        public bool CheckMa(string ma)
+        {
+            return !_ChucVu.GetAll().Any(c => c.Ma == ma);
+        }
     }
+
+
 }
