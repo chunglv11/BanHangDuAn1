@@ -33,6 +33,7 @@
             groupBox1 = new GroupBox();
             panelphai = new Panel();
             groupBox2 = new GroupBox();
+            btn_SaveQr = new Button();
             btn_Them = new Button();
             btn_LamMoi = new Button();
             btn_Sua = new Button();
@@ -70,8 +71,6 @@
             ptb_QR = new PictureBox();
             ptb_AVT = new PictureBox();
             panel2 = new Panel();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             groupBox1.SuspendLayout();
             panelphai.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -116,6 +115,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btn_SaveQr);
             groupBox2.Controls.Add(btn_Them);
             groupBox2.Controls.Add(btn_LamMoi);
             groupBox2.Controls.Add(btn_Sua);
@@ -127,6 +127,16 @@
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Chức năng";
+            // 
+            // btn_SaveQr
+            // 
+            btn_SaveQr.Location = new Point(27, 389);
+            btn_SaveQr.Name = "btn_SaveQr";
+            btn_SaveQr.Size = new Size(196, 58);
+            btn_SaveQr.TabIndex = 62;
+            btn_SaveQr.Text = "Lưu mã QR";
+            btn_SaveQr.UseVisualStyleBackColor = true;
+            btn_SaveQr.Click += btn_SaveQr_Click;
             // 
             // btn_Them
             // 
@@ -178,10 +188,6 @@
             // 
             // panelTrai
             // 
-            panelTrai.BackColor = Color.SeaShell;
-            panelTrai.Controls.Add(rdb_Het);
-            panelTrai.Controls.Add(rdb_Con);
-            panelTrai.Controls.Add(btn_SaveQr);
             panelTrai.Controls.Add(label11);
             panelTrai.Controls.Add(txt_TimKiem);
             panelTrai.Controls.Add(dtg_ShowSanPham);
@@ -290,7 +296,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(866, 349);
+            label7.Location = new Point(827, 476);
             label7.Name = "label7";
             label7.Size = new Size(150, 23);
             label7.TabIndex = 56;
@@ -482,10 +488,9 @@
             // 
             ptb_QR.BackColor = Color.FromArgb(255, 255, 192);
             ptb_QR.BorderStyle = BorderStyle.FixedSingle;
-            ptb_QR.Location = new Point(827, 116);
+            ptb_QR.Location = new Point(725, 116);
             ptb_QR.Name = "ptb_QR";
-            ptb_QR.Size = new Size(223, 211);
-            ptb_QR.SizeMode = PictureBoxSizeMode.StretchImage;
+
             ptb_QR.TabIndex = 26;
             ptb_QR.TabStop = false;
             ptb_QR.Click += ptb_QR_Click;
@@ -509,11 +514,7 @@
             panel2.Size = new Size(1345, 786);
             panel2.TabIndex = 22;
             // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
+
             // FrmSanPhamCT
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -566,7 +567,6 @@
         private PictureBox ptb_QR;
         private PictureBox ptb_AVT;
         private Panel panel2;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private RichTextBox txt_Mota;
         private Button btn_ChonAnh;
         private Label label7;
@@ -578,7 +578,6 @@
         private Button btn_Xoa;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
-        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Button btn_SaveQr;
         private RadioButton rdb_Con;
         private RadioButton rdb_Het;

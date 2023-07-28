@@ -666,22 +666,6 @@ namespace _3.PL.Views
                 ptb_QR.Image.Save(dialog.FileName);
                 MessageBox.Show("Lưu thành công", "Thông báo");
             }
-
-        }
-
-        private void txt_SLT_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Kiểm tra xem ký tự nhập vào có phải là số hay không
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                // Nếu ký tự nhập vào không phải số, hủy sự kiện để không cho phép TextBox hiển thị ký tự đó
-                e.Handled = true;
-            }
-            int maxLength = 5; // Số chữ số tối đa cho phép
-            if (txt_SLT.Text.Length >= maxLength && !char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
         }
     }
 }
