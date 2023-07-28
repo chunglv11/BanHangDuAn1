@@ -38,13 +38,14 @@
             btn_Sua = new Button();
             btn_Xoa = new Button();
             panelTrai = new Panel();
+            rdb_Het = new RadioButton();
+            rdb_Con = new RadioButton();
+            btn_SaveQr = new Button();
             label11 = new Label();
             txt_TimKiem = new TextBox();
             dtg_ShowSanPham = new DataGridView();
             btn_ChonAnh = new Button();
             label7 = new Label();
-            rdb_Het = new RadioButton();
-            rdb_Con = new RadioButton();
             txt_Mota = new RichTextBox();
             label13 = new Label();
             txt_SLT = new TextBox();
@@ -71,7 +72,6 @@
             panel2 = new Panel();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            btn_SaveQr = new Button();
             groupBox1.SuspendLayout();
             panelphai.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -178,14 +178,15 @@
             // 
             // panelTrai
             // 
+            panelTrai.BackColor = Color.SeaShell;
+            panelTrai.Controls.Add(rdb_Het);
+            panelTrai.Controls.Add(rdb_Con);
             panelTrai.Controls.Add(btn_SaveQr);
             panelTrai.Controls.Add(label11);
             panelTrai.Controls.Add(txt_TimKiem);
             panelTrai.Controls.Add(dtg_ShowSanPham);
             panelTrai.Controls.Add(btn_ChonAnh);
             panelTrai.Controls.Add(label7);
-            panelTrai.Controls.Add(rdb_Het);
-            panelTrai.Controls.Add(rdb_Con);
             panelTrai.Controls.Add(txt_Mota);
             panelTrai.Controls.Add(label13);
             panelTrai.Controls.Add(txt_SLT);
@@ -214,6 +215,38 @@
             panelTrai.Name = "panelTrai";
             panelTrai.Size = new Size(1339, 757);
             panelTrai.TabIndex = 29;
+            // 
+            // rdb_Het
+            // 
+            rdb_Het.AutoSize = true;
+            rdb_Het.Location = new Point(947, 78);
+            rdb_Het.Name = "rdb_Het";
+            rdb_Het.Size = new Size(103, 27);
+            rdb_Het.TabIndex = 64;
+            rdb_Het.TabStop = true;
+            rdb_Het.Text = "Hết hàng";
+            rdb_Het.UseVisualStyleBackColor = true;
+            // 
+            // rdb_Con
+            // 
+            rdb_Con.AutoSize = true;
+            rdb_Con.Location = new Point(827, 78);
+            rdb_Con.Name = "rdb_Con";
+            rdb_Con.Size = new Size(106, 27);
+            rdb_Con.TabIndex = 63;
+            rdb_Con.TabStop = true;
+            rdb_Con.Text = "Còn hàng";
+            rdb_Con.UseVisualStyleBackColor = true;
+            // 
+            // btn_SaveQr
+            // 
+            btn_SaveQr.Location = new Point(827, 375);
+            btn_SaveQr.Name = "btn_SaveQr";
+            btn_SaveQr.Size = new Size(223, 29);
+            btn_SaveQr.TabIndex = 62;
+            btn_SaveQr.Text = "Lưu mã QR";
+            btn_SaveQr.UseVisualStyleBackColor = true;
+            btn_SaveQr.Click += btn_SaveQr_Click;
             // 
             // label11
             // 
@@ -263,28 +296,6 @@
             label7.TabIndex = 56;
             label7.Text = "Click để lấy mã Qr";
             // 
-            // rdb_Het
-            // 
-            rdb_Het.AutoSize = true;
-            rdb_Het.Location = new Point(947, 76);
-            rdb_Het.Name = "rdb_Het";
-            rdb_Het.Size = new Size(103, 27);
-            rdb_Het.TabIndex = 55;
-            rdb_Het.TabStop = true;
-            rdb_Het.Text = "Hết hàng";
-            rdb_Het.UseVisualStyleBackColor = true;
-            // 
-            // rdb_Con
-            // 
-            rdb_Con.AutoSize = true;
-            rdb_Con.Location = new Point(827, 76);
-            rdb_Con.Name = "rdb_Con";
-            rdb_Con.Size = new Size(106, 27);
-            rdb_Con.TabIndex = 54;
-            rdb_Con.TabStop = true;
-            rdb_Con.Text = "Còn hàng";
-            rdb_Con.UseVisualStyleBackColor = true;
-            // 
             // txt_Mota
             // 
             txt_Mota.Location = new Point(112, 352);
@@ -308,6 +319,7 @@
             txt_SLT.Name = "txt_SLT";
             txt_SLT.Size = new Size(209, 30);
             txt_SLT.TabIndex = 51;
+            txt_SLT.KeyPress += txt_SLT_KeyPress;
             // 
             // txt_GiaNhap
             // 
@@ -325,6 +337,7 @@
             // 
             // cmb_Nxs
             // 
+            cmb_Nxs.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Nxs.FormattingEnabled = true;
             cmb_Nxs.Location = new Point(112, 250);
             cmb_Nxs.Name = "cmb_Nxs";
@@ -333,6 +346,7 @@
             // 
             // cmb_Loai
             // 
+            cmb_Loai.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Loai.FormattingEnabled = true;
             cmb_Loai.Location = new Point(111, 203);
             cmb_Loai.Name = "cmb_Loai";
@@ -341,6 +355,7 @@
             // 
             // cmb_MS
             // 
+            cmb_MS.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_MS.FormattingEnabled = true;
             cmb_MS.Location = new Point(111, 158);
             cmb_MS.Name = "cmb_MS";
@@ -349,6 +364,7 @@
             // 
             // cmb_Size
             // 
+            cmb_Size.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Size.FormattingEnabled = true;
             cmb_Size.Location = new Point(110, 113);
             cmb_Size.Name = "cmb_Size";
@@ -357,6 +373,7 @@
             // 
             // cmb_TSP
             // 
+            cmb_TSP.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_TSP.FormattingEnabled = true;
             cmb_TSP.Location = new Point(111, 67);
             cmb_TSP.Name = "cmb_TSP";
@@ -468,6 +485,7 @@
             ptb_QR.Location = new Point(827, 116);
             ptb_QR.Name = "ptb_QR";
             ptb_QR.Size = new Size(223, 211);
+            ptb_QR.SizeMode = PictureBoxSizeMode.StretchImage;
             ptb_QR.TabIndex = 26;
             ptb_QR.TabStop = false;
             ptb_QR.Click += ptb_QR_Click;
@@ -495,16 +513,6 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // btn_SaveQr
-            // 
-            btn_SaveQr.Location = new Point(827, 375);
-            btn_SaveQr.Name = "btn_SaveQr";
-            btn_SaveQr.Size = new Size(223, 29);
-            btn_SaveQr.TabIndex = 62;
-            btn_SaveQr.Text = "Lưu mã QR";
-            btn_SaveQr.UseVisualStyleBackColor = true;
-            btn_SaveQr.Click += btn_SaveQr_Click;
             // 
             // FrmSanPhamCT
             // 
@@ -562,8 +570,6 @@
         private RichTextBox txt_Mota;
         private Button btn_ChonAnh;
         private Label label7;
-        private RadioButton rdb_Het;
-        private RadioButton rdb_Con;
         private DataGridView dtg_ShowSanPham;
         private Label label11;
         private TextBox txt_TimKiem;
@@ -574,5 +580,7 @@
         private Button btn_LamMoi;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Button btn_SaveQr;
+        private RadioButton rdb_Con;
+        private RadioButton rdb_Het;
     }
 }

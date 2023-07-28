@@ -25,7 +25,7 @@ namespace _3.PL.Views
 {
     public partial class FrmSanPhamCT : Form
     {
-        string LinkAnh = "";
+
         private ISanPhamChiTietServices iSpCt;
         private ISanPhamServices iSp;
         private IMauSacServices iMs;
@@ -34,6 +34,8 @@ namespace _3.PL.Views
         private ILoaiSanPhamServices iLoaiSp;
         private SanPhamViewModels viewSpCt;
         private Guid _id;
+        string LinkAnh = "";
+        private bool cellClickEnabled = true; // Biến lưu trữ trạng thái sự kiện CellClick
         public FrmSanPhamCT()
         {
             InitializeComponent();
@@ -51,6 +53,7 @@ namespace _3.PL.Views
             loadSp();
             LoadData();
             reset();
+
         }
         public void LoadData()
         {
@@ -80,8 +83,9 @@ namespace _3.PL.Views
             }
             foreach (var x in lstSpCt)
             {
-                dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai, x.HinhAnh);
+                dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
             }
+            dtg_ShowSanPham.AllowUserToAddRows = false;
         }
 
         private void dtg_ShowSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -111,14 +115,12 @@ namespace _3.PL.Views
                 {
                     ptb_AVT.Image = null;
                 }
-                if (CTSP.TrangThai == 1)
+                if (row.Cells[12].Value.ToString() == "Còn hàng")
                 {
                     rdb_Con.Checked = true;
-                    rdb_Het.Checked = false;
                 }
                 else
                 {
-                    rdb_Con.Checked = false;
                     rdb_Het.Checked = true;
                 }
             }
@@ -132,101 +134,146 @@ namespace _3.PL.Views
             var size = iSize.GetSizeAo().FirstOrDefault(c => c.Ten == cmb_Size.Text);
             var nsx = iNSX.GetNhasanxuat().FirstOrDefault(c => c.Ten == cmb_Nxs.Text);
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            File.Copy(LinkAnh, Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh)), true);
-            LinkAnh = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
-            DialogResult dialogResult = MessageBox.Show("bạn có muốn thêm hay không", "Thông Báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (string.IsNullOrEmpty(LinkAnh))
             {
-                // nhà sản xuất
-
-                if (iNSX.GetNhasanxuat().Any(c => c.Ten == cmb_Nxs.Text) == false)
-
-                {
-                    MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
-                    return;
-                }
-
-                //size giay
-
-                if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
+                MessageBox.Show("Bạn cần thêm ảnh và điền đầy đủ thông tin", "ERR");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("bạn có muốn thêm hay không", "Thông Báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
 
-                    MessageBox.Show("Size áo Không Hợp Lệ", "ERR");
-                    return;
-                }
-                //loai giay
+                    //size giay
 
-                if (iLoaiSp.GetLoaiSP().Any(c => c.Ten == cmb_Loai.Text) == false)
-                {
-                    MessageBox.Show("Tên Loại sản phẩm Không Hợp Lệ", "ERR");
-                    return;
-                }
-
-                // màu sắc
-                if (iMs.GetMauSac().Any(c => c.Ten == cmb_MS.Text) == false)
-                {
-                    MessageBox.Show("Tên màu sắc Không Hợp Lệ", "ERR");
-                    return;
-                }
-
-                // quốc gia
-
-                if (iSp.getlsSpfromDB().Any(c => c.Ten == cmb_TSP.Text) == false)
-                {
-                    MessageBox.Show("Tên sản phẩm Không Hợp Lệ", "ERR");
-                    return;
-                }
-                //Mã
-                if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
-                {
-                    MessageBox.Show("Mã không được trùng", "ERR");
-                    return;
-                }
-
-                if (check() == false)
-                {
-                    return;
-                }
-                {
-                    SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
+                    if (iSize.GetSizeAo().Any(c => c.Ten == cmb_Size.Text) == false)
                     {
-                        ID = Guid.NewGuid(),
-                        IDSP = Sp.ID,
-                        IDMS = Ms.ID,
-                        IDKC = size.ID,
-                        IDLOAI = Loai.ID,
-                        IDNSX = nsx.ID,
-                        HinhAnh = LinkAnh,
-                        SoLuongTon = Convert.ToInt32(txt_SLT.Text),
-                        GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
-                        GiaBan = Convert.ToDecimal(txt_GiaBan.Text),
-                        MoTa = txt_Mota.Text,
-                        Ma = txt_Ma.Text,
-                        TrangThai = rdb_Con.Checked ? 1 : 0,
-                    };
-                    iSpCt.AddSanPhamCT(viewSpCt);
+
+                        MessageBox.Show("Size áo Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+                    // tên sp
+
+                    if (iSp.getlsSpfromDB().Any(c => c.Ten == cmb_TSP.Text) == false)
+                    {
+                        MessageBox.Show("Tên sản phẩm Không Hợp Lệ", "ERR");
+                        return;
+                    }
+                    //Mã
+                    if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
+                    {
+                        MessageBox.Show("Mã không được trùng", "ERR");
+                        return;
+                    }
+                    // màu sắc
+                    if (iMs.GetMauSac().Any(c => c.Ten == cmb_MS.Text) == false)
+                    {
+                        MessageBox.Show("Tên màu sắc Không Hợp Lệ", "ERR");
+                        return;
+                    }
+                    //loai giay
+
+                    if (iLoaiSp.GetLoaiSP().Any(c => c.Ten == cmb_Loai.Text) == false)
+                    {
+                        MessageBox.Show("Tên Loại sản phẩm Không Hợp Lệ", "ERR");
+                        return;
+                    }
+                    // nhà sản xuất
+
+                    if (iNSX.GetNhasanxuat().Any(c => c.Ten == cmb_Nxs.Text) == false)
+
+                    {
+                        MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
+                        return;
+                    }
+
+
+                    if (check() == false)
+                    {
+                        return;
+                    }
+                    {
+                        File.Copy(LinkAnh, Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh)), true);
+                        LinkAnh = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
+                        SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
+                        {
+                            ID = Guid.NewGuid(),
+                            IDSP = Sp.ID,
+                            IDMS = Ms.ID,
+                            IDKC = size.ID,
+                            IDLOAI = Loai.ID,
+                            IDNSX = nsx.ID,
+                            HinhAnh = LinkAnh,
+                            SoLuongTon = Convert.ToInt32(txt_SLT.Text),
+                            GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
+                            GiaBan = Convert.ToDecimal(txt_GiaBan.Text),
+                            MoTa = txt_Mota.Text,
+                            Ma = txt_Ma.Text,
+                            TrangThai = rdb_Con.Checked ? 1 : 0,
+                        };
+                        iSpCt.AddSanPhamCT(viewSpCt);
+                    }
+                    MessageBox.Show("Thêm thành công", "Thông báo");
                     LoadData();
-                }
-                MessageBox.Show("Thêm thành công", "Thông báo");
-                LoadData();
-                if (dialogResult == DialogResult.No)
-                {
-                    return;
+                    if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
                 }
             }
         }
 
         private void ptb_AVT_Click(object sender, EventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            if (op.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog op = new OpenFileDialog())
             {
-                LinkAnh = op.FileName;
-                ptb_AVT.Image = Image.FromFile(op.FileName);
-                ptb_AVT.SizeMode = PictureBoxSizeMode.Zoom;
-            }
-        }
+                if (op.ShowDialog() == DialogResult.OK)
+                {
+                    LinkAnh = op.FileName;
 
+                    try
+                    {
+                        // Sử dụng FileStream để đọc dữ liệu hình ảnh từ tệp
+                        using (FileStream fs = new FileStream(op.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            // Tạo một đối tượng hình ảnh từ luồng dữ liệu
+                            Image image = Image.FromStream(fs);
+
+                            // Kiểm tra xem hình ảnh hợp lệ trước khi gán vào PictureBox
+                            if (IsValidImage(image))
+                            {
+                                ptb_AVT.Image = image;
+                                ptb_AVT.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Hình ảnh không hợp lệ.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi: " + ex.Message);
+                    }
+                }
+            }
+
+            // Phương thức kiểm tra hình ảnh hợp lệ
+
+
+            //OpenFileDialog op = new OpenFileDialog();
+            //if (op.ShowDialog() == DialogResult.OK)
+            //{
+            //    LinkAnh = op.FileName;
+            //    ptb_AVT.Image = Image.FromFile(op.FileName);
+            //    ptb_AVT.SizeMode = PictureBoxSizeMode.Zoom;
+            //}
+        }
+        private bool IsValidImage(Image image)
+        {
+            return (image.Width > 0 && image.Height > 0);
+        }
 
 
         private void btn_Sua_Click(object sender, EventArgs e)
@@ -236,9 +283,6 @@ namespace _3.PL.Views
             var Loai = iLoaiSp.GetLoaiSP().FirstOrDefault(c => c.Ten == cmb_Loai.Text);
             var size = iSize.GetSizeAo().FirstOrDefault(c => c.Ten == cmb_Size.Text);
             var nsx = iNSX.GetNhasanxuat().FirstOrDefault(c => c.Ten == cmb_Nxs.Text);
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            File.Copy(LinkAnh, Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh)), true);
-            LinkAnh = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
             DialogResult dialogResult = MessageBox.Show("bạn có muốn Update hay không", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -249,6 +293,9 @@ namespace _3.PL.Views
                 }
 
                 {
+                    string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+                    File.Copy(LinkAnh, Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh)), true);
+                    LinkAnh = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
                     SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
                     {
                         ID = _id,
@@ -266,10 +313,7 @@ namespace _3.PL.Views
                         TrangThai = rdb_Con.Checked ? 1 : 0,
                     };
                     iSpCt.UpdateSanPhamCT(viewSpCt);
-                    LoadData();
                 }
-
-                LoadData();
                 MessageBox.Show("Sửa thành công", "Thông báo");
                 LoadData();
             }
@@ -281,23 +325,30 @@ namespace _3.PL.Views
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("bạn có muốn Xoa hay không", "Thông Báo", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (iSpCt.GetSanPhamCTByid(_id) == null)
             {
+                MessageBox.Show("Xoa thất bại", "Thông báo");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("bạn có muốn Xoa hay không", "Thông Báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
+
                     {
-                        ID = _id
-                    };
-                    iSpCt.DeleteSanPhamCT(_id);
+                        SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
+                        {
+                            ID = _id
+                        };
+                        iSpCt.DeleteSanPhamCT(_id);
+                    }
+                    MessageBox.Show("Xoa thành công", "Thông báo");
                     LoadData();
                 }
-                MessageBox.Show("Xoa thành công", "Thông báo");
-                LoadData();
-            }
-            if (dialogResult == DialogResult.No)
-            {
-                return;
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
             }
         }
 
@@ -308,25 +359,32 @@ namespace _3.PL.Views
         }
         public void reset()
         {
-            cmb_MS.Text = "";
-            cmb_Loai.Text = "";
-            cmb_Nxs.Text = "";
-            cmb_Size.Text = "";
-            cmb_TSP.Text = "";
+            DataGridViewRow row = dtg_ShowSanPham.Rows[1];
+            _id = Guid.Parse(row.Cells[1].Value.ToString());
+            foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
+            {
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Empty;
+                }
+            }
+            cmb_MS.SelectedItem = null;
+            cmb_Loai.SelectedItem = null;
+            cmb_Nxs.SelectedItem = null;
+            cmb_Size.SelectedItem = null;
+            cmb_TSP.SelectedItem = null;
             txt_GiaBan.Text = "";
             txt_GiaNhap.Text = "";
             txt_Ma.Text = "";
             txt_Mota.Text = "";
             txt_SLT.Text = "";
-            rdb_Con.Text = "";
             ptb_AVT.Image = null;
             ptb_QR.Image = null;
-            rdb_Con.Text = "";
-            rdb_Het.Text = "";
-
-
+            rdb_Con.Checked = false;
+            rdb_Het.Checked = false;
 
         }
+
         public bool check()
         {
             //check mã sp
@@ -549,8 +607,6 @@ namespace _3.PL.Views
             }
         }
 
-
-
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
             LoadData();
@@ -586,8 +642,9 @@ namespace _3.PL.Views
 
         private void ptb_QR_Click(object sender, EventArgs e)
         {
+            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c => c.ID == _id);
             QRCodeGenerator qr = new QRCodeGenerator();
-            QRCodeData data = qr.CreateQrCode(txt_Ma.Text, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData data = qr.CreateQrCode(sp.ID.ToString(), QRCodeGenerator.ECCLevel.Q);
             QRCode qRCode = new QRCode(data);
             ptb_QR.Image = qRCode.GetGraphic(9);
             ptb_QR.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -609,7 +666,22 @@ namespace _3.PL.Views
                 ptb_QR.Image.Save(dialog.FileName);
                 MessageBox.Show("Lưu thành công", "Thông báo");
             }
-            
+
+        }
+
+        private void txt_SLT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Kiểm tra xem ký tự nhập vào có phải là số hay không
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                // Nếu ký tự nhập vào không phải số, hủy sự kiện để không cho phép TextBox hiển thị ký tự đó
+                e.Handled = true;
+            }
+            int maxLength = 5; // Số chữ số tối đa cho phép
+            if (txt_SLT.Text.Length >= maxLength && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
