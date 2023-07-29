@@ -39,7 +39,7 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            lb_Tongtien = new Label();
+            lb_Thanhtien = new Label();
             label14 = new Label();
             btn_XoaGio = new Button();
             btn_XoaSp = new Button();
@@ -52,15 +52,17 @@
             dtg_DonHang = new DataGridView();
             panelPhai = new Panel();
             groupBox5 = new GroupBox();
-            tb_TienThua = new TextBox();
+            lb_TongTienGiam = new Label();
+            lb_TongTien = new Label();
+            lbTienThua = new Label();
             label16 = new Label();
             lb_GiamGiaDiem = new Label();
             lb_Tenkh = new Label();
+            label8 = new Label();
             lb_Diem = new Label();
             label15 = new Label();
             tb_Diem = new TextBox();
             label12 = new Label();
-            tb_TongTienGiam = new TextBox();
             label13 = new Label();
             btn_HuyDon = new Button();
             btn_ThanhToan = new Button();
@@ -70,8 +72,6 @@
             label10 = new Label();
             tb_TienKhachDua = new TextBox();
             label9 = new Label();
-            tb_TongTien = new TextBox();
-            label8 = new Label();
             Cbb_GiamGia = new ComboBox();
             label7 = new Label();
             label6 = new Label();
@@ -132,6 +132,7 @@
             // 
             // flowPanelSp
             // 
+            flowPanelSp.AutoScroll = true;
             flowPanelSp.Dock = DockStyle.Fill;
             flowPanelSp.Location = new Point(3, 23);
             flowPanelSp.Name = "flowPanelSp";
@@ -163,6 +164,7 @@
             // 
             // cbb_LoaiSP
             // 
+            cbb_LoaiSP.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_LoaiSP.FormattingEnabled = true;
             cbb_LoaiSP.Location = new Point(161, 32);
             cbb_LoaiSP.Name = "cbb_LoaiSP";
@@ -190,7 +192,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(lb_Tongtien);
+            groupBox2.Controls.Add(lb_Thanhtien);
             groupBox2.Controls.Add(label14);
             groupBox2.Controls.Add(btn_XoaGio);
             groupBox2.Controls.Add(btn_XoaSp);
@@ -207,15 +209,15 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
             // 
-            // lb_Tongtien
+            // lb_Thanhtien
             // 
-            lb_Tongtien.AutoSize = true;
-            lb_Tongtien.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lb_Tongtien.Location = new Point(501, 221);
-            lb_Tongtien.Name = "lb_Tongtien";
-            lb_Tongtien.Size = new Size(44, 32);
-            lb_Tongtien.TabIndex = 76;
-            lb_Tongtien.Text = ".....";
+            lb_Thanhtien.AutoSize = true;
+            lb_Thanhtien.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lb_Thanhtien.Location = new Point(501, 221);
+            lb_Thanhtien.Name = "lb_Thanhtien";
+            lb_Thanhtien.Size = new Size(44, 32);
+            lb_Thanhtien.TabIndex = 76;
+            lb_Thanhtien.Text = ".....";
             // 
             // label14
             // 
@@ -223,9 +225,9 @@
             label14.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label14.Location = new Point(351, 221);
             label14.Name = "label14";
-            label14.Size = new Size(124, 32);
+            label14.Size = new Size(131, 32);
             label14.TabIndex = 75;
-            label14.Text = "Tổng tiền:";
+            label14.Text = "Thành tiền";
             // 
             // btn_XoaGio
             // 
@@ -251,6 +253,7 @@
             // 
             // cbb_Cam
             // 
+            cbb_Cam.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_Cam.FormattingEnabled = true;
             cbb_Cam.Location = new Point(925, 15);
             cbb_Cam.Name = "cbb_Cam";
@@ -336,15 +339,17 @@
             // 
             // groupBox5
             // 
-            groupBox5.Controls.Add(tb_TienThua);
+            groupBox5.Controls.Add(lb_TongTienGiam);
+            groupBox5.Controls.Add(lb_TongTien);
+            groupBox5.Controls.Add(lbTienThua);
             groupBox5.Controls.Add(label16);
             groupBox5.Controls.Add(lb_GiamGiaDiem);
             groupBox5.Controls.Add(lb_Tenkh);
+            groupBox5.Controls.Add(label8);
             groupBox5.Controls.Add(lb_Diem);
             groupBox5.Controls.Add(label15);
             groupBox5.Controls.Add(tb_Diem);
             groupBox5.Controls.Add(label12);
-            groupBox5.Controls.Add(tb_TongTienGiam);
             groupBox5.Controls.Add(label13);
             groupBox5.Controls.Add(btn_HuyDon);
             groupBox5.Controls.Add(btn_ThanhToan);
@@ -354,8 +359,6 @@
             groupBox5.Controls.Add(label10);
             groupBox5.Controls.Add(tb_TienKhachDua);
             groupBox5.Controls.Add(label9);
-            groupBox5.Controls.Add(tb_TongTien);
-            groupBox5.Controls.Add(label8);
             groupBox5.Controls.Add(Cbb_GiamGia);
             groupBox5.Controls.Add(label7);
             groupBox5.Controls.Add(label6);
@@ -375,12 +378,32 @@
             groupBox5.TabStop = false;
             groupBox5.Text = "Thông tin";
             // 
-            // tb_TienThua
+            // lb_TongTienGiam
             // 
-            tb_TienThua.Location = new Point(149, 729);
-            tb_TienThua.Name = "tb_TienThua";
-            tb_TienThua.Size = new Size(213, 30);
-            tb_TienThua.TabIndex = 83;
+            lb_TongTienGiam.AutoSize = true;
+            lb_TongTienGiam.Location = new Point(150, 492);
+            lb_TongTienGiam.Name = "lb_TongTienGiam";
+            lb_TongTienGiam.Size = new Size(30, 23);
+            lb_TongTienGiam.TabIndex = 86;
+            lb_TongTienGiam.Text = ".....";
+            // 
+            // lb_TongTien
+            // 
+            lb_TongTien.AutoSize = true;
+            lb_TongTien.Location = new Point(150, 541);
+            lb_TongTien.Name = "lb_TongTien";
+            lb_TongTien.Size = new Size(30, 23);
+            lb_TongTien.TabIndex = 84;
+            lb_TongTien.Text = ".....";
+            // 
+            // lbTienThua
+            // 
+            lbTienThua.AutoSize = true;
+            lbTienThua.Location = new Point(150, 736);
+            lbTienThua.Name = "lbTienThua";
+            lbTienThua.Size = new Size(30, 23);
+            lbTienThua.TabIndex = 83;
+            lbTienThua.Text = ".....";
             // 
             // label16
             // 
@@ -409,6 +432,15 @@
             lb_Tenkh.TabIndex = 80;
             lb_Tenkh.Text = "Tên kh...";
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(12, 541);
+            label8.Name = "label8";
+            label8.Size = new Size(83, 23);
+            label8.TabIndex = 61;
+            label8.Text = "Tổng tiền";
+            // 
             // lb_Diem
             // 
             lb_Diem.AutoSize = true;
@@ -433,6 +465,7 @@
             tb_Diem.Name = "tb_Diem";
             tb_Diem.Size = new Size(109, 30);
             tb_Diem.TabIndex = 78;
+            tb_Diem.KeyPress += tb_Diem_KeyPress;
             // 
             // label12
             // 
@@ -443,18 +476,10 @@
             label12.TabIndex = 77;
             label12.Text = "Điểm(Nếu có)";
             // 
-            // tb_TongTienGiam
-            // 
-            tb_TongTienGiam.Enabled = false;
-            tb_TongTienGiam.Location = new Point(152, 539);
-            tb_TongTienGiam.Name = "tb_TongTienGiam";
-            tb_TongTienGiam.Size = new Size(213, 30);
-            tb_TongTienGiam.TabIndex = 76;
-            // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(12, 542);
+            label13.Location = new Point(7, 492);
             label13.Name = "label13";
             label13.Size = new Size(126, 23);
             label13.TabIndex = 75;
@@ -484,6 +509,7 @@
             // 
             // Cbb_LoaiTT
             // 
+            Cbb_LoaiTT.DropDownStyle = ComboBoxStyle.DropDownList;
             Cbb_LoaiTT.FormattingEnabled = true;
             Cbb_LoaiTT.Location = new Point(152, 683);
             Cbb_LoaiTT.Name = "Cbb_LoaiTT";
@@ -507,6 +533,7 @@
             tb_TTOnline.Size = new Size(213, 30);
             tb_TTOnline.TabIndex = 66;
             tb_TTOnline.TextChanged += tb_TTOnline_TextChanged;
+            tb_TTOnline.KeyPress += tb_TTOnline_KeyPress;
             // 
             // label10
             // 
@@ -524,6 +551,7 @@
             tb_TienKhachDua.Size = new Size(213, 30);
             tb_TienKhachDua.TabIndex = 64;
             tb_TienKhachDua.TextChanged += tb_TienKhachDua_TextChanged;
+            tb_TienKhachDua.KeyPress += tb_TienKhachDua_KeyPress;
             // 
             // label9
             // 
@@ -534,30 +562,15 @@
             label9.TabIndex = 63;
             label9.Text = "Tiền khách đưa";
             // 
-            // tb_TongTien
-            // 
-            tb_TongTien.Enabled = false;
-            tb_TongTien.Location = new Point(150, 489);
-            tb_TongTien.Name = "tb_TongTien";
-            tb_TongTien.Size = new Size(213, 30);
-            tb_TongTien.TabIndex = 62;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(10, 492);
-            label8.Name = "label8";
-            label8.Size = new Size(83, 23);
-            label8.TabIndex = 61;
-            label8.Text = "Tổng tiền";
-            // 
             // Cbb_GiamGia
             // 
+            Cbb_GiamGia.DropDownStyle = ComboBoxStyle.DropDownList;
             Cbb_GiamGia.FormattingEnabled = true;
             Cbb_GiamGia.Location = new Point(148, 392);
             Cbb_GiamGia.Name = "Cbb_GiamGia";
             Cbb_GiamGia.Size = new Size(211, 31);
             Cbb_GiamGia.TabIndex = 60;
+            Cbb_GiamGia.SelectedIndexChanged += Cbb_GiamGia_SelectedIndexChanged;
             // 
             // label7
             // 
@@ -589,9 +602,9 @@
             // btn_TaoHD
             // 
             btn_TaoHD.BackColor = Color.FromArgb(255, 192, 128);
-            btn_TaoHD.Location = new Point(16, 269);
+            btn_TaoHD.Location = new Point(31, 269);
             btn_TaoHD.Name = "btn_TaoHD";
-            btn_TaoHD.Size = new Size(343, 56);
+            btn_TaoHD.Size = new Size(328, 56);
             btn_TaoHD.TabIndex = 56;
             btn_TaoHD.Text = "Tạo hoá đơn";
             btn_TaoHD.UseVisualStyleBackColor = false;
@@ -612,6 +625,7 @@
             tb_SDT.Size = new Size(212, 30);
             tb_SDT.TabIndex = 4;
             tb_SDT.TextChanged += tb_SDT_TextChanged;
+            tb_SDT.KeyPress += tb_SDT_KeyPress;
             // 
             // label5
             // 
@@ -703,7 +717,6 @@
         private Label label10;
         private TextBox tb_TienKhachDua;
         private Label label9;
-        private TextBox tb_TongTien;
         private Label label8;
         private Button btn_HuyDon;
         private Button btn_ThanhToan;
@@ -711,10 +724,9 @@
         private Button btn_QuetMa;
         private Button btn_XoaSp;
         private Button btn_XoaGio;
-        private TextBox tb_TongTienGiam;
         private Label label13;
         private Button btn_CapNhatHD;
-        private Label lb_Tongtien;
+        private Label lb_Thanhtien;
         private Label label14;
         private TextBox tb_Diem;
         private Label label12;
@@ -722,7 +734,9 @@
         private Label label15;
         private Label lb_Tenkh;
         private Label lb_GiamGiaDiem;
-        private TextBox tb_TienThua;
         private Label label16;
+        private Label lbTienThua;
+        private Label lb_TongTien;
+        private Label lb_TongTienGiam;
     }
 }

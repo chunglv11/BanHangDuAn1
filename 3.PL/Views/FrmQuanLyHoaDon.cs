@@ -43,7 +43,7 @@ namespace _3.PL.Views
             dtg_ShowHD.Columns[6].Name = " Trạng Thái";
             dtg_ShowHD.AllowUserToAddRows = false;
             dtg_ShowHD.Rows.Clear();
-            foreach (var item in _ihoaDonServices.GetAllHoaDon())
+            foreach (var item in _ihoaDonServices.GetAllHoaDon().OrderByDescending(c => c.NgayTao).ToList())
             {
                 dtg_ShowHD.Rows.Add(item.ID, item.Ma, item.NgayTao, item.NgayThanhToan, item.nhanvien.HoTen, item.khachhang.SDT == "0" ? "Khách vãng lai" : item.khachhang.SDT, item.TrangThai == 1 ? "Đã thanh toán" : "Chờ thanh toán");
             }

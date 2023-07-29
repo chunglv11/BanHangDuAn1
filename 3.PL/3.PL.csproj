@@ -51,4 +51,13 @@
     <Folder Include="Resources\QrCode\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="AForge.Video">
+      <HintPath>C:\Users\laich\Downloads\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>C:\Users\laich\Downloads\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -38,11 +38,9 @@
             label4 = new Label();
             rbtn_Quen = new RadioButton();
             rbtn_Vang = new RadioButton();
-            txb_diem = new TextBox();
             txb_hoten = new TextBox();
             label3 = new Label();
             label2 = new Label();
-            label1 = new Label();
             btn_LamMoi = new Button();
             btn_Xoa = new Button();
             btn_Sua = new Button();
@@ -121,11 +119,9 @@
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(rbtn_Quen);
             groupBox1.Controls.Add(rbtn_Vang);
-            groupBox1.Controls.Add(txb_diem);
             groupBox1.Controls.Add(txb_hoten);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
             groupBox1.Dock = DockStyle.Fill;
             groupBox1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.ForeColor = Color.Black;
@@ -138,7 +134,7 @@
             // 
             // txb_sdt
             // 
-            txb_sdt.Location = new Point(133, 130);
+            txb_sdt.Location = new Point(134, 82);
             txb_sdt.Name = "txb_sdt";
             txb_sdt.Size = new Size(274, 30);
             txb_sdt.TabIndex = 10;
@@ -146,7 +142,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 133);
+            label4.Location = new Point(13, 85);
             label4.Name = "label4";
             label4.Size = new Size(115, 23);
             label4.TabIndex = 9;
@@ -155,7 +151,7 @@
             // rbtn_Quen
             // 
             rbtn_Quen.AutoSize = true;
-            rbtn_Quen.Location = new Point(285, 175);
+            rbtn_Quen.Location = new Point(286, 137);
             rbtn_Quen.Name = "rbtn_Quen";
             rbtn_Quen.Size = new Size(122, 27);
             rbtn_Quen.TabIndex = 8;
@@ -166,20 +162,13 @@
             // rbtn_Vang
             // 
             rbtn_Vang.AutoSize = true;
-            rbtn_Vang.Location = new Point(133, 173);
+            rbtn_Vang.Location = new Point(134, 135);
             rbtn_Vang.Name = "rbtn_Vang";
             rbtn_Vang.Size = new Size(143, 27);
             rbtn_Vang.TabIndex = 7;
             rbtn_Vang.TabStop = true;
             rbtn_Vang.Text = "Khách vãng lai";
             rbtn_Vang.UseVisualStyleBackColor = true;
-            // 
-            // txb_diem
-            // 
-            txb_diem.Location = new Point(133, 80);
-            txb_diem.Name = "txb_diem";
-            txb_diem.Size = new Size(274, 30);
-            txb_diem.TabIndex = 5;
             // 
             // txb_hoten
             // 
@@ -191,7 +180,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(5, 175);
+            label3.Location = new Point(6, 137);
             label3.Name = "label3";
             label3.Size = new Size(91, 23);
             label3.TabIndex = 2;
@@ -205,15 +194,6 @@
             label2.Size = new Size(68, 23);
             label2.TabIndex = 1;
             label2.Text = "Họ Tên:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 83);
-            label1.Name = "label1";
-            label1.Size = new Size(54, 23);
-            label1.TabIndex = 0;
-            label1.Text = "Điểm:";
             // 
             // btn_LamMoi
             // 
@@ -357,13 +337,10 @@
         private GroupBox groupBox1;
         private RadioButton rbtn_Quen;
         private RadioButton rbtn_Vang;
-
-        private TextBox txb_diem;
         private TextBox txb_hoten;
 
         private Label label3;
         private Label label2;
-        private Label label1;
         private Button btn_LamMoi;
         private Button btn_Xoa;
         private Button btn_Sua;

@@ -66,5 +66,10 @@ namespace _2.BUS.Services
                                      }).ToList();
             return lst;
         }
+
+        public KhuyenMai GetKhuyenByName(string? name)
+        {
+            return igKm.GetKhuyenByName(name);
+        }
     }
 }

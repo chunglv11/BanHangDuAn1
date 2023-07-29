@@ -44,22 +44,20 @@ namespace _3.PL.Views
             dtg_ShowKhachHang.Columns[2].Name = "Điểm";
             dtg_ShowKhachHang.Columns[3].Name = "Số điện thoại";
             dtg_ShowKhachHang.Columns[4].Name = "Trạng thái";
-
             dtg_ShowKhachHang.Rows.Clear();
             foreach (var item in _ikhachhang.GetAllKhachHang())
             {
                 dtg_ShowKhachHang.Rows.Add(item.ID, item.HovaTen, item.Diem, item.SDT, item.TrangThai == 1 ? "Khách quen" : "Khách vãng lai");
             }
         }
-
+        //check trung sdt,sdt <10
         private void btn_Them_Click(object sender, EventArgs e)
         {
             _khachhang = new KhachHang()
             {
                 ID = Guid.NewGuid(),
-
                 HovaTen = txb_hoten.Text,
-                Diem = Convert.ToInt32(txb_diem.Text),
+                Diem = 0,
                 SDT = txb_sdt.Text,
                 TrangThai = rbtn_Vang.Checked ? 0 : 1,
             };
@@ -77,8 +75,8 @@ namespace _3.PL.Views
             DialogResult dialog = MessageBox.Show("Bạn có muốn cập nhật khách hàng không?", "Chú ý", MessageBoxButtons.YesNo);
             if (dialog == DialogResult.Yes)
             {
+                _id = _khachhang.ID;
                 _khachhang.HovaTen = txb_hoten.Text;
-                _khachhang.Diem = Convert.ToInt32(txb_diem.Text);
                 _khachhang.SDT = txb_sdt.Text;
                 _khachhang.TrangThai = rbtn_Quen.Checked ? 1 : 0;
                 _ikhachhang.EditKhachHang(_khachhang);
@@ -100,7 +98,6 @@ namespace _3.PL.Views
                 {
                     ID = _id,
                     HovaTen = txb_hoten.Text,
-                    Diem = Convert.ToInt32(txb_diem.Text),
                     SDT = txb_sdt.Text
                 };
                 if (_ikhachhang.DeleteKhachHang(_khachhang))
@@ -119,7 +116,6 @@ namespace _3.PL.Views
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
 
-            txb_diem.Text = "";
             txb_hoten.Text = "";
             txb_sdt.Text = "";
 
@@ -142,7 +138,6 @@ namespace _3.PL.Views
 
             _id = Guid.Parse(dtg_ShowKhachHang.Rows[e.RowIndex].Cells[0].Value.ToString());
             txb_hoten.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txb_diem.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[2].Value.ToString();
             txb_sdt.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[3].Value.ToString();
             rbtn_Vang.Checked = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[4].Value.ToString() == "Khách vãng lai" ? true : false;
             rbtn_Quen.Checked = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[4].Value.ToString() == "Khách quen" ? true : false;
