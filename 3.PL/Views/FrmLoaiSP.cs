@@ -1,4 +1,5 @@
-﻿using _2.BUS.IServices;
+﻿using _1.DAL.Models;
+using _2.BUS.IServices;
 using _2.BUS.Services;
 using _2.BUS.ViewModels;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -89,6 +91,7 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Size Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                int MaLoaiSp = iLoaiSp.GetLoaiSP().Count() + 1;
                 if (iLoaiSp.GetLoaiSP().Any(c => c.Ma == txt_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
@@ -107,7 +110,7 @@ namespace _3.PL.Views
                     PhanLoaiSpViewModels x = new PhanLoaiSpViewModels()
                     {
                         ID = Guid.NewGuid(),
-                        Ma = txt_Ma.Text,
+                        Ma = "LSP" + MaLoaiSp.ToString(),
                         Ten = txt_Ten.Text,
                         TrangThai = rbtn_HD.Checked ? 1 : 0
                     };
@@ -133,7 +136,7 @@ namespace _3.PL.Views
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-              DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa loại sản phẩm Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa loại sản phẩm Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 if (viewPhanLoai == null)
@@ -151,6 +154,26 @@ namespace _3.PL.Views
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void btn_LamMoi_Click(object sender, EventArgs e)
+        {
+            Guid _id = Guid.Empty;
+            DataGridViewRow row = dtg_ShowLoaiSp.Rows[1];
+            _id = Guid.Parse(row.Cells[1].Value.ToString());
+            foreach (DataGridViewRow row1 in dtg_ShowLoaiSp.Rows)
+            {
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Empty;
+                }
+            }
+
+            txt_Ma.Text="";
+            txt_Ten.Text="";
+            txt_TimKiem.Text="";
+            rbtn_HD.Checked = false;
+            rbtn_KHD.Checked = false;
         }
     }
 }

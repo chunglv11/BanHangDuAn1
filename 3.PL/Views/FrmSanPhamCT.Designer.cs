@@ -35,12 +35,12 @@
             groupBox2 = new GroupBox();
             btn_Them = new Button();
             btn_LamMoi = new Button();
+            btn_SaveQr = new Button();
             btn_Sua = new Button();
             btn_Xoa = new Button();
             panelTrai = new Panel();
             rdb_Het = new RadioButton();
             rdb_Con = new RadioButton();
-            btn_SaveQr = new Button();
             label11 = new Label();
             txt_TimKiem = new TextBox();
             dtg_ShowSanPham = new DataGridView();
@@ -118,6 +118,7 @@
             // 
             groupBox2.Controls.Add(btn_Them);
             groupBox2.Controls.Add(btn_LamMoi);
+            groupBox2.Controls.Add(btn_SaveQr);
             groupBox2.Controls.Add(btn_Sua);
             groupBox2.Controls.Add(btn_Xoa);
             groupBox2.Dock = DockStyle.Fill;
@@ -152,6 +153,16 @@
             btn_LamMoi.UseVisualStyleBackColor = true;
             btn_LamMoi.Click += btn_LamMoi_Click;
             // 
+            // btn_SaveQr
+            // 
+            btn_SaveQr.Location = new Point(27, 390);
+            btn_SaveQr.Name = "btn_SaveQr";
+            btn_SaveQr.Size = new Size(196, 58);
+            btn_SaveQr.TabIndex = 62;
+            btn_SaveQr.Text = "Lưu mã QR";
+            btn_SaveQr.UseVisualStyleBackColor = true;
+            btn_SaveQr.Click += btn_SaveQr_Click;
+            // 
             // btn_Sua
             // 
             btn_Sua.Image = Properties.Resources.updated;
@@ -181,7 +192,6 @@
             panelTrai.BackColor = Color.SeaShell;
             panelTrai.Controls.Add(rdb_Het);
             panelTrai.Controls.Add(rdb_Con);
-            panelTrai.Controls.Add(btn_SaveQr);
             panelTrai.Controls.Add(label11);
             panelTrai.Controls.Add(txt_TimKiem);
             panelTrai.Controls.Add(dtg_ShowSanPham);
@@ -238,16 +248,6 @@
             rdb_Con.Text = "Còn hàng";
             rdb_Con.UseVisualStyleBackColor = true;
             // 
-            // btn_SaveQr
-            // 
-            btn_SaveQr.Location = new Point(827, 375);
-            btn_SaveQr.Name = "btn_SaveQr";
-            btn_SaveQr.Size = new Size(223, 29);
-            btn_SaveQr.TabIndex = 62;
-            btn_SaveQr.Text = "Lưu mã QR";
-            btn_SaveQr.UseVisualStyleBackColor = true;
-            btn_SaveQr.Click += btn_SaveQr_Click;
-            // 
             // label11
             // 
             label11.AutoSize = true;
@@ -286,11 +286,12 @@
             btn_ChonAnh.TabIndex = 57;
             btn_ChonAnh.Text = "Chọn ảnh";
             btn_ChonAnh.UseVisualStyleBackColor = true;
+            btn_ChonAnh.Click += btn_ChonAnh_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(866, 349);
+            label7.Location = new Point(812, 473);
             label7.Name = "label7";
             label7.Size = new Size(150, 23);
             label7.TabIndex = 56;
@@ -319,7 +320,7 @@
             txt_SLT.Name = "txt_SLT";
             txt_SLT.Size = new Size(209, 30);
             txt_SLT.TabIndex = 51;
-            txt_SLT.KeyPress += txt_SLT_KeyPress;
+            txt_SLT.TextChanged += txt_SLT_TextChanged;
             // 
             // txt_GiaNhap
             // 
@@ -327,6 +328,7 @@
             txt_GiaNhap.Name = "txt_GiaNhap";
             txt_GiaNhap.Size = new Size(223, 30);
             txt_GiaNhap.TabIndex = 50;
+            txt_GiaNhap.TextChanged += txt_GiaNhap_TextChanged;
             // 
             // txt_GiaBan
             // 
@@ -334,6 +336,7 @@
             txt_GiaBan.Name = "txt_GiaBan";
             txt_GiaBan.Size = new Size(224, 30);
             txt_GiaBan.TabIndex = 48;
+            txt_GiaBan.TextChanged += txt_GiaBan_TextChanged;
             // 
             // cmb_Nxs
             // 
@@ -383,6 +386,7 @@
             // 
             // txt_Ma
             // 
+            txt_Ma.Enabled = false;
             txt_Ma.Location = new Point(110, 17);
             txt_Ma.Name = "txt_Ma";
             txt_Ma.Size = new Size(207, 30);
@@ -482,9 +486,9 @@
             // 
             ptb_QR.BackColor = Color.FromArgb(255, 255, 192);
             ptb_QR.BorderStyle = BorderStyle.FixedSingle;
-            ptb_QR.Location = new Point(827, 116);
+            ptb_QR.Location = new Point(725, 112);
             ptb_QR.Name = "ptb_QR";
-            ptb_QR.Size = new Size(223, 211);
+            ptb_QR.Size = new Size(325, 336);
             ptb_QR.SizeMode = PictureBoxSizeMode.StretchImage;
             ptb_QR.TabIndex = 26;
             ptb_QR.TabStop = false;

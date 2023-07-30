@@ -207,6 +207,7 @@
             // 
             // txt_Ma
             // 
+            txt_Ma.Enabled = false;
             txt_Ma.Location = new Point(114, 34);
             txt_Ma.Name = "txt_Ma";
             txt_Ma.Size = new Size(273, 30);

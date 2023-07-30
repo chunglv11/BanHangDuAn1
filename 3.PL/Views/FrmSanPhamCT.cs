@@ -35,7 +35,7 @@ namespace _3.PL.Views
         private SanPhamViewModels viewSpCt;
         private Guid _id;
         string LinkAnh = "";
-        private bool cellClickEnabled = true; // Biến lưu trữ trạng thái sự kiện CellClick
+
         public FrmSanPhamCT()
         {
             InitializeComponent();
@@ -83,6 +83,10 @@ namespace _3.PL.Views
             }
             foreach (var x in lstSpCt)
             {
+                if (x.SoLuongTon == 0)
+                {
+                    x.TrangThai = 0;
+                }
                 dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
             }
             dtg_ShowSanPham.AllowUserToAddRows = false;
@@ -133,7 +137,7 @@ namespace _3.PL.Views
             var Loai = iLoaiSp.GetLoaiSP().FirstOrDefault(c => c.Ten == cmb_Loai.Text);
             var size = iSize.GetSizeAo().FirstOrDefault(c => c.Ten == cmb_Size.Text);
             var nsx = iNSX.GetNhasanxuat().FirstOrDefault(c => c.Ten == cmb_Nxs.Text);
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            int maspct = iSpCt.GetsListCtSp().Count() + 1;
             if (string.IsNullOrEmpty(LinkAnh))
             {
                 MessageBox.Show("Bạn cần thêm ảnh và điền đầy đủ thông tin", "ERR");
@@ -161,11 +165,11 @@ namespace _3.PL.Views
                         return;
                     }
                     //Mã
-                    if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
-                    {
-                        MessageBox.Show("Mã không được trùng", "ERR");
-                        return;
-                    }
+                    //if (iSpCt.GetsListCtSp().Any(p => p.Ma == txt_Ma.Text))
+                    //{
+                    //    MessageBox.Show("Mã không được trùng", "ERR");
+                    //    return;
+                    //}
                     // màu sắc
                     if (iMs.GetMauSac().Any(c => c.Ten == cmb_MS.Text) == false)
                     {
@@ -194,6 +198,7 @@ namespace _3.PL.Views
                         return;
                     }
                     {
+                        string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
                         File.Copy(LinkAnh, Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh)), true);
                         LinkAnh = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
                         SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
@@ -209,7 +214,7 @@ namespace _3.PL.Views
                             GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
                             GiaBan = Convert.ToDecimal(txt_GiaBan.Text),
                             MoTa = txt_Mota.Text,
-                            Ma = txt_Ma.Text,
+                            Ma = "SpCt" + maspct.ToString(),
                             TrangThai = rdb_Con.Checked ? 1 : 0,
                         };
                         iSpCt.AddSanPhamCT(viewSpCt);
@@ -294,8 +299,39 @@ namespace _3.PL.Views
 
                 {
                     string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-                    File.Copy(LinkAnh, Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh)), true);
-                    LinkAnh = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
+                    string sourceFilePath = "E:\\DuAn1\\BanHangDuAn1\\3.PL\\Resources\\Images\\new_image.jpg";
+                    string destinationFilePath = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
+
+                    try
+                    {
+                        // Kiểm tra xem đường dẫn nguồn và đích có giống nhau không
+                        if (!string.Equals(sourceFilePath, destinationFilePath, StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Nếu đường dẫn khác nhau, đảm bảo tập tin nguồn đã được giải phóng
+                            using (FileStream sourceFileStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                            {
+                                // Đóng tập tin nguồn trước khi thực hiện sao chép
+                                // Lưu ý: FileShare.Read để cho phép tiến trình khác đọc tập tin nguồn trong quá trình sao chép
+                                sourceFileStream.Close();
+                            }
+
+                            // Sau khi tập tin nguồn đã được đóng, thực hiện sao chép
+                            File.Copy(sourceFilePath, destinationFilePath, true);
+                            Console.WriteLine("Ghi đè thành công!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Đường dẫn nguồn và đích giống nhau. Không thể sao chép.");
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        Console.WriteLine($"Lỗi: {ex.Message}");
+                    }
+
+                    //string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+                    //File.Copy(LinkAnh, Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh)), true);
+                    //LinkAnh = Path.Combine(projectDirectory, "Resources", "Images", Path.GetFileName(LinkAnh));
                     SanPhamCTViewModels viewSpCt = new SanPhamCTViewModels()
                     {
                         ID = _id,
@@ -359,6 +395,19 @@ namespace _3.PL.Views
         }
         public void reset()
         {
+
+
+            DataGridViewRow row = dtg_ShowSanPham.Rows[1];
+            _id = Guid.Parse(row.Cells[1].Value.ToString());
+            foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
+            {
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Empty;
+                }
+            }
+
+
             //DataGridViewRow row = dtg_ShowSanPham.Rows[1];
             //_id = Guid.Parse(row.Cells[1].Value.ToString());
             //foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
@@ -368,6 +417,7 @@ namespace _3.PL.Views
             //        _id = Guid.Empty;
             //    }
             //}
+
             cmb_MS.SelectedItem = null;
             cmb_Loai.SelectedItem = null;
             cmb_Nxs.SelectedItem = null;
@@ -388,22 +438,22 @@ namespace _3.PL.Views
         public bool check()
         {
             //check mã sp
-            if (string.IsNullOrEmpty(txt_Ma.Text))
-            {
-                MessageBox.Show("mã sản phẩm không được bỏ trống", "Thông báo");
-                return false;
-            }
-            if (Regex.IsMatch(txt_Ma.Text, @"^[a-zA-Z0-9 ]*$") == false)
-            {
+            //if (string.IsNullOrEmpty(txt_Ma.Text))
+            //{
+            //    MessageBox.Show("mã sản phẩm không được bỏ trống", "Thông báo");
+            //    return false;
+            //}
+            //if (Regex.IsMatch(txt_Ma.Text, @"^[a-zA-Z0-9 ]*$") == false)
+            //{
 
-                MessageBox.Show("Mã sản phẩm không được chứa ký tự đặc biệt", "ERR");
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(txt_Ma.Text))
-            {
-                MessageBox.Show("mã hàng hóa không được có khoảng trắng", "Thông báo");
-                return false;
-            }
+            //    MessageBox.Show("Mã sản phẩm không được chứa ký tự đặc biệt", "ERR");
+            //    return false;
+            //}
+            //if (string.IsNullOrWhiteSpace(txt_Ma.Text))
+            //{
+            //    MessageBox.Show("mã hàng hóa không được có khoảng trắng", "Thông báo");
+            //    return false;
+            //}
             // check tên Sp
             if (string.IsNullOrEmpty(cmb_TSP.Text))
             {
@@ -446,7 +496,7 @@ namespace _3.PL.Views
             }
             if (Convert.ToInt32(txt_SLT.Text) <= 0)
             {
-                MessageBox.Show("Số lượng không được âm hoặc nhỏ hơn không", "Thông báo");
+                MessageBox.Show("Số lượng không được âm hoặc nhỏ hơn bằng không", "Thông báo");
                 return false;
             }
 
@@ -482,17 +532,17 @@ namespace _3.PL.Views
                 return false;
             }
             //
-            if (txt_Ma.Text.Length <= 3 && txt_Ma.Text.Length >= 10)
-            {
-                MessageBox.Show("Mã hàng hóa phải trên 3 ký tự và nhỏ hơn 10 kí tự", "ERR");
-                return false;
-            }
-            if (Regex.IsMatch(txt_Ma.Text, @"[0-9]+") == false)
-            {
+            //if (txt_Ma.Text.Length <= 3 && txt_Ma.Text.Length >= 10)
+            //{
+            //    MessageBox.Show("Mã hàng hóa phải trên 3 ký tự và nhỏ hơn 10 kí tự", "ERR");
+            //    return false;
+            //}
+            //if (Regex.IsMatch(txt_Ma.Text, @"[0-9]+") == false)
+            //{
 
-                MessageBox.Show("Mã Hàng hóa Bắt buộc phải chứa số", "ERR");
-                return false;
-            }
+            //    MessageBox.Show("Mã Hàng hóa Bắt buộc phải chứa số", "ERR");
+            //    return false;
+            //}
             if (Regex.IsMatch(txt_GiaBan.Text, @"^[a-zA-Z0-9 ]*$") == false)
             {
 
@@ -503,12 +553,12 @@ namespace _3.PL.Views
             //check trùng
             //macl
 
-            if (Regex.IsMatch(txt_Ma.Text, @"[0-9]+") == false)
-            {
+            //if (Regex.IsMatch(txt_Ma.Text, @"[0-9]+") == false)
+            //{
 
-                MessageBox.Show("Mã hàng hóa Bắt buộc phải chứa số", "ERR");
+            //    MessageBox.Show("Mã hàng hóa Bắt buộc phải chứa số", "ERR");
 
-            }
+            //}
 
 
             //tên
@@ -518,12 +568,16 @@ namespace _3.PL.Views
                 return false;
             }
 
-
+            if (rdb_Con.Checked == false && rdb_Het.Checked == false)
+            {
+                MessageBox.Show("Trạng thái không được bỏ trống", "Thông báo");
+                return false;
+            }
 
             if (Regex.IsMatch(txt_SLT.Text, @"^\d+$") == false)
             {
 
-                MessageBox.Show("số số lượng  không được chứa chữ cái", "ERR");
+                MessageBox.Show("số số lượng Tồn  không được chứa chữ cái", "ERR");
                 return false;
             }
 
@@ -643,44 +697,167 @@ namespace _3.PL.Views
         private void ptb_QR_Click(object sender, EventArgs e)
         {
             var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c => c.ID == _id);
-            QRCodeGenerator qr = new QRCodeGenerator();
-            QRCodeData data = qr.CreateQrCode(sp.ID.ToString(), QRCodeGenerator.ECCLevel.Q);
-            QRCode qRCode = new QRCode(data);
-            ptb_QR.Image = qRCode.GetGraphic(9);
-            ptb_QR.SizeMode = PictureBoxSizeMode.CenterImage;
+            if (sp != null)
+            {
+                QRCodeGenerator qr = new QRCodeGenerator();
+                QRCodeData data = qr.CreateQrCode(sp.ID.ToString(), QRCodeGenerator.ECCLevel.Q);
+                QRCode qRCode = new QRCode(data);
+                ptb_QR.Image = qRCode.GetGraphic(9);
+                ptb_QR.SizeMode = PictureBoxSizeMode.CenterImage;
 
-            int padding = (Math.Max(ptb_QR.Width - ptb_QR.Image.Width, 0) +
-                           Math.Max(ptb_QR.Height - ptb_QR.Image.Height, 0)) / 2;
-            ptb_QR.Padding = new Padding(padding);
-            ptb_QR.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+                int padding = (Math.Max(ptb_QR.Width - ptb_QR.Image.Width, 0) +
+                               Math.Max(ptb_QR.Height - ptb_QR.Image.Height, 0)) / 2;
+                ptb_QR.Padding = new Padding(padding);
+                ptb_QR.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            }
+            else
+            {
+                MessageBox.Show("Không có sản phẩm thì gen QrCode kiểu gì", "ERD", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
         private void btn_SaveQr_Click(object sender, EventArgs e)
         {
+
             string initialDIR = @"E:\DuAn1\BanHangDuAn1\3.PL\Resources\QrCode";
             var dialog = new SaveFileDialog();
             dialog.InitialDirectory = initialDIR;
             dialog.Filter = "PNG|*.png|JPEG|*.jpg|BMP|*.bmp|GIF|*.gif";
+
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                ptb_QR.Image.Save(dialog.FileName);
-                MessageBox.Show("Lưu thành công", "Thông báo");
+                if (ptb_QR.Image != null)
+                {
+                    ptb_QR.Image.Save(dialog.FileName);
+                    MessageBox.Show("Lưu thành công", "Thông báo");
+                }
+
+                MessageBox.Show("Không có hình ảnh để lưu", "ERD", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
-        private void txt_SLT_KeyPress(object sender, KeyPressEventArgs e)
+        private void txt_SLT_TextChanged(object sender, EventArgs e)
         {
-            // Kiểm tra xem ký tự nhập vào có phải là số hay không
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            string input = txt_SLT.Text;
+
+            // Kiểm tra từng ký tự trong input
+            foreach (char c in input)
             {
-                // Nếu ký tự nhập vào không phải số, hủy sự kiện để không cho phép TextBox hiển thị ký tự đó
-                e.Handled = true;
+                // Nếu ký tự không phải là số, loại bỏ nó khỏi input
+                if (!char.IsDigit(c))
+                {
+                    input = input.Replace(c.ToString(), "");
+                }
             }
-            int maxLength = 5; // Số chữ số tối đa cho phép
-            if (txt_SLT.Text.Length >= maxLength && !char.IsControl(e.KeyChar))
+            // Đặt lại giá trị của TextBox sau khi loại bỏ các ký tự không hợp lệ
+            txt_SLT.Text = input;
+            // Giới hạn số lượng chữ số được nhập vào là 5
+            int maxLength = 5;
+
+            // Kiểm tra độ dài của TextBox
+            if (txt_SLT.Text.Length > maxLength)
             {
-                e.Handled = true;
+                // Nếu độ dài vượt quá giới hạn, cắt bớt dữ liệu nhập vào thành maxLength ký tự
+                txt_SLT.Text = txt_SLT.Text.Substring(0, maxLength);
+                // Đặt lại con trỏ (caret) vào cuối TextBox
+                txt_SLT.SelectionStart = maxLength;
+
+            }
+        }
+
+        private void txt_GiaBan_TextChanged(object sender, EventArgs e)
+        {
+            string input = txt_GiaBan.Text;
+
+            // Kiểm tra từng ký tự trong input
+            foreach (char c in input)
+            {
+                // Nếu ký tự không phải là số, loại bỏ nó khỏi input
+                if (!char.IsDigit(c))
+                {
+                    input = input.Replace(c.ToString(), "");
+                }
+            }
+            // Đặt lại giá trị của TextBox sau khi loại bỏ các ký tự không hợp lệ
+            txt_GiaBan.Text = input;
+            // Giới hạn số lượng chữ số được nhập vào là 5
+            int maxLength = 10;
+
+            // Kiểm tra độ dài của TextBox
+            if (txt_GiaBan.Text.Length > maxLength)
+            {
+                // Nếu độ dài vượt quá giới hạn, cắt bớt dữ liệu nhập vào thành maxLength ký tự
+                txt_GiaBan.Text = txt_GiaBan.Text.Substring(0, maxLength);
+                // Đặt lại con trỏ (caret) vào cuối TextBox
+                txt_GiaBan.SelectionStart = maxLength;
+
+            }
+        }
+
+        private void txt_GiaNhap_TextChanged(object sender, EventArgs e)
+        {
+            string input = txt_GiaNhap.Text;
+
+            // Kiểm tra từng ký tự trong input
+            foreach (char c in input)
+            {
+                // Nếu ký tự không phải là số, loại bỏ nó khỏi input
+                if (!char.IsDigit(c))
+                {
+                    input = input.Replace(c.ToString(), "");
+                }
+            }
+            // Đặt lại giá trị của TextBox sau khi loại bỏ các ký tự không hợp lệ
+            txt_GiaNhap.Text = input;
+            // Giới hạn số lượng chữ số được nhập vào là 5
+            int maxLength = 10;
+
+            // Kiểm tra độ dài của TextBox
+            if (txt_GiaNhap.Text.Length > maxLength)
+            {
+                // Nếu độ dài vượt quá giới hạn, cắt bớt dữ liệu nhập vào thành maxLength ký tự
+                txt_GiaNhap.Text = txt_GiaNhap.Text.Substring(0, maxLength);
+                // Đặt lại con trỏ (caret) vào cuối TextBox
+                txt_GiaNhap.SelectionStart = maxLength;
+
+            }
+        }
+
+        private void btn_ChonAnh_Click(object sender, EventArgs e)
+        {
+
+            using (OpenFileDialog op = new OpenFileDialog())
+            {
+                if (op.ShowDialog() == DialogResult.OK)
+                {
+                    LinkAnh = op.FileName;
+
+                    try
+                    {
+                        // Sử dụng FileStream để đọc dữ liệu hình ảnh từ tệp
+                        using (FileStream fs = new FileStream(op.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            // Tạo một đối tượng hình ảnh từ luồng dữ liệu
+                            Image image = Image.FromStream(fs);
+
+                            // Kiểm tra xem hình ảnh hợp lệ trước khi gán vào PictureBox
+                            if (IsValidImage(image))
+                            {
+                                ptb_AVT.Image = image;
+                                ptb_AVT.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Hình ảnh không hợp lệ.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi: " + ex.Message);
+                    }
+                }
             }
         }
     }
