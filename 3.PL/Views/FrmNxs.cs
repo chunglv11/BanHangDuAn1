@@ -137,7 +137,22 @@ namespace _3.PL.Views
         }
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
-            loadData();
+            Guid _id = Guid.Empty;
+            DataGridViewRow row = dtg_ShowNsx.Rows[1];
+            _id = Guid.Parse(row.Cells[1].Value.ToString());
+            foreach (DataGridViewRow row1 in dtg_ShowNsx.Rows)
+            {
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Empty;
+                }
+            }
+
+            txt_Ma.Text="";
+            txt_Ten.Text="";
+            txt_TimKiem.Text="";
+            rbtn_HD.Checked = false;
+            rbtn_KHD.Checked = false;
         }
     }
 }
