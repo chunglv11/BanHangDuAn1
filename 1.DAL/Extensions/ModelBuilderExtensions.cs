@@ -65,13 +65,13 @@ namespace _1.DAL.Extensions
             modelBuilder.Entity<PhuongThucThanhToan>().HasData(new PhuongThucThanhToan()
             {
                 ID = Guid.Parse("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
-                MaPTThanhToan = "PT1",
+                MaPTThanhToan = "Offline",
                 TenPTThanhToan = "Tiền mặt",
                 TrangThai = 1
             }, new PhuongThucThanhToan()
             {
                 ID = Guid.Parse("cc628597-dcf8-4200-abc1-c6eff62b7b39"),
-                MaPTThanhToan = "PT2",
+                MaPTThanhToan = "Online",
                 TenPTThanhToan = "Chuyển khoản",
                 TrangThai = 1
             }
