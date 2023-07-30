@@ -53,6 +53,7 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Màu Sắc Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+
                 if (iMauSac.GetMauSac().Any(c => c.Ma == txt_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
@@ -115,7 +116,7 @@ namespace _3.PL.Views
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Màu Sắc Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Màu Sắc Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 if (viewMs == null)

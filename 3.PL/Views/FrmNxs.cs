@@ -51,6 +51,7 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Size Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                int MaNsx = insx.GetNhasanxuat().Count() + 1;
                 if (insx.GetNhasanxuat().Any(c => c.Ma == txt_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
@@ -69,7 +70,7 @@ namespace _3.PL.Views
                     NsxViewModels x = new NsxViewModels()
                     {
                         ID = Guid.NewGuid(),
-                        Ma = txt_Ma.Text,
+                        Ma = "NSX"+MaNsx.ToString(),
                         Ten = txt_Ten.Text,
                         TrangThai = rbtn_HD.Checked ? 1 : 0
                     };

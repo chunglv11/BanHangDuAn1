@@ -75,6 +75,7 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Size Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                int MaZise = kichThuocServices.GetSizeAo().Count() + 1;
                 if (kichThuocServices.GetSizeAo().Any(c => c.Ma == txt_Ten.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
@@ -93,7 +94,7 @@ namespace _3.PL.Views
                     KichThuocViewModels sz = new KichThuocViewModels()
                     {
                         ID = Guid.NewGuid(),
-                        Ma = txt_Ma.Text,
+                        Ma = "KT"+MaZise.ToString(),
                         Ten = txt_Ten.Text,
                         TrangThai = rbtn_HD.Checked ? 1 : 0
                     };
@@ -145,10 +146,10 @@ namespace _3.PL.Views
                 }
             }
         }
-       
+
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
-            
+
         }
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {

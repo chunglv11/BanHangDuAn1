@@ -13,8 +13,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AForge.Video;
-using AForge.Video.DirectShow;
+//using AForge.Video;
+//using AForge.Video.DirectShow;
 namespace _3.PL.Views
 {
     public partial class FrmBanHang : Form

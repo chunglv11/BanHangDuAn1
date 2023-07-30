@@ -1,4 +1,5 @@
-﻿using _2.BUS.IServices;
+﻿using _1.DAL.Models;
+using _2.BUS.IServices;
 using _2.BUS.Services;
 using _2.BUS.ViewModels;
 using System;
@@ -89,6 +90,7 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Size Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                int MaLoaiSp = iLoaiSp.GetLoaiSP().Count() + 1;
                 if (iLoaiSp.GetLoaiSP().Any(c => c.Ma == txt_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
@@ -107,7 +109,7 @@ namespace _3.PL.Views
                     PhanLoaiSpViewModels x = new PhanLoaiSpViewModels()
                     {
                         ID = Guid.NewGuid(),
-                        Ma = txt_Ma.Text,
+                        Ma = "LSP"+MaLoaiSp.ToString(),
                         Ten = txt_Ten.Text,
                         TrangThai = rbtn_HD.Checked ? 1 : 0
                     };
