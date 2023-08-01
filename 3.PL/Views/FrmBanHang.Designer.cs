@@ -53,7 +53,7 @@
             panelPhai = new Panel();
             groupBox5 = new GroupBox();
             lb_TongTienGiam = new Label();
-            lb_TongTien = new Label();
+            lb_TongTienTT = new Label();
             lbTienThua = new Label();
             label16 = new Label();
             lb_GiamGiaDiem = new Label();
@@ -340,7 +340,7 @@
             // groupBox5
             // 
             groupBox5.Controls.Add(lb_TongTienGiam);
-            groupBox5.Controls.Add(lb_TongTien);
+            groupBox5.Controls.Add(lb_TongTienTT);
             groupBox5.Controls.Add(lbTienThua);
             groupBox5.Controls.Add(label16);
             groupBox5.Controls.Add(lb_GiamGiaDiem);
@@ -387,14 +387,14 @@
             lb_TongTienGiam.TabIndex = 86;
             lb_TongTienGiam.Text = ".....";
             // 
-            // lb_TongTien
+            // lb_TongTienTT
             // 
-            lb_TongTien.AutoSize = true;
-            lb_TongTien.Location = new Point(150, 541);
-            lb_TongTien.Name = "lb_TongTien";
-            lb_TongTien.Size = new Size(30, 23);
-            lb_TongTien.TabIndex = 84;
-            lb_TongTien.Text = ".....";
+            lb_TongTienTT.AutoSize = true;
+            lb_TongTienTT.Location = new Point(150, 541);
+            lb_TongTienTT.Name = "lb_TongTienTT";
+            lb_TongTienTT.Size = new Size(30, 23);
+            lb_TongTienTT.TabIndex = 84;
+            lb_TongTienTT.Text = ".....";
             // 
             // lbTienThua
             // 
@@ -437,9 +437,9 @@
             label8.AutoSize = true;
             label8.Location = new Point(12, 541);
             label8.Name = "label8";
-            label8.Size = new Size(83, 23);
+            label8.Size = new Size(106, 23);
             label8.TabIndex = 61;
-            label8.Text = "Tổng tiền";
+            label8.Text = "Tổng tiền TT";
             // 
             // lb_Diem
             // 
@@ -736,7 +736,7 @@
         private Label lb_GiamGiaDiem;
         private Label label16;
         private Label lbTienThua;
-        private Label lb_TongTien;
+        private Label lb_TongTienTT;
         private Label lb_TongTienGiam;
     }
 }

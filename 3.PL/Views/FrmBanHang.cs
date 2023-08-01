@@ -171,7 +171,7 @@ namespace _3.PL.Views
                     total += Convert.ToDecimal(item.DonGia) * item.SoLuong;
                 }
                 lb_Thanhtien.Text = total.ToString("N0");
-                lb_TongTien.Text = total.ToString("N0");
+                lb_TongTienTT.Text = total.ToString("N0");
             }
             else
             {
@@ -391,13 +391,13 @@ namespace _3.PL.Views
             tb_Diem.Text = "";
             tb_MaHD.Text = "";
             lb_Thanhtien.Text = "";
-            lb_TongTien.Text = "";
+            lb_TongTienTT.Text = "";
         }
         private void LoadDonHang()
         {
             int stt = 0;
             dtg_DonHang.Rows.Clear();
-            dtg_DonHang.ColumnCount = 9;
+            dtg_DonHang.ColumnCount = 8;
             dtg_DonHang.Columns[0].Name = "ID";
             dtg_DonHang.Columns[0].Visible = false;
             dtg_DonHang.Columns[1].Name = "STT";
@@ -405,19 +405,19 @@ namespace _3.PL.Views
             dtg_DonHang.Columns[3].Name = "NV";
             //dtg_DonHang.Columns[2].Visible = false;
             dtg_DonHang.Columns[4].Name = "SDT KH";
-            dtg_DonHang.Columns[5].Name = "Tên khuyến mại";
-            dtg_DonHang.Columns[6].Name = "Ngay Tao";
-            dtg_DonHang.Columns[7].Name = "Ngay Thanh Toan";
-            dtg_DonHang.Columns[7].Visible = false;
-            dtg_DonHang.Columns[8].Name = "Trang Thai";
+            dtg_DonHang.Columns[5].Name = "Ngay Tao";
+            dtg_DonHang.Columns[6].Name = "Ngay Thanh Toan";
+            dtg_DonHang.Columns[6].Visible = false;
+            dtg_DonHang.Columns[7].Name = "Trang Thai";
             dtg_DonHang.AllowUserToAddRows = false;
 
-            foreach (var a in _ihoaDonServices.GetAllHoaDonVM().Where(c => c.TrangThai == 0))
+            foreach (var a in _ihoaDonServices.GetAllHoaDon().Where(c => c.TrangThai == 0))
             {
-                dtg_DonHang.Rows.Add(a.ID, ++stt, a.Ma, a.HoTenNV, a.SDTKH, a.TenKM, a.NgayTao, a.NgayThanhToan, a.TrangThai == 0 ? "Chưa thanh toán" : "Đã thanh toán");
+                dtg_DonHang.Rows.Add(a.ID, ++stt, a.Ma, a.nhanvien.HoTen, a.khachhang.SDT, a.NgayTao, a.NgayThanhToan, a.TrangThai == 0 ? "Chưa thanh toán" : "Đã thanh toán");
             }
 
         }
+        //Số lượng tồn bị âm nếu tạo 2 hoá đơn mà có cùng 1 sản phẩm(sản phẩm bị hết nếu hoá đơn thanh toán trước)
         private void btn_TaoHD_Click(object sender, EventArgs e)
         {
             if (_HDCT.Any())
@@ -433,7 +433,7 @@ namespace _3.PL.Views
                     _kh = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.SDT == tb_SDT.Text);
                     if (_kh != null)
                     {
-                        DateTime date = DateTime.Now;
+
                         string maHoaDon = "HD" + DateTime.Now.Ticks;
                         //int maHoaDon = _ihoaDonServices.GetAllHoaDon().Count() + 1;//tạo hoá đơn lúc được lú không được OẢI :))
                         //trùng mã hoá đơn nếu 1 mã đã thanh toán và 1 mã chưa thanh toán
@@ -460,7 +460,7 @@ namespace _3.PL.Views
                             _ihoaDonCTServices.AddHDCT(hdct);
 
                             tb_MaHD.Text = maHoaDon.ToString();
-                            lb_TongTien.Text = total.ToString("N0");
+                            //lb_TongTienTT.Text = total.ToString("N0");
                             tb_SDT.Text = "";
                             lb_Thanhtien.Text = "";
                             LoadSp(_isanphamChiTietServices.GetsListCtSp());
@@ -495,7 +495,7 @@ namespace _3.PL.Views
                 tb_MaHD.Text = hD.Ma.ToString();
 
                 var od = _ihoaDonCTServices.GetAllHDCT().Where(c => c.IDHD == _idhd);
-                var cid = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(x => x.ID == _idhd).IDKH;// ko thay id hoadon qua id kh
+                var cid = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(x => x.ID == _idhd).IDKH;// ko thay id hoadon qua id kh/đã sửa
                 var c = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(x => x.ID == cid);
                 tb_SDT.Text = c.SDT;
                 lb_Tenkh.Text = c.HovaTen;
@@ -576,7 +576,7 @@ namespace _3.PL.Views
                         _ihoaDonServices.UpdateHoaDon(order);
 
 
-                        lb_TongTien.Text = total.ToString();
+                        lb_TongTienTT.Text = total.ToString();
                         tb_SDT.Text = "";
                         lb_Thanhtien.Text = "";
                         MessageBox.Show($"Cập nhật hóa đơn thành công. Mã: {order.Ma}");
@@ -609,7 +609,7 @@ namespace _3.PL.Views
             }
             else
             {
-                lb_TongTien.Text = "0";
+                lb_TongTienTT.Text = "0";
                 lb_GiamGiaDiem.Text = "(Tối đa : 0)";
             }
         }
@@ -618,7 +618,7 @@ namespace _3.PL.Views
             HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
             var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
             int x;
-            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem /*|| Convert.ToDecimal(tb_TienThua.Text) < 0*/ || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(lb_TongTien.Text) < 0)
+            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem /*|| Convert.ToDecimal(tb_TienThua.Text) < 0*/ || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
             {
                 MessageBox.Show("Kiểm tra lại giá trị đầu vào");
             }
@@ -632,6 +632,7 @@ namespace _3.PL.Views
                         #region Hoá đơn
                         hd.TrangThai = 1;
                         hd.NgayThanhToan = DateTime.Now;
+                        hd.IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID;
                         //hd.IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID;
                         _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToDecimal(tb_TTOnline.Text.Trim()) });
                         _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToDecimal(tb_TienKhachDua.Text.Trim()) });
@@ -725,14 +726,14 @@ namespace _3.PL.Views
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTien.Text)).ToString();
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
                 }
                 else
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTien.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
                     }
                 }
             }
@@ -741,18 +742,18 @@ namespace _3.PL.Views
         private void tb_TTOnline_TextChanged(object sender, EventArgs e)
         {
             decimal thanhToanOnline;
-            ////try
-            ////{
+            //try
+            //{
             thanhToanOnline = Convert.ToDecimal(tb_TTOnline.Text.ToString());
-            ////}
-            ////catch (Exception)
-            ////{
-            ////    thanhToanOnline = 0;
-            ////}
-            ////xoa .trim di van vay
+            //}
+            //catch (Exception)
+            //{
+            //    thanhToanOnline = 0;
+            //}
+            //xoa .trim di van vay
 
-            //lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text.ToString()) + thanhToanOnline - Convert.ToDecimal(tb_TongTien.Text.ToString())).ToString();
-            loadTienThua();
+            lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text.ToString()) + thanhToanOnline - Convert.ToDecimal(lb_TongTienTT.Text.ToString())).ToString();
+            //loadTienThua();
         }
 
         private void tb_TienKhachDua_TextChanged(object sender, EventArgs e)
@@ -770,7 +771,7 @@ namespace _3.PL.Views
             //lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text.ToString()) + tienKhachDua - Convert.ToDecimal(tb_TongTien.Text.ToString())).ToString();
             loadTienThua();
         }
-        //Chỉ được nhập số
+        #region//Chỉ được nhập số
         //-kiểm tra xem phím vừa nhập vào textbox có phải là ký tự số hay không
         //-kiểm tra xem phím vừa nhập vào textbox có phải là các ký tự điều khiển hay k
         private void tb_Diem_KeyPress(object sender, KeyPressEventArgs e)
@@ -811,42 +812,68 @@ namespace _3.PL.Views
                 e.Handled = true;
             }
         }
+        #endregion
 
+
+        //phải nhập lại điểm hoặc tiền khách đưa mới tính được tiền thừa
+        //hoặc làm từ trên xuống dưới km-điểm-nhập tiền
         private void Cbb_GiamGia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //KhuyenMai km = _ikhuyenMaiServices.GetByMa(cb_khuyenmai.Text);
-            //if (!(cb_khuyenmai.SelectedIndex == 0))
-            //{
-            //    if (!(km.SoTienGiam == 0))
-            //    {
-            //        lb_tongtienconlai.Text = (int.Parse(lb_tongtien.Text) - km.SoTienGiam).ToString();
-            //    }
-            //    else
-            //    {
-            //        int tong = int.Parse(lb_tongtien.Text);
-            //        lb_tongtienconlai.Text = (tong / 100 * (100 - km.PhamTramGiam)).ToString();
-            //    }
-            //    if (!(txt_tientra.Text == ""))
-            //    {
-            //        lb_tienthua.Text = (int.Parse(txt_tientra.Text) - int.Parse(lb_tongtienconlai.Text)).ToString();
-            //    }
-            //    else
-            //    {
-            //        lb_tienthua.Text = (0 - int.Parse(lb_tongtienconlai.Text)).ToString();
-            //    }
-            //}
-            //else
-            //{
-            //    lb_tongtienconlai.Text = lb_tongtien.Text;
-            //    if (!(txt_tientra.Text == ""))
-            //    {
-            //        lb_tienthua.Text = (int.Parse(txt_tientra.Text) - int.Parse(lb_tongtienconlai.Text)).ToString();
-            //    }
-            //    else
-            //    {
-            //        lb_tienthua.Text = (0 - int.Parse(lb_tongtienconlai.Text)).ToString();
-            //    }
-            //}
+            decimal total = 0;
+            foreach (var item in _HDCT)
+            {
+                total += item.DonGia * item.SoLuong;
+            }
+            KhuyenMai km = _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text);
+            if (!(Cbb_GiamGia.SelectedIndex == 0))
+            {
+                if (!(km.SoTienGiam == 0))
+                {
+                    lb_TongTienTT.Text = (Convert.ToDouble(total) - km.SoTienGiam).ToString();
+                }
+                else
+                {
+                    int tong = Convert.ToInt32(total);
+                    lb_TongTienTT.Text = (tong / 100 * (100 - km.PhanTramGiam)).ToString();
+                }
+                if (!(tb_TienKhachDua.Text == ""))
+                {
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
+                    {
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
+                    }
+
+                }
+                else
+                {
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
+                    {
+                        lbTienThua.Text = (0 - Convert.ToDouble(lb_TongTienTT.Text)).ToString();
+                    }
+
+                }
+            }
+            else
+            {
+                lb_TongTienTT.Text = lb_Thanhtien.Text;
+                if (!(tb_TienKhachDua.Text == ""))
+                {
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
+                    {
+                        lbTienThua.Text = (Convert.ToDouble(tb_TienKhachDua.Text) - Convert.ToDouble(lb_TongTienTT.Text)).ToString();
+                    }
+
+                }
+                else
+                {
+                    //khi khuyen mai giảm hhêt tien trong hoa don
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))//thêm dòng này mới k bị lỗi convert
+                    {
+                        lbTienThua.Text = (0 - Convert.ToDouble(lb_TongTienTT.Text)).ToString();
+                    }
+
+                }
+            }
         }
     }
 }

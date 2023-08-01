@@ -396,6 +396,7 @@ namespace _3.PL.Views
         public void reset()
         {
 
+
             DataGridViewRow row = dtg_ShowSanPham.Rows[1];
             _id = Guid.Parse(row.Cells[1].Value.ToString());
             foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
@@ -405,6 +406,17 @@ namespace _3.PL.Views
                     _id = Guid.Empty;
                 }
             }
+
+
+            //DataGridViewRow row = dtg_ShowSanPham.Rows[1];
+            //_id = Guid.Parse(row.Cells[1].Value.ToString());
+            //foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
+            //{
+            //    if (row.Cells[1].Value != null)
+            //    {
+            //        _id = Guid.Empty;
+            //    }
+            //}
 
             cmb_MS.SelectedItem = null;
             cmb_Loai.SelectedItem = null;
