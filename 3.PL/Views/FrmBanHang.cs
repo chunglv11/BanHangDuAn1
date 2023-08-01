@@ -221,7 +221,8 @@ namespace _3.PL.Views
             {
                 Cbb_GiamGia.Items.Add(item.Ten);
             }
-
+            Cbb_LoaiTT.Items.Add("Chuyển khoản + Tiền mặt");
+            Cbb_LoaiTT.SelectedIndex = 0;
             foreach (var item in _iphuongThucTTServices.GetAllThanhToan())
             {
                 Cbb_LoaiTT.Items.Add(item.TenPTThanhToan);
@@ -733,7 +734,27 @@ namespace _3.PL.Views
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
+                    }
+                }
+            }
+        }
+        public void loadTienThuaON()
+        {
+            if (!(tb_TTOnline.Text == "" && tb_Diem.Text == ""))
+            {
+                if (tb_Diem.Text == "")
+                {
+                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x))
+                    {
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
+                    }
+                }
+                else
+                {
+                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y))
+                    {
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text) + Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
                     }
                 }
             }
@@ -741,19 +762,19 @@ namespace _3.PL.Views
         //them 1 hàm tt tien onl
         private void tb_TTOnline_TextChanged(object sender, EventArgs e)
         {
-            decimal thanhToanOnline;
-            //try
-            //{
-            thanhToanOnline = Convert.ToDecimal(tb_TTOnline.Text.ToString());
-            //}
-            //catch (Exception)
-            //{
-            //    thanhToanOnline = 0;
-            //}
-            //xoa .trim di van vay
+            //decimal thanhToanOnline;
+            ////try
+            ////{
+            //thanhToanOnline = Convert.ToDecimal(tb_TTOnline.Text.ToString());
+            ////}
+            ////catch (Exception)
+            ////{
+            ////    thanhToanOnline = 0;
+            ////}
+            ////xoa .trim di van vay
 
-            lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text.ToString()) + thanhToanOnline - Convert.ToDecimal(lb_TongTienTT.Text.ToString())).ToString();
-            //loadTienThua();
+            //lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text.ToString()) + thanhToanOnline - Convert.ToDecimal(lb_TongTienTT.Text.ToString())).ToString();
+            loadTienThuaON();
         }
 
         private void tb_TienKhachDua_TextChanged(object sender, EventArgs e)
@@ -873,6 +894,44 @@ namespace _3.PL.Views
                     }
 
                 }
+            }
+        }
+
+        private void btn_HuyDon_Click(object sender, EventArgs e)
+        {
+            HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text);
+            var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
+            try
+            {
+                if (hd != null)
+                {
+                    if (hd.TrangThai is not 1 and not (-1))
+                    {
+                        hd.TrangThai = -1;
+                        _ihoaDonServices.UpdateHoaDon(hd);
+                        MessageBox.Show("Đã hủy hóa đơn");
+                        LoadDonHang();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tb_Diem_TextChanged(object sender, EventArgs e)
+        {
+            HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text);
+            var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
+            if (int.TryParse(tb_Diem.Text, out int y))
+            {
+                if (Convert.ToInt32(tb_Diem.Text) > Khach.Diem)
+                {
+                    MessageBox.Show($"Số điểm bạn nhập vướt quá số điểm khách hàng có: {Khach.Diem}");
+                }
+
             }
         }
     }

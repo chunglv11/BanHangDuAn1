@@ -397,15 +397,15 @@ namespace _3.PL.Views
         {
 
 
-            DataGridViewRow row = dtg_ShowSanPham.Rows[1];
-            _id = Guid.Parse(row.Cells[1].Value.ToString());
-            foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
-            {
-                if (row.Cells[1].Value != null)
-                {
-                    _id = Guid.Empty;
-                }
-            }
+            //DataGridViewRow row = dtg_ShowSanPham.Rows[1];
+            //_id = Guid.Parse(row.Cells[1].Value.ToString());
+            //foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
+            //{
+            //    if (row.Cells[1].Value != null)
+            //    {
+            //        _id = Guid.Empty;
+            //    }
+            //}
 
 
             //DataGridViewRow row = dtg_ShowSanPham.Rows[1];

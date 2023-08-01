@@ -382,7 +382,6 @@
             lb_TongTienTT.Size = new Size(30, 23);
             lb_TongTienTT.TabIndex = 84;
             lb_TongTienTT.Text = ".....";
-            lb_TongTienTT.TextChanged += lb_TongTienTT_TextChanged;
             // 
             // lbTienThua
             // 
@@ -392,7 +391,6 @@
             lbTienThua.Size = new Size(30, 23);
             lbTienThua.TabIndex = 83;
             lbTienThua.Text = ".....";
-            lbTienThua.TextChanged += lbTienThua_TextChanged;
             // 
             // label16
             // 
