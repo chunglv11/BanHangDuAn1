@@ -168,5 +168,25 @@ namespace _3.PL.Views
             }
             return true;
         }
+
+        private void btn_LamMoi_Click(object sender, EventArgs e)
+        {
+            Guid _id = Guid.Empty;
+            DataGridViewRow row = dtg_ShowSanPham.Rows[0];
+            _id = Guid.Parse(row.Cells[0].Value.ToString());
+            foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
+            {
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Empty;
+                }
+            }
+
+            txt_Ma.Text="";
+            txt_Ten.Text="";
+            txt_TimKiem.Text="";
+            rbtn_HD.Checked = false;
+            rbtn_KHD.Checked = false;
+        }
     }
 }

@@ -159,8 +159,8 @@ namespace _3.PL.Views
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
             Guid _id = Guid.Empty;
-            DataGridViewRow row = dtg_ShowLoaiSp.Rows[1];
-            _id = Guid.Parse(row.Cells[1].Value.ToString());
+            DataGridViewRow row = dtg_ShowLoaiSp.Rows[0];
+            _id = Guid.Parse(row.Cells[0].Value.ToString());
             foreach (DataGridViewRow row1 in dtg_ShowLoaiSp.Rows)
             {
                 if (row.Cells[1].Value != null)
