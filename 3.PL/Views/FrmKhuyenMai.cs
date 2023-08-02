@@ -126,6 +126,17 @@ namespace _3.PL.Views
                     _ = MessageBox.Show("Kiểm tra lại số %");
                     return;
                 }
+
+                if (txt_Ma.Text == null || txt_Ten.Text == null || tb_PhanTramGiam.Text == null || tb_SoTienGiam.Text == null)
+                {
+                    _ = MessageBox.Show("Kiểm tra lại thong tin nhập");
+                    return;
+                }
+                if (tb_PhanTramGiam.Text != "0" && tb_SoTienGiam.Text != "0")
+                {
+                    _ = MessageBox.Show("Đã có phần trăm giảm thì không thể cùng có số tiền giảm ");
+                    return;
+                }
                 DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
