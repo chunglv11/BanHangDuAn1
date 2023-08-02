@@ -81,6 +81,7 @@
             label4 = new Label();
             label3 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            btn_Stop = new Button();
             panelFil.SuspendLayout();
             panelTrai.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -190,6 +191,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btn_Stop);
             groupBox2.Controls.Add(lb_Thanhtien);
             groupBox2.Controls.Add(label14);
             groupBox2.Controls.Add(btn_XoaGio);
@@ -266,6 +268,7 @@
             btn_QuetMa.TabIndex = 72;
             btn_QuetMa.Text = "Quét mã";
             btn_QuetMa.UseVisualStyleBackColor = true;
+            btn_QuetMa.Click += btn_QuetMa_Click;
             // 
             // dtg_GioHang
             // 
@@ -634,6 +637,20 @@
             label3.TabIndex = 0;
             label3.Text = "Khách hàng";
             // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
+            // btn_Stop
+            // 
+            btn_Stop.Location = new Point(1129, 133);
+            btn_Stop.Name = "btn_Stop";
+            btn_Stop.Size = new Size(94, 29);
+            btn_Stop.TabIndex = 77;
+            btn_Stop.Text = "Dừng";
+            btn_Stop.UseVisualStyleBackColor = true;
+            btn_Stop.Click += btn_Stop_Click;
+            // 
             // FrmBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -716,5 +733,6 @@
         private Label label16;
         private Label lbTienThua;
         private Label lb_TongTienTT;
+        private Button btn_Stop;
     }
 }
