@@ -14,7 +14,7 @@ namespace _3.PL
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new FrmLayLaiMK());
+            Application.Run(new FrmDangNhap());
 
         }
     }
