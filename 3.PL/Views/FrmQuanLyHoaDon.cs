@@ -123,5 +123,25 @@ namespace _3.PL.Views
 
 
         }
+
+        private void rdb_Chua_CheckedChanged(object sender, EventArgs e)
+        {
+            dtg_ShowHD.Rows.Clear();
+            dtg_hdct.Rows.Clear();
+            foreach (var item in _ihoaDonServices.GetAllHoaDon().Where(c => c.TrangThai is not 1))
+            {
+                dtg_ShowHD.Rows.Add(item.ID, item.Ma, item.NgayTao, item.NgayThanhToan, item.nhanvien.HoTen, item.khachhang.SDT == "0" ? "Khách vãng lai" : item.khachhang.SDT, item.TrangThai == 1 ? "Đã thanh toán" : "Chờ thanh toán");
+            }
+        }
+
+        private void rdb_Da_CheckedChanged(object sender, EventArgs e)
+        {
+            dtg_ShowHD.Rows.Clear();
+            dtg_hdct.Rows.Clear();
+            foreach (var item in _ihoaDonServices.GetAllHoaDon().Where(c => c.TrangThai == 1))
+            {
+                dtg_ShowHD.Rows.Add(item.ID, item.Ma, item.NgayTao, item.NgayThanhToan, item.nhanvien.HoTen, item.khachhang.SDT == "0" ? "Khách vãng lai" : item.khachhang.SDT, item.TrangThai == 1 ? "Đã thanh toán" : "Chờ thanh toán");
+            }
+        }
     }
 }

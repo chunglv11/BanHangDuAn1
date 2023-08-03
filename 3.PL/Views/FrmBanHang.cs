@@ -153,12 +153,12 @@ namespace _3.PL.Views
                 MessageBox.Show("Số Lượng không được chứa ký tự đặc biệt", "ERR");
                 return;
             }
-            if (Regex.IsMatch(content, @"^\d+$") == false)
-            {
+            //if (Regex.IsMatch(content, @"^\d+$") == false)
+            //{
 
-                MessageBox.Show("Số Lượng không được chứa chữ cái", "ERR");
-                return;
-            }
+            //    MessageBox.Show("Số Lượng không được chứa chữ cái", "ERR");
+            //    return;
+            //}
             if (content.Length > 6)
             {
                 MessageBox.Show("Số Lượng Không Cho Phép", "ERR");
@@ -612,7 +612,14 @@ namespace _3.PL.Views
                 var c = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(x => x.ID == cid);
                 tb_SDT.Text = c.SDT;
                 lb_Tenkh.Text = c.HovaTen;
-
+                //if (hD.IDKM == null)
+                //{
+                //    Cbb_GiamGia.SelectedIndex = 0;
+                //}
+                //else
+                //{
+                //    Cbb_GiamGia.Text = _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID.ToString();
+                //}
                 _HDCT = new List<HoaDonCTVM>();
                 foreach (var item in od)
                 {
@@ -726,12 +733,13 @@ namespace _3.PL.Views
                 lb_GiamGiaDiem.Text = "(Tối đa : 0)";
             }
         }
+        //tiền thừa <0 vẫn thanh toán đc. Cần check lại
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
             HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
             var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
             int x;
-            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem /*|| Convert.ToDecimal(tb_TienThua.Text) < 0*/ || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
+            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem || Convert.ToDecimal(lbTienThua.Text) < 0 || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
             {
                 MessageBox.Show("Kiểm tra lại giá trị đầu vào");
             }
@@ -799,9 +807,12 @@ namespace _3.PL.Views
                             LoadSp(_isanphamChiTietServices.GetsListCtSp());
                         }
                         MessageBox.Show("Thanh toán thành công");
-
+                        var idhdd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(c => c.Ma == tb_MaHD.Text).ID;
+                        FrmThongTinHoaDon frmThongTin = new FrmThongTinHoaDon(idhdd);
+                        frmThongTin.ShowDialog();
                         LoadDonHang();
                         ClearGioHang();
+
                     }
 
 
@@ -817,6 +828,8 @@ namespace _3.PL.Views
             {
                 tb_TienKhachDua.Enabled = true;
                 tb_TTOnline.Enabled = true;
+
+
             }
             else if (Cbb_LoaiTT.SelectedItem.ToString() == "Tiền mặt")
             {
@@ -840,7 +853,8 @@ namespace _3.PL.Views
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
+                        var tienthua = Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text);
+                        lbTienThua.Text = tienthua.ToString();
                     }
                 }
                 else
@@ -959,7 +973,7 @@ namespace _3.PL.Views
                     lb_TongTienTT.Text = (tong / 100 * (100 - km.PhanTramGiam)).ToString();
                 }
                 HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text);
-                var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
+                //var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
                 if (!(tb_TienKhachDua.Text == ""))
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
@@ -1051,17 +1065,29 @@ namespace _3.PL.Views
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (ptb_QR.Image != null)
+            try
             {
-                BarcodeReader reader = new BarcodeReader();
-                Result result = reader.Decode((Bitmap)ptb_QR.Image);
-                if (result != null)
+                if (ptb_QR.Image != null)
                 {
-                    var idsp = Guid.Parse(result.ToString());
-                    addCart(idsp);
+                    BarcodeReader reader = new BarcodeReader();
+                    Result result = reader.Decode((Bitmap)ptb_QR.Image);
+                    if (result != null)
+                    {
+                        var idsp = Guid.Parse(result.ToString());
+                        addCart(idsp);
+
+
+                    }
                 }
+                else MessageBox.Show("sản phẩm không tồn tại");
+
             }
-            else MessageBox.Show("sản phẩm không tồn tại");
+            catch (Exception)
+            {
+
+                throw new Exception("Looi");
+            }
+
 
         }
 

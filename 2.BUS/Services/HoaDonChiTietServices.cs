@@ -61,12 +61,13 @@ namespace _2.BUS.Services
                       where a.IDHD == Idhd
                       select new HoaDonCTVM
                       {
+                          IDHD = a.IDHD,
                           IDSPCT = a.IDSPCT,
                           MaSPCT = b.Ma,
                           TenSP = c.Ten,
                           SoLuong = a.SoLuong,
                           DonGia = a.DonGia,
-
+                          ThanhTien = Convert.ToDecimal(a.SoLuong * a.DonGia)
                       };
             return lst.ToList();
         }

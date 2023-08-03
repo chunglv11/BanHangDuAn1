@@ -35,6 +35,8 @@
             btn_Xoa = new Button();
             tb_timkiem = new TextBox();
             dtg_ShowHD = new DataGridView();
+            rdb_Chua = new RadioButton();
+            rdb_Da = new RadioButton();
             panel1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_hdct).BeginInit();
@@ -77,6 +79,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(rdb_Da);
+            groupBox1.Controls.Add(rdb_Chua);
             groupBox1.Controls.Add(btn_Xoa);
             groupBox1.Controls.Add(tb_timkiem);
             groupBox1.Controls.Add(dtg_ShowHD);
@@ -122,6 +126,30 @@
             dtg_ShowHD.TabIndex = 0;
             dtg_ShowHD.CellClick += dtg_ShowHD_CellClick;
             // 
+            // rdb_Chua
+            // 
+            rdb_Chua.AutoSize = true;
+            rdb_Chua.Location = new Point(629, 33);
+            rdb_Chua.Name = "rdb_Chua";
+            rdb_Chua.Size = new Size(185, 32);
+            rdb_Chua.TabIndex = 5;
+            rdb_Chua.TabStop = true;
+            rdb_Chua.Text = "Chưa thanh toán";
+            rdb_Chua.UseVisualStyleBackColor = true;
+            rdb_Chua.CheckedChanged += rdb_Chua_CheckedChanged;
+            // 
+            // rdb_Da
+            // 
+            rdb_Da.AutoSize = true;
+            rdb_Da.Location = new Point(853, 33);
+            rdb_Da.Name = "rdb_Da";
+            rdb_Da.Size = new Size(163, 32);
+            rdb_Da.TabIndex = 6;
+            rdb_Da.TabStop = true;
+            rdb_Da.Text = "Đã thanh toán";
+            rdb_Da.UseVisualStyleBackColor = true;
+            rdb_Da.CheckedChanged += rdb_Da_CheckedChanged;
+            // 
             // FrmQuanLyHoaDon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -149,5 +177,7 @@
         private GroupBox groupBox2;
         private DataGridView dtg_hdct;
         private Button btn_Xoa;
+        private RadioButton rdb_Chua;
+        private RadioButton rdb_Da;
     }
 }
