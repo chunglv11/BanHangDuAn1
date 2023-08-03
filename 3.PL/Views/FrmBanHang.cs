@@ -2,6 +2,8 @@
 using _2.BUS.IServices;
 using _2.BUS.Services;
 using _2.BUS.ViewModels;
+using AForge.Video;
+using AForge.Video.DirectShow;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -9,12 +11,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using AForge.Video;
-//using AForge.Video.DirectShow;
+using ZXing;
+using AForge.Video;
+using AForge.Video.DirectShow;
+using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace _3.PL.Views
 {
     public partial class FrmBanHang : Form
@@ -33,8 +40,8 @@ namespace _3.PL.Views
         List<HoaDonCTVM> _HDCT;
         Guid _idSpct;
         Guid _idhd;
-
-
+        FilterInfoCollection FilterCam;
+        VideoCaptureDevice Videocam;
         KhachHang _kh;
         public FrmBanHang()
         {
@@ -61,6 +68,8 @@ namespace _3.PL.Views
             LoadCbb();
             loadGioHang();
             LoadDonHang();
+            loadCam();
+
         }
 
         public void LoadSp(List<SanPhamCTViewModels> list)
@@ -131,32 +140,71 @@ namespace _3.PL.Views
             }
         }
         //them san pham vao gio
+        //khi cập nhật chọn số lượng chỉ +1,chưa cộng số lượng mình nhập
+
         public void addCart(Guid pID)
         {
             var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(x => x.ID == pID);
             var data = _HDCT.FirstOrDefault(x => x.IDSPCT == p.ID);
-            if (data == null)
+            string content = Interaction.InputBox("Mời Bạn Nhập Số Lượng Muốn Thêm", "Thêm Vào Giỏ Hàng", "", 500, 300);
+            #region check nhập
+            if (Regex.IsMatch(content, @"^[a-zA-Z0-9 ]*$") == false)
             {
-                HoaDonCTVM hoaDonCTVM = new HoaDonCTVM()
-                {
-                    IDSPCT = p.ID,
-                    MaSPCT = p.Ma,
-                    TenSP = p.TenSp,
-                    DonGia = p.GiaBan,
-                    SoLuong = 1,
-
-                };
-                _HDCT.Add(hoaDonCTVM);
+                MessageBox.Show("Số Lượng không được chứa ký tự đặc biệt", "ERR");
+                return;
             }
-            else
+            //if (Regex.IsMatch(content, @"^\d+$") == false)
+            //{
+
+            //    MessageBox.Show("Số Lượng không được chứa chữ cái", "ERR");
+            //    return;
+            //}
+            if (content.Length > 6)
             {
-                if (data.SoLuong == p.SoLuongTon)
+                MessageBox.Show("Số Lượng Không Cho Phép", "ERR");
+                return;
+            }
+            if (Convert.ToInt32(content) < 0)
+            {
+                MessageBox.Show("Số Lượng Không Cho Phép Âm", "ERR");
+                return;
+            }
+            #endregion
+            if (content.Length > 0 && content != "0" && content.Length < 6)
+            {
+                if (Convert.ToInt32(content) <= Convert.ToInt32(_isanphamChiTietServices.GetsListCtSp().Where(c => c.ID == p.ID).Select(c => c.SoLuongTon).FirstOrDefault()))
                 {
-                    MessageBox.Show("Sản phẩm trong giỏ hàng đã vượt quá số lượng cho phép");
+                    if (data == null)
+                    {
+                        HoaDonCTVM hoaDonCTVM = new HoaDonCTVM()
+                        {
+                            IDSPCT = p.ID,
+                            MaSPCT = p.Ma,
+                            TenSP = p.TenSp,
+                            DonGia = p.GiaBan,
+                            SoLuong = Convert.ToInt32(content),
+
+                        };
+                        _HDCT.Add(hoaDonCTVM);
+                    }
+                    else
+                    {
+                        if (data.SoLuong == p.SoLuongTon)
+                        {
+                            MessageBox.Show("Sản phẩm trong giỏ hàng đã vượt quá số lượng cho phép");
+                        }
+                        else
+                        {
+                            data.SoLuong++;
+                        }
+                    }
+
                 }
                 else
                 {
-                    data.SoLuong++;
+
+                    MessageBox.Show("Sản Phẩm Không Đủ Để Thêm", "Thông báo");
+
                 }
             }
             loadGioHang();
@@ -203,9 +251,73 @@ namespace _3.PL.Views
         private void PictureBox_Click(object sender, EventArgs e)
         {
             SanPhamCTViewModels sp = (SanPhamCTViewModels)((PictureBox)sender).Tag;
+            //lấy ra id sp
             var sanp = _isanphamChiTietServices.GetSanPhamCTByid(sp.ID).ID;
             addCart(sanp);
-            loadGioHang();
+            //string content = Interaction.InputBox("Mời Bạn Nhập Số Lượng Muốn Thêm", "Thêm Vào Giỏ Hàng", "", 500, 300);
+            //#region check nhập
+            //if (Regex.IsMatch(content, @"^[a-zA-Z0-9 ]*$") == false)
+            //{
+            //    MessageBox.Show("Số Lượng không được chứa ký tự đặc biệt", "ERR");
+            //    return;
+            //}
+            //if (Regex.IsMatch(content, @"^\d+$") == false)
+            //{
+
+            //    MessageBox.Show("Số Lượng không được chứa chữ cái", "ERR");
+            //    return;
+            //}
+            //if (content.Length > 6)
+            //{
+            //    MessageBox.Show("Số Lượng Không Cho Phép", "ERR");
+            //    return;
+            //}
+            //if (Convert.ToInt32(content) < 0)
+            //{
+            //    MessageBox.Show("Số Lượng Không Cho Phép Âm", "ERR");
+            //    return;
+            //}
+            //#endregion
+            //if (content.Length > 0 && content != "0" && content.Length < 6)
+            //{
+            //    if (Convert.ToInt32(content) <= Convert.ToInt32(_isanphamChiTietServices.GetsListCtSp().Where(c => c.ID == sanp).Select(c => c.SoLuongTon).FirstOrDefault()))
+            //    {
+            //        var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(x => x.ID == sanp);
+            //        var data = _HDCT.FirstOrDefault(x => x.IDSPCT == p.ID);
+            //        if (data == null)
+            //        {
+            //            HoaDonCTVM hoaDonCTVM = new HoaDonCTVM()
+            //            {
+            //                IDSPCT = p.ID,
+            //                MaSPCT = p.Ma,
+            //                TenSP = p.TenSp,
+            //                DonGia = p.GiaBan,
+            //                SoLuong = Convert.ToInt32(content),
+
+            //            };
+            //            _HDCT.Add(hoaDonCTVM);
+            //        }
+            //        else
+            //        {
+            //            if (data.SoLuong == p.SoLuongTon)
+            //            {
+            //                MessageBox.Show("Sản phẩm trong giỏ hàng đã vượt quá số lượng cho phép");
+            //            }
+            //            else
+            //            {
+            //                data.SoLuong++;
+            //            }
+            //        }
+
+            //    }
+            //    else
+            //    {
+
+            //        MessageBox.Show("Sản Phẩm Không Đủ Để Thêm", "Thông báo");
+
+            //    }
+            //}
+            //loadGioHang();
         }
         public void LoadCbb()
         {
@@ -500,7 +612,14 @@ namespace _3.PL.Views
                 var c = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(x => x.ID == cid);
                 tb_SDT.Text = c.SDT;
                 lb_Tenkh.Text = c.HovaTen;
-
+                //if (hD.IDKM == null)
+                //{
+                //    Cbb_GiamGia.SelectedIndex = 0;
+                //}
+                //else
+                //{
+                //    Cbb_GiamGia.Text = _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID.ToString();
+                //}
                 _HDCT = new List<HoaDonCTVM>();
                 foreach (var item in od)
                 {
@@ -614,12 +733,13 @@ namespace _3.PL.Views
                 lb_GiamGiaDiem.Text = "(Tối đa : 0)";
             }
         }
+        //tiền thừa <0 vẫn thanh toán đc. Cần check lại
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
             HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
             var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
             int x;
-            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem /*|| Convert.ToDecimal(tb_TienThua.Text) < 0*/ || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
+            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem || Convert.ToDecimal(lbTienThua.Text) < 0 || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
             {
                 MessageBox.Show("Kiểm tra lại giá trị đầu vào");
             }
@@ -687,9 +807,12 @@ namespace _3.PL.Views
                             LoadSp(_isanphamChiTietServices.GetsListCtSp());
                         }
                         MessageBox.Show("Thanh toán thành công");
-
+                        var idhdd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(c => c.Ma == tb_MaHD.Text).ID;
+                        FrmThongTinHoaDon frmThongTin = new FrmThongTinHoaDon(idhdd);
+                        frmThongTin.ShowDialog();
                         LoadDonHang();
                         ClearGioHang();
+
                     }
 
 
@@ -705,6 +828,8 @@ namespace _3.PL.Views
             {
                 tb_TienKhachDua.Enabled = true;
                 tb_TTOnline.Enabled = true;
+
+
             }
             else if (Cbb_LoaiTT.SelectedItem.ToString() == "Tiền mặt")
             {
@@ -719,6 +844,7 @@ namespace _3.PL.Views
                 tb_TienKhachDua.Text = "0";
             }
         }
+        //phải điền điểm thì ms tính đc tiền thừa chính xác
         public void loadTienThua()
         {
             if (!(tb_TienKhachDua.Text == "" && tb_Diem.Text == ""))
@@ -727,7 +853,8 @@ namespace _3.PL.Views
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
+                        var tienthua = Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text);
+                        lbTienThua.Text = tienthua.ToString();
                     }
                 }
                 else
@@ -747,7 +874,7 @@ namespace _3.PL.Views
                 {
                     if (decimal.TryParse(tb_TTOnline.Text, out decimal x))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text) + Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
                 }
                 else
@@ -805,11 +932,6 @@ namespace _3.PL.Views
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
                 e.Handled = true;
-            // Nếu bạn muốn, bạn có thể cho phép nhập số thực với dấu chấm
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
         }
 
         private void tb_TTOnline_KeyPress(object sender, KeyPressEventArgs e)
@@ -817,21 +939,14 @@ namespace _3.PL.Views
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
                 e.Handled = true;
             // Nếu bạn muốn, bạn có thể cho phép nhập số thực với dấu chấm
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+
         }
 
         private void tb_SDT_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
                 e.Handled = true;
-            // Nếu bạn muốn, bạn có thể cho phép nhập số thực với dấu chấm
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
+
         }
         #endregion
 
@@ -857,11 +972,13 @@ namespace _3.PL.Views
                     int tong = Convert.ToInt32(total);
                     lb_TongTienTT.Text = (tong / 100 * (100 - km.PhanTramGiam)).ToString();
                 }
+                HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text);
+                //var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
                 if (!(tb_TienKhachDua.Text == ""))
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
 
                 }
@@ -932,6 +1049,93 @@ namespace _3.PL.Views
                     MessageBox.Show($"Số điểm bạn nhập vướt quá số điểm khách hàng có: {Khach.Diem}");
                 }
 
+            }
+
+        }
+
+        public void loadCam()
+        {
+            FilterCam = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo device in FilterCam)
+            {
+                cbb_Cam.Items.Add(device.Name);
+            }
+            cbb_Cam.SelectedIndex = 0;
+
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ptb_QR.Image != null)
+                {
+                    BarcodeReader reader = new BarcodeReader();
+                    Result result = reader.Decode((Bitmap)ptb_QR.Image);
+                    if (result != null)
+                    {
+                        var idsp = Guid.Parse(result.ToString());
+                        addCart(idsp);
+
+
+                    }
+                }
+                else MessageBox.Show("sản phẩm không tồn tại");
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Looi");
+            }
+
+
+        }
+
+
+        private void btn_QuetMa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Mở Camera Hay Không ?", "Thông Báo", MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Videocam = new VideoCaptureDevice(FilterCam[cbb_Cam.SelectedIndex].MonikerString);
+                    Videocam.NewFrame += VideoCaptureDevice_NewFrame;
+                    Videocam.Start();
+                    timer1.Start();
+                    MessageBox.Show("Mở cam thành công");
+                };
+
+                if (dialogResult == DialogResult.No)
+                {
+
+                    MessageBox.Show("Mở cam thất bại");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Convert.ToString(ex), "Liên Hệ Với Bé Mỡ để sửa lỗi");
+                return;
+
+            }
+        }
+        private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            ptb_QR.Image = (Bitmap)eventArgs.Frame.Clone();
+
+        }
+
+        private void btn_Stop_Click(object sender, EventArgs e)
+        {
+            if (ptb_QR.Image != null)
+            {
+
+                ptb_QR.Image = null;
+                ptb_QR.ImageLocation = null;
+
+                ptb_QR.Update();
             }
         }
     }
