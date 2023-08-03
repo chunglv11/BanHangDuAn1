@@ -31,11 +31,9 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            label1 = new Label();
             tb_nhaplai = new TextBox();
             tb_pass = new TextBox();
             tb_email = new TextBox();
-            tb_ma = new TextBox();
             btn_Xacnhan = new Button();
             SuspendLayout();
             // 
@@ -62,18 +60,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(40, 100);
             label2.Name = "label2";
-            label2.Size = new Size(48, 20);
+            label2.Size = new Size(89, 20);
             label2.TabIndex = 26;
-            label2.Text = "Gmail";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 39);
-            label1.Name = "label1";
-            label1.Size = new Size(30, 20);
-            label1.TabIndex = 25;
-            label1.Text = "Mã";
+            label2.Text = "Mật khẩu cũ";
             // 
             // tb_nhaplai
             // 
@@ -99,14 +88,6 @@
             tb_email.Size = new Size(469, 27);
             tb_email.TabIndex = 22;
             // 
-            // tb_ma
-            // 
-            tb_ma.Location = new Point(185, 36);
-            tb_ma.Margin = new Padding(3, 4, 3, 4);
-            tb_ma.Name = "tb_ma";
-            tb_ma.Size = new Size(469, 27);
-            tb_ma.TabIndex = 21;
-            // 
             // btn_Xacnhan
             // 
             btn_Xacnhan.Location = new Point(501, 299);
@@ -115,6 +96,7 @@
             btn_Xacnhan.TabIndex = 29;
             btn_Xacnhan.Text = "Xác nhận";
             btn_Xacnhan.UseVisualStyleBackColor = true;
+            
             // 
             // FrmDoiMK
             // 
@@ -126,11 +108,9 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(tb_nhaplai);
             Controls.Add(tb_pass);
             Controls.Add(tb_email);
-            Controls.Add(tb_ma);
             Name = "FrmDoiMK";
             Text = "FrmDoiMK";
             ResumeLayout(false);
@@ -142,11 +122,9 @@
         private Label label4;
         private Label label3;
         private Label label2;
-        private Label label1;
         private TextBox tb_nhaplai;
         private TextBox tb_pass;
         private TextBox tb_email;
-        private TextBox tb_ma;
         private Button btn_Xacnhan;
     }
 }

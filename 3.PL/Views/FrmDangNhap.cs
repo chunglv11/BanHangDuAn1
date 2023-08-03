@@ -60,6 +60,12 @@ namespace _3.PL.Views
             }
         }
 
-
+        private void lb_QuenMK_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FrmQuenMK frmqmk = new FrmQuenMK();
+            frmqmk.ShowDialog();
+            
+        }
     }
 }

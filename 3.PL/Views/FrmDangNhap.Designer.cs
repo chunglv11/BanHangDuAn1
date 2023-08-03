@@ -76,7 +76,6 @@
             cb_Save.TabIndex = 9;
             cb_Save.Text = "Nhớ mật khẩu";
             cb_Save.UseVisualStyleBackColor = true;
-
             // 
             // btn_DangNhap
             // 
@@ -101,6 +100,7 @@
             lb_QuenMK.Size = new Size(138, 23);
             lb_QuenMK.TabIndex = 7;
             lb_QuenMK.Text = "Quên mật khẩu?";
+            lb_QuenMK.Click += lb_QuenMK_Click;
             // 
             // label4
             // 

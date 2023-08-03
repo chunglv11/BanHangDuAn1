@@ -188,5 +188,7 @@ namespace _3.PL.Views
             rbtn_HD.Checked = false;
             rbtn_KHD.Checked = false;
         }
+
+        
     }
 }
