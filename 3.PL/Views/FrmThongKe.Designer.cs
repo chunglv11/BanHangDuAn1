@@ -208,6 +208,7 @@
             this.txt_TK.Name = "txt_TK";
             this.txt_TK.Size = new System.Drawing.Size(997, 32);
             this.txt_TK.TabIndex = 4;
+            this.txt_TK.TextChanged += new System.EventHandler(this.txt_TK_TextChanged);
             // 
             // label4
             // 
@@ -260,6 +261,7 @@
             this.txt_Sdt.Name = "txt_Sdt";
             this.txt_Sdt.Size = new System.Drawing.Size(255, 32);
             this.txt_Sdt.TabIndex = 7;
+            this.txt_Sdt.TextChanged += new System.EventHandler(this.txt_Sdt_TextChanged);
             // 
             // label2
             // 

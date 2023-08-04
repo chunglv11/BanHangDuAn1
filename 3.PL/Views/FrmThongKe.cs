@@ -1,5 +1,6 @@
 ﻿using _2.BUS.IServices;
 using _2.BUS.Services;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +20,12 @@ namespace _3.PL.Views
         {
             InitializeComponent();
             _services = new ThongKeServices();
-            LoadData();
+            LoadData(_services.GetLstSpDaBan());
             loadthang();
             loadnam();
             loadngay();
+            lbl_KH.Text = _services.GetLstSpDaBan().Select(x=>x.SDT).Distinct().Count().ToString();
+            lbl_DoanhThu.Text = _services.GetLstSpDaBan().Sum(x=>x.ThanhTien).ToString();
         }
         public string[] Getnam()
         {
@@ -81,7 +84,7 @@ namespace _3.PL.Views
             }
 
         }
-        public void LoadData()
+        public void LoadData(List<ThongKeVM> thongKeVMs)
         {
             dgrid_Show.ColumnCount = 6;
             dgrid_Show.Columns[0].Name = "Mã sản phẩm";
@@ -200,6 +203,16 @@ namespace _3.PL.Views
             {
                 dgrid_Show.Rows.Add(x.MaSp, x.TenSp, x.SoLuong, x.DonGia, x.ThanhTien, x.SDT);
             }
+        }
+
+        private void txt_TK_TextChanged(object sender, EventArgs e)
+        {
+            LoadData(_services.GetLstSpDaBan().Where(c => c.MaSp.Contains(txt_TK.Text.ToLower()) || c.TenSp.Contains(txt_TK.Text.ToLower())).ToList());
+        }
+
+        private void txt_Sdt_TextChanged(object sender, EventArgs e)
+        {
+            LoadData(_services.GetLstSpDaBan().Where(c => c.SDT.Contains(txt_Sdt.Text)).ToList());
         }
     }
 }

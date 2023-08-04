@@ -41,7 +41,7 @@ namespace _2.BUS.Services
                 g.Where(d => d.Ma == g.Key).Select(d => d.Ten).FirstOrDefault(),
                 g.Where(d => d.Ma == g.Key).Select(d => d.SoLuong).FirstOrDefault(),
                 g.Where(d => d.Ma == g.Key).Select(d => d.DonGia).FirstOrDefault(),   
-                g.Where(d => d.Ma == g.Key).Select(d => d.DonGia).FirstOrDefault(), 
+                g.Where(d => d.Ma == g.Key).Select(d => d.ThanhTien).FirstOrDefault(), 
                 g.Where(d=> d.Ma == g.Key).Select(d=>d.SDT).FirstOrDefault(),
                 g.Where(d => d.Ma == g.Key).Select(d => d.NgayTao).FirstOrDefault())
                 ).ToList();
