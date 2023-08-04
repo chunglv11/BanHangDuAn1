@@ -828,8 +828,7 @@ namespace _3.PL.Views
             {
                 tb_TienKhachDua.Enabled = true;
                 tb_TTOnline.Enabled = true;
-                //tb_TienKhachDua.Text = "0";
-                //tb_TTOnline.Text = "0";
+
 
             }
             else if (Cbb_LoaiTT.SelectedItem.ToString() == "Tiền mặt")
@@ -845,7 +844,6 @@ namespace _3.PL.Views
                 tb_TienKhachDua.Text = "0";
             }
         }
-        //phải điền điểm thì ms tính đc tiền thừa chính xác
         public void loadTienThua()
         {
             if (!(tb_TienKhachDua.Text == "" && tb_Diem.Text == ""))
@@ -873,7 +871,7 @@ namespace _3.PL.Views
             {
                 if (tb_Diem.Text == "")
                 {
-                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x) && decimal.TryParse(tb_TienKhachDua.Text, out decimal y))
+                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x) && decimal.TryParse(tb_TienKhachDua.Text, out decimal y))//thêm dòng này nếu bị lỗi convert
                     {
                         lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text) + Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
@@ -977,7 +975,7 @@ namespace _3.PL.Views
                 //var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
                 if (!(tb_TienKhachDua.Text == ""))
                 {
-                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_TTOnline.Text, out decimal y))
                     {
                         lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
@@ -999,7 +997,7 @@ namespace _3.PL.Views
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
                     {
-                        lbTienThua.Text = (Convert.ToDouble(tb_TienKhachDua.Text) - Convert.ToDouble(lb_TongTienTT.Text)).ToString();
+                        lbTienThua.Text = (Convert.ToDouble(tb_TienKhachDua.Text) + (Convert.ToDouble(tb_TTOnline.Text) - Convert.ToDouble(lb_TongTienTT.Text))).ToString();
                     }
 
                 }
