@@ -49,5 +49,10 @@ namespace _1.DAL.Repository
             _context.SaveChanges();
             return true;
         }
+
+        public KhuyenMai GetKhuyenByName(string name)
+        {
+            return _context.KhuyenMais.FirstOrDefault(p => p.Ten.Contains(name));
+        }
     }
 }

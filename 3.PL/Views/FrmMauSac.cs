@@ -43,7 +43,7 @@ namespace _3.PL.Views
             }
             foreach (var item in lstnssx)
             {
-                dtg_ShowMauSac.Rows.Add(item.ID, item.Ma, item.Ten, item.TrangThai == 0 ? "Còn màu" : "Hết màu");
+                dtg_ShowMauSac.Rows.Add(item.ID, item.Ma, item.Ten, item.TrangThai == 1 ? "Còn màu" : "Hết màu");
             }
             dtg_ShowMauSac.AllowUserToAddRows = false;
         }
@@ -53,6 +53,7 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Màu Sắc Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+
                 if (iMauSac.GetMauSac().Any(c => c.Ma == txt_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
@@ -115,7 +116,7 @@ namespace _3.PL.Views
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Màu Sắc Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Màu Sắc Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 if (viewMs == null)
@@ -133,6 +134,26 @@ namespace _3.PL.Views
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void btn_LamMoi_Click(object sender, EventArgs e)
+        {
+            Guid _id = Guid.Empty;
+            DataGridViewRow row = dtg_ShowMauSac.Rows[0];
+            _id = Guid.Parse(row.Cells[0].Value.ToString());
+            foreach (DataGridViewRow row1 in dtg_ShowMauSac.Rows)
+            {
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Empty;
+                }
+            }
+
+            txt_Ma.Text="";
+            txt_Ten.Text="";
+            txt_TimKiem.Text="";
+            rbtn_HD.Checked = false;
+            rbtn_KHD.Checked = false;
         }
     }
 }

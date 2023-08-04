@@ -65,5 +65,6 @@ namespace _1.DAL.Repository
         {
             return _context.PhuongThucThanhToans.ToList();
         }
+
     }
 }

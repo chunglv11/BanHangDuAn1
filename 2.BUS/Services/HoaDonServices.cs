@@ -32,6 +32,7 @@ namespace _2.BUS.Services
             {
 
                 _iHoaDonRp.AddHoaDonFromdb(obj);
+
                 return true;
             }
             catch (Exception)
@@ -60,28 +61,26 @@ namespace _2.BUS.Services
 
         public List<HoaDonVM> GetAllHoaDonVM()
         {
-            var lst = from a in _shopContext.HoaDons
-                      join b in _shopContext.KhachHangs on a.IDKH equals b.ID
-                      join c in _shopContext.NhanViens on a.IDNV equals c.ID
-                      join d in _shopContext.KhuyenMais on a.IDKM equals d.ID
-                      select new HoaDonVM
-                      {
-                          ID = a.ID,
-                          IDKH = b.ID,
-                          IDNV = c.ID,
-                          IDKM = d.ID,
-                          Ma = a.Ma,
-                          NgayTao = a.NgayTao,
-                          NgayThanhToan = a.NgayThanhToan,
-                          TenKM = d.Ten,
-                          PhanTramGiam = d.PhanTramGiam,
-                          SoTienGiam = d.SoTienGiam,
-                          MaNv = c.MaNv,
-                          HoTenNV = c.HoTen,
-                          SDTKH = b.SDT,
-                          TrangThai = a.TrangThai
-                      };
-            return lst.ToList();
+            var lst = (from a in _shopContext.HoaDons
+                       join b in _shopContext.KhachHangs on a.IDKH equals b.ID
+                       join c in _shopContext.NhanViens on a.IDNV equals c.ID
+                       join d in _shopContext.KhuyenMais on a.IDKM equals d.ID //idkm null neen khong hien thi
+                       select new HoaDonVM
+                       {
+                           ID = a.ID,
+                           IDKM = a.IDKM,
+                           Ma = a.Ma,
+                           NgayTao = a.NgayTao,
+                           NgayThanhToan = a.NgayThanhToan,
+                           TenKM = d.Ten,
+                           //PhanTramGiam = d.PhanTramGiam,
+                           //SoTienGiam = d.SoTienGiam,
+                           MaNv = c.MaNv,
+                           HoTenNV = c.HoTen,
+                           SDTKH = b.SDT,
+                           TrangThai = a.TrangThai
+                       }).ToList();
+            return lst;
         }
 
         public HoaDon GetHoaDonById(Guid id)

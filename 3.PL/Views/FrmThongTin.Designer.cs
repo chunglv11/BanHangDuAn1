@@ -289,6 +289,7 @@
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Họ và tên";
+           
             // 
             // lb_HoTen
             // 

@@ -32,6 +32,7 @@
             nhânViênToolStripMenuItem = new ToolStripMenuItem();
             chứcVụToolStripMenuItem = new ToolStripMenuItem();
             panelFill = new Panel();
+            phươngThứcThanhToánToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -40,7 +41,7 @@
             menuStrip1.BackColor = Color.SeaShell;
             menuStrip1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { nhânViênToolStripMenuItem, chứcVụToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { nhânViênToolStripMenuItem, chứcVụToolStripMenuItem, phươngThứcThanhToánToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1345, 33);
@@ -69,6 +70,13 @@
             panelFill.Size = new Size(1345, 889);
             panelFill.TabIndex = 1;
             // 
+            // phươngThứcThanhToánToolStripMenuItem
+            // 
+            phươngThứcThanhToánToolStripMenuItem.Name = "phươngThứcThanhToánToolStripMenuItem";
+            phươngThứcThanhToánToolStripMenuItem.Size = new Size(234, 29);
+            phươngThứcThanhToánToolStripMenuItem.Text = "Phương Thức Thanh Toán";
+            phươngThứcThanhToánToolStripMenuItem.Click += phươngThứcThanhToánToolStripMenuItem_Click;
+            // 
             // FrmQuanLyNhanVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -92,5 +100,6 @@
         private ToolStripMenuItem nhânViênToolStripMenuItem;
         private ToolStripMenuItem chứcVụToolStripMenuItem;
         private Panel panelFill;
+        private ToolStripMenuItem phươngThứcThanhToánToolStripMenuItem;
     }
 }

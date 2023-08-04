@@ -20,36 +20,88 @@ namespace _1.DAL.Repository
             _lstnhanViens = new List<NhanVien>();
 
         }
-      
-        public string add(NhanVien nhanVien)
-        {
-            _shopContext.NhanViens.Add(nhanVien);
-            _shopContext.SaveChanges();
 
-            return "Thêm dữ liệu thành công";
+        public bool add(NhanVien nhanvien)
+        {
+            if (nhanvien == null)
+            {
+                return false;
+            }
+
+            try
+            {
+                _shopContext.NhanViens.Add(nhanvien);
+                _shopContext.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception and inner exception
+                Console.WriteLine($"An error occurred while adding the NhanVien: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
+                }
+                return false;
+            }
         }
 
-        public string delete(NhanVien nhanVien)
+
+
+        public bool delete(Guid Id)
         {
-            throw new NotImplementedException();
+            var dtcs = _shopContext.NhanViens.FirstOrDefault(c => c.ID == Id);
+            if (dtcs == null)
+            { return false; }
+            _shopContext.NhanViens.Remove(dtcs);
+            _shopContext.SaveChanges();
+            return true;
         }
 
         public List<NhanVien> GetAll()
         {
-            return _shopContext.NhanViens.ToList();
+                return _shopContext.NhanViens.ToList();
+            }
+
+        public NhanVien GetById(Guid id)
+        {
+            return _shopContext.NhanViens.Find(id);
         }
 
-        
-
-        public string update(NhanVien nhanVien)
+        public NhanVien GetByMa(string ma)
         {
-            _shopContext.NhanViens.Update(nhanVien);
-            _shopContext.SaveChanges();
+            return _shopContext.NhanViens.Find(ma);
+        }
 
-          
-            return "Cập nhật dữ liệu thành công";
+        public bool update(NhanVien nhanvien)
+        {
+            var IDc = _shopContext.NhanViens.FirstOrDefault(c => c.ID == nhanvien.ID);
+
+            if (IDc == null)
+            {
+                return false; // Object with the given ID doesn't exist in the database
+            }
+
+            // Update the properties of the retrieved object with the values from the given "nhanvien" object
+            IDc.MaNv = nhanvien.MaNv;
+            IDc.HoTen = nhanvien.HoTen;
+            IDc.AnhNv = nhanvien.AnhNv;
+            IDc.ChucVu = nhanvien.ChucVu;
+            IDc.MatKhau = nhanvien.MatKhau;
+            IDc.ID = nhanvien.ID;
+            IDc.Email = nhanvien.Email;
+            IDc.GioiTinh = nhanvien.GioiTinh;
+            IDc.NgaySinh = nhanvien.NgaySinh;
+            IDc.Username = nhanvien.Username;
+            IDc.TrangThai = nhanvien.TrangThai;
+
+            _shopContext.SaveChanges(); // Save the changes
+
+            return true; // Update successful
         }
        
 
     }
-}
+
+       
+    }

@@ -2,6 +2,7 @@
 using _1.DAL.Models;
 using _1.DAL.Repository;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,81 +13,55 @@ namespace _2.BUS.Services
 {
     public class ChucVuServices : IChucVuServices
     {
-        private readonly IChucVuResponsitory ChucVuMoi;
-        ShopContext context = new ShopContext();
+        private IChucVuResponsitory ChucVuMoi;
+        private List<ChucVuViewModels> _ChucVuViewModels;
+        private List<ChucVu> _ChucVu;
 
         public ChucVuServices()
         {
-            context = new ShopContext();
+           _ChucVuViewModels = new List<ChucVuViewModels>();
             ChucVuMoi = new ChucVuResponsitory();
         }
 
-        public bool Xoa(ChucVu a)
+        public bool Add(ChucVu chucvu)
         {
-
-            try
-            {
-                
-                ChucVuMoi.delete(a);
-                context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return ChucVuMoi.add(chucvu);
         }
 
-
-        public bool Sua(ChucVu a)
+        public bool CheckMa(string ma)
         {
-
-            try
-            {
-                 ChucVuMoi.update(a);
-                context.SaveChanges();
-                return true;
-
-            }
-            catch
-            {
-                return false;
-            }
+            return !ChucVuMoi.GetAll().Any(c => c.Ma == ma);
         }
 
-
-        public bool Them(ChucVu a)
+        public bool Delete(Guid Id)
         {
-            
-            try
-            {
-                ChucVuMoi.add(a);
-                context.SaveChanges();
-                return true;
-            }
-            catch 
-            {
-                return false;
-            }
+            return ChucVuMoi.delete(Id);
+
         }
 
         public List<ChucVu> GetAll()
         {
-            return context.ChucVus.ToList();
+            return ChucVuMoi.GetAll();
         }
 
-        public ChucVu GetById(Guid id)
+        public List<ChucVuViewModels> GetAllView()
         {
-            return GetAll().FirstOrDefault(c=>c.ID == id);
+            List<ChucVuViewModels> lst = (from a in ChucVuMoi.GetAll()
+                                     select new ChucVuViewModels()
+                                     {
+                                         ChucVu = a,
+                                     }).ToList();
+            return lst;
         }
 
-       
-
-        public ChucVu GetByMa(string ma)
+        public ChucVu? GetByMa(string? ma)
         {
-            return GetAll().FirstOrDefault(c => c.Ma == ma);
+            return ChucVuMoi.GetAll().Find(c => c.Ma == ma);
         }
 
-
+        public bool Update(ChucVu chucvu)
+        {
+            return ChucVuMoi.update(chucvu);
+        }
     }
 }

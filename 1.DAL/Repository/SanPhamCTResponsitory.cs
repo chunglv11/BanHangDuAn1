@@ -61,10 +61,23 @@ namespace _1.DAL.Repository
 
         public bool UpdateSanPhamCTFromDb(SanPhamChiTiet obj)
         {
-           
             try
             {
-                _shopContext.SanPhamChiTiets.Update(obj);
+                if(obj == null) return false;
+                var Spct = _shopContext.SanPhamChiTiets.FirstOrDefault(p=>p.ID == obj.ID);
+                Spct.IDSP = obj.IDSP;
+                Spct.IDMS = obj.IDMS;
+                Spct.IDNSX = obj.IDNSX;
+                Spct.IDKC = obj.IDKC;
+                Spct.IDLOAI = obj.IDLOAI;
+                Spct.Ma = obj.Ma;
+                Spct.SoLuongTon = obj.SoLuongTon;
+                Spct.GiaNhap = obj.GiaNhap;
+                Spct.GiaBan = obj.GiaBan;
+                Spct.HinhAnh = obj.HinhAnh;
+                Spct.TrangThai = obj.TrangThai;
+                Spct.MoTa = obj.MoTa;
+                _shopContext.SanPhamChiTiets.Update(Spct);
                 _shopContext.SaveChanges();
 
                 return true;

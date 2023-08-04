@@ -25,9 +25,8 @@ namespace _1.DAL.Repository
 
         public bool DeleteHDCTFromDb(HoaDonChiTiet obj)
         {
-            if (obj == null) return false;
-            var temp = _shopContext.HoaDonChiTiet.FirstOrDefault(c => c.ID == obj.ID);
-            _shopContext.HoaDonChiTiet.Remove(temp);
+
+            _shopContext.HoaDonChiTiet.Remove(obj);
             _shopContext.SaveChanges();
             return true;
         }
@@ -45,14 +44,7 @@ namespace _1.DAL.Repository
         public bool UpdateHDCTFromDb(HoaDonChiTiet obj)
         {
             if (obj == null) return false;
-
-            var temp = _shopContext.HoaDonChiTiet.FirstOrDefault(c => c.ID == obj.ID);
-            temp.IDHD = obj.IDHD;
-            temp.IDSPCT = obj.IDSPCT;
-            temp.SoLuong = obj.SoLuong;
-            temp.DonGia = obj.DonGia;
-
-            _shopContext.HoaDonChiTiet.Update(temp);
+            _shopContext.HoaDonChiTiet.Update(obj);
             _shopContext.SaveChanges();
             return true;
         }

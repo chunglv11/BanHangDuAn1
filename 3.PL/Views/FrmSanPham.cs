@@ -69,9 +69,11 @@ namespace _3.PL.Views
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
+
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Sản Phẩm Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                int MaSp = iSp.getlsSpfromDB().Count() + 1;
                 if (iSp.getlsSpfromDB().Any(c => c.Ma == txt_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
@@ -90,7 +92,7 @@ namespace _3.PL.Views
                     SanPhamViewModels x = new SanPhamViewModels()
                     {
                         ID = Guid.NewGuid(),
-                        Ma = txt_Ma.Text,
+                        Ma = "SP" + MaSp.ToString(),
                         Ten = txt_Ten.Text,
                         TrangThai = rbtn_HD.Checked ? 1 : 0
                     };
@@ -130,12 +132,6 @@ namespace _3.PL.Views
                 }
             }
         }
-
-        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
         private void dtg_ShowSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -154,5 +150,45 @@ namespace _3.PL.Views
                 }
             }
         }
+        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        public bool check()
+        {
+            if (string.IsNullOrEmpty(txt_Ten.Text))
+            {
+                MessageBox.Show("Tên sản phẩm không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (rbtn_HD.Checked == false && rbtn_KHD.Checked == false)
+            {
+                MessageBox.Show("Trạng thái không được bỏ trống", "Thông báo");
+                return false;
+            }
+            return true;
+        }
+
+        private void btn_LamMoi_Click(object sender, EventArgs e)
+        {
+            Guid _id = Guid.Empty;
+            DataGridViewRow row = dtg_ShowSanPham.Rows[0];
+            _id = Guid.Parse(row.Cells[0].Value.ToString());
+            foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
+            {
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Empty;
+                }
+            }
+
+            txt_Ma.Text="";
+            txt_Ten.Text="";
+            txt_TimKiem.Text="";
+            rbtn_HD.Checked = false;
+            rbtn_KHD.Checked = false;
+        }
+
+        
     }
 }

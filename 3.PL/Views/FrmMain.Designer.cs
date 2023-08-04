@@ -34,6 +34,7 @@
             btn_TaiKhoan = new Button();
             btn_Out = new Button();
             panel4 = new Panel();
+            btn_KhuyenMai = new Button();
             btn_TK = new Button();
             btn_HD = new Button();
             btn_Sp = new Button();
@@ -47,7 +48,6 @@
             ptb_avt = new PictureBox();
             panelFill = new Panel();
             PanelPhai = new Panel();
-            btn_KhuyenMai = new Button();
             btn_BanHang = new Button();
             panelTrai.SuspendLayout();
             panel4.SuspendLayout();
@@ -130,6 +130,21 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(273, 432);
             panel4.TabIndex = 14;
+            // 
+            // btn_KhuyenMai
+            // 
+            btn_KhuyenMai.BackColor = Color.SeaShell;
+            btn_KhuyenMai.Dock = DockStyle.Top;
+            btn_KhuyenMai.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_KhuyenMai.Image = (Image)resources.GetObject("btn_KhuyenMai.Image");
+            btn_KhuyenMai.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_KhuyenMai.Location = new Point(0, 336);
+            btn_KhuyenMai.Name = "btn_KhuyenMai";
+            btn_KhuyenMai.Size = new Size(273, 57);
+            btn_KhuyenMai.TabIndex = 8;
+            btn_KhuyenMai.Text = "Khuyến mại";
+            btn_KhuyenMai.UseVisualStyleBackColor = false;
+            btn_KhuyenMai.Click += btn_KhuyenMai_Click;
             // 
             // btn_TK
             // 
@@ -291,21 +306,6 @@
             PanelPhai.Size = new Size(1400, 958);
             PanelPhai.TabIndex = 4;
             // 
-            // btn_KhuyenMai
-            // 
-            btn_KhuyenMai.BackColor = Color.SeaShell;
-            btn_KhuyenMai.Dock = DockStyle.Top;
-            btn_KhuyenMai.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btn_KhuyenMai.Image = (Image)resources.GetObject("btn_KhuyenMai.Image");
-            btn_KhuyenMai.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_KhuyenMai.Location = new Point(0, 336);
-            btn_KhuyenMai.Name = "btn_KhuyenMai";
-            btn_KhuyenMai.Size = new Size(273, 57);
-            btn_KhuyenMai.TabIndex = 8;
-            btn_KhuyenMai.Text = "Khuyến mại";
-            btn_KhuyenMai.UseVisualStyleBackColor = false;
-            btn_KhuyenMai.Click += btn_KhuyenMai_Click;
-            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -316,6 +316,7 @@
             Name = "FrmMain";
             Text = "FrmMain";
             WindowState = FormWindowState.Maximized;
+            Load += FrmMain_Load;
             panelTrai.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel2.ResumeLayout(false);

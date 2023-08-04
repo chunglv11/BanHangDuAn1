@@ -9,5 +9,6 @@ namespace _1.DAL.IRepository
         bool Add(KhuyenMai obj);
         bool Update(KhuyenMai obj);
         bool Delete(KhuyenMai obj);
+        public KhuyenMai GetKhuyenByName(string name);
     }
 }

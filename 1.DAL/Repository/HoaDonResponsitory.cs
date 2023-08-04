@@ -18,10 +18,20 @@ namespace _1.DAL.Repository
         }
         public bool AddHoaDonFromdb(HoaDon obj)
         {
-            if (obj == null) return false;
-            _shopContext.HoaDons.Add(obj);
-            _shopContext.SaveChanges();
-            return true;
+
+            try
+            {
+                //thử rồi vẫn k dc
+                //obj.ID = Guid.NewGuid();
+                _shopContext.HoaDons.Add(obj);
+                _shopContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         public bool DeleteHoaDonFromdb(HoaDon obj)
@@ -35,7 +45,10 @@ namespace _1.DAL.Repository
 
         public List<HoaDon> GetAllHoaDonFromdb()
         {
-            return _shopContext.HoaDons.ToList();
+            return _shopContext.HoaDons.Include(c => c.khachhang)
+                                        .Include(d => d.nhanvien)
+                                        .Include(e => e.KhuyenMai)
+                .ToList();
         }
 
         public HoaDon GetHoaDonById(Guid id)

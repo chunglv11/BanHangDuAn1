@@ -42,63 +42,63 @@ namespace _1.DAL.Extensions
                 new NSX() { ID = Guid.Parse("37ab68dd-bbd9-47cf-bd15-48526a38c964"), Ma = "NSX1", Ten = "LV", TrangThai = 1 },
                 new NSX() { ID = Guid.Parse("74cac681-11db-4764-bd2c-6486775d22da"), Ma = "NSX2", Ten = "Guuchi", TrangThai = 1 }
                 );
-            modelBuilder.Entity<SanPhamChiTiet>().HasData(
-                new SanPhamChiTiet() { ID = Guid.Parse("a3459c51-54ec-485c-bece-fdc74871fd4b"), IDSP = Guid.Parse("3a1a4888-f7fd-46c5-808e-a42885ff4178"), IDKC = Guid.Parse("5770d06e-b38f-4d87-b820-f708c04203ad"), IDLOAI = Guid.Parse("40d32121-ad17-4bd5-9e07-6db69572b50b"), IDMS = Guid.Parse("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), IDNSX = Guid.Parse("74cac681-11db-4764-bd2c-6486775d22da"), Ma = "SPCT1", SoLuongTon = 3, GiaNhap = 140000, GiaBan = 15000, HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh1.jpg\"", TrangThai = 1, MoTa = "Sản phẩm mới1" },
-                new SanPhamChiTiet() { ID = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), IDSP = Guid.Parse("7173cee4-5764-4da7-96a9-2fd45fef403f"), IDKC = Guid.Parse("5770d06e-b38f-4d87-b820-f708c04203ad"), IDLOAI = Guid.Parse("40d32121-ad17-4bd5-9e07-6db69572b50b"), IDMS = Guid.Parse("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), IDNSX = Guid.Parse("74cac681-11db-4764-bd2c-6486775d22da"), Ma = "SPCT2", SoLuongTon = 4, GiaNhap = 150000, GiaBan = 17000, HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh2.jpg\"", TrangThai = 1, MoTa = "Sản phẩm mới 2" },
-                new SanPhamChiTiet() { ID = Guid.Parse("bc2f5d6f-080a-4cf7-ada8-7e4e2ae9abcc"), IDSP = Guid.Parse("3a1a4888-f7fd-46c5-808e-a42885ff4178"), IDKC = Guid.Parse("6f7a120e-5651-4d46-baec-5ce340a5d84e"), IDLOAI = Guid.Parse("40d32121-ad17-4bd5-9e07-6db69572b50b"), IDMS = Guid.Parse("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), IDNSX = Guid.Parse("74cac681-11db-4764-bd2c-6486775d22da"), Ma = "SPCT1", SoLuongTon = 5, GiaNhap = 140000, GiaBan = 20000, TrangThai = 1, MoTa = "Sản phẩm mới3" }
+            //modelBuilder.Entity<SanPhamChiTiet>().HasData(
+            //    new SanPhamChiTiet() { ID = Guid.Parse("a3459c51-54ec-485c-bece-fdc74871fd4b"), IDSP = Guid.Parse("3a1a4888-f7fd-46c5-808e-a42885ff4178"), IDKC = Guid.Parse("5770d06e-b38f-4d87-b820-f708c04203ad"), IDLOAI = Guid.Parse("40d32121-ad17-4bd5-9e07-6db69572b50b"), IDMS = Guid.Parse("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), IDNSX = Guid.Parse("74cac681-11db-4764-bd2c-6486775d22da"), Ma = "SPCT1", SoLuongTon = 3, GiaNhap = 140000, GiaBan = 15000, HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh1.jpg\"", TrangThai = 1, MoTa = "Sản phẩm mới1" },
+            //    new SanPhamChiTiet() { ID = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), IDSP = Guid.Parse("7173cee4-5764-4da7-96a9-2fd45fef403f"), IDKC = Guid.Parse("5770d06e-b38f-4d87-b820-f708c04203ad"), IDLOAI = Guid.Parse("40d32121-ad17-4bd5-9e07-6db69572b50b"), IDMS = Guid.Parse("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), IDNSX = Guid.Parse("74cac681-11db-4764-bd2c-6486775d22da"), Ma = "SPCT2", SoLuongTon = 4, GiaNhap = 150000, GiaBan = 17000, HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh2.jpg\"", TrangThai = 1, MoTa = "Sản phẩm mới 2" },
+            //    new SanPhamChiTiet() { ID = Guid.Parse("bc2f5d6f-080a-4cf7-ada8-7e4e2ae9abcc"), IDSP = Guid.Parse("3a1a4888-f7fd-46c5-808e-a42885ff4178"), IDKC = Guid.Parse("6f7a120e-5651-4d46-baec-5ce340a5d84e"), IDLOAI = Guid.Parse("40d32121-ad17-4bd5-9e07-6db69572b50b"), IDMS = Guid.Parse("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), IDNSX = Guid.Parse("74cac681-11db-4764-bd2c-6486775d22da"), Ma = "SPCT1", SoLuongTon = 5, GiaNhap = 140000, GiaBan = 20000, TrangThai = 1, MoTa = "Sản phẩm mới3" }
 
-                );
+            //    );
             modelBuilder.Entity<KhuyenMai>().HasData(
                 new KhuyenMai() { ID = Guid.Parse("38dc8d59-1d19-4002-933e-3d09c77d8fb1"), Ma = "KM1", Ten = "Giảm 50%", NgayBatDau = DateTime.Now, NgayKetThuc = DateTime.Now, PhanTramGiam = 7, SoTienGiam = 1000, TrangThai = 1 },
                 new KhuyenMai() { ID = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), Ma = "KM2", Ten = "Giảm 50%", NgayBatDau = DateTime.Now, NgayKetThuc = DateTime.Now, PhanTramGiam = 5, SoTienGiam = 1000, TrangThai = 1 }
 
                 );
             modelBuilder.Entity<KhachHang>().HasData(
-                new KhachHang() { ID = Guid.Parse("851a51e1-c114-4347-b663-f68334ddae2c"), HovaTen = "lại nam", SDT = "0123456890", Diem = 15, },
-                new KhachHang() { ID = Guid.Parse("17253c77-e652-4051-a831-5d9c4d553d71"), HovaTen = "lại nam1", SDT = "01234542121", Diem = 12, }
+                new KhachHang() { ID = Guid.Parse("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"), HovaTen = "lại nam", SDT = "0123456890", Diem = 15, TrangThai = 0 },
+                new KhachHang() { ID = Guid.Parse("4dc2c304-df44-4acb-be45-9434d83e45cc"), HovaTen = "lại nam1", SDT = "01234542121", Diem = 12, TrangThai = 1 }
                 );
-            modelBuilder.Entity<HoaDon>().HasData(
-                new HoaDon() { ID = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDKH = Guid.Parse("851a51e1-c114-4347-b663-f68334ddae2c"), IDKM = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), IDNV = Guid.Parse("6716c72b-76d9-4626-a269-674aac3b1426"), Ma = "HD1", NgayTao = DateTime.Now, NgayThanhToan = DateTime.Now, TrangThai = 1 },
-                new HoaDon() { ID = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), IDKH = Guid.Parse("851a51e1-c114-4347-b663-f68334ddae2c"), IDKM = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), IDNV = Guid.Parse("a6c0391b-59a9-48e5-aada-b684e80b1250"), Ma = "HD2", NgayTao = DateTime.Now, NgayThanhToan = DateTime.Now, TrangThai = 1 },
-                new HoaDon() { ID = Guid.Parse("5353eab4-77df-4201-85d6-709b3b65deda"), IDKH = Guid.Parse("851a51e1-c114-4347-b663-f68334ddae2c"), IDKM = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), IDNV = Guid.Parse("a6c0391b-59a9-48e5-aada-b684e80b1250"), Ma = "HD3", NgayTao = DateTime.Now, NgayThanhToan = DateTime.Now, TrangThai = 1 }
-                );
+            //modelBuilder.Entity<HoaDon>().HasData(
+            //    new HoaDon() { ID = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDKH = Guid.Parse("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"), IDKM = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), IDNV = Guid.Parse("6716c72b-76d9-4626-a269-674aac3b1426"), Ma = "HD1", NgayTao = DateTime.Now, NgayThanhToan = DateTime.Now, TrangThai = 1 },
+            //    new HoaDon() { ID = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), IDKH = Guid.Parse("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"), IDKM = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), IDNV = Guid.Parse("a6c0391b-59a9-48e5-aada-b684e80b1250"), Ma = "HD2", NgayTao = DateTime.Now, NgayThanhToan = DateTime.Now, TrangThai = 1 },
+            //    new HoaDon() { ID = Guid.Parse("5353eab4-77df-4201-85d6-709b3b65deda"), IDKH = Guid.Parse("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"), IDKM = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), IDNV = Guid.Parse("a6c0391b-59a9-48e5-aada-b684e80b1250"), Ma = "HD3", NgayTao = DateTime.Now, NgayThanhToan = DateTime.Now, TrangThai = 1 }
+            //    );
             modelBuilder.Entity<PhuongThucThanhToan>().HasData(new PhuongThucThanhToan()
             {
                 ID = Guid.Parse("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
-                MaPTThanhToan = "PT1",
+                MaPTThanhToan = "Offline",
                 TenPTThanhToan = "Tiền mặt",
                 TrangThai = 1
             }, new PhuongThucThanhToan()
             {
                 ID = Guid.Parse("cc628597-dcf8-4200-abc1-c6eff62b7b39"),
-                MaPTThanhToan = "PT2",
+                MaPTThanhToan = "Online",
                 TenPTThanhToan = "Chuyển khoản",
                 TrangThai = 1
             }
             );
-            modelBuilder.Entity<ChiTietThanhToan>().HasData(new ChiTietThanhToan()
-            {
-                ID = Guid.Parse("8d3181bc-a4d8-479c-829e-b5112d055ac0"),
-                IdPhuongThucThanhToan = Guid.Parse("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
-                IdHoaDon = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"),
-                SoTienThanhToan = 15000,
-                GhiChu = "Thanh toán bằng tiền mặt 15k",
-                TrangThai = 0
+            //modelBuilder.Entity<ChiTietThanhToan>().HasData(new ChiTietThanhToan()
+            //{
+            //    ID = Guid.Parse("8d3181bc-a4d8-479c-829e-b5112d055ac0"),
+            //    IdPhuongThucThanhToan = Guid.Parse("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
+            //    IdHoaDon = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"),
+            //    SoTienThanhToan = 15000,
+            //    GhiChu = "Thanh toán bằng tiền mặt 15k",
+            //    TrangThai = 0
 
-            },
-            new ChiTietThanhToan()
-            {
-                ID = Guid.Parse("bf9e5e61-087b-48cc-acfe-1b01bdca384c"),
-                IdPhuongThucThanhToan = Guid.Parse("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
-                IdHoaDon = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"),
+            //},
+            //new ChiTietThanhToan()
+            //{
+            //    ID = Guid.Parse("bf9e5e61-087b-48cc-acfe-1b01bdca384c"),
+            //    IdPhuongThucThanhToan = Guid.Parse("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
+            //    IdHoaDon = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"),
 
-                TrangThai = 0
-            });
-            modelBuilder.Entity<HoaDonChiTiet>().HasData(
-                new HoaDonChiTiet() { ID = Guid.Parse("6ab334a4-637d-47c0-a1bb-103c2ed09e73"), IDHD = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDSPCT = Guid.Parse("a3459c51-54ec-485c-bece-fdc74871fd4b"), DonGia = 140000, SoLuong = 5 },
-                new HoaDonChiTiet() { ID = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), IDHD = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDSPCT = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), DonGia = 140000, SoLuong = 4 },
-                new HoaDonChiTiet() { ID = Guid.Parse("5b8ccadb-02eb-4320-8497-8b559fe818e1"), IDHD = Guid.Parse("5353eab4-77df-4201-85d6-709b3b65deda"), IDSPCT = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), DonGia = 140000, SoLuong = 6 }
-                );
+            //    TrangThai = 0
+            //});
+            //modelBuilder.Entity<HoaDonChiTiet>().HasData(
+            //    new HoaDonChiTiet() { ID = Guid.Parse("6ab334a4-637d-47c0-a1bb-103c2ed09e73"), IDHD = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDSPCT = Guid.Parse("a3459c51-54ec-485c-bece-fdc74871fd4b"), DonGia = 140000, SoLuong = 5 },
+            //    new HoaDonChiTiet() { ID = Guid.Parse("756bf8ca-2d34-472d-b038-88266a06fef0"), IDHD = Guid.Parse("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"), IDSPCT = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), DonGia = 140000, SoLuong = 4 },
+            //    new HoaDonChiTiet() { ID = Guid.Parse("5b8ccadb-02eb-4320-8497-8b559fe818e1"), IDHD = Guid.Parse("5353eab4-77df-4201-85d6-709b3b65deda"), IDSPCT = Guid.Parse("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"), DonGia = 140000, SoLuong = 6 }
+            //    );
         }
     }
 }

@@ -25,7 +25,6 @@ namespace _3.PL.Views
         {
             int stt = 1;
             dtg_ShowKM.ColumnCount = 9;
-            dtg_ShowKM.ColumnCount = 9;
             dtg_ShowKM.Columns[0].Name = "stt";
             dtg_ShowKM.Columns[1].Name = "id";
             dtg_ShowKM.Columns[2].Name = "mã khuyến mãi";
@@ -75,7 +74,7 @@ namespace _3.PL.Views
 
             try
             {
-                if ( dtp_NgayKT.Value < dtp_NgayBD.Value)
+                if (dtp_NgayKT.Value < dtp_NgayBD.Value)
                 {
                     _ = MessageBox.Show("Kiểm tra lại lịch");
                     return;
@@ -93,10 +92,14 @@ namespace _3.PL.Views
                     _ = MessageBox.Show("Kiểm tra lại thong tin nhập");
                     return;
                 }
+                if (tb_PhanTramGiam.Text != "0" && tb_SoTienGiam.Text != "0")
+                {
+                    _ = MessageBox.Show("Đã có phần trăm giảm thì không thể cùng có số tiền giảm ");
+                    return;
+                }
                 DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-
 
                     _ = _iKmServices.Add(GetvaluaContro());
                     LoadData(_iKmServices.GetAllView());
@@ -113,7 +116,7 @@ namespace _3.PL.Views
         {
             try
             {
-                if ( dtp_NgayKT.Value < dtp_NgayBD.Value)
+                if (dtp_NgayKT.Value < dtp_NgayBD.Value)
                 {
                     _ = MessageBox.Show("Kiểm tra lại lịch");
                     return;
@@ -123,12 +126,29 @@ namespace _3.PL.Views
                     _ = MessageBox.Show("Kiểm tra lại số %");
                     return;
                 }
+
+                if (txt_Ma.Text == null || txt_Ten.Text == null || tb_PhanTramGiam.Text == null || tb_SoTienGiam.Text == null)
+                {
+                    _ = MessageBox.Show("Kiểm tra lại thong tin nhập");
+                    return;
+                }
+                if (tb_PhanTramGiam.Text != "0" && tb_SoTienGiam.Text != "0")
+                {
+                    _ = MessageBox.Show("Đã có phần trăm giảm thì không thể cùng có số tiền giảm ");
+                    return;
+                }
                 DialogResult dialogResult = MessageBox.Show("Bạn có muốn sửa", "Thông báo", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    bool thongBao = _iKmServices.Update(new _1.DAL.Models.KhuyenMai() { ID = _ID, Ma = txt_Ma.Text,
-                        Ten = txt_Ten.Text, PhanTramGiam = int.Parse(tb_PhanTramGiam.Text), SoTienGiam = float.Parse(tb_SoTienGiam.Text), 
-                        NgayBatDau = dtp_NgayBD.Value, NgayKetThuc = dtp_NgayKT.Value,
+                    bool thongBao = _iKmServices.Update(new _1.DAL.Models.KhuyenMai()
+                    {
+                        ID = _ID,
+                        Ma = txt_Ma.Text,
+                        Ten = txt_Ten.Text,
+                        PhanTramGiam = int.Parse(tb_PhanTramGiam.Text),
+                        SoTienGiam = float.Parse(tb_SoTienGiam.Text),
+                        NgayBatDau = dtp_NgayBD.Value,
+                        NgayKetThuc = dtp_NgayKT.Value,
                         TrangThai = rbtn_HD.Checked == true ? 1 : 0
                     });
                     if (thongBao)
@@ -172,7 +192,21 @@ namespace _3.PL.Views
             LoadData(_iKmServices.GetAllView());
         }
 
-        private void dtg_ShowKM_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
+        {
+            LoadData(_iKmServices.GetAllView().Where(c => c.KhuyenMai.Ma.ToLower().Contains(txt_TimKiem.Text.ToLower()) ||
+                    c.KhuyenMai.Ten.ToLower().Contains(txt_TimKiem.Text.ToLower())).ToList());
+        }
+
+        private void dtp_Loc_ValueChanged(object sender, EventArgs e)
+        {
+            //LoadData(_iKmServices.GetAllView().FindAll(c => c.KhuyenMai.NgayKetThuc == dtp_Loc.Value ||
+            //       c.KhuyenMai.NgayBatDau == dtp_Loc.Value).ToList());
+            LoadData(_iKmServices.GetAllView().Where(c => c.KhuyenMai.NgayKetThuc.ToString("dd-MM-yyyy") == dtp_Loc.Value.ToString("dd-MM-yyyy") ||
+                   c.KhuyenMai.NgayBatDau.ToString("dd-MM-yyyy") == dtp_Loc.Value.ToString("dd-MM-yyyy")).ToList());
+        }
+
+        private void dtg_ShowKM_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -197,18 +231,6 @@ namespace _3.PL.Views
             {
                 _ = MessageBox.Show(" hãy kiểm tra lại");
             }
-        }
-
-        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
-        {
-            LoadData(_iKmServices.GetAllView().Where(c => c.KhuyenMai.Ma.ToLower().Contains(txt_TimKiem.Text.ToLower()) ||
-                    c.KhuyenMai.Ten.ToLower().Contains(txt_TimKiem.Text.ToLower())).ToList());
-        }
-
-        private void dtp_Loc_ValueChanged(object sender, EventArgs e)
-        {
-            LoadData(_iKmServices.GetAllView().FindAll(c => c.KhuyenMai.NgayKetThuc == dtp_Loc.Value ||
-                    c.KhuyenMai.NgayBatDau == dtp_Loc.Value).ToList());
         }
     }
 }

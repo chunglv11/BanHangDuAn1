@@ -10,7 +10,7 @@ namespace _2.BUS.IServices
         bool Delete(KhuyenMai obj);
         List<KhuyenMai> GetAll();
         KhuyenMai? GetByMa(string? ma);
-
+        public KhuyenMai GetKhuyenByName(string? name);
         bool CheckMa(string ma);
         List<KhuyenMaiVM> GetAllView();
     }

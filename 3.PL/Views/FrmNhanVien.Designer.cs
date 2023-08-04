@@ -43,8 +43,9 @@
             btn_Them = new Button();
             panel1 = new Panel();
             groupBox1 = new GroupBox();
-            rbtn_KHD = new RadioButton();
-            rbtn_HD = new RadioButton();
+            groupBox3 = new GroupBox();
+            rbn_KHD = new RadioButton();
+            rbn_HD = new RadioButton();
             label6 = new Label();
             btn_ChonAnh = new Button();
             ptb_AVT = new PictureBox();
@@ -72,6 +73,7 @@
             groupBox2.SuspendLayout();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_AVT).BeginInit();
             SuspendLayout();
             // 
@@ -123,6 +125,7 @@
             txt_TimKiem.PlaceholderText = "Tìm kiếm...";
             txt_TimKiem.Size = new Size(247, 27);
             txt_TimKiem.TabIndex = 12;
+            txt_TimKiem.TextChanged += txt_TimKiem_TextChanged;
             // 
             // dtg_ShowNV
             // 
@@ -134,6 +137,7 @@
             dtg_ShowNV.RowTemplate.Height = 29;
             dtg_ShowNV.Size = new Size(1097, 233);
             dtg_ShowNV.TabIndex = 0;
+            dtg_ShowNV.CellContentClick += dtg_ShowNV_CellClick;
             // 
             // panel2
             // 
@@ -169,6 +173,7 @@
             btn_LamMoi.TabIndex = 3;
             btn_LamMoi.Text = "Làm mới";
             btn_LamMoi.UseVisualStyleBackColor = true;
+            btn_LamMoi.Click += btn_LamMoi_Click;
             // 
             // btn_Xoa
             // 
@@ -180,6 +185,7 @@
             btn_Xoa.TabIndex = 2;
             btn_Xoa.Text = "Xoá";
             btn_Xoa.UseVisualStyleBackColor = true;
+            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // btn_Sua
             // 
@@ -191,6 +197,7 @@
             btn_Sua.TabIndex = 1;
             btn_Sua.Text = "Sửa";
             btn_Sua.UseVisualStyleBackColor = true;
+            btn_Sua.Click += btn_Sua_Click;
             // 
             // btn_Them
             // 
@@ -202,6 +209,7 @@
             btn_Them.TabIndex = 0;
             btn_Them.Text = "Thêm";
             btn_Them.UseVisualStyleBackColor = true;
+            btn_Them.Click += btn_Them_Click;
             // 
             // panel1
             // 
@@ -214,8 +222,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(rbtn_KHD);
-            groupBox1.Controls.Add(rbtn_HD);
+            groupBox1.Controls.Add(groupBox3);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(btn_ChonAnh);
             groupBox1.Controls.Add(ptb_AVT);
@@ -245,27 +252,37 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin nhân viên";
             // 
-            // rbtn_KHD
+            // groupBox3
             // 
-            rbtn_KHD.AutoSize = true;
-            rbtn_KHD.Location = new Point(986, 178);
-            rbtn_KHD.Name = "rbtn_KHD";
-            rbtn_KHD.Size = new Size(166, 27);
-            rbtn_KHD.TabIndex = 34;
-            rbtn_KHD.TabStop = true;
-            rbtn_KHD.Text = "Không hoạt động";
-            rbtn_KHD.UseVisualStyleBackColor = true;
+            groupBox3.Controls.Add(rbn_KHD);
+            groupBox3.Controls.Add(rbn_HD);
+            groupBox3.Location = new Point(851, 171);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(309, 71);
+            groupBox3.TabIndex = 33;
+            groupBox3.TabStop = false;
             // 
-            // rbtn_HD
+            // rbn_KHD
             // 
-            rbtn_HD.AutoSize = true;
-            rbtn_HD.Location = new Point(851, 178);
-            rbtn_HD.Name = "rbtn_HD";
-            rbtn_HD.Size = new Size(114, 27);
-            rbtn_HD.TabIndex = 33;
-            rbtn_HD.TabStop = true;
-            rbtn_HD.Text = "Hoạt động";
-            rbtn_HD.UseVisualStyleBackColor = true;
+            rbn_KHD.AutoSize = true;
+            rbn_KHD.Location = new Point(128, 7);
+            rbn_KHD.Name = "rbn_KHD";
+            rbn_KHD.Size = new Size(171, 27);
+            rbn_KHD.TabIndex = 22;
+            rbn_KHD.TabStop = true;
+            rbn_KHD.Text = "Không Hoạt Động";
+            rbn_KHD.UseVisualStyleBackColor = true;
+            // 
+            // rbn_HD
+            // 
+            rbn_HD.AutoSize = true;
+            rbn_HD.Location = new Point(6, 7);
+            rbn_HD.Name = "rbn_HD";
+            rbn_HD.Size = new Size(116, 27);
+            rbn_HD.TabIndex = 21;
+            rbn_HD.TabStop = true;
+            rbn_HD.Text = "Hoạt Động";
+            rbn_HD.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -458,6 +475,8 @@
             panel1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_AVT).EndInit();
             ResumeLayout(false);
         }
@@ -470,7 +489,6 @@
         private ComboBox cmb_CV;
         private Label label12;
         private RadioButton rbtn_Nu;
-        private RadioButton rbtn_Nam;
         private DateTimePicker date_ngaySinh;
         private TextBox tb_MatKhau;
         private TextBox tb_Email;
@@ -486,8 +504,6 @@
         private TextBox tb_Ma;
         private PictureBox ptb_AVT;
         private Button btn_ChonAnh;
-        private RadioButton rbtn_KHD;
-        private RadioButton rbtn_HD;
         private Label label6;
         private Panel panel2;
         private Panel panel3;
@@ -500,5 +516,9 @@
         private TextBox txt_TimKiem;
         private Label label9;
         private ComboBox Cbb_Loc;
+        private RadioButton rbtn_Nam;
+        private GroupBox groupBox3;
+        private RadioButton rbn_KHD;
+        private RadioButton rbn_HD;
     }
 }

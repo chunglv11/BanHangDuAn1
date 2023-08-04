@@ -14,6 +14,7 @@ namespace _2.BUS.IServices
         public bool UpdateHDCT(HoaDonChiTiet obj);
         public bool DeleteHDCT(HoaDonChiTiet obj);
         public List<HoaDonChiTiet> GetAllHDCT();
+        public List<HoaDonCTVM> GetAllHDCTVM(Guid Idhd);
         public List<HoaDonCTVM> GetAllHDCTVM();
     }
 }

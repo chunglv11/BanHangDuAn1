@@ -91,6 +91,7 @@
             btn_LamMoi.TabIndex = 3;
             btn_LamMoi.Text = "Làm mới";
             btn_LamMoi.UseVisualStyleBackColor = true;
+            btn_LamMoi.Click += btn_LamMoi_Click_1;
             // 
             // btn_Xoa
             // 
@@ -102,6 +103,7 @@
             btn_Xoa.TabIndex = 2;
             btn_Xoa.Text = "Xoá";
             btn_Xoa.UseVisualStyleBackColor = true;
+            btn_Xoa.Click += btn_Xoa_Click_1;
             // 
             // btn_Sua
             // 
@@ -113,6 +115,7 @@
             btn_Sua.TabIndex = 1;
             btn_Sua.Text = "Sửa";
             btn_Sua.UseVisualStyleBackColor = true;
+            btn_Sua.Click += btn_Sua_Click_1;
             // 
             // btn_Them
             // 
@@ -124,6 +127,7 @@
             btn_Them.TabIndex = 0;
             btn_Them.Text = "Thêm";
             btn_Them.UseVisualStyleBackColor = true;
+            btn_Them.Click += btn_Them_Click_1;
             // 
             // groupBox1
             // 
@@ -165,6 +169,7 @@
             rbtn_HD.TabStop = true;
             rbtn_HD.Text = "Hoạt động";
             rbtn_HD.UseVisualStyleBackColor = true;
+          
             // 
             // txt_Ten
             // 
@@ -254,6 +259,7 @@
             textBox1.PlaceholderText = "Tìm kiếm...";
             textBox1.Size = new Size(247, 27);
             textBox1.TabIndex = 12;
+            textBox1.TextChanged += textBox1_TextChanged_1;
             // 
             // dtg_ShowChucVu
             // 
@@ -265,6 +271,7 @@
             dtg_ShowChucVu.RowTemplate.Height = 29;
             dtg_ShowChucVu.Size = new Size(623, 196);
             dtg_ShowChucVu.TabIndex = 9;
+            dtg_ShowChucVu.CellContentClick += dtg_ShowChucVu_CellContentClick_1;
             // 
             // FrmChucVu
             // 

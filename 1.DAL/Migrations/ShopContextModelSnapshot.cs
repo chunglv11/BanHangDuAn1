@@ -50,24 +50,6 @@ namespace _1.DAL.Migrations
                     b.HasIndex("IdPhuongThucThanhToan");
 
                     b.ToTable("ChiTietPTTT", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ID = new Guid("8d3181bc-a4d8-479c-829e-b5112d055ac0"),
-                            GhiChu = "Thanh toán bằng tiền mặt 15k",
-                            IdHoaDon = new Guid("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"),
-                            IdPhuongThucThanhToan = new Guid("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
-                            SoTienThanhToan = 15000m,
-                            TrangThai = 0
-                        },
-                        new
-                        {
-                            ID = new Guid("bf9e5e61-087b-48cc-acfe-1b01bdca384c"),
-                            IdHoaDon = new Guid("78f0dc70-1f8d-42c0-abcb-914c306ff39c"),
-                            IdPhuongThucThanhToan = new Guid("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
-                            TrangThai = 0
-                        });
                 });
 
             modelBuilder.Entity("_1.DAL.Models.ChucVu", b =>
@@ -120,7 +102,7 @@ namespace _1.DAL.Migrations
                     b.Property<Guid>("IDKH")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IDKM")
+                    b.Property<Guid?>("IDKM")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IDNV")
@@ -139,7 +121,7 @@ namespace _1.DAL.Migrations
                     b.Property<DateTime>("NgayTao")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NgayThanhToan")
+                    b.Property<DateTime?>("NgayThanhToan")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SDT")
@@ -160,94 +142,27 @@ namespace _1.DAL.Migrations
                     b.HasIndex("IDNV");
 
                     b.ToTable("HoaDon", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ID = new Guid("78f0dc70-1f8d-42c0-abcb-914c306ff39c"),
-                            IDKH = new Guid("851a51e1-c114-4347-b663-f68334ddae2c"),
-                            IDKM = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
-                            IDNV = new Guid("6716c72b-76d9-4626-a269-674aac3b1426"),
-                            Ma = "HD1",
-                            NgayTao = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7071),
-                            NgayThanhToan = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7071),
-                            TrangThai = 1
-                        },
-                        new
-                        {
-                            ID = new Guid("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"),
-                            IDKH = new Guid("851a51e1-c114-4347-b663-f68334ddae2c"),
-                            IDKM = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
-                            IDNV = new Guid("a6c0391b-59a9-48e5-aada-b684e80b1250"),
-                            Ma = "HD2",
-                            NgayTao = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7075),
-                            NgayThanhToan = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7075),
-                            TrangThai = 1
-                        },
-                        new
-                        {
-                            ID = new Guid("5353eab4-77df-4201-85d6-709b3b65deda"),
-                            IDKH = new Guid("851a51e1-c114-4347-b663-f68334ddae2c"),
-                            IDKM = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
-                            IDNV = new Guid("a6c0391b-59a9-48e5-aada-b684e80b1250"),
-                            Ma = "HD3",
-                            NgayTao = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7078),
-                            NgayThanhToan = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7078),
-                            TrangThai = 1
-                        });
                 });
 
             modelBuilder.Entity("_1.DAL.Models.HoaDonChiTiet", b =>
                 {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("DonGia")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<Guid>("IDHD")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IDSPCT")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("DonGia")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("SoLuong")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("IDHD");
+                    b.HasKey("IDHD", "IDSPCT");
 
                     b.HasIndex("IDSPCT");
 
                     b.ToTable("HoaDonChiTiet", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ID = new Guid("6ab334a4-637d-47c0-a1bb-103c2ed09e73"),
-                            DonGia = 140000m,
-                            IDHD = new Guid("78f0dc70-1f8d-42c0-abcb-914c306ff39c"),
-                            IDSPCT = new Guid("a3459c51-54ec-485c-bece-fdc74871fd4b"),
-                            SoLuong = 5
-                        },
-                        new
-                        {
-                            ID = new Guid("854d3c4d-1571-419c-9a19-a2e0f3fbfa16"),
-                            DonGia = 140000m,
-                            IDHD = new Guid("78f0dc70-1f8d-42c0-abcb-914c306ff39c"),
-                            IDSPCT = new Guid("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"),
-                            SoLuong = 4
-                        },
-                        new
-                        {
-                            ID = new Guid("5b8ccadb-02eb-4320-8497-8b559fe818e1"),
-                            DonGia = 140000m,
-                            IDHD = new Guid("5353eab4-77df-4201-85d6-709b3b65deda"),
-                            IDSPCT = new Guid("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"),
-                            SoLuong = 6
-                        });
                 });
 
             modelBuilder.Entity("_1.DAL.Models.KhachHang", b =>
@@ -267,7 +182,7 @@ namespace _1.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("TrangThai")
+                    b.Property<int>("TrangThai")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -277,17 +192,19 @@ namespace _1.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("851a51e1-c114-4347-b663-f68334ddae2c"),
+                            ID = new Guid("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"),
                             Diem = 15,
                             HovaTen = "lại nam",
-                            SDT = "0123456890"
+                            SDT = "0123456890",
+                            TrangThai = 0
                         },
                         new
                         {
-                            ID = new Guid("17253c77-e652-4051-a831-5d9c4d553d71"),
+                            ID = new Guid("4dc2c304-df44-4acb-be45-9434d83e45cc"),
                             Diem = 12,
                             HovaTen = "lại nam1",
-                            SDT = "01234542121"
+                            SDT = "01234542121",
+                            TrangThai = 1
                         });
                 });
 
@@ -310,8 +227,8 @@ namespace _1.DAL.Migrations
                     b.Property<int?>("PhanTramGiam")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SoTienGiam")
-                        .HasColumnType("int");
+                    b.Property<float?>("SoTienGiam")
+                        .HasColumnType("real");
 
                     b.Property<string>("Ten")
                         .IsRequired()
@@ -329,10 +246,10 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("38dc8d59-1d19-4002-933e-3d09c77d8fb1"),
                             Ma = "KM1",
-                            NgayBatDau = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7032),
-                            NgayKetThuc = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7033),
+                            NgayBatDau = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6068),
+                            NgayKetThuc = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6068),
                             PhanTramGiam = 7,
-                            SoTienGiam = 1000,
+                            SoTienGiam = 1000f,
                             Ten = "Giảm 50%",
                             TrangThai = 1
                         },
@@ -340,10 +257,10 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
                             Ma = "KM2",
-                            NgayBatDau = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7035),
-                            NgayKetThuc = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(7035),
+                            NgayBatDau = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6071),
+                            NgayKetThuc = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6072),
                             PhanTramGiam = 5,
-                            SoTienGiam = 1000,
+                            SoTienGiam = 1000f,
                             Ten = "Giảm 50%",
                             TrangThai = 1
                         });
@@ -526,7 +443,7 @@ namespace _1.DAL.Migrations
                             IDCV = new Guid("e36bbc87-d18b-4a9a-bc51-353e79e54586"),
                             MaNv = "NV1",
                             MatKhau = "1",
-                            NgaySinh = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(6898),
+                            NgaySinh = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(5978),
                             TrangThai = 1,
                             Username = "chunglv"
                         },
@@ -539,7 +456,7 @@ namespace _1.DAL.Migrations
                             IDCV = new Guid("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"),
                             MaNv = "NV2",
                             MatKhau = "1",
-                            NgaySinh = new DateTime(2023, 7, 4, 14, 43, 40, 473, DateTimeKind.Local).AddTicks(6912),
+                            NgaySinh = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(5990),
                             TrangThai = 1,
                             Username = "bena"
                         });
@@ -608,14 +525,14 @@ namespace _1.DAL.Migrations
                         new
                         {
                             ID = new Guid("5160e76f-a21c-4716-bf8a-fda4e27479f8"),
-                            MaPTThanhToan = "PT1",
+                            MaPTThanhToan = "Offline",
                             TenPTThanhToan = "Tiền mặt",
                             TrangThai = 1
                         },
                         new
                         {
                             ID = new Guid("cc628597-dcf8-4200-abc1-c6eff62b7b39"),
-                            MaPTThanhToan = "PT2",
+                            MaPTThanhToan = "Online",
                             TenPTThanhToan = "Chuyển khoản",
                             TrangThai = 1
                         });
@@ -723,55 +640,6 @@ namespace _1.DAL.Migrations
                     b.HasIndex("IDSP");
 
                     b.ToTable("SanPhamChiTiet", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            ID = new Guid("a3459c51-54ec-485c-bece-fdc74871fd4b"),
-                            GiaBan = 15000m,
-                            GiaNhap = 140000m,
-                            HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh1.jpg\"",
-                            IDKC = new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"),
-                            IDLOAI = new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"),
-                            IDMS = new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"),
-                            IDNSX = new Guid("74cac681-11db-4764-bd2c-6486775d22da"),
-                            IDSP = new Guid("3a1a4888-f7fd-46c5-808e-a42885ff4178"),
-                            Ma = "SPCT1",
-                            MoTa = "Sản phẩm mới1",
-                            SoLuongTon = 3,
-                            TrangThai = 1
-                        },
-                        new
-                        {
-                            ID = new Guid("3b1fab5d-7bb7-4abf-a12b-f1ef9416f241"),
-                            GiaBan = 17000m,
-                            GiaNhap = 150000m,
-                            HinhAnh = "\"C:\\Users\\laich\\Downloads\\anh2.jpg\"",
-                            IDKC = new Guid("5770d06e-b38f-4d87-b820-f708c04203ad"),
-                            IDLOAI = new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"),
-                            IDMS = new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"),
-                            IDNSX = new Guid("74cac681-11db-4764-bd2c-6486775d22da"),
-                            IDSP = new Guid("7173cee4-5764-4da7-96a9-2fd45fef403f"),
-                            Ma = "SPCT2",
-                            MoTa = "Sản phẩm mới 2",
-                            SoLuongTon = 4,
-                            TrangThai = 1
-                        },
-                        new
-                        {
-                            ID = new Guid("bc2f5d6f-080a-4cf7-ada8-7e4e2ae9abcc"),
-                            GiaBan = 20000m,
-                            GiaNhap = 140000m,
-                            IDKC = new Guid("6f7a120e-5651-4d46-baec-5ce340a5d84e"),
-                            IDLOAI = new Guid("40d32121-ad17-4bd5-9e07-6db69572b50b"),
-                            IDMS = new Guid("1b5acee0-34fc-4248-b6b0-f2d0920ed633"),
-                            IDNSX = new Guid("74cac681-11db-4764-bd2c-6486775d22da"),
-                            IDSP = new Guid("3a1a4888-f7fd-46c5-808e-a42885ff4178"),
-                            Ma = "SPCT1",
-                            MoTa = "Sản phẩm mới3",
-                            SoLuongTon = 5,
-                            TrangThai = 1
-                        });
                 });
 
             modelBuilder.Entity("_1.DAL.Models.ChiTietThanhToan", b =>
@@ -803,9 +671,7 @@ namespace _1.DAL.Migrations
 
                     b.HasOne("_1.DAL.Models.KhuyenMai", "KhuyenMai")
                         .WithMany("hoaDons")
-                        .HasForeignKey("IDKM")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IDKM");
 
                     b.HasOne("_1.DAL.Models.NhanVien", "nhanvien")
                         .WithMany("hoadon")

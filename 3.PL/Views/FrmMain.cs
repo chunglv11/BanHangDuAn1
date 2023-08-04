@@ -1,4 +1,5 @@
-﻿using _2.BUS.IServices;
+﻿using _1.DAL.Models;
+using _2.BUS.IServices;
 using _2.BUS.Services;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,14 @@ namespace _3.PL.Views
     {
         private INhanVienServices _inhanVienServices;
         private IChucVuServices _ichucVuServices;
+        NhanVien _nhanVien;
         public FrmMain()
         {
             InitializeComponent();
             _inhanVienServices = new NhanVienServices();
             _ichucVuServices = new ChucVuServices();
-            //FrmBanHang frmBanHang = new FrmBanHang() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            //this.PanelPhai.Controls.Add(frmBanHang);
-            //frmBanHang.Show();
+            _nhanVien = new NhanVien();
+
         }
 
         private Form activeForm;
@@ -86,11 +87,21 @@ namespace _3.PL.Views
             DialogResult dialog = MessageBox.Show("Bạn có muốn đăng xuất không?", "Thông báo", MessageBoxButtons.YesNo);
             if (dialog == DialogResult.Yes)
             {
+                this.Hide();
+                FrmDangNhap frmDangNhap = new FrmDangNhap();
+                frmDangNhap.ShowDialog();
                 this.Close();
             }
 
         }
 
-
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            var layuser = Properties.Settings.Default.TKdaLogin;
+            var nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Username == layuser);
+            var role = _ichucVuServices.GetAll().FirstOrDefault(c => c.ID == nv.IDCV);
+            lb_TenCV.Text = role.Ten;
+            lb_TenNV.Text = nv.HoTen;
+        }
     }
 }

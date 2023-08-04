@@ -18,6 +18,7 @@ namespace _1.DAL.Configurations
             builder.Property(x => x.HovaTen).HasColumnType("nvarchar(50)");
             builder.Property(x => x.Diem);
             builder.Property(x => x.SDT).HasColumnType("nvarchar(20)");
+            builder.Property(x => x.TrangThai);
         }
     }
 }

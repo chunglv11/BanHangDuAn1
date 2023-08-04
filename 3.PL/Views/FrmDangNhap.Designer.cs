@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDangNhap));
             panel1 = new Panel();
             panel2 = new Panel();
+            cb_Save = new CheckBox();
             btn_DangNhap = new Button();
             lb_QuenMK = new Label();
             label4 = new Label();
@@ -52,6 +53,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(cb_Save);
             panel2.Controls.Add(btn_DangNhap);
             panel2.Controls.Add(lb_QuenMK);
             panel2.Controls.Add(label4);
@@ -64,6 +66,17 @@
             panel2.Size = new Size(508, 391);
             panel2.TabIndex = 2;
             // 
+            // cb_Save
+            // 
+            cb_Save.AutoSize = true;
+            cb_Save.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            cb_Save.Location = new Point(141, 229);
+            cb_Save.Name = "cb_Save";
+            cb_Save.Size = new Size(143, 27);
+            cb_Save.TabIndex = 9;
+            cb_Save.Text = "Nhớ mật khẩu";
+            cb_Save.UseVisualStyleBackColor = true;
+            // 
             // btn_DangNhap
             // 
             btn_DangNhap.BackgroundImageLayout = ImageLayout.Center;
@@ -75,6 +88,7 @@
             btn_DangNhap.TabIndex = 8;
             btn_DangNhap.Text = "Đăng nhập";
             btn_DangNhap.UseVisualStyleBackColor = true;
+            btn_DangNhap.Click += btn_DangNhap_Click;
             // 
             // lb_QuenMK
             // 
@@ -86,6 +100,7 @@
             lb_QuenMK.Size = new Size(138, 23);
             lb_QuenMK.TabIndex = 7;
             lb_QuenMK.Text = "Quên mật khẩu?";
+            lb_QuenMK.Click += lb_QuenMK_Click;
             // 
             // label4
             // 
@@ -158,6 +173,6 @@
         private TextBox Tb_Mk;
         private TextBox tb_Tentk;
         private Button btn_DangNhap;
-
+        private CheckBox cb_Save;
     }
 }

@@ -31,11 +31,11 @@ namespace _1.DAL.Repository
         }
 
 
-
         public bool DeleteKhachHang(KhachHang obj)
         {
             try
             {
+
                 var khach_hang = _context.KhachHangs.FirstOrDefault(c => c.ID == obj.ID); // Sửa đổi Guid thành id
                 if (khach_hang != null)
                 {
@@ -46,13 +46,17 @@ namespace _1.DAL.Repository
                 else
                 {
                     return false;
+
                 }
             }
             catch (Exception)
             {
                 return false;
+
             }
         }
+
+
 
 
         public bool EditKhachHang(KhachHang obj)
@@ -60,6 +64,9 @@ namespace _1.DAL.Repository
             try
             {
                 var khach_hang = _context.KhachHangs.FirstOrDefault(c => c.ID == obj.ID);
+                khach_hang.HovaTen = obj.HovaTen;
+                khach_hang.SDT = obj.SDT;
+                khach_hang.TrangThai = obj.TrangThai;
                 _context.KhachHangs.Update(khach_hang);
                 _context.SaveChanges();
                 return true;
