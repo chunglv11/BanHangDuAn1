@@ -828,7 +828,8 @@ namespace _3.PL.Views
             {
                 tb_TienKhachDua.Enabled = true;
                 tb_TTOnline.Enabled = true;
-
+                //tb_TienKhachDua.Text = "0";
+                //tb_TTOnline.Text = "0";
 
             }
             else if (Cbb_LoaiTT.SelectedItem.ToString() == "Tiền mặt")
@@ -851,15 +852,15 @@ namespace _3.PL.Views
             {
                 if (tb_Diem.Text == "")
                 {
-                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_TTOnline.Text, out decimal y))
                     {
-                        var tienthua = Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text);
+                        decimal tienthua = Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text);
                         lbTienThua.Text = tienthua.ToString();
                     }
                 }
                 else
                 {
-                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y))
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y) && decimal.TryParse(tb_TTOnline.Text, out decimal z))
                     {
                         lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
                     }
@@ -872,14 +873,14 @@ namespace _3.PL.Views
             {
                 if (tb_Diem.Text == "")
                 {
-                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x))
+                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x) && decimal.TryParse(tb_TienKhachDua.Text, out decimal y))
                     {
                         lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text) + Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
                 }
                 else
                 {
-                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y))
+                    if (decimal.TryParse(tb_TTOnline.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y) && decimal.TryParse(tb_TienKhachDua.Text, out decimal z))
                     {
                         lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text) + Convert.ToDecimal(tb_TienKhachDua.Text) - Convert.ToDecimal(lb_TongTienTT.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
                     }
