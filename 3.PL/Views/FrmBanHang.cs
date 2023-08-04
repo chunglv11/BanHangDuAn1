@@ -888,34 +888,11 @@ namespace _3.PL.Views
         //them 1 hàm tt tien onl
         private void tb_TTOnline_TextChanged(object sender, EventArgs e)
         {
-            //decimal thanhToanOnline;
-            ////try
-            ////{
-            //thanhToanOnline = Convert.ToDecimal(tb_TTOnline.Text.ToString());
-            ////}
-            ////catch (Exception)
-            ////{
-            ////    thanhToanOnline = 0;
-            ////}
-            ////xoa .trim di van vay
-
-            //lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text.ToString()) + thanhToanOnline - Convert.ToDecimal(lb_TongTienTT.Text.ToString())).ToString();
             loadTienThuaON();
         }
 
         private void tb_TienKhachDua_TextChanged(object sender, EventArgs e)
         {
-            //decimal tienKhachDua;
-            ////try
-            ////{
-            //tienKhachDua = Convert.ToDecimal(tb_TienKhachDua.Text.ToString());
-            ////}
-            ////catch (Exception)
-            ////{
-            ////    tienKhachDua = 0;
-            ////}
-
-            //lbTienThua.Text = (Convert.ToDecimal(tb_TTOnline.Text.ToString()) + tienKhachDua - Convert.ToDecimal(tb_TongTien.Text.ToString())).ToString();
             loadTienThua();
         }
         #region//Chỉ được nhập số
@@ -950,7 +927,7 @@ namespace _3.PL.Views
         #endregion
 
 
-        //phải nhập lại điểm hoặc tiền khách đưa mới tính được tiền thừa
+        //phải nhập lại điểm hoặc tiền khách đưa mới tính được tiền thừa (ĐÃ SỬA. MUAHAHAA)
         //hoặc làm từ trên xuống dưới km-điểm-nhập tiền
         private void Cbb_GiamGia_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -972,12 +949,11 @@ namespace _3.PL.Views
                     lb_TongTienTT.Text = (tong / 100 * (100 - km.PhanTramGiam)).ToString();
                 }
                 HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text);
-                //var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
                 if (!(tb_TienKhachDua.Text == ""))
                 {
-                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_TTOnline.Text, out decimal y))
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_TTOnline.Text, out decimal y) && decimal.TryParse(tb_Diem.Text, out decimal z))
                     {
-                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) + Convert.ToDecimal(tb_Diem.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
 
                 }
@@ -985,7 +961,7 @@ namespace _3.PL.Views
                 {
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
                     {
-                        lbTienThua.Text = (0 - Convert.ToDouble(lb_TongTienTT.Text)).ToString();
+                        lbTienThua.Text = (0 - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
 
                 }
@@ -995,9 +971,9 @@ namespace _3.PL.Views
                 lb_TongTienTT.Text = lb_Thanhtien.Text;
                 if (!(tb_TienKhachDua.Text == ""))
                 {
-                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))
+                    if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_TTOnline.Text, out decimal y) && decimal.TryParse(tb_Diem.Text, out decimal z))
                     {
-                        lbTienThua.Text = (Convert.ToDouble(tb_TienKhachDua.Text) + (Convert.ToDouble(tb_TTOnline.Text) - Convert.ToDouble(lb_TongTienTT.Text))).ToString();
+                        lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) + Convert.ToDecimal(tb_Diem.Text) - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
 
                 }
@@ -1006,7 +982,7 @@ namespace _3.PL.Views
                     //khi khuyen mai giảm hhêt tien trong hoa don
                     if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x))//thêm dòng này mới k bị lỗi convert
                     {
-                        lbTienThua.Text = (0 - Convert.ToDouble(lb_TongTienTT.Text)).ToString();
+                        lbTienThua.Text = (0 - Convert.ToDecimal(lb_TongTienTT.Text)).ToString();
                     }
 
                 }
@@ -1041,9 +1017,14 @@ namespace _3.PL.Views
         {
             HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text);
             var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
-            if (int.TryParse(tb_Diem.Text, out int y))
+            if (decimal.TryParse(tb_TienKhachDua.Text, out decimal x) && decimal.TryParse(tb_Diem.Text, out decimal y) && decimal.TryParse(tb_TTOnline.Text, out decimal z))
             {
-                if (Convert.ToInt32(tb_Diem.Text) > Khach.Diem)
+                if (Convert.ToInt32(tb_Diem.Text) <= Khach.Diem)
+                {
+                    //thay đổi tiền thừa khi điền điểm
+                    lbTienThua.Text = (Convert.ToDecimal(tb_TienKhachDua.Text) + Convert.ToDecimal(tb_TTOnline.Text) - Convert.ToDecimal(lb_TongTienTT.Text) + Convert.ToDecimal(tb_Diem.Text)).ToString();
+                }
+                else
                 {
                     MessageBox.Show($"Số điểm bạn nhập vướt quá số điểm khách hàng có: {Khach.Diem}");
                 }
@@ -1073,12 +1054,28 @@ namespace _3.PL.Views
                     if (result != null)
                     {
                         var idsp = Guid.Parse(result.ToString());
-                        addCart(idsp);
-
+                        var sp = _isanphamChiTietServices.GetsListCtSp().Where(c => c.TrangThai == 1 && c.SoLuongTon > 0).FirstOrDefault(c => c.ID == idsp);
+                        if (sp != null)
+                        {
+                            addCart(idsp);
+                            timer1.Stop();
+                            if (Videocam.IsRunning)
+                            {
+                                Videocam.SignalToStop();
+                                Videocam = null;
+                            }
+                            ptb_QR.Image = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("sản phẩm không tồn tại");
+                        }
 
                     }
+
+
                 }
-                else MessageBox.Show("sản phẩm không tồn tại");
+
 
             }
             catch (Exception)
