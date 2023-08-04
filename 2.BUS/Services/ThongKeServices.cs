@@ -40,9 +40,9 @@ namespace _2.BUS.Services
                 Select(g => new ThongKeVM(g.Key,
                 g.Where(d => d.Ma == g.Key).Select(d => d.Ten).FirstOrDefault(),
                 g.Where(d => d.Ma == g.Key).Select(d => d.SoLuong).FirstOrDefault(),
-                g.Where(d => d.Ma == g.Key).Select(d => d.DonGia).FirstOrDefault(),
-                g.Where(d => d.Ma == g.Key).Select(d => d.DonGia).FirstOrDefault(),
-                g.Where(d => d.Ma == g.Key).Select(d => d.SDT).FirstOrDefault(),
+                g.Where(d => d.Ma == g.Key).Select(d => d.DonGia).FirstOrDefault(),   
+                g.Where(d => d.Ma == g.Key).Select(d => d.ThanhTien).FirstOrDefault(), 
+                g.Where(d=> d.Ma == g.Key).Select(d=>d.SDT).FirstOrDefault(),
                 g.Where(d => d.Ma == g.Key).Select(d => d.NgayTao).FirstOrDefault())
                 ).ToList();
             return _lstfinal;
