@@ -8,6 +8,7 @@ namespace _2.BUS.ViewModels
 {
     public class ThongKeVM
     {
+        
         public string MaSp { get; set; }
         public string TenSp { get; set; }
         public int SoLuong { get; set; }
@@ -15,8 +16,9 @@ namespace _2.BUS.ViewModels
         public decimal ThanhTien { get; set; }
         public string SDT { get; set; }
         public DateTime NgayTao { get; set; }
+        public decimal GiaNhap { get; set; }
 
-        public ThongKeVM(string maSp, string tenSp, int soLuong, decimal donGia, decimal thanhTien, string sDT, DateTime ngayTao)
+        public ThongKeVM(string maSp, string tenSp, int soLuong, decimal donGia, decimal thanhTien, string sDT, DateTime ngayTao, decimal giaNhap)
         {
             MaSp = maSp;
             TenSp = tenSp;
@@ -25,7 +27,8 @@ namespace _2.BUS.ViewModels
             ThanhTien = thanhTien;
             SDT = sDT;
             NgayTao = ngayTao;
+            GiaNhap = giaNhap;
         }
-               
+
     }
 }
