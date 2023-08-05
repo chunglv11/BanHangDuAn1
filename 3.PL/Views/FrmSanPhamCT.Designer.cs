@@ -39,6 +39,10 @@
             btn_Sua = new Button();
             btn_Xoa = new Button();
             panelTrai = new Panel();
+            label15 = new Label();
+            cmb_locSize = new ComboBox();
+            label14 = new Label();
+            cmb_loctrangthai = new ComboBox();
             rdb_Het = new RadioButton();
             rdb_Con = new RadioButton();
             label11 = new Label();
@@ -190,6 +194,10 @@
             // panelTrai
             // 
             panelTrai.BackColor = Color.SeaShell;
+            panelTrai.Controls.Add(label15);
+            panelTrai.Controls.Add(cmb_locSize);
+            panelTrai.Controls.Add(label14);
+            panelTrai.Controls.Add(cmb_loctrangthai);
             panelTrai.Controls.Add(rdb_Het);
             panelTrai.Controls.Add(rdb_Con);
             panelTrai.Controls.Add(label11);
@@ -226,6 +234,44 @@
             panelTrai.Size = new Size(1339, 757);
             panelTrai.TabIndex = 29;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(436, 444);
+            label15.Name = "label15";
+            label15.Size = new Size(109, 23);
+            label15.TabIndex = 68;
+            label15.Text = "Lọc theo size";
+            // 
+            // cmb_locSize
+            // 
+            cmb_locSize.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_locSize.FormattingEnabled = true;
+            cmb_locSize.Location = new Point(436, 472);
+            cmb_locSize.Name = "cmb_locSize";
+            cmb_locSize.Size = new Size(208, 31);
+            cmb_locSize.TabIndex = 67;
+            cmb_locSize.SelectedIndexChanged += cmb_locSize_SelectedIndexChanged;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(436, 374);
+            label14.Name = "label14";
+            label14.Size = new Size(156, 23);
+            label14.TabIndex = 66;
+            label14.Text = "Lọc theo trạng thái";
+            // 
+            // cmb_loctrangthai
+            // 
+            cmb_loctrangthai.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_loctrangthai.FormattingEnabled = true;
+            cmb_loctrangthai.Location = new Point(436, 400);
+            cmb_loctrangthai.Name = "cmb_loctrangthai";
+            cmb_loctrangthai.Size = new Size(208, 31);
+            cmb_loctrangthai.TabIndex = 65;
+            cmb_loctrangthai.SelectedIndexChanged += cmb_loctrangthai_SelectedIndexChanged;
+            // 
             // rdb_Het
             // 
             rdb_Het.AutoSize = true;
@@ -251,7 +297,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(20, 476);
+            label11.Location = new Point(16, 476);
             label11.Name = "label11";
             label11.Size = new Size(80, 23);
             label11.TabIndex = 61;
@@ -259,9 +305,9 @@
             // 
             // txt_TimKiem
             // 
-            txt_TimKiem.Location = new Point(122, 473);
+            txt_TimKiem.Location = new Point(110, 473);
             txt_TimKiem.Name = "txt_TimKiem";
-            txt_TimKiem.Size = new Size(305, 30);
+            txt_TimKiem.Size = new Size(207, 30);
             txt_TimKiem.TabIndex = 60;
             txt_TimKiem.TextChanged += txt_TimKiem_TextChanged;
             // 
@@ -280,7 +326,7 @@
             // 
             // btn_ChonAnh
             // 
-            btn_ChonAnh.Location = new Point(436, 349);
+            btn_ChonAnh.Location = new Point(436, 329);
             btn_ChonAnh.Name = "btn_ChonAnh";
             btn_ChonAnh.Size = new Size(234, 29);
             btn_ChonAnh.TabIndex = 57;
@@ -299,16 +345,16 @@
             // 
             // txt_Mota
             // 
-            txt_Mota.Location = new Point(112, 352);
+            txt_Mota.Location = new Point(111, 349);
             txt_Mota.Name = "txt_Mota";
-            txt_Mota.Size = new Size(205, 82);
+            txt_Mota.Size = new Size(208, 82);
             txt_Mota.TabIndex = 53;
             txt_Mota.Text = "";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(20, 372);
+            label13.Location = new Point(16, 375);
             label13.Name = "label13";
             label13.Size = new Size(60, 23);
             label13.TabIndex = 52;
@@ -318,7 +364,7 @@
             // 
             txt_SLT.Location = new Point(111, 297);
             txt_SLT.Name = "txt_SLT";
-            txt_SLT.Size = new Size(209, 30);
+            txt_SLT.Size = new Size(208, 30);
             txt_SLT.TabIndex = 51;
             txt_SLT.TextChanged += txt_SLT_TextChanged;
             // 
@@ -342,7 +388,7 @@
             // 
             cmb_Nxs.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_Nxs.FormattingEnabled = true;
-            cmb_Nxs.Location = new Point(112, 250);
+            cmb_Nxs.Location = new Point(111, 250);
             cmb_Nxs.Name = "cmb_Nxs";
             cmb_Nxs.Size = new Size(208, 31);
             cmb_Nxs.TabIndex = 47;
@@ -353,7 +399,7 @@
             cmb_Loai.FormattingEnabled = true;
             cmb_Loai.Location = new Point(111, 203);
             cmb_Loai.Name = "cmb_Loai";
-            cmb_Loai.Size = new Size(209, 31);
+            cmb_Loai.Size = new Size(208, 31);
             cmb_Loai.TabIndex = 45;
             // 
             // cmb_MS
@@ -389,7 +435,7 @@
             txt_Ma.Enabled = false;
             txt_Ma.Location = new Point(110, 17);
             txt_Ma.Name = "txt_Ma";
-            txt_Ma.Size = new Size(207, 30);
+            txt_Ma.Size = new Size(209, 30);
             txt_Ma.TabIndex = 41;
             // 
             // label12
@@ -497,7 +543,7 @@
             // ptb_AVT
             // 
             ptb_AVT.BackColor = Color.MistyRose;
-            ptb_AVT.Location = new Point(436, 89);
+            ptb_AVT.Location = new Point(436, 67);
             ptb_AVT.Name = "ptb_AVT";
             ptb_AVT.Size = new Size(234, 254);
             ptb_AVT.TabIndex = 0;
@@ -586,5 +632,9 @@
         private Button btn_SaveQr;
         private RadioButton rdb_Con;
         private RadioButton rdb_Het;
+        private Label label14;
+        private ComboBox cmb_loctrangthai;
+        private Label label15;
+        private ComboBox cmb_locSize;
     }
 }
