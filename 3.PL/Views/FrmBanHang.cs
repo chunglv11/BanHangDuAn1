@@ -167,6 +167,12 @@ namespace _3.PL.Views
                 MessageBox.Show("Số Lượng Không Cho Phép Âm", "ERR");
                 return;
             }
+
+            if (Convert.ToInt32(content) > Convert.ToInt32(_isanphamChiTietServices.GetsListCtSp().Where(c => c.ID == p.ID).Select(c => c.SoLuongTon).FirstOrDefault()))
+            {
+                MessageBox.Show("Số Lượng không được phép > số lượng tồn", "ERR");
+                return;
+            }
             #endregion
             if (content.Length > 0 && content != "0" && content.Length < 6)
             {
@@ -190,17 +196,21 @@ namespace _3.PL.Views
                         if (data.SoLuong == p.SoLuongTon)
                         {
                             MessageBox.Show("Sản phẩm trong giỏ hàng đã vượt quá số lượng cho phép");
+
                         }
                         else
                         {
-                            data.SoLuong++;
+                            var tongsp = data.SoLuong += Convert.ToInt32(content);
+                            if (tongsp > p.SoLuongTon)
+                            {
+                                MessageBox.Show($"Số lượng mua được tối đa là: {p.SoLuongTon}");
+                                data.SoLuong = p.SoLuongTon;
+                            }
                         }
                     }
-
                 }
                 else
                 {
-
                     MessageBox.Show("Sản Phẩm Không Đủ Để Thêm", "Thông báo");
 
                 }
@@ -243,11 +253,6 @@ namespace _3.PL.Views
             btnXoa.Name = "Xoá sản phẩm";
             btnXoa.UseColumnTextForButtonValue = true;
             dtg_GioHang.Columns.Add(btnXoa);
-
-            //DataGridViewButtonColumn btnThem = new DataGridViewButtonColumn();
-            //btnXoa.Name = "Thêm sản phẩm";
-            //btnXoa.Text = "Thêm";
-            //dtg_GioHang.Columns.Add(btnThem);
 
             dtg_GioHang.AllowUserToAddRows = false;
             foreach (var item in _HDCT)
@@ -369,7 +374,7 @@ namespace _3.PL.Views
 
         private void dtg_GioHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = e.RowIndex;
+            DataGridViewRow r = dtg_GioHang.Rows[e.RowIndex];
             _idSpct = Guid.Parse(dtg_GioHang.Rows[e.RowIndex].Cells[0].Value.ToString());
             if (e.ColumnIndex == 6)
             {
@@ -377,9 +382,19 @@ namespace _3.PL.Views
                 var data = _HDCT.FirstOrDefault(x => x.IDSPCT == p.ID);
                 if (data != null)
                 {
-                    data.SoLuong--;
-                    MessageBox.Show($"Số lượng là {data.SoLuong}");
-                    ThanhTien();
+                    if (Convert.ToInt32(dtg_GioHang.Rows[r.Index].Cells[5].Value) <= 1)
+                    {
+                        MessageBox.Show("Số lượng sản phẩm mua không được nhỏ hơn 1");
+                        dtg_GioHang.Rows[r.Index].Cells[5].Value = _HDCT[r.Index].SoLuong;
+                    }
+                    else
+                    {
+                        data.SoLuong--;
+                        MessageBox.Show($"Số lượng giảm còn: {data.SoLuong}");
+                        dtg_GioHang.Rows[r.Index].Cells[5].Value = _HDCT[r.Index].SoLuong;
+                        ThanhTien();
+                    }
+
                 }
 
             }
