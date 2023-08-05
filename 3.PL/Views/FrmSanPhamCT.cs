@@ -53,6 +53,8 @@ namespace _3.PL.Views
             loadSp();
             LoadData();
             reset();
+            loctrangthai();
+            LocSize();
 
         }
         public void LoadData()
@@ -670,6 +672,7 @@ namespace _3.PL.Views
             foreach (var x in iSize.GetSizeAo().Where(c => c.TrangThai == 1))
             {
                 cmb_Size.Items.Add(x.Ten);
+                cmb_locSize.Items.Add(x.Ten);
             }
         }
         public void loadLoaiSp()
@@ -859,6 +862,50 @@ namespace _3.PL.Views
                     }
                 }
             }
+        }
+
+        private void cmb_loctrangthai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+        }
+        public void loctrangthai()
+        {
+            cmb_loctrangthai.Items.Add("Còn hàng");
+            cmb_loctrangthai.Items.Add("Hết hàng");
+        }
+
+        public void LocSize()
+        {
+            int stt = 1;
+            dtg_ShowSanPham.ColumnCount = 14;
+            dtg_ShowSanPham.Columns[0].Name = "STT";
+            dtg_ShowSanPham.Columns[1].Name = "ID";
+            dtg_ShowSanPham.Columns[1].Visible = false;
+            dtg_ShowSanPham.Columns[2].Name = "Mã";
+            dtg_ShowSanPham.Columns[3].Name = "Tên Sản Phẩm";
+            dtg_ShowSanPham.Columns[4].Name = "Size";
+            dtg_ShowSanPham.Columns[5].Name = "Loại";
+            dtg_ShowSanPham.Columns[6].Name = "Màu sắc";
+            dtg_ShowSanPham.Columns[7].Name = "Nhà sản xuất";
+            dtg_ShowSanPham.Columns[8].Name = "SLT";
+            dtg_ShowSanPham.Columns[9].Name = "Gía Nhập";
+            dtg_ShowSanPham.Columns[10].Name = "Gía Bán";
+            dtg_ShowSanPham.Columns[11].Name = "Mô Tả";
+            dtg_ShowSanPham.Columns[12].Name = "Trạng thái";
+            dtg_ShowSanPham.Columns[13].Name = "Hinh anh";
+            dtg_ShowSanPham.Rows.Clear();
+            var lstSpCt = iSpCt.GetsListCtSp();
+            foreach (var x in lstSpCt.OrderBy(c => c.Ma))
+            {
+
+                dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+            }
+        }
+
+        private void cmb_locSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LocSize();
         }
     }
 }
