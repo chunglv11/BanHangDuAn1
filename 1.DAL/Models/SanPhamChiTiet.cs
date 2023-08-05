@@ -14,6 +14,7 @@ namespace _1.DAL.Models
         public Guid IDLOAI { get; set; }
         public Guid IDNSX { get; set; }
         public Guid IDMS { get; set; }
+        public Guid IDCL { get; set; }
 
         public string Ma { get; set; }
         public int SoLuongTon { get; set; }
@@ -27,6 +28,7 @@ namespace _1.DAL.Models
         public virtual LoaiSanPham loaiSanPham { get; set; }
         public virtual SanPham sanpham { get; set; }
         public virtual KichThuoc size { get; set; }
+        public virtual ChatLieu chatlieu { get; set; }
         public List<HoaDonChiTiet> hoadonchitiet { get; set; }
     }
 }

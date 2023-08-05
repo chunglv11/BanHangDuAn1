@@ -32,7 +32,7 @@
             panelFil = new Panel();
             panel3 = new Panel();
             label9 = new Label();
-            Cbb_Loc = new ComboBox();
+            Cbb_LocCV = new ComboBox();
             txt_TimKiem = new TextBox();
             dtg_ShowNV = new DataGridView();
             panel2 = new Panel();
@@ -91,7 +91,7 @@
             // panel3
             // 
             panel3.Controls.Add(label9);
-            panel3.Controls.Add(Cbb_Loc);
+            panel3.Controls.Add(Cbb_LocCV);
             panel3.Controls.Add(txt_TimKiem);
             panel3.Controls.Add(dtg_ShowNV);
             panel3.Dock = DockStyle.Fill;
@@ -104,19 +104,20 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(435, 7);
+            label9.Location = new Point(473, 10);
             label9.Name = "label9";
             label9.Size = new Size(146, 23);
             label9.TabIndex = 13;
             label9.Text = "Lọc theo chức vụ:";
             // 
-            // Cbb_Loc
+            // Cbb_LocCV
             // 
-            Cbb_Loc.FormattingEnabled = true;
-            Cbb_Loc.Location = new Point(600, 6);
-            Cbb_Loc.Name = "Cbb_Loc";
-            Cbb_Loc.Size = new Size(151, 28);
-            Cbb_Loc.TabIndex = 14;
+            Cbb_LocCV.FormattingEnabled = true;
+            Cbb_LocCV.Location = new Point(674, 5);
+            Cbb_LocCV.Name = "Cbb_LocCV";
+            Cbb_LocCV.Size = new Size(151, 28);
+            Cbb_LocCV.TabIndex = 14;
+            Cbb_LocCV.SelectedIndexChanged += Cbb_LocCV_SelectedIndexChanged;
             // 
             // txt_TimKiem
             // 
@@ -330,6 +331,7 @@
             // 
             // cmb_CV
             // 
+            cmb_CV.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_CV.FormattingEnabled = true;
             cmb_CV.Location = new Point(851, 36);
             cmb_CV.Name = "cmb_CV";
@@ -515,7 +517,7 @@
         private Button btn_Them;
         private TextBox txt_TimKiem;
         private Label label9;
-        private ComboBox Cbb_Loc;
+        private ComboBox Cbb_LocCV;
         private RadioButton rbtn_Nam;
         private GroupBox groupBox3;
         private RadioButton rbn_KHD;

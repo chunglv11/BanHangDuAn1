@@ -22,6 +22,51 @@ namespace _1.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("_1.DAL.Models.ChatLieu", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Ma")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Ten")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("TrangThai")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ChatLieu", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ID = new Guid("cb4eaedb-a21a-4560-a069-35f580dae332"),
+                            Ma = "CL1",
+                            Ten = "Vải",
+                            TrangThai = 1
+                        },
+                        new
+                        {
+                            ID = new Guid("bfcc93fd-2382-4bca-ad75-70dda2e3d1da"),
+                            Ma = "CL2",
+                            Ten = "Vải thô",
+                            TrangThai = 1
+                        },
+                        new
+                        {
+                            ID = new Guid("2ab9d74b-b4db-4a42-896e-c43ca8276b81"),
+                            Ma = "CL3",
+                            Ten = "cotton",
+                            TrangThai = 1
+                        });
+                });
+
             modelBuilder.Entity("_1.DAL.Models.ChiTietThanhToan", b =>
                 {
                     b.Property<Guid>("ID")
@@ -246,8 +291,8 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("38dc8d59-1d19-4002-933e-3d09c77d8fb1"),
                             Ma = "KM1",
-                            NgayBatDau = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6068),
-                            NgayKetThuc = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6068),
+                            NgayBatDau = new DateTime(2023, 8, 5, 9, 1, 51, 805, DateTimeKind.Local).AddTicks(7478),
+                            NgayKetThuc = new DateTime(2023, 8, 5, 9, 1, 51, 805, DateTimeKind.Local).AddTicks(7478),
                             PhanTramGiam = 7,
                             SoTienGiam = 1000f,
                             Ten = "Giảm 50%",
@@ -257,8 +302,8 @@ namespace _1.DAL.Migrations
                         {
                             ID = new Guid("8ee1a209-7ceb-471d-8452-b3c92408cabb"),
                             Ma = "KM2",
-                            NgayBatDau = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6071),
-                            NgayKetThuc = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(6072),
+                            NgayBatDau = new DateTime(2023, 8, 5, 9, 1, 51, 805, DateTimeKind.Local).AddTicks(7482),
+                            NgayKetThuc = new DateTime(2023, 8, 5, 9, 1, 51, 805, DateTimeKind.Local).AddTicks(7482),
                             PhanTramGiam = 5,
                             SoTienGiam = 1000f,
                             Ten = "Giảm 50%",
@@ -443,7 +488,7 @@ namespace _1.DAL.Migrations
                             IDCV = new Guid("e36bbc87-d18b-4a9a-bc51-353e79e54586"),
                             MaNv = "NV1",
                             MatKhau = "1",
-                            NgaySinh = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(5978),
+                            NgaySinh = new DateTime(2023, 8, 5, 9, 1, 51, 805, DateTimeKind.Local).AddTicks(7345),
                             TrangThai = 1,
                             Username = "chunglv"
                         },
@@ -456,7 +501,7 @@ namespace _1.DAL.Migrations
                             IDCV = new Guid("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"),
                             MaNv = "NV2",
                             MatKhau = "1",
-                            NgaySinh = new DateTime(2023, 7, 29, 8, 35, 25, 354, DateTimeKind.Local).AddTicks(5990),
+                            NgaySinh = new DateTime(2023, 8, 5, 9, 1, 51, 805, DateTimeKind.Local).AddTicks(7358),
                             TrangThai = 1,
                             Username = "bena"
                         });
@@ -598,6 +643,9 @@ namespace _1.DAL.Migrations
                     b.Property<string>("HinhAnh")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("IDCL")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("IDKC")
                         .HasColumnType("uniqueidentifier");
 
@@ -628,6 +676,8 @@ namespace _1.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("IDCL");
 
                     b.HasIndex("IDKC");
 
@@ -718,6 +768,12 @@ namespace _1.DAL.Migrations
 
             modelBuilder.Entity("_1.DAL.Models.SanPhamChiTiet", b =>
                 {
+                    b.HasOne("_1.DAL.Models.ChatLieu", "chatlieu")
+                        .WithMany("spct")
+                        .HasForeignKey("IDCL")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("_1.DAL.Models.KichThuoc", "size")
                         .WithMany("spct")
                         .HasForeignKey("IDKC")
@@ -748,6 +804,8 @@ namespace _1.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("chatlieu");
+
                     b.Navigation("loaiSanPham");
 
                     b.Navigation("mausac");
@@ -757,6 +815,11 @@ namespace _1.DAL.Migrations
                     b.Navigation("sanpham");
 
                     b.Navigation("size");
+                });
+
+            modelBuilder.Entity("_1.DAL.Models.ChatLieu", b =>
+                {
+                    b.Navigation("spct");
                 });
 
             modelBuilder.Entity("_1.DAL.Models.ChucVu", b =>

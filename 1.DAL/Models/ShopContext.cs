@@ -24,8 +24,8 @@ namespace _1.DAL.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-JV9E5UC\SQLEXPRESS;Initial Catalog=QuanLyBanQuanAo;User ID=toanck;Password=123456789;Integrated Security=True;TrustServerCertificate=True;");
-            
+            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-Q3TF2SAN\SQLEXPRESS;Initial Catalog=QuanLyBanQuanAo;Integrated Security=True;TrustServerCertificate=True;");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,6 +36,7 @@ namespace _1.DAL.Models
         public virtual DbSet<ChucVu> ChucVus { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<MauSac> MauSacs { get; set; }
+        public virtual DbSet<ChatLieu> ChatLieus { get; set; }
         public virtual DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
         public virtual DbSet<ChiTietThanhToan> ChiTietThanhToans { get; set; }
 

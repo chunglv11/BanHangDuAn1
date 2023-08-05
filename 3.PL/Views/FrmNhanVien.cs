@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Timer = System.Windows.Forms.Timer;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -14,8 +15,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Text.RegularExpressions;
 
 namespace _3.PL.Views
 {
@@ -27,16 +30,99 @@ namespace _3.PL.Views
         NhanVien nhanVien;
         private Guid ID;
         public string Anh = "";
+
+        //Mã OTP
+        private const string mailAddress = "tranvantien6620@gmail.com";
+        private const string fromPass = "iekmmjfguxfgtzia";
+        private const string subjectMail = "OTP code";
+        private int _code;
+        private static int _countSteps = 0;
+        private static Timer _timer;
+        private static FrmNhanVien _instance;
+
         public FrmNhanVien()
         {
             _Inhanvien = new NhanVienServices();
             _IchucVu = new ChucVuServices();
             _nvview = new NhanVienViewModels();
+            //foreach (var item in _IchucVu.GetAll())
+            //{
+            //    cmb_CV.Items.Add(item.Ten);
+            //}
+            //rbtn_Nam.Checked = true;
+            //rbtn_Nu.Checked = true;
+            //foreach (var item in _IchucVu.GetAll())
+            //{
+            //    Cbb_LocCV.Items.Add(item.Ten);
+            //}
+            //cbb_locTT.Items.Add("Hoạt Động");
+            //cbb_locTT.Items.Add("Không hoạt Động");
+            //date_ngaySinh.CustomFormat = "dd-MM-yyyy";
+
             InitializeComponent();
             LoadcmbCV();
             LoadData();
 
         }
+        private void btnGuiMa_Click(object sender, EventArgs e)
+        {
+            sendOTP();
+        }
+        private static void timerTick(object myObject, EventArgs e)
+        {
+            _countSteps++;
+            if (_countSteps > 60)
+            {
+                stopTimer();
+                var confirmMessage = MessageBox.Show("Mã OTP đã hết hiệu lực\nBạn có muốn lấy lại mã OTP không?",
+                    "Thông báo", MessageBoxButtons.RetryCancel, MessageBoxIcon.Question);
+                if (confirmMessage == DialogResult.Retry)
+                {
+                    _instance.sendOTP();
+                }
+            }
+        }
+        private void sendOTP()
+        {
+
+        }
+        private void confirmOTP()
+        {
+
+        }
+        private static void startTimer()
+        {
+            _timer = new Timer();
+            _timer.Interval = 1000;
+            _timer.Tick += timerTick;
+            _timer.Start();
+            _instance.enableControl(true);
+        }
+
+        private static void stopTimer()
+        {
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer = null;
+                _countSteps = 0;
+            }
+            _instance.enableControl(false);
+        }
+        private void enableControl(bool isEnable)
+        {
+            //       txtOTP.Enabled = btnXacNhan.Enabled = isEnable;
+        }
+        private void btnXacNhan_Click(object sender, EventArgs e)
+        {
+            confirmOTP();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void LoadData()
         {
@@ -63,17 +149,17 @@ namespace _3.PL.Views
             {
                 _ = dtg_ShowNV.Rows.Add(
                     stt++,
-                    a.NhanVien.ID,
-                    a.NhanVien.Username,
-                    a.NhanVien.MaNv,
-                    a.NhanVien.HoTen,
-                    a.NhanVien.GioiTinh == 1 ? "nam" : "nữ",
-                    a.NhanVien.Email,
-                    a.NhanVien.NgaySinh,
-                    a.NhanVien.MatKhau,
-                    a.NhanVien.IDCV, // Access ChucVu property directly from NhanVien
-                    a.NhanVien.TrangThai == 1 ? "hoạt động" : "Không hoạt động"
-                );
+                    a.ID,
+                    a.Username,
+                    a.MaNv,
+                    a.HoTen,
+                    a.GioiTinh == 1 ? "nam" : "nữ",
+                    a.Email,
+                    a.NgaySinh,
+                    a.MatKhau,
+                    a.Ten, // Access ChucVu property directly from NhanVien
+                    a.TrangThai == 1 ? "hoạt động" : "Không hoạt động"
+                    );
             }
 
         }
@@ -91,7 +177,8 @@ namespace _3.PL.Views
         }
         public NhanVien GetvaluaContro()
         {
-            ChucVuViewModels? x = _IchucVu.GetAllView().FirstOrDefault(c => c.ChucVu.Ten == cmb_CV.Text);
+            var chucvu = _IchucVu.GetAll().FirstOrDefault(c => c.Ten == cmb_CV.Text);
+            //ChucVuViewModels? x = _IchucVu.GetAllView().FirstOrDefault(c => c.ChucVu.Ten == cmb_CV.Text);
             return new NhanVien()
             {
 
@@ -102,7 +189,8 @@ namespace _3.PL.Views
                 MatKhau = tb_MatKhau.Text,
                 NgaySinh = date_ngaySinh.Value,
                 Username = tb_user.Text,
-                IDCV = x.ChucVu.ID,
+               
+                IDCV = chucvu.ID,
                 GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
                 TrangThai = rbn_HD.Checked == true ? 1 : 0,
                 //a.NhanVien.ID,
@@ -167,9 +255,77 @@ namespace _3.PL.Views
             }
 
         }
-
-        private void btn_Them_Click(object sender, EventArgs e)
+        public bool checkInput()
         {
+            string email = tb_Email.Text;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,10})+)$");
+            Match match = regex.Match(email);
+            if (!match.Success)
+            {
+                MessageBox.Show("Email không hợp lệ!!!");
+                tb_Email.Text = "";
+                return false;
+            }
+            else if (txt_HoTen.Text.Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập Tên nhân viên");
+                return false;
+            }
+            else if (txt_HoTen.Text.Length < 8)
+            {
+                MessageBox.Show("Tên nhân viên phải có ít nhất 8 kí tự");
+                return false;
+            }
+
+            else if (tb_MatKhau.Text.Length == 0)
+            {
+                MessageBox.Show("Bạn chưa nhập mật khẩu !");
+                return false;
+            }
+
+            return true;
+        }
+        private void btn_Them_Click(object sender, EventArgs e)
+        //{
+        //    var checkEmail = _Inhanvien.GetAll().FirstOrDefault(p => p.Email == tb_Email.Text);
+        //    if (!checkInput())
+        //    {
+
+        //    }
+        //    else
+        //    {
+        //        if (checkEmail != null)
+        //        {
+        //            MessageBox.Show("Email đã được sử dụng, hãy chọn Email khác");
+        //        }
+        //        else
+        //        {
+        //            int idss = _Inhanvien.GetAll().Count() + 1;
+
+        //            // This will get the current PROJECT directory
+
+
+        //            NhanVien nhanVien = new NhanVien()
+        //            {
+
+        //                MaNv = tb_Ma.Text,
+        //                HoTen = txt_HoTen.Text,
+        //                Email = tb_Email.Text,
+        //                AnhNv = btn_ChonAnh.Text,
+        //                MatKhau = tb_MatKhau.Text,
+        //                NgaySinh = date_ngaySinh.Value,
+        //                Username = tb_user.Text,
+        //                IDCV = cmb_CV.Text == "Quản lý" ? 1 : 2,
+
+        //                GioiTinh = rbtn_Nam.Checked == true ? 1 : 0,
+        //                TrangThai = rbn_HD.Checked == true ? 1 : 0,
+        //            };
+        //            _iQLEmployee.AddEmployee(employeee);
+        //            MessageBox.Show("Thêm Nhân Viên thành công");
+        //            loadNhanVien();
+
+        {
+
             var chucvu = _IchucVu.GetAll().FirstOrDefault(c => c.Ten == cmb_CV.Text);
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Thêm Nhân Viên Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -177,6 +333,14 @@ namespace _3.PL.Views
                 if (_Inhanvien.GetAll().Any(c => c.MaNv == tb_Ma.Text))
                 {
                     MessageBox.Show("Mã bị trùng");
+                }
+                else if (_Inhanvien.GetAll().Any(c => c.Username == tb_user.Text))
+                {
+                    MessageBox.Show(" Username bị trùng");
+                }
+                else if (_Inhanvien.GetAll().Any(c => c.Email == tb_Email.Text))
+                {
+                    MessageBox.Show(" Email bị trùng");
                 }
                 else if (string.IsNullOrWhiteSpace(txt_HoTen.Text))
                 {
@@ -201,6 +365,7 @@ namespace _3.PL.Views
                     _ = _Inhanvien.Add(GetvaluaContro());
                     LoadData();
                     MessageBox.Show("thành công");
+
 
 
                 }
@@ -287,16 +452,25 @@ namespace _3.PL.Views
 
         }
 
-      
+
 
         private void txt_TimKiem_TextChanged(object sender, EventArgs e)
         {
             dtg_ShowNV.Rows.Clear();
 
-            foreach (var item in _Inhanvien.GetAllView().Where(c => c.NhanVien.MaNv.Contains(txt_TimKiem.Text)))
+            foreach (var item in _Inhanvien.GetAllView().Where(c =>
+     c.MaNv.Contains(tb_Ma.Text) ||
+     c.HoTen.Contains(txt_HoTen.Text) ||
+     c.Username.Contains(txt_TimKiem.Text) ||
+     c.Email.Contains(txt_TimKiem.Text)))
             {
-                dtg_ShowNV.Rows.Add(item.NhanVien.ID, item.NhanVien.MaNv, item.NhanVien.HoTen,item.NhanVien.Username,item.NhanVien.ChucVu,item.NhanVien.Email,item.NhanVien.GioiTinh, item.NhanVien.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                dtg_ShowNV.Rows.Add(item.ID, item.MaNv, item.HoTen, item.Username, item.Ten, item.Email, item.GioiTinh, item.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
+        }
+
+        private void Cbb_LocCV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

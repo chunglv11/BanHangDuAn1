@@ -32,6 +32,7 @@
             btn_LayMa = new Button();
             tbOTP = new TextBox();
             btn_XacNhan = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // tb_Gmail
@@ -50,30 +51,43 @@
             btn_LayMa.TabIndex = 1;
             btn_LayMa.Text = "Lấy mã OTP";
             btn_LayMa.UseVisualStyleBackColor = true;
+            btn_LayMa.Click += btn_LayMa_Click;
             // 
             // tbOTP
             // 
-            tbOTP.Location = new Point(293, 87);
+            tbOTP.Location = new Point(55, 172);
             tbOTP.Name = "tbOTP";
             tbOTP.PlaceholderText = "Điền OTP";
-            tbOTP.Size = new Size(125, 27);
+            tbOTP.Size = new Size(591, 27);
             tbOTP.TabIndex = 2;
             // 
             // btn_XacNhan
             // 
-            btn_XacNhan.Location = new Point(499, 80);
+            btn_XacNhan.Location = new Point(55, 250);
             btn_XacNhan.Name = "btn_XacNhan";
             btn_XacNhan.Size = new Size(147, 41);
             btn_XacNhan.TabIndex = 3;
             btn_XacNhan.Text = "Xác nhận";
             btn_XacNhan.UseVisualStyleBackColor = true;
+            btn_XacNhan.Click += btn_XacNhan_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(417, 262);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 4;
+            button1.Text = "Trở lại";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // FrmQuenMK
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
-            ClientSize = new Size(800, 164);
+            ClientSize = new Size(800, 358);
+            Controls.Add(button1);
             Controls.Add(btn_XacNhan);
             Controls.Add(tbOTP);
             Controls.Add(btn_LayMa);
@@ -90,5 +104,6 @@
         private Button btn_LayMa;
         private TextBox tbOTP;
         private Button btn_XacNhan;
+        private Button button1;
     }
 }

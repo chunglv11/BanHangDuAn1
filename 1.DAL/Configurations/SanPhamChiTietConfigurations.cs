@@ -27,6 +27,7 @@ namespace _1.DAL.Configurations
             builder.HasOne(c => c.mausac).WithMany(v => v.spct).HasForeignKey(p => p.IDMS);
             builder.HasOne(c => c.nsx).WithMany(v => v.spct).HasForeignKey(p => p.IDNSX);
             builder.HasOne(c => c.size).WithMany(v => v.spct).HasForeignKey(p => p.IDKC);
+            builder.HasOne(c => c.chatlieu).WithMany(v => v.spct).HasForeignKey(p => p.IDCL);
         }
     }
 }

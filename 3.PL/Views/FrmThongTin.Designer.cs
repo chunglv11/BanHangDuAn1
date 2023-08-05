@@ -90,6 +90,7 @@
             button1.TabIndex = 8;
             button1.Text = "Đổi mật khẩu";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // groupBox1
             // 

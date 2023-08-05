@@ -16,5 +16,12 @@ namespace _3.PL.Views
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FrmDoiMK frmdoimk = new FrmDoiMK();
+            frmdoimk.ShowDialog();
+        }
     }
 }

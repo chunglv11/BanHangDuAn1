@@ -10,6 +10,7 @@ namespace _1.DAL.Models
     {
         public Guid ID { get; set; }
         public Guid IDCV { get; set; }
+      
         public string Username { get; set; }
         public string MaNv { get; set; }
         public string HoTen { get; set; }

@@ -36,7 +36,7 @@ namespace _1.DAL.Repository
         {
             try
             {
-                 var deleteId = _shopContext.SanPhamChiTiets.SingleOrDefault(p => p.ID == id);
+                var deleteId = _shopContext.SanPhamChiTiets.SingleOrDefault(p => p.ID == id);
                 _shopContext.SanPhamChiTiets.Remove(deleteId);
                 _shopContext.SaveChanges();
 
@@ -63,13 +63,14 @@ namespace _1.DAL.Repository
         {
             try
             {
-                if(obj == null) return false;
-                var Spct = _shopContext.SanPhamChiTiets.FirstOrDefault(p=>p.ID == obj.ID);
+                if (obj == null) return false;
+                var Spct = _shopContext.SanPhamChiTiets.FirstOrDefault(p => p.ID == obj.ID);
                 Spct.IDSP = obj.IDSP;
                 Spct.IDMS = obj.IDMS;
                 Spct.IDNSX = obj.IDNSX;
                 Spct.IDKC = obj.IDKC;
                 Spct.IDLOAI = obj.IDLOAI;
+                Spct.IDCL = obj.IDCL;
                 Spct.Ma = obj.Ma;
                 Spct.SoLuongTon = obj.SoLuongTon;
                 Spct.GiaNhap = obj.GiaNhap;

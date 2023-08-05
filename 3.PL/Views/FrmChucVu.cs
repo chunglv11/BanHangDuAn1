@@ -37,17 +37,17 @@ namespace _3.PL.Views
         private void LoadData()
         {
             int stt = 1;
-            dtg_ShowChucVu.ColumnCount = 5;
+            dtg_ShowChucVu.ColumnCount = 4;
             dtg_ShowChucVu.Columns[0].Name = "stt";
-            dtg_ShowChucVu.Columns[1].Name = "id";
-            dtg_ShowChucVu.Columns[2].Name = "ma";
-            dtg_ShowChucVu.Columns[3].Name = "ten";
-            dtg_ShowChucVu.Columns[4].Name = "trang thai";
+            
+            dtg_ShowChucVu.Columns[1].Name = "ma";
+            dtg_ShowChucVu.Columns[2].Name = "ten";
+            dtg_ShowChucVu.Columns[3].Name = "trang thai";
             dtg_ShowChucVu.Rows.Clear();
             dtg_ShowChucVu.Columns[1].Visible = true;
             foreach (var a in _IchucVuServices.GetAllView())
             {
-                _ = dtg_ShowChucVu.Rows.Add(stt++, a.ChucVu.ID, a.ChucVu.Ma, a.ChucVu.Ten, a.ChucVu.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
+                _ = dtg_ShowChucVu.Rows.Add(stt++, a.ChucVu.Ma, a.ChucVu.Ten, a.ChucVu.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
             }
             dtg_ShowChucVu.CellClick += dtg_ShowChucVu_CellClick;
         }
@@ -208,13 +208,13 @@ namespace _3.PL.Views
 
         private void btn_Xoa_Click_1(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Sản Phẩm Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Xóa Chức vụ Không?", "Thông Báo", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
                 if (_ChucVuViewModels == null)
                 {
-                    MessageBox.Show("bạn chưa chọn nsx");
+                    MessageBox.Show("bạn chưa chọn chức vụ muốn xóa");
                 }
                 else
                 {
