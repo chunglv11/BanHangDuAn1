@@ -35,7 +35,7 @@ namespace _2.BUS.Services
                               join d in _sanPhamServices.getlsSpfromDB() on c.IDSP equals d.ID
                               join e in _khachHangServices.GetAllKhachHang() on a.IDKH equals e.ID
 
-                              select new { d.Ma, d.Ten, b.SoLuong, b.DonGia, b.ThanhTien, e.SDT, a.NgayTao }).ToList();
+                              select new { d.Ma, d.Ten, b.SoLuong, b.DonGia, b.ThanhTien, e.SDT, a.NgayTao, c.GiaNhap }).ToList();
             var _lstfinal = lstSpDaBan.OrderByDescending(c => c.SoLuong).GroupBy(d => d.Ma).
                 Select(g => new ThongKeVM(g.Key,
                 g.Where(d => d.Ma == g.Key).Select(d => d.Ten).FirstOrDefault(),
@@ -43,7 +43,8 @@ namespace _2.BUS.Services
                 g.Where(d => d.Ma == g.Key).Select(d => d.DonGia).FirstOrDefault(),   
                 g.Where(d => d.Ma == g.Key).Select(d => d.ThanhTien).FirstOrDefault(), 
                 g.Where(d=> d.Ma == g.Key).Select(d=>d.SDT).FirstOrDefault(),
-                g.Where(d => d.Ma == g.Key).Select(d => d.NgayTao).FirstOrDefault())
+                g.Where(d => d.Ma == g.Key).Select(d => d.NgayTao).FirstOrDefault(),
+                g.Where(d => d.Ma == g.Key).Select(d => d.GiaNhap).FirstOrDefault())
                 ).ToList();
             return _lstfinal;
         }

@@ -477,6 +477,7 @@
             this.Controls.Add(this.panel2);
             this.Name = "FrmThongKe";
             this.Text = "FrmThongKe";
+            this.Load += new System.EventHandler(this.FrmThongKe_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox4.ResumeLayout(false);

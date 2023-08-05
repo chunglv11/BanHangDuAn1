@@ -39,6 +39,7 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            btn_Stop = new Button();
             lb_Thanhtien = new Label();
             label14 = new Label();
             btn_XoaGio = new Button();
@@ -81,7 +82,6 @@
             label4 = new Label();
             label3 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
-            btn_Stop = new Button();
             panelFil.SuspendLayout();
             panelTrai.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -209,6 +209,16 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
             // 
+            // btn_Stop
+            // 
+            btn_Stop.Location = new Point(1129, 133);
+            btn_Stop.Name = "btn_Stop";
+            btn_Stop.Size = new Size(94, 29);
+            btn_Stop.TabIndex = 77;
+            btn_Stop.Text = "Dừng";
+            btn_Stop.UseVisualStyleBackColor = true;
+            btn_Stop.Click += btn_Stop_Click;
+            // 
             // lb_Thanhtien
             // 
             lb_Thanhtien.AutoSize = true;
@@ -272,6 +282,7 @@
             // 
             // dtg_GioHang
             // 
+            dtg_GioHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_GioHang.BackgroundColor = SystemColors.ControlLight;
             dtg_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_GioHang.Location = new Point(12, 25);
@@ -319,6 +330,7 @@
             // 
             // dtg_DonHang
             // 
+            dtg_DonHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_DonHang.BackgroundColor = SystemColors.ControlLight;
             dtg_DonHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_DonHang.Location = new Point(12, 26);
@@ -391,9 +403,9 @@
             lbTienThua.AutoSize = true;
             lbTienThua.Location = new Point(150, 685);
             lbTienThua.Name = "lbTienThua";
-            lbTienThua.Size = new Size(30, 23);
+            lbTienThua.Size = new Size(19, 23);
             lbTienThua.TabIndex = 83;
-            lbTienThua.Text = ".....";
+            lbTienThua.Text = "0";
             // 
             // label16
             // 
@@ -640,16 +652,6 @@
             // timer1
             // 
             timer1.Tick += timer1_Tick;
-            // 
-            // btn_Stop
-            // 
-            btn_Stop.Location = new Point(1129, 133);
-            btn_Stop.Name = "btn_Stop";
-            btn_Stop.Size = new Size(94, 29);
-            btn_Stop.TabIndex = 77;
-            btn_Stop.Text = "Dừng";
-            btn_Stop.UseVisualStyleBackColor = true;
-            btn_Stop.Click += btn_Stop_Click;
             // 
             // FrmBanHang
             // 

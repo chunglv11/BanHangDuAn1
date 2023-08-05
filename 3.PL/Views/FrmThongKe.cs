@@ -24,8 +24,6 @@ namespace _3.PL.Views
             loadthang();
             loadnam();
             loadngay();
-            lbl_KH.Text = _services.GetLstSpDaBan().Select(x=>x.SDT).Distinct().Count().ToString();
-            lbl_DoanhThu.Text = _services.GetLstSpDaBan().Sum(x=>x.ThanhTien).ToString();
         }
         public string[] Getnam()
         {
@@ -213,6 +211,13 @@ namespace _3.PL.Views
         private void txt_Sdt_TextChanged(object sender, EventArgs e)
         {
             LoadData(_services.GetLstSpDaBan().Where(c => c.SDT.Contains(txt_Sdt.Text)).ToList());
+        }
+
+        private void FrmThongKe_Load(object sender, EventArgs e)
+        {
+            lbl_KH.Text = _services.GetLstSpDaBan().Select(x => x.SDT).Distinct().Count().ToString();
+            lbl_DoanhThu.Text = _services.GetLstSpDaBan().Sum(x => x.ThanhTien).ToString();
+            lbl_LN.Text = (_services.GetLstSpDaBan().Sum(x => x.ThanhTien) - _services.GetLstSpDaBan().Sum(x => x.GiaNhap)).ToString();
         }
     }
 }
