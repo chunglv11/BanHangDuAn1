@@ -44,7 +44,7 @@ namespace _2.BUS.Services
             else { return "Trùng rồi"; }
         }
 
-        public List<ChatLieuViewModels> GetLoaiSP()
+        public List<ChatLieuViewModels> GetChatLieu()
         {
             lstChatlieu = (from sz in _ChatLieu.GetAll()
                            select new ChatLieuViewModels
