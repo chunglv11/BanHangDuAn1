@@ -14,6 +14,6 @@ namespace _2.BUS.IServices
         string remove(ChatLieuViewModels clp);
         string update(ChatLieuViewModels clp);
         public Guid IdSize(ChatLieuViewModels CL);
-        List<ChatLieuViewModels> GetLoaiSP();
+        List<ChatLieuViewModels> GetChatLieu();
     }
 }

@@ -36,6 +36,7 @@
             nhàSảnXuấtToolStripMenuItem = new ToolStripMenuItem();
             loạiSảnPhẩmToolStripMenuItem = new ToolStripMenuItem();
             panelFill = new Panel();
+            chấtLiệuToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             menuStrip1.BackColor = Color.SeaShell;
             menuStrip1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { quảnLýSảnPhẩmToolStripMenuItem, sảnPhẩmToolStripMenuItem, kíchCỡToolStripMenuItem, màuSắcToolStripMenuItem, nhàSảnXuấtToolStripMenuItem, loạiSảnPhẩmToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { quảnLýSảnPhẩmToolStripMenuItem, sảnPhẩmToolStripMenuItem, kíchCỡToolStripMenuItem, màuSắcToolStripMenuItem, nhàSảnXuấtToolStripMenuItem, loạiSảnPhẩmToolStripMenuItem, chấtLiệuToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1345, 33);
@@ -101,6 +102,13 @@
             panelFill.Size = new Size(1345, 889);
             panelFill.TabIndex = 1;
             // 
+            // chấtLiệuToolStripMenuItem
+            // 
+            chấtLiệuToolStripMenuItem.Name = "chấtLiệuToolStripMenuItem";
+            chấtLiệuToolStripMenuItem.Size = new Size(99, 29);
+            chấtLiệuToolStripMenuItem.Text = "Chất liệu";
+            chấtLiệuToolStripMenuItem.Click += chấtLiệuToolStripMenuItem_Click;
+            // 
             // FrmQuanLySP
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -128,5 +136,6 @@
         private ToolStripMenuItem nhàSảnXuấtToolStripMenuItem;
         private ToolStripMenuItem loạiSảnPhẩmToolStripMenuItem;
         private Panel panelFill;
+        private ToolStripMenuItem chấtLiệuToolStripMenuItem;
     }
 }

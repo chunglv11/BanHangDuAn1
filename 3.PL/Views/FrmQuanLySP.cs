@@ -61,5 +61,10 @@ namespace _3.PL.Views
         {
             ChangeForm(new FrmLoaiSP());
         }
+
+        private void chấtLiệuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeForm(new FrmChatLieu());
+        }
     }
 }

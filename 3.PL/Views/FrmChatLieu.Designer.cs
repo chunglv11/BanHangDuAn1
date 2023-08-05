@@ -1,0 +1,322 @@
+﻿namespace _3.PL.Views
+{
+    partial class FrmChatLieu
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            panel2 = new Panel();
+            groupBox2 = new GroupBox();
+            btn_LamMoi = new Button();
+            btn_Xoa = new Button();
+            btn_Sua = new Button();
+            btn_Them = new Button();
+            groupBox1 = new GroupBox();
+            rbtn_KHD = new RadioButton();
+            rbtn_HD = new RadioButton();
+            txt_Ten = new TextBox();
+            txt_Ma = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            panel1 = new Panel();
+            dtg_ShowKichCo = new DataGridView();
+            txt_TimKiem = new TextBox();
+            panel3 = new Panel();
+            dtg_ShowCL = new DataGridView();
+            tb_Timkiem = new TextBox();
+            panel2.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox1.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowKichCo).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowCL).BeginInit();
+            SuspendLayout();
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(groupBox2);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 169);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(957, 96);
+            panel2.TabIndex = 17;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(btn_LamMoi);
+            groupBox2.Controls.Add(btn_Xoa);
+            groupBox2.Controls.Add(btn_Sua);
+            groupBox2.Controls.Add(btn_Them);
+            groupBox2.Dock = DockStyle.Fill;
+            groupBox2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox2.Location = new Point(0, 0);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(957, 96);
+            groupBox2.TabIndex = 9;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Chức năng";
+            // 
+            // btn_LamMoi
+            // 
+            btn_LamMoi.Image = Properties.Resources.reset;
+            btn_LamMoi.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_LamMoi.Location = new Point(600, 39);
+            btn_LamMoi.Name = "btn_LamMoi";
+            btn_LamMoi.Size = new Size(158, 42);
+            btn_LamMoi.TabIndex = 3;
+            btn_LamMoi.Text = "Làm mới";
+            btn_LamMoi.UseVisualStyleBackColor = true;
+            btn_LamMoi.Click += btn_LamMoi_Click;
+            // 
+            // btn_Xoa
+            // 
+            btn_Xoa.Image = Properties.Resources.delete;
+            btn_Xoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Xoa.Location = new Point(405, 39);
+            btn_Xoa.Name = "btn_Xoa";
+            btn_Xoa.Size = new Size(158, 42);
+            btn_Xoa.TabIndex = 2;
+            btn_Xoa.Text = "Xoá";
+            btn_Xoa.UseVisualStyleBackColor = true;
+            btn_Xoa.Click += btn_Xoa_Click;
+            // 
+            // btn_Sua
+            // 
+            btn_Sua.Image = Properties.Resources.updated;
+            btn_Sua.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Sua.Location = new Point(216, 39);
+            btn_Sua.Name = "btn_Sua";
+            btn_Sua.Size = new Size(158, 42);
+            btn_Sua.TabIndex = 1;
+            btn_Sua.Text = "Sửa";
+            btn_Sua.UseVisualStyleBackColor = true;
+            btn_Sua.Click += btn_Sua_Click;
+            // 
+            // btn_Them
+            // 
+            btn_Them.Image = Properties.Resources.add;
+            btn_Them.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Them.Location = new Point(30, 39);
+            btn_Them.Name = "btn_Them";
+            btn_Them.Size = new Size(158, 42);
+            btn_Them.TabIndex = 0;
+            btn_Them.Text = "Thêm";
+            btn_Them.UseVisualStyleBackColor = true;
+            btn_Them.Click += btn_Them_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(rbtn_KHD);
+            groupBox1.Controls.Add(rbtn_HD);
+            groupBox1.Controls.Add(txt_Ten);
+            groupBox1.Controls.Add(txt_Ma);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Dock = DockStyle.Fill;
+            groupBox1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            groupBox1.ForeColor = Color.Black;
+            groupBox1.Location = new Point(0, 0);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(957, 169);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Chất liệu";
+            // 
+            // rbtn_KHD
+            // 
+            rbtn_KHD.AutoSize = true;
+            rbtn_KHD.Location = new Point(248, 126);
+            rbtn_KHD.Name = "rbtn_KHD";
+            rbtn_KHD.Size = new Size(166, 27);
+            rbtn_KHD.TabIndex = 8;
+            rbtn_KHD.TabStop = true;
+            rbtn_KHD.Text = "Không hoạt động";
+            rbtn_KHD.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_HD
+            // 
+            rbtn_HD.AutoSize = true;
+            rbtn_HD.Location = new Point(113, 126);
+            rbtn_HD.Name = "rbtn_HD";
+            rbtn_HD.Size = new Size(114, 27);
+            rbtn_HD.TabIndex = 7;
+            rbtn_HD.TabStop = true;
+            rbtn_HD.Text = "Hoạt động";
+            rbtn_HD.UseVisualStyleBackColor = true;
+            // 
+            // txt_Ten
+            // 
+            txt_Ten.Location = new Point(113, 80);
+            txt_Ten.Name = "txt_Ten";
+            txt_Ten.Size = new Size(274, 30);
+            txt_Ten.TabIndex = 5;
+            // 
+            // txt_Ma
+            // 
+            txt_Ma.Enabled = false;
+            txt_Ma.Location = new Point(114, 34);
+            txt_Ma.Name = "txt_Ma";
+            txt_Ma.Size = new Size(273, 30);
+            txt_Ma.TabIndex = 4;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 126);
+            label3.Name = "label3";
+            label3.Size = new Size(91, 23);
+            label3.TabIndex = 2;
+            label3.Text = "Trạng thái:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 37);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 23);
+            label2.TabIndex = 1;
+            label2.Text = "Mã:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 83);
+            label1.Name = "label1";
+            label1.Size = new Size(40, 23);
+            label1.TabIndex = 0;
+            label1.Text = "Tên:";
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(groupBox1);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(957, 169);
+            panel1.TabIndex = 16;
+            // 
+            // dtg_ShowKichCo
+            // 
+            dtg_ShowKichCo.BackgroundColor = SystemColors.ControlLight;
+            dtg_ShowKichCo.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_ShowKichCo.Location = new Point(12, 39);
+            dtg_ShowKichCo.Name = "dtg_ShowKichCo";
+            dtg_ShowKichCo.RowHeadersWidth = 51;
+            dtg_ShowKichCo.RowTemplate.Height = 29;
+            dtg_ShowKichCo.Size = new Size(623, 184);
+            dtg_ShowKichCo.TabIndex = 13;
+            // 
+            // txt_TimKiem
+            // 
+            txt_TimKiem.Location = new Point(12, 6);
+            txt_TimKiem.Name = "txt_TimKiem";
+            txt_TimKiem.PlaceholderText = "Tìm kiếm...";
+            txt_TimKiem.Size = new Size(247, 27);
+            txt_TimKiem.TabIndex = 12;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(tb_Timkiem);
+            panel3.Controls.Add(dtg_ShowCL);
+            panel3.Controls.Add(dtg_ShowKichCo);
+            panel3.Controls.Add(txt_TimKiem);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(957, 542);
+            panel3.TabIndex = 18;
+            // 
+            // dtg_ShowCL
+            // 
+            dtg_ShowCL.BackgroundColor = Color.White;
+            dtg_ShowCL.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_ShowCL.Location = new Point(12, 311);
+            dtg_ShowCL.Name = "dtg_ShowCL";
+            dtg_ShowCL.RowHeadersWidth = 51;
+            dtg_ShowCL.RowTemplate.Height = 29;
+            dtg_ShowCL.Size = new Size(672, 219);
+            dtg_ShowCL.TabIndex = 14;
+            dtg_ShowCL.CellClick += dtg_ShowCL_CellClick;
+            // 
+            // tb_Timkiem
+            // 
+            tb_Timkiem.Location = new Point(12, 271);
+            tb_Timkiem.Name = "tb_Timkiem";
+            tb_Timkiem.PlaceholderText = "Tìm kiếm...";
+            tb_Timkiem.Size = new Size(247, 27);
+            tb_Timkiem.TabIndex = 15;
+            tb_Timkiem.TextChanged += tb_Timkiem_TextChanged;
+            // 
+            // FrmChatLieu
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SeaShell;
+            ClientSize = new Size(957, 542);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(panel3);
+            Name = "FrmChatLieu";
+            Text = "FrmChatLieu";
+            panel2.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowKichCo).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtg_ShowCL).EndInit();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panel2;
+        private GroupBox groupBox1;
+        private RadioButton rbtn_KHD;
+        private RadioButton rbtn_HD;
+        private TextBox txt_Ten;
+        private TextBox txt_Ma;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private Button btn_LamMoi;
+        private Button btn_Xoa;
+        private Button btn_Sua;
+        private GroupBox groupBox2;
+        private Button btn_Them;
+        private Panel panel1;
+        private DataGridView dtg_ShowKichCo;
+        private TextBox txt_TimKiem;
+        private Panel panel3;
+        private DataGridView dtg_ShowCL;
+        private TextBox tb_Timkiem;
+    }
+}
