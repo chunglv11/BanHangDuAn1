@@ -203,8 +203,17 @@ namespace _3.PL.Views
                             var tongsp = data.SoLuong += Convert.ToInt32(content);
                             if (tongsp > p.SoLuongTon)
                             {
-                                MessageBox.Show($"Số lượng mua được tối đa là: {p.SoLuongTon}");
-                                data.SoLuong = p.SoLuongTon;
+                                DialogResult dialogResult = MessageBox.Show("bạn có muốn mua hết không", "Thông Báo", MessageBoxButtons.YesNo);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    MessageBox.Show($"Số lượng mua được tối đa là: {p.SoLuongTon}");
+                                    data.SoLuong = p.SoLuongTon;
+                                }
+                                else
+                                {
+                                    data.SoLuong = tongsp - Convert.ToInt32(content);
+                                }
+
                             }
                         }
                     }
