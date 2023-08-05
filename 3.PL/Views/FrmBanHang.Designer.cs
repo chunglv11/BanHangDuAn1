@@ -282,6 +282,7 @@
             // 
             // dtg_GioHang
             // 
+            dtg_GioHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_GioHang.BackgroundColor = SystemColors.ControlLight;
             dtg_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_GioHang.Location = new Point(12, 25);
@@ -329,6 +330,7 @@
             // 
             // dtg_DonHang
             // 
+            dtg_DonHang.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtg_DonHang.BackgroundColor = SystemColors.ControlLight;
             dtg_DonHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtg_DonHang.Location = new Point(12, 26);
@@ -465,7 +467,6 @@
             tb_Diem.Name = "tb_Diem";
             tb_Diem.Size = new Size(109, 30);
             tb_Diem.TabIndex = 78;
-            tb_Diem.Text = "0";
             tb_Diem.TextChanged += tb_Diem_TextChanged;
             tb_Diem.KeyPress += tb_Diem_KeyPress;
             // 
