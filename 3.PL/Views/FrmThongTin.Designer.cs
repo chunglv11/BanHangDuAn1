@@ -90,6 +90,7 @@
             button1.TabIndex = 8;
             button1.Text = "Đổi mật khẩu";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // groupBox1
             // 
@@ -289,7 +290,6 @@
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Họ và tên";
-           
             // 
             // lb_HoTen
             // 

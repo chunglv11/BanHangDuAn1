@@ -96,7 +96,7 @@
             btn_Xacnhan.TabIndex = 29;
             btn_Xacnhan.Text = "Xác nhận";
             btn_Xacnhan.UseVisualStyleBackColor = true;
-            
+            btn_Xacnhan.Click += btn_Xacnhan_Click;
             // 
             // FrmDoiMK
             // 

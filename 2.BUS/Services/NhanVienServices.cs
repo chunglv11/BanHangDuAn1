@@ -80,10 +80,22 @@ namespace _2.BUS.Services
         public List<NhanVienViewModels> GetAllView()
         {
             List<NhanVienViewModels> lst = (from a in _NhanVien.GetAll()
-                                          select new NhanVienViewModels()
-                                          {
-                                              NhanVien = a,
-                                          }).ToList();
+                                            join b in _ChucVu.GetAll() on a.IDCV equals b.ID
+                                            select new NhanVienViewModels()
+                                            {
+                                                ID = a.ID,
+                                                IDCV = a.IDCV,
+                                                Username = a.Username,
+                                                MaNv = a.MaNv,
+                                                HoTen = a.HoTen,
+                                                GioiTinh = a.GioiTinh,
+                                                Email = a.Email,
+                                                AnhNv = a.AnhNv,
+                                                NgaySinh = a.NgaySinh,
+                                                MatKhau = a.MatKhau,
+                                                TrangThai = a.TrangThai,
+                                                Ten = b.Ten
+                                            }).ToList();
             return lst;
         }
 

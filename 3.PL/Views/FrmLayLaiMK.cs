@@ -17,15 +17,17 @@ namespace _3.PL.Views
         {
             InitializeComponent();
         }
-        string Username = FrmQuenMK.to;
+        string email = FrmQuenMK.to;
 
-        private void btn_Xacnhan_Click(object sender, EventArgs e)
+        
+
+        private void button1_Click(object sender, EventArgs e)
         {
             string password = tb_pass.Text;
-            if (tb_pass.Text == tb_nhaplai.Text)
+            if (password == tb_nhaplai.Text)
             {
                 SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-Q3TF2SAN\SQLEXPRESS;Initial Catalog=QuanLyBanQuanAo;Integrated Security=True;TrustServerCertificate=True;");
-                string q = @"UPDATE [dbo].[NhanVien] set [MatKhau]='" + password + "' where Email='" + Username + "'";
+                string q = @"UPDATE [dbo].[NhanVien] set [MatKhau]='" + password + "' where Email='" + email + "'";
 
                 SqlCommand cmd = new SqlCommand(q, conn);
                 conn.Open();
@@ -42,13 +44,8 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Xin lỗi Mật khẩu mới và Mật khẩu xác nhận của bạn không khớp");
             }
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FrmDangNhap frmdangnhap = new FrmDangNhap();
-            frmdangnhap.ShowDialog();
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
