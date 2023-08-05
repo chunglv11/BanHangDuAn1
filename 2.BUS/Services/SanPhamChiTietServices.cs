@@ -19,6 +19,7 @@ namespace _2.BUS.Services
         IMauSacResponsitory iMauSac;
         INXSResponsitory iNsx;
         ILoaiSanPhamResponsitory IloaiSp;
+        IChatLieuResponsitory IchatLieu;
         private ISanPhamCTResponsitory _iSanPhamCTResponsitory;
         public SanPhamChiTietServices()
         {
@@ -28,6 +29,7 @@ namespace _2.BUS.Services
             iMauSac = new MauSacResponsitory();
             iNsx = new NXSResponsitory();
             IloaiSp = new LoaiSanPhamResponsitory();
+            IchatLieu = new ChatLieuResponsitory();
             _iSanPhamCTResponsitory = new SanPhamCTResponsitory();
         }
         public Guid IdSp(SanPhamViewModels Sp)
@@ -56,6 +58,7 @@ namespace _2.BUS.Services
                 IDMS = (Guid)obj.IDMS,
                 IDNSX = (Guid)obj.IDNSX,
                 IDLOAI = (Guid)obj.IDLOAI,
+                IDCL = (Guid)obj.IDCL,
                 Ma = obj.Ma,
                 SoLuongTon = obj.SoLuongTon,
                 GiaNhap = obj.GiaNhap,
@@ -97,6 +100,7 @@ namespace _2.BUS.Services
                     join d in iNsx.GetAll() on a.IDNSX equals d.ID
                     join e in IloaiSp.GetAll() on a.IDLOAI equals e.ID
                     join f in iSize.GetAll() on a.IDKC equals f.ID
+                    join g in IchatLieu.GetAll() on a.IDCL equals g.ID
                     select new SanPhamCTViewModels
                     {
                         ID = a.ID,
@@ -105,8 +109,10 @@ namespace _2.BUS.Services
                         IDNSX = d.ID,
                         IDLOAI = e.ID,
                         IDKC = f.ID,
+                        IDCL = g.ID,
                         Ma = a.Ma,
                         TenSp = b.Ten,
+                        TenChatLieu = g.Ten,
                         MauSac = c.Ten,
                         Nsx = d.Ten,
                         LoaiSp = e.Ten,
@@ -123,12 +129,13 @@ namespace _2.BUS.Services
         {
             try
             {
-                var spCt = iSpCt.GetAllSanPhamCTFromDb().FirstOrDefault(c=>c.ID == obj.ID);
+                var spCt = iSpCt.GetAllSanPhamCTFromDb().FirstOrDefault(c => c.ID == obj.ID);
                 spCt.IDSP = (Guid)obj.IDSP;
                 spCt.IDKC = (Guid)obj.IDKC;
                 spCt.IDMS = (Guid)obj.IDMS;
                 spCt.IDNSX = (Guid)obj.IDNSX;
                 spCt.IDLOAI = (Guid)obj.IDLOAI;
+                spCt.IDCL = (Guid)obj.IDCL;
                 spCt.Ma = obj.Ma;
                 spCt.SoLuongTon = obj.SoLuongTon;
                 spCt.GiaNhap = obj.GiaNhap;

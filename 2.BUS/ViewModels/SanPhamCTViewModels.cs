@@ -14,6 +14,7 @@ namespace _2.BUS.ViewModels
         public Guid? IDLOAI { get; set; }
         public Guid? IDNSX { get; set; }
         public Guid? IDMS { get; set; }
+        public Guid? IDCL { get; set; }
 
         public string Ma { get; set; }
         public string? TenSp { get; set; }
@@ -21,6 +22,7 @@ namespace _2.BUS.ViewModels
         public string? LoaiSp { get; set; }
         public string? Size { get; set; }
         public string? Nsx { get; set; }
+        public string? TenChatLieu { get; set; }
         public int SoLuongTon { get; set; }
         public decimal GiaNhap { get; set; }
         public decimal GiaBan { get; set; }

@@ -25,6 +25,11 @@ namespace _1.DAL.Extensions
                 new SanPham() { ID = Guid.Parse("7173cee4-5764-4da7-96a9-2fd45fef403f"), Ma = "SP2", Ten = "Áo Khoác", TrangThai = 1 },
                 new SanPham() { ID = Guid.Parse("669bfd60-25cb-45e7-9585-14f45c4ea869"), Ma = "SP3", Ten = "Quần Đùi", TrangThai = 1 }
                 );
+            modelBuilder.Entity<ChatLieu>().HasData(
+               new ChatLieu() { ID = Guid.Parse("cb4eaedb-a21a-4560-a069-35f580dae332"), Ma = "CL1", Ten = "Vải", TrangThai = 1 },
+               new ChatLieu() { ID = Guid.Parse("bfcc93fd-2382-4bca-ad75-70dda2e3d1da"), Ma = "CL2", Ten = "Vải thô", TrangThai = 1 },
+               new ChatLieu() { ID = Guid.Parse("2ab9d74b-b4db-4a42-896e-c43ca8276b81"), Ma = "CL3", Ten = "cotton", TrangThai = 1 }
+               );
             modelBuilder.Entity<MauSac>().HasData(
                 new MauSac() { ID = Guid.Parse("1b5acee0-34fc-4248-b6b0-f2d0920ed633"), Ma = "MS1", Ten = "Xanh", TrangThai = 1 },
                 new MauSac() { ID = Guid.Parse("612089de-9442-4534-b16d-629bcd748dfa"), Ma = "MS2", Ten = "Đỏ", TrangThai = 1 }

@@ -36,6 +36,7 @@ namespace _1.DAL.Models
         public virtual DbSet<ChucVu> ChucVus { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<MauSac> MauSacs { get; set; }
+        public virtual DbSet<ChatLieu> ChatLieus { get; set; }
         public virtual DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
         public virtual DbSet<ChiTietThanhToan> ChiTietThanhToans { get; set; }
 
