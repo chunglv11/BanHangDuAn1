@@ -83,14 +83,21 @@ namespace _3.PL.Views
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Sửa chất liệu Không?", "Thông Báo", MessageBoxButtons.YesNo);
-            if (DialogResult.Yes == DialogResult)
+            DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn sửa chất liệu Không?", "Thông Báo", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
             {
-                _chatLieuViewModels.Ma = txt_Ma.Text;
-                _chatLieuViewModels.Ten = txt_Ten.Text;
-                _chatLieuViewModels.TrangThai = rbtn_HD.Checked ? 1 : 0;
-                MessageBox.Show(_chatLieuService.update(_chatLieuViewModels));
-                LoadData();
+                if (string.IsNullOrWhiteSpace(txt_Ten.Text))
+                {
+                    MessageBox.Show("Tên không được bỏ trống");
+                }
+                else
+                {
+                    _chatLieuViewModels.Ma = txt_Ma.Text;
+                    _chatLieuViewModels.Ten = txt_Ten.Text;
+                    _chatLieuViewModels.TrangThai = rbtn_HD.Checked ? 1 : 0;
+                    MessageBox.Show(_chatLieuService.update(_chatLieuViewModels));
+                    LoadData();
+                }
             }
         }
 

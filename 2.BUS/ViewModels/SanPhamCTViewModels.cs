@@ -16,13 +16,13 @@ namespace _2.BUS.ViewModels
         public Guid? IDMS { get; set; }
         public Guid? IDCL { get; set; }
 
-        public string Ma { get; set; }
+        public string? Ma { get; set; }
         public string? TenSp { get; set; }
         public string? MauSac { get; set; }
         public string? LoaiSp { get; set; }
         public string? Size { get; set; }
         public string? Nsx { get; set; }
-        public string? TenChatLieu { get; set; }
+        public string? ChatLieu { get; set; }
         public int SoLuongTon { get; set; }
         public decimal GiaNhap { get; set; }
         public decimal GiaBan { get; set; }
