@@ -41,8 +41,6 @@
             panelTrai = new Panel();
             cmb_Nsx = new ComboBox();
             label16 = new Label();
-            label15 = new Label();
-            cmb_locSize = new ComboBox();
             label14 = new Label();
             cmb_loctrangthai = new ComboBox();
             rdb_Het = new RadioButton();
@@ -198,8 +196,6 @@
             panelTrai.BackColor = Color.SeaShell;
             panelTrai.Controls.Add(cmb_Nsx);
             panelTrai.Controls.Add(label16);
-            panelTrai.Controls.Add(label15);
-            panelTrai.Controls.Add(cmb_locSize);
             panelTrai.Controls.Add(label14);
             panelTrai.Controls.Add(cmb_loctrangthai);
             panelTrai.Controls.Add(rdb_Het);
@@ -255,25 +251,6 @@
             label16.Size = new Size(47, 23);
             label16.TabIndex = 69;
             label16.Text = "NSX:";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(436, 444);
-            label15.Name = "label15";
-            label15.Size = new Size(109, 23);
-            label15.TabIndex = 68;
-            label15.Text = "Lọc theo size";
-            // 
-            // cmb_locSize
-            // 
-            cmb_locSize.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_locSize.FormattingEnabled = true;
-            cmb_locSize.Location = new Point(436, 472);
-            cmb_locSize.Name = "cmb_locSize";
-            cmb_locSize.Size = new Size(208, 31);
-            cmb_locSize.TabIndex = 67;
-            cmb_locSize.SelectedIndexChanged += cmb_locSize_SelectedIndexChanged;
             // 
             // label14
             // 
@@ -656,8 +633,6 @@
         private RadioButton rdb_Het;
         private Label label14;
         private ComboBox cmb_loctrangthai;
-        private Label label15;
-        private ComboBox cmb_locSize;
         private ComboBox cmb_Nsx;
         private Label label16;
     }

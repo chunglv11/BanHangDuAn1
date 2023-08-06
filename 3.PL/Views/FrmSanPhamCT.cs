@@ -696,7 +696,7 @@ namespace _3.PL.Views
             foreach (var x in iSize.GetSizeAo().Where(c => c.TrangThai == 1))
             {
                 cmb_Size.Items.Add(x.Ten);
-                cmb_locSize.Items.Add(x.Ten);
+                //cmb_locSize.Items.Add(x.Ten);
             }
         }
         public void loadLoaiSp()
@@ -895,7 +895,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -907,7 +907,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -919,7 +919,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -934,7 +934,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -946,7 +946,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -958,7 +958,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -973,7 +973,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -985,7 +985,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -997,7 +997,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1012,7 +1012,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1024,7 +1024,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1036,7 +1036,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1054,7 +1054,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1066,7 +1066,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1078,7 +1078,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1093,7 +1093,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1105,7 +1105,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1117,7 +1117,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1132,7 +1132,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1144,7 +1144,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1156,7 +1156,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1171,7 +1171,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1183,7 +1183,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)|| p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1195,7 +1195,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) && p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1212,16 +1212,6 @@ namespace _3.PL.Views
         {
             cmb_loctrangthai.Items.Add("Còn hàng");
             cmb_loctrangthai.Items.Add("Hết hàng");
-        }
-
-        public void LocSize()
-        {
-
-        }
-
-        private void cmb_locSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
