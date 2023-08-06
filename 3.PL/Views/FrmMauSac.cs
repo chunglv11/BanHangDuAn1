@@ -106,11 +106,18 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Sửa Màu Sắc Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                viewMs.Ma = txt_Ma.Text;
-                viewMs.Ten = txt_Ten.Text;
-                viewMs.TrangThai = rbtn_HD.Checked ? 1 : 0;
-                MessageBox.Show(iMauSac.update(viewMs));
-                LoadData();
+                if (string.IsNullOrWhiteSpace(txt_Ten.Text))
+                {
+                    MessageBox.Show("Tên không được bỏ trống");
+                }
+                else
+                {
+                    viewMs.Ma = txt_Ma.Text;
+                    viewMs.Ten = txt_Ten.Text;
+                    viewMs.TrangThai = rbtn_HD.Checked ? 1 : 0;
+                    MessageBox.Show(iMauSac.update(viewMs));
+                    LoadData();
+                }
             }
         }
 
@@ -149,9 +156,9 @@ namespace _3.PL.Views
                 }
             }
 
-            txt_Ma.Text="";
-            txt_Ten.Text="";
-            txt_TimKiem.Text="";
+            txt_Ma.Text = "";
+            txt_Ten.Text = "";
+            txt_TimKiem.Text = "";
             rbtn_HD.Checked = false;
             rbtn_KHD.Checked = false;
         }

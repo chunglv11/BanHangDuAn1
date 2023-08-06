@@ -107,11 +107,18 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Sửa Sản Phẩm Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                viewSp.Ma = txt_Ma.Text;
-                viewSp.Ten = txt_Ten.Text;
-                viewSp.TrangThai = rbtn_HD.Checked ? 1 : 0;
-                MessageBox.Show(iSp.update(viewSp));
-                LoadData();
+                if (string.IsNullOrWhiteSpace(txt_Ten.Text))
+                {
+                    MessageBox.Show("Tên không được bỏ trống");
+                }
+                else
+                {
+                    viewSp.Ma = txt_Ma.Text;
+                    viewSp.Ten = txt_Ten.Text;
+                    viewSp.TrangThai = rbtn_HD.Checked ? 1 : 0;
+                    MessageBox.Show(iSp.update(viewSp));
+                    LoadData();
+                }
             }
         }
 
@@ -182,13 +189,13 @@ namespace _3.PL.Views
                 }
             }
 
-            txt_Ma.Text="";
-            txt_Ten.Text="";
-            txt_TimKiem.Text="";
+            txt_Ma.Text = "";
+            txt_Ten.Text = "";
+            txt_TimKiem.Text = "";
             rbtn_HD.Checked = false;
             rbtn_KHD.Checked = false;
         }
 
-        
+
     }
 }
