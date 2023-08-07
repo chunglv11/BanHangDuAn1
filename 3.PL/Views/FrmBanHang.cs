@@ -193,13 +193,14 @@ namespace _3.PL.Views
                     }
                     else
                     {
-                        if (data.SoLuong == p.SoLuongTon)
+                        if (data.SoLuong > p.SoLuongTon)
                         {
                             MessageBox.Show("Sản phẩm trong giỏ hàng đã vượt quá số lượng cho phép");
 
                         }
                         else
                         {
+
                             var tongsp = data.SoLuong += Convert.ToInt32(content);
                             if (tongsp > p.SoLuongTon)
                             {
@@ -213,8 +214,9 @@ namespace _3.PL.Views
                                 {
                                     data.SoLuong = tongsp - Convert.ToInt32(content);
                                 }
-
                             }
+
+
                         }
                     }
                 }
@@ -236,7 +238,7 @@ namespace _3.PL.Views
                     total += Convert.ToDecimal(item.DonGia) * item.SoLuong;
                 }
                 lb_Thanhtien.Text = total.ToString("N0");
-                lb_TongTienTT.Text = total.ToString("N0");
+                //lb_TongTienTT.Text = total.ToString("N0");
             }
             else
             {
@@ -554,16 +556,18 @@ namespace _3.PL.Views
                                 SoLuong = item.SoLuong
                             };
                             _ihoaDonCTServices.AddHDCT(hdct);
-
-                            tb_MaHD.Text = maHoaDon.ToString();
-                            //lb_TongTienTT.Text = total.ToString("N0");
-                            tb_SDT.Text = "";
-                            lb_Thanhtien.Text = "";
-                            LoadSp(_isanphamChiTietServices.GetsListCtSp());
-                            LoadDonHang();
-                            ClearGioHang();
+                            var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
+                            p.SoLuongTon -= item.SoLuong;
+                            _isanphamChiTietServices.UpdateSanPhamCT(p);
 
                         }
+                        tb_MaHD.Text = maHoaDon.ToString();
+                        lb_TongTienTT.Text = total.ToString("N0");
+                        tb_SDT.Text = "";
+                        lb_Thanhtien.Text = "";
+                        LoadSp(_isanphamChiTietServices.GetsListCtSp());
+                        LoadDonHang();
+                        ClearGioHang();
                         MessageBox.Show($"Đã tạo hóa đơn có mã là [{hd.Ma}]");
                         //_idhd = Guid.Empty;
                     }
@@ -655,8 +659,6 @@ namespace _3.PL.Views
                         {
                             _ihoaDonCTServices.DeleteHDCT(item);
                         }
-
-
                         foreach (var item in _HDCT)
                         {
                             HoaDonChiTiet od = new HoaDonChiTiet()
@@ -667,19 +669,19 @@ namespace _3.PL.Views
                                 SoLuong = item.SoLuong
                             };
                             total += Convert.ToDecimal(item.DonGia * item.SoLuong);
-                            _ihoaDonCTServices.AddHDCT(od);
+                            _ihoaDonCTServices.UpdateHDCT(od);
                         }
-
+                        //_isanphamChiTietServices.UpdateSanPhamCT(p);
                         var eID = _inhanVienServices.GetAll().FirstOrDefault(x => x.Username == Properties.Settings.Default.TKdaLogin).ID;
                         order.NgayTao = DateTime.Now;
-
+                        order.IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID;
                         order.IDNV = eID;
                         order.IDKH = _kh.ID;
                         // order.IDKM = _ikhuyenMaiServices.GetByMa(Cbb_GiamGia.Text).ID;
                         _ihoaDonServices.UpdateHoaDon(order);
 
 
-                        lb_TongTienTT.Text = total.ToString();
+                        lb_TongTienTT.Text = total.ToString("N0");
                         tb_SDT.Text = "";
                         lb_Thanhtien.Text = "";
                         MessageBox.Show($"Cập nhật hóa đơn thành công. Mã: {order.Ma}");
@@ -702,11 +704,16 @@ namespace _3.PL.Views
         //tìm điểm kh theo mã hd
         private void tb_MaHD_TextChanged(object sender, EventArgs e)
         {
+
             HoaDon o = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(x => x.Ma == tb_MaHD.Text && x.TrangThai == 0);
             if (o != null)
             {
-
-
+                decimal total = 0;
+                foreach (var item in _ihoaDonCTServices.GetAllHDCTVM().Where(c => c.IDHD == o.ID))
+                {
+                    total += item.DonGia * item.SoLuong;
+                }
+                lb_TongTienTT.Text = total.ToString("N0");
                 var customer = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(x => x.ID == o.IDKH);
                 lb_GiamGiaDiem.Text = $"(Tối đa : {customer.Diem})";
             }
@@ -722,7 +729,7 @@ namespace _3.PL.Views
             HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
             var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
             int x;
-            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem || Convert.ToDecimal(lbTienThua.Text) < 0 || tb_TienKhachDua.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
+            if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem || Convert.ToDecimal(lbTienThua.Text) < 0 || tb_TienKhachDua.Text == "" || tb_TTOnline.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(tb_TTOnline.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
             {
                 MessageBox.Show("Kiểm tra lại giá trị đầu vào");
             }
@@ -737,7 +744,7 @@ namespace _3.PL.Views
                         hd.TrangThai = 1;
                         hd.NgayThanhToan = DateTime.Now;
                         hd.IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID;
-                        //hd.IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID;
+
                         _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToDecimal(tb_TTOnline.Text.Trim()) });
                         _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToDecimal(tb_TienKhachDua.Text.Trim()) });
                         _ihoaDonServices.UpdateHoaDon(hd);
@@ -775,20 +782,20 @@ namespace _3.PL.Views
                         _ikhachHangServices.EditKhachHang(Khach);
                         #endregion
                         //tet lai
-                        foreach (var hdct in _HDCT)
-                        {
-                            HoaDonChiTiet whdct = new HoaDonChiTiet()
-                            {
-                                IDHD = hd.ID,
-                                DonGia = hdct.DonGia,
-                                SoLuong = hdct.SoLuong,
-                            };
-                            _ihoaDonCTServices.AddHDCT(whdct);
-                            var sp = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(c => c.ID == hdct.IDSPCT);
-                            sp.SoLuongTon = sp.SoLuongTon - hdct.SoLuong;
-                            _isanphamChiTietServices.UpdateSanPhamCT(sp);
-                            LoadSp(_isanphamChiTietServices.GetsListCtSp());
-                        }
+                        //foreach (var hdct in _HDCT)
+                        //{
+                        //    HoaDonChiTiet whdct = new HoaDonChiTiet()
+                        //    {
+                        //        IDHD = hd.ID,
+                        //        DonGia = hdct.DonGia,
+                        //        SoLuong = hdct.SoLuong,
+                        //    };
+                        //    _ihoaDonCTServices.AddHDCT(whdct);
+                        //    var sp = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(c => c.ID == hdct.IDSPCT);
+                        //    sp.SoLuongTon = sp.SoLuongTon - hdct.SoLuong;
+                        //    _isanphamChiTietServices.UpdateSanPhamCT(sp);
+                        //    LoadSp(_isanphamChiTietServices.GetsListCtSp());
+                        //}
                         MessageBox.Show("Thanh toán thành công");
                         var idhdd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(c => c.Ma == tb_MaHD.Text).ID;
                         FrmThongTinHoaDon frmThongTin = new FrmThongTinHoaDon(idhdd);
