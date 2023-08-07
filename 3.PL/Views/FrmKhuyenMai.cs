@@ -189,6 +189,15 @@ namespace _3.PL.Views
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
             dtg_ShowKM.Rows.Clear();
+            _ID = new Guid();
+            txt_Ma.Text = "";
+            txt_Ten.Text = "";
+            tb_PhanTramGiam.Text = "";
+            tb_SoTienGiam.Text = "";
+            dtp_NgayBD.Value = DateTime.Now;
+            dtp_NgayKT.Value = DateTime.Now;
+            rbtn_HD.Checked = false;
+            rbtn_KHD.Checked = false;
             LoadData(_iKmServices.GetAllView());
         }
 
