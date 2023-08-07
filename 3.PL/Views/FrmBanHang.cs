@@ -669,7 +669,7 @@ namespace _3.PL.Views
                                 SoLuong = item.SoLuong
                             };
                             total += Convert.ToDecimal(item.DonGia * item.SoLuong);
-                            _ihoaDonCTServices.UpdateHDCT(od);
+                            _ihoaDonCTServices.AddHDCT(od);
                         }
                         //_isanphamChiTietServices.UpdateSanPhamCT(p);
                         var eID = _inhanVienServices.GetAll().FirstOrDefault(x => x.Username == Properties.Settings.Default.TKdaLogin).ID;
