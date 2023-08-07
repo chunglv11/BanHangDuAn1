@@ -99,9 +99,9 @@ namespace _3.PL.Views
                         var _lstOd = _ihoaDonChiTietService.GetAllHDCT().Where(x => x.IDHD == _id);
                         foreach (var item in _lstOd)
                         {
-                            var p = _isanPhamServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
-                            p.SoLuongTon += item.SoLuong;
-                            _isanPhamServices.UpdateSanPhamCT(p);
+                            //var p = _isanPhamServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
+                            //p.SoLuongTon += item.SoLuong;
+                            //_isanPhamServices.UpdateSanPhamCT(p);
                             _ihoaDonChiTietService.DeleteHDCT(item);
                         }
                         _ihoaDonServices.DeleteHoaDon(o);

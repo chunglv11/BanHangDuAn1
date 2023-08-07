@@ -34,6 +34,8 @@
             groupBox3 = new GroupBox();
             flowPanelSp = new FlowLayoutPanel();
             groupBox4 = new GroupBox();
+            btn_Them = new Button();
+            tb_MaSPQuet = new TextBox();
             tb_TimKiem = new TextBox();
             cbb_LoaiSP = new ComboBox();
             label2 = new Label();
@@ -82,6 +84,7 @@
             label4 = new Label();
             label3 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            tb_TenSPQuet = new TextBox();
             panelFil.SuspendLayout();
             panelTrai.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -140,6 +143,8 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(tb_TenSPQuet);
+            groupBox4.Controls.Add(tb_MaSPQuet);
             groupBox4.Controls.Add(tb_TimKiem);
             groupBox4.Controls.Add(cbb_LoaiSP);
             groupBox4.Controls.Add(label2);
@@ -153,11 +158,32 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năng";
             // 
+            // btn_Them
+            // 
+            btn_Them.BackColor = Color.FromArgb(255, 192, 128);
+            btn_Them.Location = new Point(12, 219);
+            btn_Them.Name = "btn_Them";
+            btn_Them.Size = new Size(117, 37);
+            btn_Them.TabIndex = 78;
+            btn_Them.Text = "Thêm vào giỏ";
+            btn_Them.UseVisualStyleBackColor = false;
+            btn_Them.Click += btn_Them_Click;
+            // 
+            // tb_MaSPQuet
+            // 
+            tb_MaSPQuet.Enabled = false;
+            tb_MaSPQuet.Location = new Point(768, 33);
+            tb_MaSPQuet.Name = "tb_MaSPQuet";
+            tb_MaSPQuet.PlaceholderText = "Mã sản phẩm";
+            tb_MaSPQuet.Size = new Size(159, 27);
+            tb_MaSPQuet.TabIndex = 4;
+            // 
             // tb_TimKiem
             // 
-            tb_TimKiem.Location = new Point(641, 30);
+            tb_TimKiem.Location = new Point(449, 33);
             tb_TimKiem.Name = "tb_TimKiem";
-            tb_TimKiem.Size = new Size(313, 27);
+            tb_TimKiem.PlaceholderText = "Nhập tên sản phẩm";
+            tb_TimKiem.Size = new Size(261, 27);
             tb_TimKiem.TabIndex = 3;
             tb_TimKiem.TextChanged += tb_TimKiem_TextChanged;
             // 
@@ -167,14 +193,14 @@
             cbb_LoaiSP.FormattingEnabled = true;
             cbb_LoaiSP.Location = new Point(161, 32);
             cbb_LoaiSP.Name = "cbb_LoaiSP";
-            cbb_LoaiSP.Size = new Size(293, 28);
+            cbb_LoaiSP.Size = new Size(172, 28);
             cbb_LoaiSP.TabIndex = 2;
             cbb_LoaiSP.SelectedIndexChanged += cbb_LoaiSP_SelectedIndexChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(544, 35);
+            label2.Location = new Point(352, 38);
             label2.Name = "label2";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 1;
@@ -191,6 +217,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(btn_Them);
             groupBox2.Controls.Add(btn_Stop);
             groupBox2.Controls.Add(lb_Thanhtien);
             groupBox2.Controls.Add(label14);
@@ -223,7 +250,7 @@
             // 
             lb_Thanhtien.AutoSize = true;
             lb_Thanhtien.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            lb_Thanhtien.Location = new Point(501, 221);
+            lb_Thanhtien.Location = new Point(599, 224);
             lb_Thanhtien.Name = "lb_Thanhtien";
             lb_Thanhtien.Size = new Size(44, 32);
             lb_Thanhtien.TabIndex = 76;
@@ -233,7 +260,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.Location = new Point(351, 221);
+            label14.Location = new Point(449, 224);
             label14.Name = "label14";
             label14.Size = new Size(131, 32);
             label14.TabIndex = 75;
@@ -242,7 +269,7 @@
             // btn_XoaGio
             // 
             btn_XoaGio.BackColor = Color.FromArgb(255, 192, 128);
-            btn_XoaGio.Location = new Point(161, 216);
+            btn_XoaGio.Location = new Point(306, 220);
             btn_XoaGio.Name = "btn_XoaGio";
             btn_XoaGio.Size = new Size(117, 37);
             btn_XoaGio.TabIndex = 74;
@@ -253,7 +280,7 @@
             // btn_XoaSp
             // 
             btn_XoaSp.BackColor = Color.FromArgb(255, 192, 128);
-            btn_XoaSp.Location = new Point(12, 216);
+            btn_XoaSp.Location = new Point(161, 220);
             btn_XoaSp.Name = "btn_XoaSp";
             btn_XoaSp.Size = new Size(117, 37);
             btn_XoaSp.TabIndex = 73;
@@ -653,6 +680,15 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // tb_TenSPQuet
+            // 
+            tb_TenSPQuet.Enabled = false;
+            tb_TenSPQuet.Location = new Point(964, 33);
+            tb_TenSPQuet.Name = "tb_TenSPQuet";
+            tb_TenSPQuet.PlaceholderText = "Tên sản phẩm";
+            tb_TenSPQuet.Size = new Size(159, 27);
+            tb_TenSPQuet.TabIndex = 5;
+            // 
             // FrmBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -736,5 +772,8 @@
         private Label lbTienThua;
         private Label lb_TongTienTT;
         private Button btn_Stop;
+        private TextBox tb_MaSPQuet;
+        private Button btn_Them;
+        private TextBox tb_TenSPQuet;
     }
 }
