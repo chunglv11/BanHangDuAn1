@@ -54,9 +54,21 @@ namespace _3.PL.Views
             ChangeForm(new FrmKhachHang());
         }
 
-        private void btn_NhanVien_Click(object sender, EventArgs e)
+        private void btn_NhanVien_Click(object sender, EventArgs e)//
         {
-            ChangeForm(new FrmQuanLyNhanVien());
+            Guid idRole = _inhanVienServices.GetAll().FirstOrDefault(x => x.Username == Properties.Settings.Default.TKdaLogin).ID;
+            var id = _inhanVienServices.GetAll().FirstOrDefault(p => p.ID == idRole).IDCV;
+            var idcv = _ichucVuServices.GetAll().FirstOrDefault(p => p.ID == id).Ten;
+            if (idcv == "Quản lý")
+            {
+
+                ChangeForm(new FrmQuanLyNhanVien());
+            }
+            else if (idcv != "Quản lý")
+            {
+                MessageBox.Show("Nhân viên không có quyền sử dụng chức năng này");
+            }
+
         }
 
         private void btn_Sp_Click(object sender, EventArgs e)
@@ -69,13 +81,37 @@ namespace _3.PL.Views
             ChangeForm(new FrmQuanLyHoaDon());
         }
 
-        private void btn_TK_Click(object sender, EventArgs e)
+        private void btn_TK_Click(object sender, EventArgs e)//
         {
-            ChangeForm(new FrmThongKe());
+            Guid idRole = _inhanVienServices.GetAll().FirstOrDefault(x => x.Username == Properties.Settings.Default.TKdaLogin).ID;
+            var id = _inhanVienServices.GetAll().FirstOrDefault(p => p.ID == idRole).IDCV;
+            var idcv = _ichucVuServices.GetAll().FirstOrDefault(p => p.ID == id).Ten;
+            if (idcv == "Quản lý")
+            {
+
+                ChangeForm(new FrmThongKe());
+            }
+            else if (idcv != "Quản lý")
+            {
+                MessageBox.Show("Nhân viên không có quyền sử dụng chức năng này");
+            }
+
         }
-        private void btn_KhuyenMai_Click(object sender, EventArgs e)
+        private void btn_KhuyenMai_Click(object sender, EventArgs e)//
         {
-            ChangeForm(new FrmKhuyenMai());
+            Guid idRole = _inhanVienServices.GetAll().FirstOrDefault(x => x.Username == Properties.Settings.Default.TKdaLogin).ID;
+            var id = _inhanVienServices.GetAll().FirstOrDefault(p => p.ID == idRole).IDCV;
+            var idcv = _ichucVuServices.GetAll().FirstOrDefault(p => p.ID == id).Ten;
+            if (idcv == "Quản lý")
+            {
+
+                ChangeForm(new FrmKhuyenMai());
+            }
+            else if (idcv != "Quản lý")
+            {
+                MessageBox.Show("Nhân viên không có quyền sử dụng chức năng này");
+            }
+
         }
         private void btn_TaiKhoan_Click(object sender, EventArgs e)
         {
