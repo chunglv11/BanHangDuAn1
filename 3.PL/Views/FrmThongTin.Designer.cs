@@ -49,10 +49,13 @@
             groupBox2 = new GroupBox();
             lb_HoTen = new Label();
             LblName = new Label();
-            tableLayoutPanel4 = new TableLayoutPanel();
             tb_Ten = new Label();
             tb_MaNV = new Label();
             ptb_Avt = new PictureBox();
+            lb_MaNV = new Label();
+            lb_User = new Label();
+            groupBox3 = new GroupBox();
+            groupBox6 = new GroupBox();
             panelFill.SuspendLayout();
             groupBox1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -63,16 +66,18 @@
             g1.SuspendLayout();
             panel3.SuspendLayout();
             groupBox2.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_Avt).BeginInit();
+            groupBox3.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // panelFill
             // 
             panelFill.BackColor = Color.White;
+            panelFill.Controls.Add(groupBox6);
+            panelFill.Controls.Add(groupBox3);
             panelFill.Controls.Add(button1);
             panelFill.Controls.Add(groupBox1);
-            panelFill.Controls.Add(tableLayoutPanel4);
             panelFill.Controls.Add(ptb_Avt);
             panelFill.Dock = DockStyle.Fill;
             panelFill.Location = new Point(0, 0);
@@ -311,41 +316,26 @@
             LblName.Size = new Size(10, 38);
             LblName.TabIndex = 0;
             // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.BackColor = Color.Transparent;
-            tableLayoutPanel4.ColumnCount = 1;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Controls.Add(tb_Ten, 0, 1);
-            tableLayoutPanel4.Controls.Add(tb_MaNV, 0, 0);
-            tableLayoutPanel4.Location = new Point(459, 46);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 2;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33F));
-            tableLayoutPanel4.Size = new Size(388, 127);
-            tableLayoutPanel4.TabIndex = 6;
-            // 
             // tb_Ten
             // 
             tb_Ten.AutoSize = true;
             tb_Ten.Font = new Font("Segoe UI Light", 18F, FontStyle.Regular, GraphicsUnit.Point);
             tb_Ten.ForeColor = Color.FromArgb(87, 96, 106);
-            tb_Ten.Location = new Point(3, 63);
+            tb_Ten.Location = new Point(3, 21);
             tb_Ten.Name = "tb_Ten";
-            tb_Ten.Size = new Size(122, 41);
+            tb_Ten.Size = new Size(145, 41);
             tb_Ten.TabIndex = 1;
-            tb_Ten.Text = "Chunglv";
+            tb_Ten.Text = "Username";
             // 
             // tb_MaNV
             // 
             tb_MaNV.AutoSize = true;
             tb_MaNV.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            tb_MaNV.Location = new Point(3, 0);
+            tb_MaNV.Location = new Point(0, 12);
             tb_MaNV.Name = "tb_MaNV";
-            tb_MaNV.Size = new Size(100, 54);
+            tb_MaNV.Size = new Size(145, 54);
             tb_MaNV.TabIndex = 0;
-            tb_MaNV.Text = "NV1";
+            tb_MaNV.Text = "Mã NV";
             // 
             // ptb_Avt
             // 
@@ -356,6 +346,46 @@
             ptb_Avt.SizeMode = PictureBoxSizeMode.StretchImage;
             ptb_Avt.TabIndex = 0;
             ptb_Avt.TabStop = false;
+            // 
+            // lb_MaNV
+            // 
+            lb_MaNV.AutoSize = true;
+            lb_MaNV.Location = new Point(151, 46);
+            lb_MaNV.Name = "lb_MaNV";
+            lb_MaNV.Size = new Size(18, 20);
+            lb_MaNV.TabIndex = 9;
+            lb_MaNV.Text = "...";
+            // 
+            // lb_User
+            // 
+            lb_User.AutoSize = true;
+            lb_User.Location = new Point(154, 51);
+            lb_User.Name = "lb_User";
+            lb_User.Size = new Size(18, 20);
+            lb_User.TabIndex = 10;
+            lb_User.Text = "...";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(tb_MaNV);
+            groupBox3.Controls.Add(lb_MaNV);
+            groupBox3.Location = new Point(585, 391);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(250, 125);
+            groupBox3.TabIndex = 11;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "groupBox3";
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(tb_Ten);
+            groupBox6.Controls.Add(lb_User);
+            groupBox6.Location = new Point(597, 543);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(250, 125);
+            groupBox6.TabIndex = 0;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "groupBox6";
             // 
             // FrmThongTin
             // 
@@ -381,9 +411,11 @@
             panel3.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            tableLayoutPanel4.ResumeLayout(false);
-            tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_Avt).EndInit();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -414,5 +446,9 @@
         private Label lb_Email;
         private DateTimePicker dateTimePicker1;
         private Button button1;
+        private Label lb_User;
+        private Label lb_MaNV;
+        private GroupBox groupBox6;
+        private GroupBox groupBox3;
     }
 }

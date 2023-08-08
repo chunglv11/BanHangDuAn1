@@ -169,7 +169,6 @@
             rbtn_HD.TabStop = true;
             rbtn_HD.Text = "Hoạt động";
             rbtn_HD.UseVisualStyleBackColor = true;
-          
             // 
             // txt_Ten
             // 
@@ -271,7 +270,7 @@
             dtg_ShowChucVu.RowTemplate.Height = 29;
             dtg_ShowChucVu.Size = new Size(623, 196);
             dtg_ShowChucVu.TabIndex = 9;
-            dtg_ShowChucVu.CellContentClick += dtg_ShowChucVu_CellContentClick_1;
+            dtg_ShowChucVu.CellClick += dtg_ShowChucVu_CellClick;
             // 
             // FrmChucVu
             // 

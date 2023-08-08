@@ -49,7 +49,10 @@ namespace _2.BUS.Services
             List<ChucVuViewModels> lst = (from a in ChucVuMoi.GetAll()
                                      select new ChucVuViewModels()
                                      {
-                                         ChucVu = a,
+                                         ID = a.ID,
+                                         Ma = a.Ma,
+                                         Ten = a.Ten,
+                                         TrangThai = a.TrangThai,
                                      }).ToList();
             return lst;
         }

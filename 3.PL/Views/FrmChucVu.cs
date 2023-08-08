@@ -21,7 +21,7 @@ namespace _3.PL.Views
         private IChucVuServices _IchucVuServices;
         private ChucVuViewModels _ChucVuViewModels;
         ChucVu _chucvu;
-       public  Guid _ID;
+        public Guid _ID;
 
 
         public FrmChucVu()
@@ -29,7 +29,7 @@ namespace _3.PL.Views
             _chucvu = new ChucVu();
             _IchucVuServices = new ChucVuServices();
             _ChucVuViewModels = new ChucVuViewModels();
-            
+
             InitializeComponent();
             LoadData();
         }
@@ -37,19 +37,28 @@ namespace _3.PL.Views
         private void LoadData()
         {
             int stt = 1;
-            dtg_ShowChucVu.ColumnCount = 4;
+            dtg_ShowChucVu.ColumnCount = 5;
             dtg_ShowChucVu.Columns[0].Name = "stt";
             
+
             dtg_ShowChucVu.Columns[1].Name = "ma";
             dtg_ShowChucVu.Columns[2].Name = "ten";
             dtg_ShowChucVu.Columns[3].Name = "trang thai";
+            dtg_ShowChucVu.Columns[4].Name = "ID";
+            dtg_ShowChucVu.Columns[4].Visible = false;
             dtg_ShowChucVu.Rows.Clear();
             dtg_ShowChucVu.Columns[1].Visible = true;
+            var lstcv = _IchucVuServices.GetAllView();
+            if (txt_TimKiem.Text != "")
+            {
+                lstcv = lstcv.Where(x => x.Ma.ToLower().Contains(txt_TimKiem.Text.ToLower())
+                || x.Ten.ToLower().Contains(txt_TimKiem.Text.ToLower())).ToList();
+            }
             foreach (var a in _IchucVuServices.GetAllView())
             {
-                _ = dtg_ShowChucVu.Rows.Add(stt++, a.ChucVu.Ma, a.ChucVu.Ten, a.ChucVu.TrangThai == 1 ? "hoat dong" : "khong hoat dong");
+                _ = dtg_ShowChucVu.Rows.Add(stt++, a.Ma, a.Ten, a.TrangThai == 1 ? "hoạt động" : "Không hoạt động",a.ID);
             }
-            dtg_ShowChucVu.CellClick += dtg_ShowChucVu_CellClick;
+
         }
 
 
@@ -72,15 +81,16 @@ namespace _3.PL.Views
         {
             if (e.RowIndex >= 0)
             {
-                _ID = Guid.Parse(dtg_ShowChucVu.Rows[e.RowIndex].Cells[1].Value.ToString());
-                txt_Ma.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[2].Value.ToString();
-                txt_Ten.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[3].Value.ToString();
-                object cellValue = dtg_ShowChucVu.Rows[e.RowIndex].Cells[4].Value;
-                if (cellValue != null && cellValue is string)
+                _ID = Guid.Parse(dtg_ShowChucVu.Rows[e.RowIndex].Cells[4].Value.ToString());
+                txt_Ma.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txt_Ten.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[2].Value.ToString();
+                if (dtg_ShowChucVu.Rows[e.RowIndex].Cells[3].Value.ToString() == "hoạt động")
                 {
-                    string trangThai = (string)cellValue;
-                    rbtn_HD.Checked = trangThai == "Hoạt động";
-                    rbtn_KHD.Checked = trangThai == "Không hoạt động";
+                    rbtn_HD.Checked = true;
+                }
+                else if (dtg_ShowChucVu.Rows[e.RowIndex].Cells[3].Value.ToString() == "không hoạt động")
+                {
+                    rbtn_KHD.Checked = true;
                 }
             }
         }
@@ -92,7 +102,7 @@ namespace _3.PL.Views
             {
                 Ma = txt_Ma.Text,
                 Ten = txt_Ten.Text,
-               
+
                 TrangThai = rbtn_HD.Checked == true ? 1 : 0,
             };
         }
@@ -157,7 +167,7 @@ namespace _3.PL.Views
 
         private void btn_Them_Click_1(object sender, EventArgs e)
         {
-           
+
             DialogResult dialogResult = MessageBox.Show("Bạn có muốn thêm", "Thông báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -167,10 +177,10 @@ namespace _3.PL.Views
                 LoadData();
 
             }
-            
-         
-        
-           
+
+
+
+
         }
 
         private void btn_Sua_Click_1(object sender, EventArgs e)
@@ -183,16 +193,22 @@ namespace _3.PL.Views
                     ID = _ID,
                     Ma = txt_Ma.Text,
                     Ten = txt_Ten.Text,
-                    
+
                     TrangThai = rbtn_HD.Checked == true ? 1 : 0
                 });
                 if (thongBao)
                 {
                     _ = MessageBox.Show("Sửa thành công");
-                    
+
                     LoadData();
-                    
+
                 }
+                else
+                {
+                    _ = MessageBox.Show("Sửa không thành công");
+                } 
+                    
+               
 
             }
             //_ = _IchucVuServices.Update(GetvaluaContro());
@@ -261,14 +277,14 @@ namespace _3.PL.Views
         //        LoadData();
         //    }
         //}
-    
+
 
         private void btn_LamMoi_Click_1(object sender, EventArgs e)
         {
             txt_Ma.Text = "";
             txt_Ten.Text = "";
-            rbtn_HD.Text = "";
-            rbtn_KHD.Text = "";
+            rbtn_HD.Checked = false;
+            rbtn_KHD.Checked = false;
 
             //if (_ID != Guid.Empty)
             //{
@@ -293,37 +309,38 @@ namespace _3.PL.Views
 
         }
 
-        private void dtg_ShowChucVu_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
+        //private void dtg_ShowChucVu_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        //{
 
-            _ID = Guid.Parse(dtg_ShowChucVu.Rows[e.RowIndex].Cells[1].Value.ToString());
-            txt_Ma.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txt_Ten.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[3].Value.ToString();
-            object cellValue = dtg_ShowChucVu.Rows[e.RowIndex].Cells[4].Value;
-            if (cellValue != null && cellValue is string)
-            {
-                string trangThai = (string)cellValue;
-                rbtn_HD.Checked = trangThai == "Hoạt động";
-                rbtn_KHD.Checked = trangThai == "Không hoạt động";
-            }
-            //if (dtg_ShowChucVu.Rows[e.RowIndex].Cells[4].Value.ToString() == "hoat dong")
-            //{
-            //    rbtn_HD.Checked = true;
-            //}
-            //if (dtg_ShowChucVu.Rows[e.RowIndex].Cells[4].Value.ToString() == "khong hoat dong")
-            //{
-            //    rbtn_KHD.Checked = true;
-            //}
-        }
+        //    //_ID = Guid.Parse(dtg_ShowChucVu.Rows[e.RowIndex].Cells[1].Value.ToString());
+        //    txt_Ma.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[1].Value.ToString();
+        //    txt_Ten.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[2].Value.ToString();
+        //    object cellValue = dtg_ShowChucVu.Rows[e.RowIndex].Cells[3].Value;
+        //    if (cellValue != null && cellValue is string)
+        //    {
+        //        string trangThai = (string)cellValue;
+        //        rbtn_HD.Checked = trangThai == "Hoạt động";
+        //        rbtn_KHD.Checked = trangThai == "Không hoạt động";
+        //    }
+        //    //if (dtg_ShowChucVu.Rows[e.RowIndex].Cells[4].Value.ToString() == "hoat dong")
+        //    //{
+        //    //    rbtn_HD.Checked = true;
+        //    //}
+        //    //if (dtg_ShowChucVu.Rows[e.RowIndex].Cells[4].Value.ToString() == "khong hoat dong")
+        //    //{
+        //    //    rbtn_KHD.Checked = true;
+        //    //}
+        //}
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
-            dtg_ShowChucVu.Rows.Clear();
+            LoadData();
+            //dtg_ShowChucVu.Rows.Clear();
 
-            foreach (var item in _IchucVuServices.GetAllView().Where(c => c.ChucVu.Ma.Contains(textBox1.Text)))
-            {
-                dtg_ShowChucVu.Rows.Add(item.ChucVu.ID, item.ChucVu.Ma, item.ChucVu.Ten, item.ChucVu.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
-            }
+            //foreach (var item in _IchucVuServices.GetAllView().Where(c => c.ChucVu.Ma.Contains(textBox1.Text)))
+            //{
+            //    dtg_ShowChucVu.Rows.Add(item.ChucVu.ID, item.ChucVu.Ma, item.ChucVu.Ten, item.ChucVu.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+            //}
         }
 
         

@@ -112,12 +112,13 @@
             // 
             // Cbb_LocCV
             // 
+            Cbb_LocCV.DropDownStyle = ComboBoxStyle.DropDownList;
             Cbb_LocCV.FormattingEnabled = true;
             Cbb_LocCV.Location = new Point(674, 5);
             Cbb_LocCV.Name = "Cbb_LocCV";
             Cbb_LocCV.Size = new Size(151, 28);
             Cbb_LocCV.TabIndex = 14;
-            Cbb_LocCV.SelectedIndexChanged += Cbb_LocCV_SelectedIndexChanged;
+            Cbb_LocCV.SelectedIndexChanged += new System.EventHandler( Cbb_LocCV_SelectedIndexChanged);
             // 
             // txt_TimKiem
             // 
@@ -138,7 +139,7 @@
             dtg_ShowNV.RowTemplate.Height = 29;
             dtg_ShowNV.Size = new Size(1097, 233);
             dtg_ShowNV.TabIndex = 0;
-            dtg_ShowNV.CellContentClick += dtg_ShowNV_CellClick;
+            dtg_ShowNV.CellClick += dtg_ShowNV_CellClick;
             // 
             // panel2
             // 
@@ -302,6 +303,7 @@
             btn_ChonAnh.TabIndex = 31;
             btn_ChonAnh.Text = "Chọn ảnh";
             btn_ChonAnh.UseVisualStyleBackColor = true;
+            btn_ChonAnh.Click += btn_ChonAnh_Click;
             // 
             // ptb_AVT
             // 
@@ -312,6 +314,7 @@
             ptb_AVT.SizeMode = PictureBoxSizeMode.StretchImage;
             ptb_AVT.TabIndex = 30;
             ptb_AVT.TabStop = false;
+            ptb_AVT.Click += ptb_AVT_Click;
             // 
             // label7
             // 

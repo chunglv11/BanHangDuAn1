@@ -344,7 +344,7 @@
         private Label lb_TenNV;
         private PictureBox ptb_avt;
         private Panel panelFill;
-        private Panel PanelPhai;
         private Button btn_KhuyenMai;
+        private Panel PanelPhai;
     }
 }
