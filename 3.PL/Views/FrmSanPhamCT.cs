@@ -57,11 +57,12 @@ namespace _3.PL.Views
             LoadData();
             reset();
             loctrangthai();
-
+            _id = Guid.Empty;
         }
         public void LoadData()
         {
             int stt = 1;
+            dtg_ShowSanPham.Rows.Clear();
             dtg_ShowSanPham.ColumnCount = 15;
             dtg_ShowSanPham.Columns[0].Name = "STT";
             dtg_ShowSanPham.Columns[1].Name = "ID";
@@ -408,7 +409,6 @@ namespace _3.PL.Views
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
             reset();
-            LoadData();
         }
         public void reset()
         {
@@ -433,7 +433,7 @@ namespace _3.PL.Views
                     _id = Guid.Parse(row.Cells[1].Value.ToString());
                 }
             }
-
+            _id = Guid.Empty;
             cmb_MS.SelectedItem = null;
             cmb_Loai.SelectedItem = null;
             cmb_Cl.SelectedItem = null;
@@ -723,7 +723,7 @@ namespace _3.PL.Views
 
         private void ptb_QR_Click(object sender, EventArgs e)
         {
-            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c => c.ID == _id);
+            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c=>c.ID == _id);
             if (sp != null)
             {
                 QRCodeGenerator qr = new QRCodeGenerator();
