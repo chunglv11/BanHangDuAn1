@@ -31,7 +31,6 @@
             panel2 = new Panel();
             groupBox2 = new GroupBox();
             btn_LamMoi = new Button();
-            btn_Xoa = new Button();
             btn_Sua = new Button();
             btn_Them = new Button();
             groupBox1 = new GroupBox();
@@ -69,7 +68,6 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(btn_LamMoi);
-            groupBox2.Controls.Add(btn_Xoa);
             groupBox2.Controls.Add(btn_Sua);
             groupBox2.Controls.Add(btn_Them);
             groupBox2.Dock = DockStyle.Fill;
@@ -85,25 +83,13 @@
             // 
             btn_LamMoi.Image = Properties.Resources.reset;
             btn_LamMoi.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_LamMoi.Location = new Point(600, 39);
+            btn_LamMoi.Location = new Point(412, 39);
             btn_LamMoi.Name = "btn_LamMoi";
             btn_LamMoi.Size = new Size(158, 42);
             btn_LamMoi.TabIndex = 3;
             btn_LamMoi.Text = "Làm mới";
             btn_LamMoi.UseVisualStyleBackColor = true;
             btn_LamMoi.Click += btn_LamMoi_Click;
-            // 
-            // btn_Xoa
-            // 
-            btn_Xoa.Image = Properties.Resources.delete;
-            btn_Xoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Xoa.Location = new Point(405, 39);
-            btn_Xoa.Name = "btn_Xoa";
-            btn_Xoa.Size = new Size(158, 42);
-            btn_Xoa.TabIndex = 2;
-            btn_Xoa.Text = "Xoá";
-            btn_Xoa.UseVisualStyleBackColor = true;
-            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // btn_Sua
             // 
@@ -300,7 +286,6 @@
         private Panel panel2;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
-        private Button btn_Xoa;
         private Button btn_Sua;
         private Button btn_Them;
         private GroupBox groupBox1;

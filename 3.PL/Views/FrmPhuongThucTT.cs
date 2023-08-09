@@ -26,42 +26,58 @@ namespace _3.PL.Views
 
         public void LoadData()
         {
-            dtg_ShowChucVu.ColumnCount = 3;
+            dtg_ShowChucVu.ColumnCount = 4;
             dtg_ShowChucVu.Columns[0].Name = "Id";
             dtg_ShowChucVu.Columns[0].Visible = false;
             dtg_ShowChucVu.Columns[1].Name = "Mã PT thanh toán";
             dtg_ShowChucVu.Columns[2].Name = "Tên PT thanh toán";
+            dtg_ShowChucVu.Columns[3].Name = "Trạng thái";
 
             dtg_ShowChucVu.Rows.Clear();
             foreach (var item in _iPhuongThucThanhToanServices.GetAllThanhToan())
             {
-                dtg_ShowChucVu.Rows.Add(item.ID, item.MaPTThanhToan, item.TenPTThanhToan);
+                dtg_ShowChucVu.Rows.Add(item.ID, item.MaPTThanhToan, item.TenPTThanhToan, item.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
 
 
 
 
-
+        private bool checknhap()
+        {
+            if (txt_Ma.Text == "" || txt_Ten.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            _phuongThucThanhToan = new PhuongThucThanhToan()
+            if (checknhap() == false)
             {
-                ID = Guid.NewGuid(),
-                MaPTThanhToan = txt_Ma.Text,
-                TenPTThanhToan = txt_Ten.Text,
-
-            };
-
-            if (_iPhuongThucThanhToanServices.AddThanhToan(_phuongThucThanhToan))
-            {
-                MessageBox.Show("Thêm thành công");
-                LoadData();
+                MessageBox.Show("Không được để trống các trường", "Chú ý");
             }
             else
             {
-                MessageBox.Show("Thêm không thành công");
+                _phuongThucThanhToan = new PhuongThucThanhToan()
+                {
+                    ID = Guid.NewGuid(),
+                    MaPTThanhToan = txt_Ma.Text,
+                    TenPTThanhToan = txt_Ten.Text,
+
+                };
+
+                if (_iPhuongThucThanhToanServices.AddThanhToan(_phuongThucThanhToan))
+                {
+                    MessageBox.Show("Thêm thành công");
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Thêm không thành công");
+                }
             }
+
         }
 
         private void btn_LamMoi_Click(object sender, EventArgs e)
@@ -73,23 +89,25 @@ namespace _3.PL.Views
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            _phuongThucThanhToan = new PhuongThucThanhToan()
+            if (checknhap() == false)
             {
-                ID = _id,
-                MaPTThanhToan = txt_Ma.Text,
-                TenPTThanhToan = txt_Ten.Text,
-
-            };
-
-            if (_iPhuongThucThanhToanServices.EditThanhToan(_phuongThucThanhToan))
-            {
-                MessageBox.Show("Cập nhật thành công");
-                LoadData();
+                MessageBox.Show("Không được để trống các trường", "Chú ý");
             }
             else
             {
-                MessageBox.Show("Cập nhật không thành công");
+                OpenFileDialog op = new OpenFileDialog();
+                DialogResult dialog = MessageBox.Show("Bạn có muốn cập nhật PTTT không?", "Chú ý", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    _phuongThucThanhToan.TenPTThanhToan = txt_Ten.Text;
+                    _phuongThucThanhToan.MaPTThanhToan = txt_Ma.Text;
+                    _phuongThucThanhToan.TrangThai = rbtn_HD.Checked ? 1 : 0;
+                    _iPhuongThucThanhToanServices.EditThanhToan(_phuongThucThanhToan);
+                    MessageBox.Show("Cập nhật thành công");
+                    LoadData();
+                }
             }
+
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
@@ -111,12 +129,14 @@ namespace _3.PL.Views
 
         private void dtg_ShowChucVu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridViewRow r = dtg_ShowChucVu.Rows[e.RowIndex];
             if (e.RowIndex >= 0)
             {
-                _id = Guid.Parse(dtg_ShowChucVu.Rows[e.RowIndex].Cells[0].Value.ToString());
+                _phuongThucThanhToan = _iPhuongThucThanhToanServices.GetAllThanhToan().FirstOrDefault(c => c.ID.ToString() == r.Cells[0].Value.ToString());
                 txt_Ma.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[1].Value.ToString();
                 txt_Ten.Text = dtg_ShowChucVu.Rows[e.RowIndex].Cells[2].Value.ToString();
-
+                rbtn_HD.Checked = dtg_ShowChucVu.Rows[e.RowIndex].Cells[3].Value.ToString() == "Hoạt động" ? true : false;
+                rbtn_KHD.Checked = dtg_ShowChucVu.Rows[e.RowIndex].Cells[3].Value.ToString() == "Không hoạt động" ? true : false;
             }
         }
 

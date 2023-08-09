@@ -30,8 +30,6 @@
         {
             panel2 = new Panel();
             textBox2 = new TextBox();
-            label5 = new Label();
-            Cbb_Loc = new ComboBox();
             dtg_ShowKhachHang = new DataGridView();
             groupBox1 = new GroupBox();
             txb_sdt = new TextBox();
@@ -42,7 +40,6 @@
             label3 = new Label();
             label2 = new Label();
             btn_LamMoi = new Button();
-            btn_Xoa = new Button();
             btn_Sua = new Button();
             btn_Them = new Button();
             groupBox2 = new GroupBox();
@@ -64,42 +61,21 @@
             // panel2
             // 
             panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(Cbb_Loc);
             panel2.Controls.Add(dtg_ShowKhachHang);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 317);
             panel2.Name = "panel2";
-            panel2.Size = new Size(957, 272);
+            panel2.Size = new Size(724, 272);
             panel2.TabIndex = 17;
             // 
             // textBox2
             // 
             textBox2.Location = new Point(12, 17);
             textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Tìm kiếm...";
+            textBox2.PlaceholderText = "Nhập số điện thoại";
             textBox2.Size = new Size(247, 27);
             textBox2.TabIndex = 12;
             textBox2.TextChanged += textBox2_TextChanged;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(386, 18);
-            label5.Name = "label5";
-            label5.Size = new Size(160, 23);
-            label5.TabIndex = 11;
-            label5.Text = "Lọc theo trạng thái:";
-            // 
-            // Cbb_Loc
-            // 
-            Cbb_Loc.FormattingEnabled = true;
-            Cbb_Loc.Items.AddRange(new object[] { "Khách vãng lai", "Khách quen" });
-            Cbb_Loc.Location = new Point(551, 17);
-            Cbb_Loc.Name = "Cbb_Loc";
-            Cbb_Loc.Size = new Size(151, 28);
-            Cbb_Loc.TabIndex = 11;
             // 
             // dtg_ShowKhachHang
             // 
@@ -127,7 +103,7 @@
             groupBox1.ForeColor = Color.Black;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(957, 219);
+            groupBox1.Size = new Size(724, 219);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Khách hàng";
@@ -138,6 +114,7 @@
             txb_sdt.Name = "txb_sdt";
             txb_sdt.Size = new Size(274, 30);
             txb_sdt.TabIndex = 10;
+            txb_sdt.KeyPress += txb_sdt_KeyPress;
             // 
             // label4
             // 
@@ -199,25 +176,13 @@
             // 
             btn_LamMoi.Image = Properties.Resources.reset;
             btn_LamMoi.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_LamMoi.Location = new Point(600, 39);
+            btn_LamMoi.Location = new Point(400, 39);
             btn_LamMoi.Name = "btn_LamMoi";
             btn_LamMoi.Size = new Size(158, 42);
             btn_LamMoi.TabIndex = 3;
             btn_LamMoi.Text = "Làm mới";
             btn_LamMoi.UseVisualStyleBackColor = true;
             btn_LamMoi.Click += btn_LamMoi_Click;
-            // 
-            // btn_Xoa
-            // 
-            btn_Xoa.Image = Properties.Resources.delete;
-            btn_Xoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Xoa.Location = new Point(405, 39);
-            btn_Xoa.Name = "btn_Xoa";
-            btn_Xoa.Size = new Size(158, 42);
-            btn_Xoa.TabIndex = 2;
-            btn_Xoa.Text = "Xoá";
-            btn_Xoa.UseVisualStyleBackColor = true;
-            btn_Xoa.Click += btn_Xoa_Click;
             // 
             // btn_Sua
             // 
@@ -246,14 +211,13 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(btn_LamMoi);
-            groupBox2.Controls.Add(btn_Xoa);
             groupBox2.Controls.Add(btn_Sua);
             groupBox2.Controls.Add(btn_Them);
             groupBox2.Dock = DockStyle.Fill;
             groupBox2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(0, 0);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(957, 98);
+            groupBox2.Size = new Size(724, 98);
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "Chức năng";
@@ -264,7 +228,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 219);
             panel1.Name = "panel1";
-            panel1.Size = new Size(957, 98);
+            panel1.Size = new Size(724, 98);
             panel1.TabIndex = 16;
             // 
             // dtg_KicCo
@@ -294,7 +258,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(957, 219);
+            panel3.Size = new Size(724, 219);
             panel3.TabIndex = 18;
             // 
             // panel4
@@ -303,7 +267,7 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(0, 0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(957, 219);
+            panel4.Size = new Size(724, 219);
             panel4.TabIndex = 10;
             // 
             // FrmKhachHang
@@ -311,7 +275,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaShell;
-            ClientSize = new Size(957, 589);
+            ClientSize = new Size(724, 589);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(panel3);
@@ -342,7 +306,6 @@
         private Label label3;
         private Label label2;
         private Button btn_LamMoi;
-        private Button btn_Xoa;
         private Button btn_Sua;
         private Button btn_Them;
         private GroupBox groupBox2;
@@ -356,8 +319,6 @@
         private Label label4;
         private DataGridView dtg_ShowKhachHang;
         private Panel panel4;
-        private ComboBox Cbb_Loc;
-        private Label label5;
         private TextBox textBox2;
     }
 }

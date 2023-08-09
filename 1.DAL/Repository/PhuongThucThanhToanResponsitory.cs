@@ -49,8 +49,8 @@ namespace _1.DAL.Repository
         {
             try
             {
-                var thanh_toan = _context.PhuongThucThanhToans.FirstOrDefault(c => c.ID == obj.ID);
-                _context.PhuongThucThanhToans.Update(thanh_toan);
+
+                _context.PhuongThucThanhToans.Update(obj);
                 _context.SaveChanges();
                 return true;
             }

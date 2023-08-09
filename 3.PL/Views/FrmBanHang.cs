@@ -260,8 +260,9 @@ namespace _3.PL.Views
             dtg_GioHang.Columns[5].Name = "Số lượng";
             //Thêm một cột chứa button
             DataGridViewButtonColumn btnXoa = new DataGridViewButtonColumn();
-            btnXoa.Text = "Xoá";
-            btnXoa.Name = "Xoá sản phẩm";
+            btnXoa.Text = "----";
+            btnXoa.Name = "Giảm số lượng";
+            btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.UseColumnTextForButtonValue = true;
             btnXoa.DefaultCellStyle.BackColor = Color.Red;
             dtg_GioHang.Columns.Add(btnXoa);
@@ -614,6 +615,7 @@ namespace _3.PL.Views
                 var c = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(x => x.ID == cid);
                 tb_SDT.Text = c.SDT;
                 lb_Tenkh.Text = c.HovaTen;
+                lb_GiamGiaDiem.Text = $"(Tối đa : {c.Diem})";
                 //if (hD.IDKM == null)
                 //{
                 //    Cbb_GiamGia.SelectedIndex = 0;
@@ -1145,20 +1147,35 @@ namespace _3.PL.Views
 
         private void btn_Stop_Click(object sender, EventArgs e)
         {
-            if (ptb_QR.Image != null)
+            timer1.Stop();
+            if (Videocam.IsRunning)
             {
-
-                ptb_QR.Image = null;
-                ptb_QR.ImageLocation = null;
-
-                ptb_QR.Update();
+                Videocam.SignalToStop();
+                Videocam = null;
             }
+            ptb_QR.Image = null;
         }
 
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(c => c.ID == _idSpct);
-            addCart(p.ID);
+            if (tb_MaSPQuet.Text == "")
+            {
+                MessageBox.Show("Chưa có sản phẩm nào được quét để thêm");
+            }
+            else
+            {
+                var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(c => c.ID == _idSpct);
+                addCart(p.ID);
+            }
+
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmAddKH frmAddKH = new FrmAddKH();
+            frmAddKH.ShowDialog();
+        }
+
+
     }
 }

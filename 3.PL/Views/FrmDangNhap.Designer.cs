@@ -72,9 +72,9 @@
             cb_Save.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             cb_Save.Location = new Point(141, 229);
             cb_Save.Name = "cb_Save";
-            cb_Save.Size = new Size(143, 27);
+            cb_Save.Size = new Size(93, 27);
             cb_Save.TabIndex = 9;
-            cb_Save.Text = "Nhớ mật khẩu";
+            cb_Save.Text = "Ghi nhớ";
             cb_Save.UseVisualStyleBackColor = true;
             // 
             // btn_DangNhap
@@ -137,6 +137,7 @@
             Tb_Mk.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Tb_Mk.Location = new Point(141, 182);
             Tb_Mk.Name = "Tb_Mk";
+            Tb_Mk.PasswordChar = '*';
             Tb_Mk.Size = new Size(313, 34);
             Tb_Mk.TabIndex = 2;
             // 
@@ -157,6 +158,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FrmDangNhap";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmDangNhap";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();

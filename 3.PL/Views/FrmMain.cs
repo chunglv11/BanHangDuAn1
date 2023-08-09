@@ -116,15 +116,7 @@ namespace _3.PL.Views
         private void btn_TaiKhoan_Click(object sender, EventArgs e)
         {
 
-            //var nhanvien = _inhanVienServices.GetAllView().FirstOrDefault(p => p.Username == Properties.Settings.Default.TKdaLogin);
-            //lb_HoTen.Text = nhanvien.HoTen.ToString();
-            ////lb_CV.Text = nhanvien.ChucVu;
-            //lb_MaNV.Text = nhanvien.MaNv;
-            //lb_Email.Text = nhanvien.Email;
-            //lb_GioiTinh.Text = nhanvien.GioiTinh == 1 ? "nam" : "nữ";
-            //string formattedDate = nhanvien.NgaySinh.ToString("dd-MM-yyyy");  //chuyển đổi sang dd/mm/yyyy 
-            //dateTimePicker1.Text = Convert.ToString(formattedDate);
-            //lb_User.Text = nhanvien.Username;
+
             ChangeForm(new FrmThongTin());
         }
 

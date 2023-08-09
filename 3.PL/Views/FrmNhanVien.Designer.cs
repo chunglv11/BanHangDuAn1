@@ -118,7 +118,7 @@
             Cbb_LocCV.Name = "Cbb_LocCV";
             Cbb_LocCV.Size = new Size(151, 28);
             Cbb_LocCV.TabIndex = 14;
-            Cbb_LocCV.SelectedIndexChanged += new System.EventHandler( Cbb_LocCV_SelectedIndexChanged);
+            Cbb_LocCV.SelectedIndexChanged += new System.EventHandler(Cbb_LocCV_SelectedIndexChanged);
             // 
             // txt_TimKiem
             // 
@@ -314,7 +314,7 @@
             ptb_AVT.SizeMode = PictureBoxSizeMode.StretchImage;
             ptb_AVT.TabIndex = 30;
             ptb_AVT.TabStop = false;
-            ptb_AVT.Click += ptb_AVT_Click;
+
             // 
             // label7
             // 

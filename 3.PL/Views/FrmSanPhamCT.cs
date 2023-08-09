@@ -723,7 +723,7 @@ namespace _3.PL.Views
 
         private void ptb_QR_Click(object sender, EventArgs e)
         {
-            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c=>c.ID == _id);
+            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c => c.ID == _id);
             if (sp != null)
             {
                 QRCodeGenerator qr = new QRCodeGenerator();
@@ -759,9 +759,11 @@ namespace _3.PL.Views
                     MessageBox.Show("Lưu thành công", "Thông báo");
                 }
 
+            }
+            else
+            {
                 MessageBox.Show("Không có hình ảnh để lưu", "ERD", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void txt_SLT_TextChanged(object sender, EventArgs e)
@@ -973,7 +975,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -985,7 +987,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -997,7 +999,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1012,7 +1014,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1024,7 +1026,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1036,7 +1038,7 @@ namespace _3.PL.Views
                 if (cmb_loctrangthai.Text == "")
                 {
 
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1132,7 +1134,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1144,7 +1146,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1171,7 +1173,7 @@ namespace _3.PL.Views
             {
                 if (cmb_loctrangthai.Text == "Còn hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;
@@ -1183,7 +1185,7 @@ namespace _3.PL.Views
 
                 if (cmb_loctrangthai.Text == "Hết hàng")
                 {
-                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)|| p.TenSp.Contains(txt_TimKiem.Text));
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
 
                     dtg_ShowSanPham.Rows.Clear();
                     int stt = 1;

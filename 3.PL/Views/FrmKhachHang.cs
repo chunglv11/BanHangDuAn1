@@ -51,42 +51,86 @@ namespace _3.PL.Views
             }
         }
         //check trung sdt,sdt <10
+        private bool checknhap()
+        {
+            if (txb_hoten.Text == "" || txb_sdt.Text == "")
+            {
+                return false;
+            }
+            return true;
+        }
         private void btn_Them_Click(object sender, EventArgs e)
         {
-            _khachhang = new KhachHang()
+            var sdt = _ikhachhang.GetAllKhachHang().FirstOrDefault(p => p.SDT == txb_sdt.Text);
+            if (checknhap() == false)
             {
-                ID = Guid.NewGuid(),
-                HovaTen = txb_hoten.Text,
-                Diem = 0,
-                SDT = txb_sdt.Text,
-                TrangThai = rbtn_Vang.Checked ? 0 : 1,
-            };
-            if (_ikhachhang.AddKhachHang(_khachhang))
+                MessageBox.Show("Không được để trống các trường", "Chú ý");
+            }
+            else if (txb_sdt.Text.Length < 10)
             {
+                MessageBox.Show("Số điện thoại phải có ít nhất 10 kí tự");
+
+            }
+            else if (txb_sdt.Text.Length > 11)
+            {
+                MessageBox.Show("Số điện thoại phải nhỏ hơn 11 kí tự");
+
+            }
+            else if (sdt != null)
+            {
+                MessageBox.Show("Số điện thoại đã được sử dụng", "Chú ý");
+            }
+            else
+            {
+
+                _khachhang = new KhachHang()
+                {
+                    ID = Guid.NewGuid(),
+                    HovaTen = txb_hoten.Text,
+                    Diem = 0,
+                    SDT = txb_sdt.Text,
+                    TrangThai = rbtn_Vang.Checked ? 0 : 1,
+                };
+                _ikhachhang.AddKhachHang(_khachhang);
                 MessageBox.Show("Thêm khách hàng thành công");
                 LoadData();
             }
-
-
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Bạn có muốn cập nhật khách hàng không?", "Chú ý", MessageBoxButtons.YesNo);
-            if (dialog == DialogResult.Yes)
+            var sdt = _ikhachhang.GetAllKhachHang().FirstOrDefault(p => p.SDT == txb_sdt.Text);
+            if (checknhap() == false)
             {
-                _id = _khachhang.ID;
-                _khachhang.HovaTen = txb_hoten.Text;
-                _khachhang.SDT = txb_sdt.Text;
-                _khachhang.TrangThai = rbtn_Quen.Checked ? 1 : 0;
-                _ikhachhang.EditKhachHang(_khachhang);
-                MessageBox.Show("Cập nhật thành công ");
-                LoadData();
+                MessageBox.Show("Không được để trống các trường", "Chú ý");
             }
+            else if (txb_sdt.Text.Length < 10)
+            {
+                MessageBox.Show("Số điện thoại phải có ít nhất 10 kí tự");
 
+            }
+            else if (txb_sdt.Text.Length > 11)
+            {
+                MessageBox.Show("Số điện thoại phải nhỏ hơn 11 kí tự");
+
+            }
+            else if (sdt != null)
+            {
+                MessageBox.Show("Số điện thoại đã được sử dụng", "Chú ý");
+            }
             else
             {
-                MessageBox.Show("Cập nhật không thành công");
+                DialogResult dialog = MessageBox.Show("Bạn có muốn cập nhật khách hàng không?", "Chú ý", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes)
+                {
+                    _khachhang.HovaTen = txb_hoten.Text;
+                    _khachhang.SDT = txb_sdt.Text;
+                    _khachhang.TrangThai = rbtn_Quen.Checked ? 1 : 0;
+                    _ikhachhang.EditKhachHang(_khachhang);
+                    MessageBox.Show("Cập nhật thành công ");
+                    LoadData();
+                }
+
             }
         }
 
@@ -126,7 +170,7 @@ namespace _3.PL.Views
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             dtg_ShowKhachHang.Rows.Clear();
-            foreach (var item in _ikhachhang.GetAllKhachHang().Where(c => c.HovaTen.Contains(textBox2.Text)))
+            foreach (var item in _ikhachhang.GetAllKhachHang().Where(c => c.SDT.Contains(textBox2.Text)))
             {
 
                 dtg_ShowKhachHang.Rows.Add(item.ID, item.HovaTen, item.Diem, item.SDT, item.TrangThai);
@@ -135,8 +179,8 @@ namespace _3.PL.Views
 
         private void dtg_ShowKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            _id = Guid.Parse(dtg_ShowKhachHang.Rows[e.RowIndex].Cells[0].Value.ToString());
+            DataGridViewRow r = dtg_ShowKhachHang.Rows[e.RowIndex];
+            _khachhang = _ikhachhang.GetAllKhachHang().FirstOrDefault(c => c.ID.ToString() == r.Cells[0].Value.ToString());
             txb_hoten.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[1].Value.ToString();
             txb_sdt.Text = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[3].Value.ToString();
             rbtn_Vang.Checked = dtg_ShowKhachHang.Rows[e.RowIndex].Cells[4].Value.ToString() == "Khách vãng lai" ? true : false;
@@ -144,6 +188,11 @@ namespace _3.PL.Views
 
         }
 
+        private void txb_sdt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
     }
 }
 

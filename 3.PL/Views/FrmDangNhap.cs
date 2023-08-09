@@ -65,7 +65,7 @@ namespace _3.PL.Views
             this.Hide();
             FrmQuenMK frmqmk = new FrmQuenMK();
             frmqmk.ShowDialog();
-            
+
         }
     }
 }

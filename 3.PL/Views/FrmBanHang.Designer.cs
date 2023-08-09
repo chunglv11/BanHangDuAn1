@@ -34,13 +34,14 @@
             groupBox3 = new GroupBox();
             flowPanelSp = new FlowLayoutPanel();
             groupBox4 = new GroupBox();
-            btn_Them = new Button();
+            tb_TenSPQuet = new TextBox();
             tb_MaSPQuet = new TextBox();
             tb_TimKiem = new TextBox();
             cbb_LoaiSP = new ComboBox();
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            btn_Them = new Button();
             btn_Stop = new Button();
             lb_Thanhtien = new Label();
             label14 = new Label();
@@ -55,6 +56,7 @@
             dtg_DonHang = new DataGridView();
             panelPhai = new Panel();
             groupBox5 = new GroupBox();
+            button1 = new Button();
             lb_TongTienTT = new Label();
             lbTienThua = new Label();
             label16 = new Label();
@@ -84,7 +86,6 @@
             label4 = new Label();
             label3 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
-            tb_TenSPQuet = new TextBox();
             panelFil.SuspendLayout();
             panelTrai.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -158,16 +159,14 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năng";
             // 
-            // btn_Them
+            // tb_TenSPQuet
             // 
-            btn_Them.BackColor = Color.FromArgb(255, 192, 128);
-            btn_Them.Location = new Point(12, 219);
-            btn_Them.Name = "btn_Them";
-            btn_Them.Size = new Size(117, 37);
-            btn_Them.TabIndex = 78;
-            btn_Them.Text = "Thêm vào giỏ";
-            btn_Them.UseVisualStyleBackColor = false;
-            btn_Them.Click += btn_Them_Click;
+            tb_TenSPQuet.Enabled = false;
+            tb_TenSPQuet.Location = new Point(964, 33);
+            tb_TenSPQuet.Name = "tb_TenSPQuet";
+            tb_TenSPQuet.PlaceholderText = "Tên sản phẩm";
+            tb_TenSPQuet.Size = new Size(159, 27);
+            tb_TenSPQuet.TabIndex = 5;
             // 
             // tb_MaSPQuet
             // 
@@ -235,6 +234,18 @@
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
+        
+            // 
+            // btn_Them
+            // 
+            btn_Them.BackColor = Color.FromArgb(255, 192, 128);
+            btn_Them.Location = new Point(12, 219);
+            btn_Them.Name = "btn_Them";
+            btn_Them.Size = new Size(117, 37);
+            btn_Them.TabIndex = 78;
+            btn_Them.Text = "Thêm vào giỏ";
+            btn_Them.UseVisualStyleBackColor = false;
+            btn_Them.Click += btn_Them_Click;
             // 
             // btn_Stop
             // 
@@ -379,6 +390,7 @@
             // 
             // groupBox5
             // 
+            groupBox5.Controls.Add(button1);
             groupBox5.Controls.Add(lb_TongTienTT);
             groupBox5.Controls.Add(lbTienThua);
             groupBox5.Controls.Add(label16);
@@ -415,6 +427,17 @@
             groupBox5.TabIndex = 0;
             groupBox5.TabStop = false;
             groupBox5.Text = "Thông tin";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(255, 192, 128);
+            button1.Location = new Point(345, 64);
+            button1.Name = "button1";
+            button1.Size = new Size(32, 37);
+            button1.TabIndex = 79;
+            button1.Text = "+";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // lb_TongTienTT
             // 
@@ -626,7 +649,7 @@
             btn_TaoHD.BackColor = Color.FromArgb(255, 192, 128);
             btn_TaoHD.Location = new Point(31, 269);
             btn_TaoHD.Name = "btn_TaoHD";
-            btn_TaoHD.Size = new Size(328, 56);
+            btn_TaoHD.Size = new Size(346, 56);
             btn_TaoHD.TabIndex = 56;
             btn_TaoHD.Text = "Tạo hoá đơn";
             btn_TaoHD.UseVisualStyleBackColor = false;
@@ -636,7 +659,7 @@
             // 
             tb_DiaChi.Location = new Point(150, 161);
             tb_DiaChi.Name = "tb_DiaChi";
-            tb_DiaChi.Size = new Size(213, 59);
+            tb_DiaChi.Size = new Size(227, 59);
             tb_DiaChi.TabIndex = 54;
             tb_DiaChi.Text = "";
             // 
@@ -644,7 +667,7 @@
             // 
             tb_SDT.Location = new Point(147, 68);
             tb_SDT.Name = "tb_SDT";
-            tb_SDT.Size = new Size(245, 30);
+            tb_SDT.Size = new Size(184, 30);
             tb_SDT.TabIndex = 4;
             tb_SDT.TextChanged += tb_SDT_TextChanged;
             tb_SDT.KeyPress += tb_SDT_KeyPress;
@@ -661,7 +684,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(16, 164);
+            label4.Location = new Point(12, 164);
             label4.Name = "label4";
             label4.Size = new Size(62, 23);
             label4.TabIndex = 1;
@@ -679,15 +702,6 @@
             // timer1
             // 
             timer1.Tick += timer1_Tick;
-            // 
-            // tb_TenSPQuet
-            // 
-            tb_TenSPQuet.Enabled = false;
-            tb_TenSPQuet.Location = new Point(964, 33);
-            tb_TenSPQuet.Name = "tb_TenSPQuet";
-            tb_TenSPQuet.PlaceholderText = "Tên sản phẩm";
-            tb_TenSPQuet.Size = new Size(159, 27);
-            tb_TenSPQuet.TabIndex = 5;
             // 
             // FrmBanHang
             // 
@@ -775,5 +789,6 @@
         private TextBox tb_MaSPQuet;
         private Button btn_Them;
         private TextBox tb_TenSPQuet;
+        private Button button1;
     }
 }
