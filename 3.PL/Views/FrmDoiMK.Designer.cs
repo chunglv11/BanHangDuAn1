@@ -33,7 +33,7 @@
             label2 = new Label();
             tb_nhaplai = new TextBox();
             tb_pass = new TextBox();
-            tb_email = new TextBox();
+            tb_mkc = new TextBox();
             btn_Xacnhan = new Button();
             SuspendLayout();
             // 
@@ -80,13 +80,13 @@
             tb_pass.Size = new Size(469, 27);
             tb_pass.TabIndex = 23;
             // 
-            // tb_email
+            // tb_mkc
             // 
-            tb_email.Location = new Point(185, 93);
-            tb_email.Margin = new Padding(3, 4, 3, 4);
-            tb_email.Name = "tb_email";
-            tb_email.Size = new Size(469, 27);
-            tb_email.TabIndex = 22;
+            tb_mkc.Location = new Point(185, 93);
+            tb_mkc.Margin = new Padding(3, 4, 3, 4);
+            tb_mkc.Name = "tb_mkc";
+            tb_mkc.Size = new Size(469, 27);
+            tb_mkc.TabIndex = 22;
             // 
             // btn_Xacnhan
             // 
@@ -110,7 +110,7 @@
             Controls.Add(label2);
             Controls.Add(tb_nhaplai);
             Controls.Add(tb_pass);
-            Controls.Add(tb_email);
+            Controls.Add(tb_mkc);
             Name = "FrmDoiMK";
             Text = "FrmDoiMK";
             ResumeLayout(false);
@@ -124,7 +124,7 @@
         private Label label2;
         private TextBox tb_nhaplai;
         private TextBox tb_pass;
-        private TextBox tb_email;
+        private TextBox tb_mkc;
         private Button btn_Xacnhan;
     }
 }

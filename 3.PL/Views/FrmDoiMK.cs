@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using _2.BUS.IServices;
+using _2.BUS.Services;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,62 +16,36 @@ namespace _3.PL.Views
 {
     public partial class FrmDoiMK : Form
     {
+        INhanVienServices _nhanVienServices;
         public FrmDoiMK()
         {
             InitializeComponent();
+            _nhanVienServices = new NhanVienServices();
         }
         string email = FrmQuenMK.to;
         private void btn_Xacnhan_Click(object sender, EventArgs e)
         {
-            string password = tb_pass.Text;
-            if (password == tb_nhaplai.Text)
+            Guid idRole = _nhanVienServices.GetAllView().FirstOrDefault(x => x.Username == Properties.Settings.Default.TKdaLogin).ID;
+            var id = _nhanVienServices.GetAllView().FirstOrDefault(p => p.ID == idRole);
+            if (tb_mkc.Text != id.MatKhau)
             {
-                SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-Q3TF2SAN\SQLEXPRESS;Initial Catalog=QuanLyBanQuanAo;Integrated Security=True;TrustServerCertificate=True;");
-                string q = @"UPDATE [dbo].[NhanVien] set [MatKhau]='" + password + "' where Email='" + email + "'";
-
-                SqlCommand cmd = new SqlCommand(q, conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-
-                MessageBox.Show("Mật khẩu đã được thay đổi thành công");
-                this.Close();
-                FrmDangNhap frmDangNhap = new FrmDangNhap();
-                frmDangNhap.Show();
-
+                MessageBox.Show("Sai mật khẩu vui lòng nhập lại");
+            }
+            else if (tb_pass.Text != tb_nhaplai.Text)
+            {
+                MessageBox.Show("Sai mật khẩu mới vui lòng nhập lại");
             }
             else
             {
-                MessageBox.Show("Xin lỗi Mật khẩu mới và Mật khẩu xác nhận của bạn không khớp");
+                var p = _nhanVienServices.GetAll().FirstOrDefault(p => p.ID == idRole);
+                p.MatKhau = tb_pass.Text;
+                _nhanVienServices.Update(p);
+                MessageBox.Show("Đổi mật khẩu thành công");
+                this.Close();
             }
 
-          
+
         }
-        //string Username = FrmQuenMK.to;
 
-        //private void btn_Xacnhan_Click(object sender, EventArgs e)
-        //{
-        //    string password = tb_pass.Text;
-        //    if (tb_pass.Text == tb_nhaplai.Text)
-        //    {
-        //        SqlConnection conn = new SqlConnection(@"Data Source=LAPTOP-Q3TF2SAN\SQLEXPRESS;Initial Catalog=QuanLyBanQuanAo;Integrated Security=True;TrustServerCertificate=True;");
-        //        string q = @"UPDATE [dbo].[NhanVien] set [MatKhau]='" + password + "' where Email='" + Username + "'";
-
-        //        SqlCommand cmd = new SqlCommand(q, conn);
-        //        conn.Open();
-        //        cmd.ExecuteNonQuery();
-        //        conn.Close();
-
-        //        MessageBox.Show("Mật khẩu đã được thay đổi thành công");
-        //        this.Close();
-        //        FrmDangNhap frmDangNhap = new FrmDangNhap();
-        //        frmDangNhap.Show();
-
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Xin lỗi Mật khẩu mới và Mật khẩu xác nhận của bạn không khớp");
-        //    }
-        //}
     }
 }

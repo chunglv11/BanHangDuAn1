@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelFill = new Panel();
+            tb_MaNV = new Label();
             button1 = new Button();
             groupBox1 = new GroupBox();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -49,13 +50,9 @@
             groupBox2 = new GroupBox();
             lb_HoTen = new Label();
             LblName = new Label();
-            tb_Ten = new Label();
-            tb_MaNV = new Label();
             ptb_Avt = new PictureBox();
-            lb_MaNV = new Label();
-            lb_User = new Label();
-            groupBox3 = new GroupBox();
-            groupBox6 = new GroupBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            lb_Tencv = new Label();
             panelFill.SuspendLayout();
             groupBox1.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -67,15 +64,13 @@
             panel3.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_Avt).BeginInit();
-            groupBox3.SuspendLayout();
-            groupBox6.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelFill
             // 
             panelFill.BackColor = Color.White;
-            panelFill.Controls.Add(groupBox6);
-            panelFill.Controls.Add(groupBox3);
+            panelFill.Controls.Add(tableLayoutPanel1);
             panelFill.Controls.Add(button1);
             panelFill.Controls.Add(groupBox1);
             panelFill.Controls.Add(ptb_Avt);
@@ -84,6 +79,16 @@
             panelFill.Name = "panelFill";
             panelFill.Size = new Size(865, 745);
             panelFill.TabIndex = 0;
+            // 
+            // tb_MaNV
+            // 
+            tb_MaNV.AutoSize = true;
+            tb_MaNV.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            tb_MaNV.Location = new Point(3, 0);
+            tb_MaNV.Name = "tb_MaNV";
+            tb_MaNV.Size = new Size(145, 54);
+            tb_MaNV.TabIndex = 0;
+            tb_MaNV.Text = "Mã NV";
             // 
             // button1
             // 
@@ -316,27 +321,6 @@
             LblName.Size = new Size(10, 38);
             LblName.TabIndex = 0;
             // 
-            // tb_Ten
-            // 
-            tb_Ten.AutoSize = true;
-            tb_Ten.Font = new Font("Segoe UI Light", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            tb_Ten.ForeColor = Color.FromArgb(87, 96, 106);
-            tb_Ten.Location = new Point(3, 21);
-            tb_Ten.Name = "tb_Ten";
-            tb_Ten.Size = new Size(145, 41);
-            tb_Ten.TabIndex = 1;
-            tb_Ten.Text = "Username";
-            // 
-            // tb_MaNV
-            // 
-            tb_MaNV.AutoSize = true;
-            tb_MaNV.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            tb_MaNV.Location = new Point(0, 12);
-            tb_MaNV.Name = "tb_MaNV";
-            tb_MaNV.Size = new Size(145, 54);
-            tb_MaNV.TabIndex = 0;
-            tb_MaNV.Text = "Mã NV";
-            // 
             // ptb_Avt
             // 
             ptb_Avt.BackColor = Color.WhiteSmoke;
@@ -347,45 +331,29 @@
             ptb_Avt.TabIndex = 0;
             ptb_Avt.TabStop = false;
             // 
-            // lb_MaNV
+            // tableLayoutPanel1
             // 
-            lb_MaNV.AutoSize = true;
-            lb_MaNV.Location = new Point(151, 46);
-            lb_MaNV.Name = "lb_MaNV";
-            lb_MaNV.Size = new Size(18, 20);
-            lb_MaNV.TabIndex = 9;
-            lb_MaNV.Text = "...";
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(lb_Tencv, 0, 1);
+            tableLayoutPanel1.Controls.Add(tb_MaNV, 0, 0);
+            tableLayoutPanel1.Location = new Point(472, 21);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 72F));
+            tableLayoutPanel1.Size = new Size(250, 146);
+            tableLayoutPanel1.TabIndex = 9;
             // 
-            // lb_User
+            // lb_Tencv
             // 
-            lb_User.AutoSize = true;
-            lb_User.Location = new Point(154, 51);
-            lb_User.Name = "lb_User";
-            lb_User.Size = new Size(18, 20);
-            lb_User.TabIndex = 10;
-            lb_User.Text = "...";
-            // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(tb_MaNV);
-            groupBox3.Controls.Add(lb_MaNV);
-            groupBox3.Location = new Point(585, 391);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(250, 125);
-            groupBox3.TabIndex = 11;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "groupBox3";
-            // 
-            // groupBox6
-            // 
-            groupBox6.Controls.Add(tb_Ten);
-            groupBox6.Controls.Add(lb_User);
-            groupBox6.Location = new Point(597, 543);
-            groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(250, 125);
-            groupBox6.TabIndex = 0;
-            groupBox6.TabStop = false;
-            groupBox6.Text = "groupBox6";
+            lb_Tencv.AutoSize = true;
+            lb_Tencv.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            lb_Tencv.Location = new Point(3, 74);
+            lb_Tencv.Name = "lb_Tencv";
+            lb_Tencv.Size = new Size(73, 54);
+            lb_Tencv.TabIndex = 1;
+            lb_Tencv.Text = "CV";
             // 
             // FrmThongTin
             // 
@@ -412,10 +380,8 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ptb_Avt).EndInit();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
-            groupBox6.ResumeLayout(false);
-            groupBox6.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -423,7 +389,6 @@
 
         private Panel panelFill;
         private TableLayoutPanel tableLayoutPanel4;
-        private Label tb_Ten;
         private Label tb_MaNV;
         private PictureBox ptb_Avt;
         private GroupBox groupBox1;
@@ -446,9 +411,7 @@
         private Label lb_Email;
         private DateTimePicker dateTimePicker1;
         private Button button1;
-        private Label lb_User;
-        private Label lb_MaNV;
-        private GroupBox groupBox6;
-        private GroupBox groupBox3;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label lb_Tencv;
     }
 }
