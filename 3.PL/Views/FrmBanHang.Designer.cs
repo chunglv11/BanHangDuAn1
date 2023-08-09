@@ -86,6 +86,7 @@
             label4 = new Label();
             label3 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            groupBox6 = new GroupBox();
             panelFil.SuspendLayout();
             panelTrai.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -97,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)dtg_DonHang).BeginInit();
             panelPhai.SuspendLayout();
             groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // panelFil
@@ -144,8 +146,7 @@
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(tb_TenSPQuet);
-            groupBox4.Controls.Add(tb_MaSPQuet);
+            groupBox4.Controls.Add(groupBox6);
             groupBox4.Controls.Add(tb_TimKiem);
             groupBox4.Controls.Add(cbb_LoaiSP);
             groupBox4.Controls.Add(label2);
@@ -162,7 +163,7 @@
             // tb_TenSPQuet
             // 
             tb_TenSPQuet.Enabled = false;
-            tb_TenSPQuet.Location = new Point(964, 33);
+            tb_TenSPQuet.Location = new Point(199, 27);
             tb_TenSPQuet.Name = "tb_TenSPQuet";
             tb_TenSPQuet.PlaceholderText = "Tên sản phẩm";
             tb_TenSPQuet.Size = new Size(159, 27);
@@ -171,7 +172,7 @@
             // tb_MaSPQuet
             // 
             tb_MaSPQuet.Enabled = false;
-            tb_MaSPQuet.Location = new Point(768, 33);
+            tb_MaSPQuet.Location = new Point(6, 27);
             tb_MaSPQuet.Name = "tb_MaSPQuet";
             tb_MaSPQuet.PlaceholderText = "Mã sản phẩm";
             tb_MaSPQuet.Size = new Size(159, 27);
@@ -234,7 +235,6 @@
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
-        
             // 
             // btn_Them
             // 
@@ -703,6 +703,17 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(tb_TenSPQuet);
+            groupBox6.Controls.Add(tb_MaSPQuet);
+            groupBox6.Location = new Point(765, 6);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(430, 63);
+            groupBox6.TabIndex = 6;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Thông tin sản phẩm quét";
+            // 
             // FrmBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -727,6 +738,8 @@
             panelPhai.ResumeLayout(false);
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -790,5 +803,6 @@
         private Button btn_Them;
         private TextBox tb_TenSPQuet;
         private Button button1;
+        private GroupBox groupBox6;
     }
 }
