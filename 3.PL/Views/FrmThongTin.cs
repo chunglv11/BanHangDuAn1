@@ -15,7 +15,7 @@ namespace _3.PL.Views
     public partial class FrmThongTin : Form
     {
         public INhanVienServices _Inhanvien;
-
+        string linkanh = "";
         public FrmThongTin()
         {
             InitializeComponent();
@@ -30,7 +30,6 @@ namespace _3.PL.Views
         }
         private void LoadData()
         {
-
             var nhanvien = _Inhanvien.GetAllView().FirstOrDefault(p => p.Username == Properties.Settings.Default.TKdaLogin);
             tb_MaNV.Text = nhanvien.MaNv;
             lb_CV.Text = nhanvien.Ten;
@@ -38,9 +37,17 @@ namespace _3.PL.Views
             lb_HoTen.Text = nhanvien.HoTen;
             lb_Email.Text = nhanvien.Email;
             lb_GioiTinh.Text = nhanvien.GioiTinh == 1 ? "nam" : "nữ";
-            string formattedDate = nhanvien.NgaySinh.ToString("dd-MM-yyyy");  //chuyển đổi sang dd/mm/yyyy 
-            dateTimePicker1.Text = Convert.ToString(formattedDate);
-
+            dateTimePicker1.Value = nhanvien.NgaySinh;
+            linkanh = nhanvien.AnhNv;
+            if (linkanh != null && File.Exists(linkanh))
+            {
+                ptb_Avt.Image = Image.FromFile(linkanh);
+                ptb_Avt.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                ptb_Avt.Image = null;
+            }
         }
     }
 }
