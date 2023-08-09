@@ -56,7 +56,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmb_Ngay = new System.Windows.Forms.ComboBox();
             this.TenSp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Soluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +64,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtp_ngay = new System.Windows.Forms.DateTimePicker();
             this.panel3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Show)).BeginInit();
@@ -347,8 +347,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.dtp_ngay);
             this.groupBox5.Controls.Add(this.label3);
-            this.groupBox5.Controls.Add(this.cmb_Ngay);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox5.Location = new System.Drawing.Point(16, 203);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(5);
@@ -369,17 +369,6 @@
             this.label3.Size = new System.Drawing.Size(50, 23);
             this.label3.TabIndex = 10;
             this.label3.Text = "Ngày";
-            // 
-            // cmb_Ngay
-            // 
-            this.cmb_Ngay.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cmb_Ngay.FormattingEnabled = true;
-            this.cmb_Ngay.Location = new System.Drawing.Point(32, 77);
-            this.cmb_Ngay.Margin = new System.Windows.Forms.Padding(5);
-            this.cmb_Ngay.Name = "cmb_Ngay";
-            this.cmb_Ngay.Size = new System.Drawing.Size(171, 33);
-            this.cmb_Ngay.TabIndex = 10;
-            this.cmb_Ngay.SelectedValueChanged += new System.EventHandler(this.cmb_Ngay_SelectedValueChanged);
             // 
             // TenSp
             // 
@@ -461,6 +450,14 @@
             this.ID.Name = "ID";
             this.ID.Width = 125;
             // 
+            // dtp_ngay
+            // 
+            this.dtp_ngay.Location = new System.Drawing.Point(62, 80);
+            this.dtp_ngay.Name = "dtp_ngay";
+            this.dtp_ngay.Size = new System.Drawing.Size(250, 32);
+            this.dtp_ngay.TabIndex = 11;
+            this.dtp_ngay.ValueChanged += new System.EventHandler(this.dtp_ngay_ValueChanged);
+            // 
             // FrmThongKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -477,7 +474,6 @@
             this.Controls.Add(this.panel2);
             this.Name = "FrmThongKe";
             this.Text = "FrmThongKe";
-            this.Load += new System.EventHandler(this.FrmThongKe_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -536,7 +532,7 @@
         private GroupBox groupBox6;
         private Panel panel2;
         private DataGridViewTextBoxColumn ID;
-        private ComboBox cmb_Ngay;
         private Label label3;
+        private DateTimePicker dtp_ngay;
     }
 }
