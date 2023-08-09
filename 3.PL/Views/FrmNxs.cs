@@ -70,7 +70,7 @@ namespace _3.PL.Views
                     NsxViewModels x = new NsxViewModels()
                     {
                         ID = Guid.NewGuid(),
-                        Ma = "NSX"+MaNsx.ToString(),
+                        Ma = "NSX" + MaNsx.ToString(),
                         Ten = txt_Ten.Text,
                         TrangThai = rbtn_HD.Checked ? 1 : 0
                     };
@@ -104,11 +104,18 @@ namespace _3.PL.Views
             DialogResult dialogResult = MessageBox.Show("Bạn Có Muốn Sửa Nhà Sản Xuất Không?", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                viewnsx.Ma = txt_Ma.Text;
-                viewnsx.Ten = txt_Ten.Text;
-                viewnsx.TrangThai = rbtn_HD.Checked ? 1 : 0;
-                MessageBox.Show(insx.update(viewnsx));
-                loadData();
+                if (string.IsNullOrWhiteSpace(txt_Ten.Text))
+                {
+                    MessageBox.Show("Tên không được bỏ trống");
+                }
+                else
+                {
+                    viewnsx.Ma = txt_Ma.Text;
+                    viewnsx.Ten = txt_Ten.Text;
+                    viewnsx.TrangThai = rbtn_HD.Checked ? 1 : 0;
+                    MessageBox.Show(insx.update(viewnsx));
+                    loadData();
+                }
             }
         }
 
@@ -148,9 +155,9 @@ namespace _3.PL.Views
                 }
             }
 
-            txt_Ma.Text="";
-            txt_Ten.Text="";
-            txt_TimKiem.Text="";
+            txt_Ma.Text = "";
+            txt_Ten.Text = "";
+            txt_TimKiem.Text = "";
             rbtn_HD.Checked = false;
             rbtn_KHD.Checked = false;
         }

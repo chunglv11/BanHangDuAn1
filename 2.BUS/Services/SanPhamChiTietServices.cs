@@ -112,7 +112,7 @@ namespace _2.BUS.Services
                         IDCL = g.ID,
                         Ma = a.Ma,
                         TenSp = b.Ten,
-                        TenChatLieu = g.Ten,
+                        ChatLieu = g.Ten,
                         MauSac = c.Ten,
                         Nsx = d.Ten,
                         LoaiSp = e.Ten,

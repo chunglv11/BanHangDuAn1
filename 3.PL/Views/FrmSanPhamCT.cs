@@ -32,6 +32,7 @@ namespace _3.PL.Views
         private INSXServices iNSX;
         private IKichThuocServices iSize;
         private ILoaiSanPhamServices iLoaiSp;
+        private IChatLieuService iChatLieu;
         private SanPhamViewModels viewSpCt;
         private Guid _id;
         string LinkAnh = "";
@@ -45,22 +46,24 @@ namespace _3.PL.Views
             iNSX = new NSXServices();
             iSize = new KichThuocServices();
             iLoaiSp = new LoaiSanPhamServices();
+            iChatLieu = new ChatLieuService();
             viewSpCt = new SanPhamViewModels();
             LoadMs();
             LoadNsx();
             LoadSize();
             loadLoaiSp();
             loadSp();
+            LoadCl();
             LoadData();
             reset();
             loctrangthai();
-            LocSize();
-
+            _id = Guid.Empty;
         }
         public void LoadData()
         {
             int stt = 1;
-            dtg_ShowSanPham.ColumnCount = 14;
+            dtg_ShowSanPham.Rows.Clear();
+            dtg_ShowSanPham.ColumnCount = 15;
             dtg_ShowSanPham.Columns[0].Name = "STT";
             dtg_ShowSanPham.Columns[1].Name = "ID";
             dtg_ShowSanPham.Columns[1].Visible = false;
@@ -68,28 +71,29 @@ namespace _3.PL.Views
             dtg_ShowSanPham.Columns[3].Name = "Tên Sản Phẩm";
             dtg_ShowSanPham.Columns[4].Name = "Size";
             dtg_ShowSanPham.Columns[5].Name = "Loại";
-            dtg_ShowSanPham.Columns[6].Name = "Màu sắc";
-            dtg_ShowSanPham.Columns[7].Name = "Nhà sản xuất";
-            dtg_ShowSanPham.Columns[8].Name = "SLT";
-            dtg_ShowSanPham.Columns[9].Name = "Gía Nhập";
-            dtg_ShowSanPham.Columns[10].Name = "Gía Bán";
-            dtg_ShowSanPham.Columns[11].Name = "Mô Tả";
-            dtg_ShowSanPham.Columns[12].Name = "Trạng thái";
-            dtg_ShowSanPham.Columns[13].Name = "Hinh anh";
+            dtg_ShowSanPham.Columns[6].Name = "Chất liệu";
+            dtg_ShowSanPham.Columns[7].Name = "Màu sắc";
+            dtg_ShowSanPham.Columns[8].Name = "Nhà sản xuất";
+            dtg_ShowSanPham.Columns[9].Name = "SLT";
+            dtg_ShowSanPham.Columns[10].Name = "Gía Nhập";
+            dtg_ShowSanPham.Columns[11].Name = "Gía Bán";
+            dtg_ShowSanPham.Columns[12].Name = "Mô Tả";
+            dtg_ShowSanPham.Columns[13].Name = "Trạng thái";
+            dtg_ShowSanPham.Columns[14].Name = "Hình ảnh";
             dtg_ShowSanPham.Rows.Clear();
             var lstSpCt = iSpCt.GetsListCtSp();
-            if (txt_TimKiem.Text != "")
-            {
-                lstSpCt = lstSpCt.Where(x => x.Ma.ToLower().Contains(txt_TimKiem.Text.ToLower())
-                || x.TenSp.ToLower().Contains(txt_TimKiem.Text.ToLower())).ToList();
-            }
+            //if (txt_TimKiem.Text != "")
+            //{
+            //    lstSpCt = lstSpCt.Where(x => x.Ma.ToLower().Contains(txt_TimKiem.Text.ToLower())
+            //    || x.TenSp.ToLower().Contains(txt_TimKiem.Text.ToLower())).ToList();
+            //}
             foreach (var x in lstSpCt)
             {
                 if (x.SoLuongTon == 0)
                 {
                     x.TrangThai = 0;
                 }
-                dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
             }
             dtg_ShowSanPham.AllowUserToAddRows = false;
         }
@@ -105,8 +109,9 @@ namespace _3.PL.Views
                 cmb_TSP.Text = iSp.getlsSpfromDB().FirstOrDefault(p => p.ID == CTSP.IDSP).Ten;
                 cmb_Loai.Text = iLoaiSp.GetLoaiSP().FirstOrDefault(p => p.ID == CTSP.IDLOAI).Ten;
                 cmb_MS.Text = iMs.GetMauSac().FirstOrDefault(p => p.ID == CTSP.IDMS).Ten;
-                cmb_Nxs.Text = iNSX.GetNhasanxuat().FirstOrDefault(p => p.ID == CTSP.IDNSX).Ten;
+                cmb_Nsx.Text = iNSX.GetNhasanxuat().FirstOrDefault(p => p.ID == CTSP.IDNSX).Ten;
                 cmb_Size.Text = iSize.GetSizeAo().FirstOrDefault(p => p.ID == CTSP.IDKC).Ten;
+                cmb_Cl.Text = iChatLieu.GetChatLieu().FirstOrDefault(p => p.ID == CTSP.IDCL).Ten;
                 txt_GiaBan.Text = CTSP.GiaBan.ToString("N0");
                 txt_GiaNhap.Text = CTSP.GiaNhap.ToString("N0");
                 txt_Mota.Text = CTSP.MoTa;
@@ -121,7 +126,7 @@ namespace _3.PL.Views
                 {
                     ptb_AVT.Image = null;
                 }
-                if (row.Cells[12].Value.ToString() == "Còn hàng")
+                if (row.Cells[13].Value.ToString() == "Còn hàng")
                 {
                     rdb_Con.Checked = true;
                 }
@@ -137,8 +142,9 @@ namespace _3.PL.Views
             var Sp = iSp.getlsSpfromDB().FirstOrDefault(c => c.Ten == cmb_TSP.Text);
             var Ms = iMs.GetMauSac().FirstOrDefault(c => c.Ten == cmb_MS.Text);
             var Loai = iLoaiSp.GetLoaiSP().FirstOrDefault(c => c.Ten == cmb_Loai.Text);
-            var size = iSize.GetSizeAo().FirstOrDefault(c => c.Ten == cmb_Size.Text);
-            var nsx = iNSX.GetNhasanxuat().FirstOrDefault(c => c.Ten == cmb_Nxs.Text);
+            var Size = iSize.GetSizeAo().FirstOrDefault(c => c.Ten == cmb_Size.Text);
+            var Nsx = iNSX.GetNhasanxuat().FirstOrDefault(c => c.Ten == cmb_Nsx.Text);
+            var Chatlieu = iChatLieu.GetChatLieu().FirstOrDefault(c => c.Ten == cmb_Cl.Text);
             int maspct = iSpCt.GetsListCtSp().Count() + 1;
             if (string.IsNullOrEmpty(LinkAnh))
             {
@@ -187,10 +193,17 @@ namespace _3.PL.Views
                     }
                     // nhà sản xuất
 
-                    if (iNSX.GetNhasanxuat().Any(c => c.Ten == cmb_Nxs.Text) == false)
+                    if (iNSX.GetNhasanxuat().Any(c => c.Ten == cmb_Nsx.Text) == false)
 
                     {
                         MessageBox.Show("Tên Nhà Sản Xuất Không Hợp Lệ", "ERR");
+                        return;
+                    }// nhà sản xuất
+
+                    if (iChatLieu.GetChatLieu().Any(c => c.Ten == cmb_Cl.Text) == false)
+
+                    {
+                        MessageBox.Show("Tên Chất liệu Không Hợp Lệ", "ERR");
                         return;
                     }
 
@@ -208,9 +221,10 @@ namespace _3.PL.Views
                             ID = Guid.NewGuid(),
                             IDSP = Sp.ID,
                             IDMS = Ms.ID,
-                            IDKC = size.ID,
+                            IDKC = Size.ID,
                             IDLOAI = Loai.ID,
-                            IDNSX = nsx.ID,
+                            IDNSX = Nsx.ID,
+                            IDCL = Chatlieu.ID,
                             HinhAnh = LinkAnh,
                             SoLuongTon = Convert.ToInt32(txt_SLT.Text),
                             GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
@@ -289,7 +303,8 @@ namespace _3.PL.Views
             var Ms = iMs.GetMauSac().FirstOrDefault(c => c.Ten == cmb_MS.Text);
             var Loai = iLoaiSp.GetLoaiSP().FirstOrDefault(c => c.Ten == cmb_Loai.Text);
             var size = iSize.GetSizeAo().FirstOrDefault(c => c.Ten == cmb_Size.Text);
-            var nsx = iNSX.GetNhasanxuat().FirstOrDefault(c => c.Ten == cmb_Nxs.Text);
+            var nsx = iNSX.GetNhasanxuat().FirstOrDefault(c => c.Ten == cmb_Nsx.Text);
+            var Chatlieu = iChatLieu.GetChatLieu().FirstOrDefault(c => c.Ten == cmb_Cl.Text);
             DialogResult dialogResult = MessageBox.Show("bạn có muốn Update hay không", "Thông Báo", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -342,6 +357,7 @@ namespace _3.PL.Views
                         IDKC = size.ID,
                         IDLOAI = Loai.ID,
                         IDNSX = nsx.ID,
+                        IDCL = Chatlieu.ID,
                         HinhAnh = LinkAnh,
                         SoLuongTon = Convert.ToInt32(txt_SLT.Text),
                         GiaNhap = Convert.ToDecimal(txt_GiaNhap.Text),
@@ -393,7 +409,6 @@ namespace _3.PL.Views
         private void btn_LamMoi_Click(object sender, EventArgs e)
         {
             reset();
-            LoadData();
         }
         public void reset()
         {
@@ -410,21 +425,22 @@ namespace _3.PL.Views
             //}
 
 
-            //DataGridViewRow row = dtg_ShowSanPham.Rows[1];
-            //_id = Guid.Parse(row.Cells[1].Value.ToString());
-            //foreach (DataGridViewRow row1 in dtg_ShowSanPham.Rows)
-            //{
-            //    if (row.Cells[1].Value != null)
-            //    {
-            //        _id = Guid.Empty;
-            //    }
-            //}
-
+            if (dtg_ShowSanPham.Rows.Count > 1)
+            {
+                DataGridViewRow row = dtg_ShowSanPham.Rows[1];
+                if (row.Cells[1].Value != null)
+                {
+                    _id = Guid.Parse(row.Cells[1].Value.ToString());
+                }
+            }
+            _id = Guid.Empty;
             cmb_MS.SelectedItem = null;
             cmb_Loai.SelectedItem = null;
-            cmb_Nxs.SelectedItem = null;
+            cmb_Cl.SelectedItem = null;
+            cmb_Nsx.SelectedItem = null;
             cmb_Size.SelectedItem = null;
             cmb_TSP.SelectedItem = null;
+            cmb_loctrangthai.SelectedItem = null;
             txt_GiaBan.Text = "";
             txt_GiaNhap.Text = "";
             txt_Ma.Text = "";
@@ -475,9 +491,14 @@ namespace _3.PL.Views
                 return false;
             }
             //chekc Nsx
-            if (string.IsNullOrEmpty(cmb_Nxs.Text))
+            if (string.IsNullOrEmpty(cmb_Nsx.Text))
             {
                 MessageBox.Show("Nhà sản xuất không được bỏ trống", "Thông báo");
+                return false;
+            }
+            if (string.IsNullOrEmpty(cmb_Cl.Text))
+            {
+                MessageBox.Show("Chất liệu không được bỏ trống", "Thông báo");
                 return false;
             }
             if (string.IsNullOrEmpty(txt_SLT.Text))
@@ -609,7 +630,7 @@ namespace _3.PL.Views
             //}
             //nhà sản xuất
 
-            if (Regex.IsMatch(cmb_Nxs.Text, @"^[a-zA-Z]") == false)
+            if (Regex.IsMatch(cmb_Cl.Text, @"^[a-zA-Z]") == false)
             {
 
                 MessageBox.Show("Tên Nhà Sản Xuất không được chứa số", "ERR");
@@ -659,20 +680,23 @@ namespace _3.PL.Views
         {
             foreach (var x in iNSX.GetNhasanxuat().Where(c => c.TrangThai == 1))
             {
-                cmb_Nxs.Items.Add(x.Ten);
+                cmb_Nsx.Items.Add(x.Ten);
+            }
+        }
+        public void LoadCl()
+        {
+            foreach (var x in iChatLieu.GetChatLieu().Where(c => c.TrangThai == 1))
+            {
+                cmb_Cl.Items.Add(x.Ten);
             }
         }
 
-        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
-        {
-            LoadData();
-        }
         public void LoadSize()
         {
             foreach (var x in iSize.GetSizeAo().Where(c => c.TrangThai == 1))
             {
                 cmb_Size.Items.Add(x.Ten);
-                cmb_locSize.Items.Add(x.Ten);
+                //cmb_locSize.Items.Add(x.Ten);
             }
         }
         public void loadLoaiSp()
@@ -699,7 +723,7 @@ namespace _3.PL.Views
 
         private void ptb_QR_Click(object sender, EventArgs e)
         {
-            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c => c.ID == _id);
+            var sp = iSpCt.GetAllSanPhamCT().FirstOrDefault(c=>c.ID == _id);
             if (sp != null)
             {
                 QRCodeGenerator qr = new QRCodeGenerator();
@@ -867,45 +891,327 @@ namespace _3.PL.Views
         private void cmb_loctrangthai_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            if (cmb_loctrangthai.Text != "")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
+            if (cmb_loctrangthai.Text == "")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
+            if (cmb_loctrangthai.Text == "Còn hàng")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
+            if (cmb_loctrangthai.Text == "Hết hàng")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
+        }
+        private void txt_TimKiem_TextChanged(object sender, EventArgs e)
+        {
+            if (cmb_loctrangthai.Text != "")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
+            if (cmb_loctrangthai.Text == "")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
+            if (cmb_loctrangthai.Text == "Còn hàng")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
+            if (cmb_loctrangthai.Text == "Hết hàng")
+            {
+                if (cmb_loctrangthai.Text == "Còn hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 1 && p.Ma.Contains(txt_TimKiem.Text)   );
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+
+                if (cmb_loctrangthai.Text == "Hết hàng")
+                {
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.TrangThai == 0 && p.Ma.Contains(txt_TimKiem.Text)|| p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+                }
+                if (cmb_loctrangthai.Text == "")
+                {
+
+                    var timkiem = iSpCt.GetsListCtSp().Where(p => p.Ma.Contains(txt_TimKiem.Text) || p.TenSp.Contains(txt_TimKiem.Text));
+
+                    dtg_ShowSanPham.Rows.Clear();
+                    int stt = 1;
+                    foreach (var x in timkiem)
+                    {
+                        dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.ChatLieu, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
+                    }
+
+                }
+            }
 
         }
         public void loctrangthai()
         {
             cmb_loctrangthai.Items.Add("Còn hàng");
             cmb_loctrangthai.Items.Add("Hết hàng");
-        }
-
-        public void LocSize()
-        {
-            int stt = 1;
-            dtg_ShowSanPham.ColumnCount = 14;
-            dtg_ShowSanPham.Columns[0].Name = "STT";
-            dtg_ShowSanPham.Columns[1].Name = "ID";
-            dtg_ShowSanPham.Columns[1].Visible = false;
-            dtg_ShowSanPham.Columns[2].Name = "Mã";
-            dtg_ShowSanPham.Columns[3].Name = "Tên Sản Phẩm";
-            dtg_ShowSanPham.Columns[4].Name = "Size";
-            dtg_ShowSanPham.Columns[5].Name = "Loại";
-            dtg_ShowSanPham.Columns[6].Name = "Màu sắc";
-            dtg_ShowSanPham.Columns[7].Name = "Nhà sản xuất";
-            dtg_ShowSanPham.Columns[8].Name = "SLT";
-            dtg_ShowSanPham.Columns[9].Name = "Gía Nhập";
-            dtg_ShowSanPham.Columns[10].Name = "Gía Bán";
-            dtg_ShowSanPham.Columns[11].Name = "Mô Tả";
-            dtg_ShowSanPham.Columns[12].Name = "Trạng thái";
-            dtg_ShowSanPham.Columns[13].Name = "Hinh anh";
-            dtg_ShowSanPham.Rows.Clear();
-            var lstSpCt = iSpCt.GetsListCtSp();
-            foreach (var x in lstSpCt.OrderBy(c => c.Ma))
-            {
-
-                dtg_ShowSanPham.Rows.Add(stt++, x.ID, x.Ma, x.TenSp, x.Size, x.LoaiSp, x.MauSac, x.Nsx, x.SoLuongTon, x.GiaNhap.ToString("N0"), x.GiaBan.ToString("N0"), x.MoTa, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng", x.HinhAnh);
-            }
-        }
-
-        private void cmb_locSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LocSize();
         }
     }
 }

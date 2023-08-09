@@ -39,8 +39,8 @@
             btn_Sua = new Button();
             btn_Xoa = new Button();
             panelTrai = new Panel();
-            label15 = new Label();
-            cmb_locSize = new ComboBox();
+            cmb_Nsx = new ComboBox();
+            label16 = new Label();
             label14 = new Label();
             cmb_loctrangthai = new ComboBox();
             rdb_Het = new RadioButton();
@@ -55,7 +55,7 @@
             txt_SLT = new TextBox();
             txt_GiaNhap = new TextBox();
             txt_GiaBan = new TextBox();
-            cmb_Nxs = new ComboBox();
+            cmb_Cl = new ComboBox();
             cmb_Loai = new ComboBox();
             cmb_MS = new ComboBox();
             cmb_Size = new ComboBox();
@@ -194,8 +194,8 @@
             // panelTrai
             // 
             panelTrai.BackColor = Color.SeaShell;
-            panelTrai.Controls.Add(label15);
-            panelTrai.Controls.Add(cmb_locSize);
+            panelTrai.Controls.Add(cmb_Nsx);
+            panelTrai.Controls.Add(label16);
             panelTrai.Controls.Add(label14);
             panelTrai.Controls.Add(cmb_loctrangthai);
             panelTrai.Controls.Add(rdb_Het);
@@ -210,7 +210,7 @@
             panelTrai.Controls.Add(txt_SLT);
             panelTrai.Controls.Add(txt_GiaNhap);
             panelTrai.Controls.Add(txt_GiaBan);
-            panelTrai.Controls.Add(cmb_Nxs);
+            panelTrai.Controls.Add(cmb_Cl);
             panelTrai.Controls.Add(cmb_Loai);
             panelTrai.Controls.Add(cmb_MS);
             panelTrai.Controls.Add(cmb_Size);
@@ -234,24 +234,23 @@
             panelTrai.Size = new Size(1339, 757);
             panelTrai.TabIndex = 29;
             // 
-            // label15
+            // cmb_Nsx
             // 
-            label15.AutoSize = true;
-            label15.Location = new Point(436, 444);
-            label15.Name = "label15";
-            label15.Size = new Size(109, 23);
-            label15.TabIndex = 68;
-            label15.Text = "Lọc theo size";
+            cmb_Nsx.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_Nsx.FormattingEnabled = true;
+            cmb_Nsx.Location = new Point(111, 300);
+            cmb_Nsx.Name = "cmb_Nsx";
+            cmb_Nsx.Size = new Size(208, 31);
+            cmb_Nsx.TabIndex = 70;
             // 
-            // cmb_locSize
+            // label16
             // 
-            cmb_locSize.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_locSize.FormattingEnabled = true;
-            cmb_locSize.Location = new Point(436, 472);
-            cmb_locSize.Name = "cmb_locSize";
-            cmb_locSize.Size = new Size(208, 31);
-            cmb_locSize.TabIndex = 67;
-            cmb_locSize.SelectedIndexChanged += cmb_locSize_SelectedIndexChanged;
+            label16.AutoSize = true;
+            label16.Location = new Point(19, 300);
+            label16.Name = "label16";
+            label16.Size = new Size(47, 23);
+            label16.TabIndex = 69;
+            label16.Text = "NSX:";
             // 
             // label14
             // 
@@ -345,16 +344,16 @@
             // 
             // txt_Mota
             // 
-            txt_Mota.Location = new Point(111, 349);
+            txt_Mota.Location = new Point(111, 400);
             txt_Mota.Name = "txt_Mota";
-            txt_Mota.Size = new Size(208, 82);
+            txt_Mota.Size = new Size(208, 56);
             txt_Mota.TabIndex = 53;
             txt_Mota.Text = "";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(16, 375);
+            label13.Location = new Point(16, 408);
             label13.Name = "label13";
             label13.Size = new Size(60, 23);
             label13.TabIndex = 52;
@@ -362,7 +361,7 @@
             // 
             // txt_SLT
             // 
-            txt_SLT.Location = new Point(111, 297);
+            txt_SLT.Location = new Point(110, 349);
             txt_SLT.Name = "txt_SLT";
             txt_SLT.Size = new Size(208, 30);
             txt_SLT.TabIndex = 51;
@@ -384,14 +383,14 @@
             txt_GiaBan.TabIndex = 48;
             txt_GiaBan.TextChanged += txt_GiaBan_TextChanged;
             // 
-            // cmb_Nxs
+            // cmb_Cl
             // 
-            cmb_Nxs.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmb_Nxs.FormattingEnabled = true;
-            cmb_Nxs.Location = new Point(111, 250);
-            cmb_Nxs.Name = "cmb_Nxs";
-            cmb_Nxs.Size = new Size(208, 31);
-            cmb_Nxs.TabIndex = 47;
+            cmb_Cl.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmb_Cl.FormattingEnabled = true;
+            cmb_Cl.Location = new Point(111, 251);
+            cmb_Cl.Name = "cmb_Cl";
+            cmb_Cl.Size = new Size(208, 31);
+            cmb_Cl.TabIndex = 47;
             // 
             // cmb_Loai
             // 
@@ -468,7 +467,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(19, 300);
+            label8.Location = new Point(18, 352);
             label8.Name = "label8";
             label8.Size = new Size(62, 23);
             label8.TabIndex = 36;
@@ -477,11 +476,11 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(19, 250);
+            label6.Location = new Point(19, 251);
             label6.Name = "label6";
-            label6.Size = new Size(47, 23);
+            label6.Size = new Size(82, 23);
             label6.TabIndex = 34;
-            label6.Text = "NSX:";
+            label6.Text = "Chất liệu:";
             // 
             // label5
             // 
@@ -597,7 +596,7 @@
         private TextBox txt_SLT;
         private TextBox txt_GiaNhap;
         private TextBox txt_GiaBan;
-        private ComboBox cmb_Nxs;
+        private ComboBox cmb_Cl;
         private ComboBox cmb_Loai;
         private ComboBox cmb_MS;
         private ComboBox cmb_Size;
@@ -634,7 +633,7 @@
         private RadioButton rdb_Het;
         private Label label14;
         private ComboBox cmb_loctrangthai;
-        private Label label15;
-        private ComboBox cmb_locSize;
+        private ComboBox cmb_Nsx;
+        private Label label16;
     }
 }
