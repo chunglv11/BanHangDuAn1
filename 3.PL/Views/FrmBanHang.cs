@@ -958,7 +958,15 @@ namespace _3.PL.Views
             {
                 if (!(km.SoTienGiam == 0))
                 {
-                    lb_TongTienTT.Text = (Convert.ToDouble(total) - km.SoTienGiam).ToString();
+                    if (km.SoTienGiam > Convert.ToDouble(lb_Thanhtien.Text))
+                    {
+                        lb_TongTienTT.Text = "0";
+                    }
+                    else
+                    {
+                        lb_TongTienTT.Text = (Convert.ToDouble(total) - km.SoTienGiam).ToString();
+                    }
+
                 }
                 else
                 {
