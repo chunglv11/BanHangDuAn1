@@ -134,7 +134,7 @@ namespace _3.PL.Views
                 to = tb_Gmail.Text;
                 MessageBox.Show("Xác Thực Thành Công");
                 this.Hide();
-                FrmLayLaiMK frmLayLaiMK = new FrmLayLaiMK();
+                FrmDoiMK frmLayLaiMK = new FrmDoiMK();
                 frmLayLaiMK.ShowDialog();
             }
             else MessageBox.Show("Mã OTP không chính xác");

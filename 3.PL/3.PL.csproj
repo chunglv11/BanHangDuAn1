@@ -51,6 +51,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\ImagesNV\" />
+    <Folder Include="Resources\Images\" />
     <Folder Include="Resources\QrCode\" />
     <Folder Include="Resources\QrCode\" />
   </ItemGroup>

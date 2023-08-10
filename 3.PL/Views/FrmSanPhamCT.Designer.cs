@@ -74,8 +74,6 @@
             ptb_QR = new PictureBox();
             ptb_AVT = new PictureBox();
             panel2 = new Panel();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             groupBox1.SuspendLayout();
             panelphai.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -558,11 +556,6 @@
             panel2.Size = new Size(1345, 786);
             panel2.TabIndex = 22;
             // 
-            // sqlCommand1
-            // 
-            sqlCommand1.CommandTimeout = 30;
-            sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
             // FrmSanPhamCT
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -615,7 +608,6 @@
         private PictureBox ptb_QR;
         private PictureBox ptb_AVT;
         private Panel panel2;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private RichTextBox txt_Mota;
         private Button btn_ChonAnh;
         private Label label7;
@@ -627,7 +619,6 @@
         private Button btn_Xoa;
         private GroupBox groupBox2;
         private Button btn_LamMoi;
-        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Button btn_SaveQr;
         private RadioButton rdb_Con;
         private RadioButton rdb_Het;

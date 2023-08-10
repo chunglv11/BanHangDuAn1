@@ -18,6 +18,7 @@ namespace _3.PL.Views
         private INhanVienServices _inhanVienServices;
         private IChucVuServices _ichucVuServices;
         NhanVien _nhanVien;
+        string linkanh = "";
         public FrmMain()
         {
             InitializeComponent();
@@ -140,6 +141,16 @@ namespace _3.PL.Views
             var role = _ichucVuServices.GetAll().FirstOrDefault(c => c.ID == nv.IDCV);
             lb_TenCV.Text = role.Ten;
             lb_TenNV.Text = nv.HoTen;
+            linkanh = nv.AnhNv;
+            if (linkanh != null && File.Exists(linkanh))
+            {
+                ptb_avt.Image = Image.FromFile(linkanh);
+                ptb_avt.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            else
+            {
+                ptb_avt.Image = null;
+            }
         }
     }
 }

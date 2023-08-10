@@ -63,6 +63,7 @@ namespace _3.PL.Views
             dtg_ShowNV.Columns[6].Name = "Email";
             dtg_ShowNV.Columns[7].Name = "NgaySinh";
             dtg_ShowNV.Columns[8].Name = "MatKhau";
+            dtg_ShowNV.Columns[8].Visible = false;
             dtg_ShowNV.Columns[9].Name = "Anh";
             dtg_ShowNV.Columns[10].Name = "ChucVu";
             dtg_ShowNV.Columns[11].Name = "trang thai";
@@ -122,7 +123,7 @@ namespace _3.PL.Views
                 txt_HoTen.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[4].Value.ToString();
                 tb_Email.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[6].Value.ToString();
                 tb_user.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[2].Value.ToString();
-                tb_MatKhau.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[8].Value.ToString();
+                tb_MatKhau.Text = "*" /*dtg_ShowNV.Rows[e.RowIndex].Cells[8].Value.ToString()*/;
                 date_ngaySinh.Value = (DateTime)dtg_ShowNV.Rows[e.RowIndex].Cells[7].Value;
 
                 var cv = _Inhanvien.GetAll().FirstOrDefault(p => p.ID == _ID);

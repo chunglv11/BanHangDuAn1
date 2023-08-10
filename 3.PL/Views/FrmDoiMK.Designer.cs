@@ -112,6 +112,7 @@
             Controls.Add(tb_pass);
             Controls.Add(tb_mkc);
             Name = "FrmDoiMK";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmDoiMK";
             ResumeLayout(false);
             PerformLayout();

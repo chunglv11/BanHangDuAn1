@@ -93,6 +93,7 @@
             Controls.Add(btn_LayMa);
             Controls.Add(tb_Gmail);
             Name = "FrmQuenMK";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmQuenMK";
             ResumeLayout(false);
             PerformLayout();

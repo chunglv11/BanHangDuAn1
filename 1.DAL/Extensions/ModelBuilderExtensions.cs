@@ -13,7 +13,7 @@ namespace _1.DAL.Extensions
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ChucVu>().HasData(
-                new ChucVu() { ID = Guid.Parse("e36bbc87-d18b-4a9a-bc51-353e79e54586"), Ma = "CV1", Ten = "Quản lý", TrangThai = 0 },
+                new ChucVu() { ID = Guid.Parse("e36bbc87-d18b-4a9a-bc51-353e79e54586"), Ma = "CV1", Ten = "Quản lý", TrangThai = 1 },
                 new ChucVu() { ID = Guid.Parse("6459bdd4-3b16-45c3-9142-a8d3cc8bbfc1"), Ma = "CV2", Ten = "Nhân viên", TrangThai = 1 }
                 );
             modelBuilder.Entity<NhanVien>().HasData(
@@ -54,13 +54,13 @@ namespace _1.DAL.Extensions
 
             //    );
             modelBuilder.Entity<KhuyenMai>().HasData(
-                new KhuyenMai() { ID = Guid.Parse("38dc8d59-1d19-4002-933e-3d09c77d8fb1"), Ma = "KM1", Ten = "Giảm 50%", NgayBatDau = DateTime.Now, NgayKetThuc = DateTime.Now, PhanTramGiam = 7, SoTienGiam = 1000, TrangThai = 1 },
-                new KhuyenMai() { ID = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), Ma = "KM2", Ten = "Giảm 50%", NgayBatDau = DateTime.Now, NgayKetThuc = DateTime.Now, PhanTramGiam = 5, SoTienGiam = 1000, TrangThai = 1 }
+                new KhuyenMai() { ID = Guid.Parse("38dc8d59-1d19-4002-933e-3d09c77d8fb1"), Ma = "KM1", Ten = "Giảm 50%", NgayBatDau = DateTime.Now, NgayKetThuc = DateTime.Now, PhanTramGiam = 0, SoTienGiam = 1000, TrangThai = 1 },
+                new KhuyenMai() { ID = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), Ma = "KM2", Ten = "Giảm 50%", NgayBatDau = DateTime.Now, NgayKetThuc = DateTime.Now, PhanTramGiam = 50, SoTienGiam = 0, TrangThai = 1 }
 
                 );
             modelBuilder.Entity<KhachHang>().HasData(
-                new KhachHang() { ID = Guid.Parse("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"), HovaTen = "lại nam", SDT = "0123456890", Diem = 15, TrangThai = 0 },
-                new KhachHang() { ID = Guid.Parse("4dc2c304-df44-4acb-be45-9434d83e45cc"), HovaTen = "lại nam1", SDT = "01234542121", Diem = 12, TrangThai = 1 }
+                new KhachHang() { ID = Guid.Parse("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"), HovaTen = "Khách vãng lai", SDT = "0", Diem = 0, TrangThai = 0 },
+                new KhachHang() { ID = Guid.Parse("4dc2c304-df44-4acb-be45-9434d83e45cc"), HovaTen = "Lại Văn Chung", SDT = "", Diem = 10000, TrangThai = 1 }
                 );
             //modelBuilder.Entity<HoaDon>().HasData(
             //    new HoaDon() { ID = Guid.Parse("78f0dc70-1f8d-42c0-abcb-914c306ff39c"), IDKH = Guid.Parse("d1fbd855-8d98-4edd-98c9-c639a5d05e4c"), IDKM = Guid.Parse("8ee1a209-7ceb-471d-8452-b3c92408cabb"), IDNV = Guid.Parse("6716c72b-76d9-4626-a269-674aac3b1426"), Ma = "HD1", NgayTao = DateTime.Now, NgayThanhToan = DateTime.Now, TrangThai = 1 },

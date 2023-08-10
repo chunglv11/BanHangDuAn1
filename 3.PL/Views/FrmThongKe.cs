@@ -70,15 +70,15 @@ namespace _3.PL.Views
             lbl_DoanhThu.Text = x.Select(x => x.c).Distinct().Sum(x => x.ThanhTien).ToString("N0");
             lbl_HD.Text = x.GroupBy(x => x.a).Count().ToString();
             lbl_KH.Text = x.GroupBy(x => x.b).Count().ToString();
-            lbl_LN.Text = (x.Select(x => x.c).Distinct().Sum(x => x.ThanhTien) - x.Select(x => x.d).Distinct().Sum(x => x.GiaNhap)).ToString("N0");
-            //Decimal tongTien = 0;
-            //foreach (var i in x)
-            //{
-            //    Decimal gia1 = i.c.DonGia * i.c.SoLuong;
-            //    Decimal gia2 = i.d.GiaNhap * i.c.SoLuong;
-            //    tongTien += (gia1 - gia2);
-            //}
-            //lbl_LN.Text = tongTien.ToString("N0");
+            //lbl_LN.Text = (x.Select(x => x.c).Distinct().Sum(x => x.ThanhTien) - x.Select(x => x.d).Distinct().Sum(x => x.GiaNhap)).ToString("N0");
+            Decimal tongTien = 0;
+            foreach (var i in x)
+            {
+                Decimal gia1 = i.c.DonGia * i.c.SoLuong;
+                Decimal gia2 = i.d.GiaNhap * i.c.SoLuong;
+                tongTien += (gia1 - gia2);
+            }
+            lbl_LN.Text = tongTien.ToString("N0");
         }
 
         private void dtp_ngay_ValueChanged(object sender, EventArgs e)

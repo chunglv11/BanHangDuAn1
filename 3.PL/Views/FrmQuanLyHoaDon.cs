@@ -53,18 +53,19 @@ namespace _3.PL.Views
             _id = id;
             dtg_hdct.Columns.Clear(); // xóa các cột hiện có
             dtg_hdct.Rows.Clear();
-            dtg_hdct.ColumnCount = 5;
+            dtg_hdct.ColumnCount = 6;
             dtg_hdct.Columns[0].Name = "IDSPCT";
             dtg_hdct.Columns[0].Visible = false;
             dtg_hdct.Columns[1].Name = "Mã SPCT";
             dtg_hdct.Columns[2].Name = "Tên sản phẩm";
             dtg_hdct.Columns[3].Name = "Số lượng";
             dtg_hdct.Columns[4].Name = "Đơn giá";
+            dtg_hdct.Columns[5].Name = "Thành tiền";
             dtg_hdct.AllowUserToAddRows = false;
             foreach (var item in _ihoaDonChiTietService.GetAllHDCTVM(id))
             {
                 dtg_hdct.Rows.Add(item.IDSPCT, item.MaSPCT, item.TenSP, item.SoLuong,
-                    item.DonGia.ToString("N0") + " VND");
+                    item.DonGia.ToString("N0") + " VND", item.ThanhTien.ToString("N0"));
             }
         }
 
