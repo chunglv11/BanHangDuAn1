@@ -42,8 +42,8 @@ namespace _3.PL.Views
                 _nhanVienServices.Update(p);
                 MessageBox.Show("Đổi mật khẩu thành công");
                 this.Close();
-                FrmDangNhap frmDangNhap = new FrmDangNhap();
-                frmDangNhap.ShowDialog();
+                //FrmDangNhap frmDangNhap = new FrmDangNhap();
+                //frmDangNhap.ShowDialog();
             }
 
 

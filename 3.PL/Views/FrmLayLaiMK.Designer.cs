@@ -92,6 +92,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SeaShell;
             ClientSize = new Size(584, 315);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -100,7 +101,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "FrmLayLaiMK";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmLayLaiMK";
+            Load += FrmLayLaiMK_Load;
             ResumeLayout(false);
             PerformLayout();
         }
