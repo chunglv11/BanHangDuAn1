@@ -94,8 +94,8 @@ namespace _3.PL.Views
             int i = 0;
             foreach (var item in _ihoaDonCTServices.GetAllHDCTVM(_ID))
             {
-                int x = 260;
-                int y = 261;
+                int x = 270;
+                int y = 271;
                 e.Graphics.DrawString(item.TenSP.ToString(), new Font("Arial", 10), Brushes.Black, new Point(300, x + (i * 45)));
                 e.Graphics.DrawString(item.SoLuong.ToString(), new Font("Arial", 10), Brushes.Black, new Point(500, y + (i * 45)));
                 e.Graphics.DrawString(item.DonGia.ToString("N0"), new Font("Arial", 10), Brushes.Black, new Point(600, y + (i * 45)));

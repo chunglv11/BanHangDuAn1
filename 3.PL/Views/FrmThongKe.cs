@@ -64,13 +64,21 @@ namespace _3.PL.Views
 
             foreach (var i in x)
             {
-                dgrid_Show.Rows.Add(i.a.ID, i.e.Ten, i.c.SoLuong, i.c.DonGia, i.c.DonGia * i.c.SoLuong , i.b.SDT == "0" ? "Khách vãng lai" : i.b.SDT);
+                dgrid_Show.Rows.Add(i.a.ID, i.e.Ten, i.c.SoLuong, i.c.DonGia, i.c.DonGia * i.c.SoLuong, i.b.SDT == "0" ? "Khách vãng lai" : i.b.SDT);
             }
 
-            lbl_DoanhThu.Text = x.Select(x => x.c).Distinct().Sum(x => x.ThanhTien).ToString();
+            lbl_DoanhThu.Text = x.Select(x => x.c).Distinct().Sum(x => x.ThanhTien).ToString("N0");
             lbl_HD.Text = x.GroupBy(x => x.a).Count().ToString();
             lbl_KH.Text = x.GroupBy(x => x.b).Count().ToString();
-            lbl_LN.Text = (x.Select(x => x.c).Distinct().Sum(x => x.ThanhTien) - x.Select(x => x.d).Distinct().Sum(x => x.GiaNhap)).ToString();
+            lbl_LN.Text = (x.Select(x => x.c).Distinct().Sum(x => x.ThanhTien) - x.Select(x => x.d).Distinct().Sum(x => x.GiaNhap)).ToString("N0");
+            //Decimal tongTien = 0;
+            //foreach (var i in x)
+            //{
+            //    Decimal gia1 = i.c.DonGia * i.c.SoLuong;
+            //    Decimal gia2 = i.d.GiaNhap * i.c.SoLuong;
+            //    tongTien += (gia1 - gia2);
+            //}
+            //lbl_LN.Text = tongTien.ToString("N0");
         }
 
         private void dtp_ngay_ValueChanged(object sender, EventArgs e)
@@ -101,7 +109,7 @@ namespace _3.PL.Views
             }
         }
 
-        
+
 
         private void txt_Sdt_TextChanged(object sender, EventArgs e)
         {

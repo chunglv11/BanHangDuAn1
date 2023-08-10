@@ -498,7 +498,7 @@ namespace _3.PL.Views
         {
             _HDCT = new List<HoaDonCTVM>();
             dtg_GioHang.Rows.Clear();
-            //tb_SDT.Text = "";
+            tb_SDT.Text = "";
             lb_Tenkh.Text = "";
             tb_Diem.Text = "";
             tb_MaHD.Text = "";
@@ -751,6 +751,7 @@ namespace _3.PL.Views
             }
             else
             {
+
                 HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
                 var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
                 int x;
