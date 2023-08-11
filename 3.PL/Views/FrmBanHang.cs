@@ -637,8 +637,17 @@ namespace _3.PL.Views
                         DonGia = p.GiaBan,
                         SoLuong = od.FirstOrDefault(x => x.IDSPCT == p.ID).SoLuong
                     };
-                    _HDCT.Add(orderDetailVM);
 
+                    _HDCT.Add(orderDetailVM);
+                    if (od.FirstOrDefault(x => x.IDSPCT == p.ID).SoLuong > p.SoLuongTon)
+                    {
+                        MessageBox.Show($"Sản phẩm: {p.TenSp}, size {p.Size}, màu {p.MauSac}, [mã {p.Ma}] không còn đủ số lượng để bán \nVui lòng huỷ đơn hoặc cập nhật thêm sản phẩm này", "Thông báo");
+                        btn_ThanhToan.Enabled = false;
+                    }
+                    else
+                    {
+                        btn_ThanhToan.Enabled = true;
+                    }
                     loadGioHang();
 
                 }
@@ -662,7 +671,11 @@ namespace _3.PL.Views
 
         private void btn_CapNhatHD_Click(object sender, EventArgs e)
         {
-            if (_idhd != null)
+            if (tb_MaHD.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn hoá đơn hoặc tạo hoá đơn");
+            }
+            else if (_idhd != null)
             {
                 if (_HDCT.Any())
                 {
@@ -672,10 +685,12 @@ namespace _3.PL.Views
                     {
                         var order = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(x => x.ID == _idhd);
                         var odd = _ihoaDonCTServices.GetAllHDCT().Where(x => x.IDHD == _idhd);
+                        var p = _isanphamChiTietServices.GetsListCtSp();
                         foreach (var item in odd)
                         {
                             _ihoaDonCTServices.DeleteHDCT(item);
                         }
+
                         foreach (var item in _HDCT)
                         {
                             HoaDonChiTiet od = new HoaDonChiTiet()
@@ -705,6 +720,7 @@ namespace _3.PL.Views
                         lb_Thanhtien.Text = "";
                         MessageBox.Show($"Cập nhật hóa đơn thành công. Mã: {order.Ma}");
                         _idhd = Guid.Empty;
+                        tb_MaHD.Text = "";
                         LoadSp(_isanphamChiTietServices.GetsListCtSp());
                         LoadDonHang();
                         dtg_GioHang.Rows.Clear();
@@ -754,11 +770,16 @@ namespace _3.PL.Views
 
                 HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
                 var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
+                var spct = _isanphamChiTietServices.GetsListCtSp();
                 int x;
                 if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem || Convert.ToDecimal(lbTienThua.Text) < 0 || tb_TienKhachDua.Text == "" || tb_TTOnline.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(tb_TTOnline.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
                 {
                     MessageBox.Show("Kiểm tra lại giá trị đầu vào");
                 }
+                //else if ()
+                //{
+                //    MessageBox.Show("Kiếm tra lại số lượng tồn");
+                //}
                 else
                 {
                     if (hd != null && hd.TrangThai is not 1)
