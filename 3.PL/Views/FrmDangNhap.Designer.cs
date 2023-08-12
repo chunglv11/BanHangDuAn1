@@ -137,6 +137,7 @@
             Tb_Mk.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Tb_Mk.Location = new Point(141, 182);
             Tb_Mk.Name = "Tb_Mk";
+            Tb_Mk.PasswordChar = '*';
             Tb_Mk.Size = new Size(313, 34);
             Tb_Mk.TabIndex = 2;
             // 

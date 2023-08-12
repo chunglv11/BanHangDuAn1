@@ -124,6 +124,7 @@ namespace _3.PL.Views
                 tb_Email.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[6].Value.ToString();
                 tb_user.Text = dtg_ShowNV.Rows[e.RowIndex].Cells[2].Value.ToString();
                 tb_MatKhau.Text = "*" /*dtg_ShowNV.Rows[e.RowIndex].Cells[8].Value.ToString()*/;
+                tb_MatKhau.Enabled = false;
                 date_ngaySinh.Value = (DateTime)dtg_ShowNV.Rows[e.RowIndex].Cells[7].Value;
 
                 var cv = _Inhanvien.GetAll().FirstOrDefault(p => p.ID == _ID);
@@ -304,9 +305,9 @@ namespace _3.PL.Views
             txt_HoTen.Text = "";
             rbn_HD.Checked = false;
             rbn_KHD.Checked = false;
-
+            tb_MatKhau.Enabled = true;
             tb_Email.Text = " ";
-
+            ptb_AVT.Image = null;
             tb_MatKhau.Text = "";
             date_ngaySinh.Text = "";
             tb_user.Text = "";

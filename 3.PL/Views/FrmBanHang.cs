@@ -497,13 +497,13 @@ namespace _3.PL.Views
         private void ClearGioHang()
         {
             _HDCT = new List<HoaDonCTVM>();
-            dtg_GioHang.Rows.Clear();
+            //dtg_GioHang.Rows.Clear();
             tb_SDT.Text = "";
             lb_Tenkh.Text = "";
             tb_Diem.Text = "";
             tb_MaHD.Text = "";
-            tb_TienKhachDua.Text = "0";
-            tb_TTOnline.Text = "0";
+            tb_TienKhachDua.Text = "";
+            tb_TTOnline.Text = "";
             lb_Thanhtien.Text = "";
             lb_TongTienTT.Text = "";
         }
@@ -609,7 +609,6 @@ namespace _3.PL.Views
                 _idhd = Guid.Parse(r.Cells[0].Value.ToString());
                 var hD = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(c => c.ID == _idhd);
                 tb_MaHD.Text = hD.Ma.ToString();
-
                 var od = _ihoaDonCTServices.GetAllHDCT().Where(c => c.IDHD == _idhd);
                 var cid = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(x => x.ID == _idhd).IDKH;// ko thay id hoadon qua id kh/đã sửa
                 var c = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(x => x.ID == cid);
@@ -1117,7 +1116,16 @@ namespace _3.PL.Views
                         }
                         else
                         {
+                            timer1.Stop();
+                            if (Videocam.IsRunning)
+                            {
+                                Videocam.SignalToStop();
+                                Videocam = null;
+                            }
+                            ptb_QR.Image = null;
                             MessageBox.Show("sản phẩm không tồn tại");
+
+
                         }
                         timer1.Stop();
                         if (Videocam.IsRunning)
