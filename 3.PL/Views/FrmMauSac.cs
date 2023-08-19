@@ -74,7 +74,7 @@ namespace _3.PL.Views
                         ID = Guid.NewGuid(),
                         Ma = txt_Ma.Text,
                         Ten = txt_Ten.Text,
-                        TrangThai = rbtn_HD.Checked ? 0 : 1
+                        TrangThai = rbtn_HD.Checked ? 1 : 0
                     };
                     MessageBox.Show(iMauSac.add(x));
                     LoadData();

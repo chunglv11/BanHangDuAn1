@@ -118,7 +118,7 @@
             Cbb_LocCV.Name = "Cbb_LocCV";
             Cbb_LocCV.Size = new Size(151, 28);
             Cbb_LocCV.TabIndex = 14;
-            Cbb_LocCV.SelectedIndexChanged += new System.EventHandler(Cbb_LocCV_SelectedIndexChanged);
+            Cbb_LocCV.SelectedIndexChanged += Cbb_LocCV_SelectedIndexChanged;
             // 
             // txt_TimKiem
             // 
@@ -179,6 +179,7 @@
             // 
             // btn_Xoa
             // 
+            btn_Xoa.Enabled = false;
             btn_Xoa.Image = Properties.Resources.delete;
             btn_Xoa.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Xoa.Location = new Point(405, 39);
@@ -314,7 +315,6 @@
             ptb_AVT.SizeMode = PictureBoxSizeMode.StretchImage;
             ptb_AVT.TabIndex = 30;
             ptb_AVT.TabStop = false;
-
             // 
             // label7
             // 

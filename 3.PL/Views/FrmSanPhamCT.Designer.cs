@@ -179,6 +179,7 @@
             // 
             // btn_Xoa
             // 
+            btn_Xoa.Enabled = false;
             btn_Xoa.Image = Properties.Resources.delete;
             btn_Xoa.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Xoa.Location = new Point(27, 218);

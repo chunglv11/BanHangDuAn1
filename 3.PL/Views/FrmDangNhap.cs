@@ -46,7 +46,7 @@ namespace _3.PL.Views
         private void btn_DangNhap_Click(object sender, EventArgs e)
         {
             var login = _inhanVienServices.GetAll().Where(c => c.Username == tb_Tentk.Text && c.MatKhau == Tb_Mk.Text).FirstOrDefault();
-            if (login != null)
+            if (login != null && login.TrangThai == 1)
             {
                 saveInfor();
                 this.Hide();

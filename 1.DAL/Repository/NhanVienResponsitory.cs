@@ -60,8 +60,8 @@ namespace _1.DAL.Repository
 
         public List<NhanVien> GetAll()
         {
-                return _shopContext.NhanViens.ToList();
-            }
+            return _shopContext.NhanViens.ToList();
+        }
 
         public NhanVien GetById(Guid id)
         {
@@ -87,7 +87,7 @@ namespace _1.DAL.Repository
             IDc.HoTen = nhanvien.HoTen;
             IDc.AnhNv = nhanvien.AnhNv;
             IDc.ChucVu = nhanvien.ChucVu;
-            IDc.MatKhau = nhanvien.MatKhau;
+            //IDc.MatKhau = nhanvien.MatKhau;
             IDc.ID = nhanvien.ID;
             IDc.Email = nhanvien.Email;
             IDc.GioiTinh = nhanvien.GioiTinh;
@@ -99,9 +99,9 @@ namespace _1.DAL.Repository
 
             return true; // Update successful
         }
-       
+
 
     }
 
-       
-    }
+
+}

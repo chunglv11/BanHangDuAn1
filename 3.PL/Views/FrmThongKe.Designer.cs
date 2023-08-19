@@ -35,12 +35,6 @@
             label8 = new Label();
             groupBox4 = new GroupBox();
             dgrid_Show = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            TongTien = new DataGridViewTextBoxColumn();
-            Sdt = new DataGridViewTextBoxColumn();
             txt_TK = new TextBox();
             label4 = new Label();
             label5 = new Label();
@@ -65,6 +59,12 @@
             groupBox6 = new GroupBox();
             panel2 = new Panel();
             ID = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            ThanhTien = new DataGridViewTextBoxColumn();
+            Sdt = new DataGridViewTextBoxColumn();
             panel3.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgrid_Show).BeginInit();
@@ -144,7 +144,7 @@
             // dgrid_Show
             // 
             dgrid_Show.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgrid_Show.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, TongTien, Sdt });
+            dgrid_Show.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, ThanhTien, Sdt });
             dgrid_Show.Location = new Point(22, 97);
             dgrid_Show.Margin = new Padding(5);
             dgrid_Show.Name = "dgrid_Show";
@@ -152,48 +152,6 @@
             dgrid_Show.RowTemplate.Height = 33;
             dgrid_Show.Size = new Size(1155, 216);
             dgrid_Show.TabIndex = 5;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.HeaderText = "ID";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.HeaderText = "TenSP";
-            dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.HeaderText = "SoLuong";
-            dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.HeaderText = "DonGia";
-            dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // TongTien
-            // 
-            TongTien.HeaderText = "TongTien";
-            TongTien.MinimumWidth = 6;
-            TongTien.Name = "TongTien";
-            TongTien.Width = 125;
-            // 
-            // Sdt
-            // 
-            Sdt.HeaderText = "Sdt";
-            Sdt.MinimumWidth = 6;
-            Sdt.Name = "Sdt";
-            Sdt.Width = 125;
             // 
             // txt_TK
             // 
@@ -453,6 +411,49 @@
             ID.Name = "ID";
             ID.Width = 125;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.HeaderText = "ID";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Visible = false;
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.HeaderText = "TenSP";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.HeaderText = "SoLuong";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.HeaderText = "DonGia";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // ThanhTien
+            // 
+            ThanhTien.HeaderText = "ThanhTien";
+            ThanhTien.MinimumWidth = 6;
+            ThanhTien.Name = "ThanhTien";
+            ThanhTien.Width = 125;
+            // 
+            // Sdt
+            // 
+            Sdt.HeaderText = "Sdt";
+            Sdt.MinimumWidth = 6;
+            Sdt.Name = "Sdt";
+            Sdt.Width = 125;
+            // 
             // FrmThongKe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -498,12 +499,6 @@
         private Label label8;
         private GroupBox groupBox4;
         private DataGridView dgrid_Show;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn TongTien;
-        private DataGridViewTextBoxColumn Sdt;
         private TextBox txt_TK;
         private Label label4;
         private Label label5;
@@ -528,5 +523,11 @@
         private DataGridViewTextBoxColumn ID;
         private Label label3;
         private DateTimePicker dtp_ngay;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn ThanhTien;
+        private DataGridViewTextBoxColumn Sdt;
     }
 }

@@ -497,7 +497,7 @@ namespace _3.PL.Views
         private void ClearGioHang()
         {
             _HDCT = new List<HoaDonCTVM>();
-            //dtg_GioHang.Rows.Clear();
+            dtg_GioHang.Rows.Clear();
             tb_SDT.Text = "";
             lb_Tenkh.Text = "";
             tb_Diem.Text = "";
@@ -769,87 +769,102 @@ namespace _3.PL.Views
 
                 HoaDon hd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(a => a.Ma == tb_MaHD.Text && a.TrangThai == 0);
                 var Khach = _ikhachHangServices.GetAllKhachHang().FirstOrDefault(c => c.ID == hd.IDKH);
-                var spct = _isanphamChiTietServices.GetsListCtSp();
+                var od = _ihoaDonCTServices.GetAllHDCT().Where(c => c.IDHD == _idhd);
+                foreach (var item in od)
+                {
+                    var p = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(x => x.ID == item.IDSPCT);
+                    if (od.FirstOrDefault(x => x.IDSPCT == p.ID).SoLuong > p.SoLuongTon)
+                    {
+                        btn_ThanhToan.Enabled = false;
+                        MessageBox.Show($"Sản phẩm: {p.TenSp}, size {p.Size}, màu {p.MauSac}, [mã {p.Ma}] không còn đủ số lượng để bán \nVui lòng huỷ đơn hoặc cập nhật thêm sản phẩm này", "Thông báo");
+
+                    }
+                }
                 int x;
                 if (tb_Diem.Text == "" || Convert.ToInt32(tb_Diem.Text) > Khach.Diem || Convert.ToDecimal(lbTienThua.Text) < 0 || tb_TienKhachDua.Text == "" || tb_TTOnline.Text == "" || Convert.ToDecimal(tb_TienKhachDua.Text) < 0 || Convert.ToDecimal(tb_TTOnline.Text) < 0 || Convert.ToDecimal(lb_TongTienTT.Text) < 0)
                 {
                     MessageBox.Show("Kiểm tra lại giá trị đầu vào");
                 }
-                //else if ()
-                //{
-                //    MessageBox.Show("Kiếm tra lại số lượng tồn");
-                //}
                 else
                 {
                     if (hd != null && hd.TrangThai is not 1)
                     {
+
                         DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn thanh toán không?", "Thanh toán", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            #region Hoá đơn
-                            hd.TrangThai = 1;
-                            hd.NgayThanhToan = DateTime.Now;
-                            hd.IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID;
+                            if (btn_ThanhToan.Enabled == true)
+                            {
+                                #region Hoá đơn
+                                hd.TrangThai = 1;
+                                hd.NgayThanhToan = DateTime.Now;
+                                hd.IDKM = Cbb_GiamGia.SelectedIndex == 0 ? null : _ikhuyenMaiServices.GetKhuyenByName(Cbb_GiamGia.Text).ID;
 
-                            _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToDecimal(tb_TTOnline.Text.Trim()) });
-                            _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToDecimal(tb_TienKhachDua.Text.Trim()) });
-                            _ihoaDonServices.UpdateHoaDon(hd);
-                            #endregion
-                            #region Điểm Khách hàng
-                            //tinh tỏng tien ơ hdct là tính dc điểm hoặc thêm tt tônge tiền ở hoá đơn
-                            decimal total = 0;
-                            foreach (var item in _HDCT)
-                            {
-                                total += item.DonGia * item.SoLuong;
-                            }
-                            if (tb_TienKhachDua.Text == "0" && Convert.ToDecimal(tb_Diem.Text) > total)
-                            {
-                                lbTienThua.Text = "0";
-                                Khach.Diem -= Convert.ToInt32(total);
-                            }
-                            else
-                            {
-                                //Cần thêm nếu là khách vãng lai thì không cộng điểm
-                                if (Khach.SDT.ToString() == "0")
+                                _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOnline, SoTienThanhToan = Convert.ToDecimal(tb_TTOnline.Text.Trim()) });
+                                _ichiTietTTService.AddCTTT(new ChiTietThanhToan() { IdHoaDon = hd.ID, IdPhuongThucThanhToan = idThanhToanOffline, SoTienThanhToan = Convert.ToDecimal(tb_TienKhachDua.Text.Trim()) });
+                                _ihoaDonServices.UpdateHoaDon(hd);
+                                #endregion
+                                #region Điểm Khách hàng
+                                //tinh tỏng tien ơ hdct là tính dc điểm hoặc thêm tt tônge tiền ở hoá đơn
+                                decimal total = 0;
+                                foreach (var item in _HDCT)
                                 {
-                                    Khach.Diem = 0;
+                                    total += item.DonGia * item.SoLuong;
                                 }
-                                else if (tb_Diem.Text != "")
+                                if (tb_TienKhachDua.Text == "0" && Convert.ToDecimal(tb_Diem.Text) > total)
                                 {
-                                    //Nếu dùng điểm thì trừ đi số điểm dùng và cộng thêm điểm khi mua hàng
-                                    Khach.Diem = Khach.Diem + (Convert.ToInt32(total) / 100) - (Convert.ToInt32(tb_Diem.Text)); //Lỗi ko convert dc
+                                    lbTienThua.Text = "0";
+                                    Khach.Diem -= Convert.ToInt32(total);
                                 }
                                 else
                                 {
-                                    //không dùng điểm thì cộng dồn điểm
-                                    Khach.Diem += (Convert.ToInt32(total) / 100);
+                                    //Cần thêm nếu là khách vãng lai thì không cộng điểm
+                                    if (Khach.SDT.ToString() == "0")
+                                    {
+                                        Khach.Diem = 0;
+                                    }
+                                    else if (tb_Diem.Text != "")
+                                    {
+                                        //Nếu dùng điểm thì trừ đi số điểm dùng và cộng thêm điểm khi mua hàng
+                                        Khach.Diem = Khach.Diem + (Convert.ToInt32(total) / 100) - (Convert.ToInt32(tb_Diem.Text)); //Lỗi ko convert dc
+                                    }
+                                    else
+                                    {
+                                        //không dùng điểm thì cộng dồn điểm
+                                        Khach.Diem += (Convert.ToInt32(total) / 100);
+                                    }
                                 }
+                                _ikhachHangServices.EditKhachHang(Khach);
+                                #endregion
+                                //tet lai
+                                foreach (var hdct in _ihoaDonCTServices.GetAllHDCTVM().Where(c => c.IDHD == _idhd))
+                                {
+                                    //HoaDonChiTiet whdct = new HoaDonChiTiet()
+                                    //{
+                                    //    IDHD = hd.ID,
+                                    //    DonGia = hdct.DonGia,
+                                    //    SoLuong = hdct.SoLuong,
+                                    //};
+                                    //_ihoaDonCTServices.AddHDCT(whdct);
+                                    var sp = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(c => c.ID == hdct.IDSPCT);
+                                    sp.SoLuongTon = sp.SoLuongTon - hdct.SoLuong;
+                                    _isanphamChiTietServices.UpdateSanPhamCT(sp);
+                                    LoadSp(_isanphamChiTietServices.GetsListCtSp());
+                                }
+                                MessageBox.Show("Thanh toán thành công");
+                                var idhdd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(c => c.Ma == tb_MaHD.Text).ID;
+                                FrmThongTinHoaDon frmThongTin = new FrmThongTinHoaDon(idhdd);
+                                frmThongTin.ShowDialog();
+                                LoadDonHang();
+                                ClearGioHang();
                             }
-                            _ikhachHangServices.EditKhachHang(Khach);
-                            #endregion
-                            //tet lai
-                            foreach (var hdct in _ihoaDonCTServices.GetAllHDCTVM().Where(c => c.IDHD == _idhd))
+                            else
                             {
-                                //HoaDonChiTiet whdct = new HoaDonChiTiet()
-                                //{
-                                //    IDHD = hd.ID,
-                                //    DonGia = hdct.DonGia,
-                                //    SoLuong = hdct.SoLuong,
-                                //};
-                                //_ihoaDonCTServices.AddHDCT(whdct);
-                                var sp = _isanphamChiTietServices.GetsListCtSp().FirstOrDefault(c => c.ID == hdct.IDSPCT);
-                                sp.SoLuongTon = sp.SoLuongTon - hdct.SoLuong;
-                                _isanphamChiTietServices.UpdateSanPhamCT(sp);
-                                LoadSp(_isanphamChiTietServices.GetsListCtSp());
+                                MessageBox.Show("Kiểm tra lại số lượng sản phẩm");
                             }
-                            MessageBox.Show("Thanh toán thành công");
-                            var idhdd = _ihoaDonServices.GetAllHoaDon().FirstOrDefault(c => c.Ma == tb_MaHD.Text).ID;
-                            FrmThongTinHoaDon frmThongTin = new FrmThongTinHoaDon(idhdd);
-                            frmThongTin.ShowDialog();
-                            LoadDonHang();
-                            ClearGioHang();
 
                         }
+
                     }
                 }
             }
@@ -1053,6 +1068,8 @@ namespace _3.PL.Views
                             hd.TrangThai = -1;
                             _ihoaDonServices.UpdateHoaDon(hd);
                             MessageBox.Show("Đã hủy đơn");
+
+                            ClearGioHang();
                             LoadDonHang();
                         }
                     }
